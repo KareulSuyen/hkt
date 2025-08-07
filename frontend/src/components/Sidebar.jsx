@@ -3,6 +3,8 @@ import sidebarstyle from '../styles/sidebar.module.scss';
 
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
+    const setActive = ({ isActive }) =>
+        isActive ? `${sidebarstyle.link} ${sidebarstyle.active}` : sidebarstyle.link
     return (
         <>
             <aside className={`${sidebarstyle.sidebar} ${isSidebarOpen ? sidebarstyle.open : sidebarstyle.closed}`}>
