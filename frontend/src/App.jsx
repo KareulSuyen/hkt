@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Notfound from './pages/Notfound';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './components/Layout';
 
 
 const handleLogout = () => {
@@ -26,9 +27,21 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route>
-            
+          <Route
+            path='/'
+            element={
+              <ProtectedRoute>
+                <Layout />
+              </ProtectedRoute>
+            }
+          >
+          <Route path='/' element={<Home />}/>
+          <Route path='/help' element={<Help />}/>
           </Route>
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<LogoutAndRegister />} />
+          <Route path='/logout' element={<Logout />} />
+          <Route path='*' element={<Notfound />} />
         </Routes>
       </BrowserRouter>
     </>  
