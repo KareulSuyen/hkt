@@ -9,14 +9,15 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('DJANGO_SECRET_KEY')
-
 AI_API_KEY = config("AI_API_KEY")
-
+AI_MODEL = config("AI_MODEL", default="gpt-3.5-turbo")
+AI_API_BASE_URL = config("AI_API_BASE_URL", default="https://openrouter.ai/api/v1")
+SECRET_KEY = config('DJANGO_SECRET_KEY')
 
 DEBUG = True
 
