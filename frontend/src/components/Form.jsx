@@ -1,14 +1,14 @@
 import api from '../api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import { useNavigate } from 'react-router-dom';
-import { act, useState } from 'react';
+import { useState } from 'react';
 import formstyle from '../styles/form.module.scss';
 
 
 const Form = ({ method, route }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
     const actionType = method === 'login' ? 'login' : 'register';
@@ -28,7 +28,7 @@ const Form = ({ method, route }) => {
                 navigate('/login');
             }
 
-        } catch {
+        } catch (err) {
             console.log(err.response?.data?.message || err.message || 'Something went wrong!');
         } finally {
             setLoading(false);
@@ -39,7 +39,7 @@ const Form = ({ method, route }) => {
         <>
             <form className={formstyle['auth-container']} onSubmit={handleSubmit}>
                 <h2>{ actionType.charAt(0).toUpperCase() + actionType.slice(1) }</h2>
-                <link 
+                <input 
                     type='text'
                     onChange={(e) => setUsername(e.target.value)}
                     value={username}
@@ -47,7 +47,7 @@ const Form = ({ method, route }) => {
                     className={formstyle['form-auth']}
                     required
                 />
-                <link 
+                <input 
                     type='text'
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
