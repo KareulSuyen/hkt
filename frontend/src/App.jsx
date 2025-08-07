@@ -7,44 +7,46 @@ import Register from './pages/Register';
 import Notfound from './pages/Notfound';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
-
+import { useEffect } from 'react';
+import { sendPrompt } from './api';
 
 const handleLogout = () => {
   localStorage.removeItem(ACCESS_TOKEN);
   localStorage.removeItem(REFRESH_TOKEN);
-}
+};
 
 export const Logout = () => {
   handleLogout();
-  return <Navigate to='/logout' />
-}
+  return <Navigate to='/login' replace />;
+};
+
 export const LogoutAndRegister = () => {
-  return <Register />
-}
+  handleLogout();
+  return <Navigate to='/register' replace />;
+};
 
 const App = () => {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <ProtectedRoute>
-                <Layout />
-              </ProtectedRoute>
-            }
-          >
-          <Route path='/' element={<Home />}/>
-          <Route path='/help' element={<Help />}/>
-          </Route>
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<LogoutAndRegister />} />
-          <Route path='/logout' element={<Logout />} />
-          <Route path='*' element={<Notfound />} />
-        </Routes>
-      </BrowserRouter>
-    </>  
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <ProtectedRoute>
+              <Layout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path='/' element={<Home />} />
+          <Route path='/help' element={<Help />} />
+        </Route>
+
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/logout' element={<Logout />} />
+        <Route path='*' element={<Notfound />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
