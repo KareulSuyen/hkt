@@ -1,0 +1,30 @@
+.nav-bar {
+    display: flex;
+    position: relative;
+    align-items: center;
+    background-color: black;
+
+    .toggle-btn {   
+        position: absolute;
+        margin-left: 1rem;
+
+        button {
+            background: none;
+            border: none;
+            font-size: 20px;
+        }
+    }
+
+    .nav-center {
+        margin: auto;
+        padding: 15px 10px;
+        display: flex;
+        gap: 2rem;
+        font-size: 20px;
+
+        .link {
+            text-decoration: none;
+        }
+    }
+
+}
