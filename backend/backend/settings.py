@@ -1,22 +1,19 @@
-
 from pathlib import Path
 from dotenv import load_dotenv
 from datetime import timedelta
 from decouple import config
 import os
 
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# AI Configuration - Complete Groq setup
+GROQ_API_KEY = config('GROQ_API_KEY')
+AI_MODEL = config('AI_MODEL', default='llama-3.2-3b-preview')  # 👈 ADD THIS
+AI_API_BASE_URL = config('AI_API_BASE_URL', default='https://api.groq.com/openai/v1')  # 👈 ADD THIS
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-AI_API_KEY = config("AI_API_KEY")
-AI_MODEL = config("AI_MODEL", default="gpt-3.5-turbo")
-AI_API_BASE_URL = config("AI_API_BASE_URL", default="https://openrouter.ai/api/v1")
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
 DEBUG = True
@@ -31,7 +28,6 @@ SIMPLE_JWT = {
 }
 
 # Application definition
-
 INSTALLED_APPS = [
     'api',
     'corsheaders',
@@ -56,12 +52,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
@@ -89,10 +83,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -100,10 +91,7 @@ DATABASES = {
     }
 }
 
-
 # Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -119,25 +107,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-
 STATIC_URL = 'static/'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

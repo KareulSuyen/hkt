@@ -5,4 +5,5 @@ from .views import CreateUserViews, AIAPIView
 urlpatterns = [
     path('user/register/', CreateUserViews.as_view(), name='user-register'),
     path('ai/', AIAPIView.as_view(), name='ai-endpoint'),
+    
 ]
