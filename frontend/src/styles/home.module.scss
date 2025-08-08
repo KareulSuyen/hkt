@@ -4,159 +4,159 @@ $secondary: #10b981;
 $dark: #0f172a;
 $light: #f8fafc;
 $gray: #94a3b8;
+$dark-gray: #334155;
 
 // Base styles
 .container {
   min-height: 100vh;
   background: linear-gradient(135deg, $dark, darken($dark, 5%));
+  overflow: auto;
   color: $light;
-  font-family: system-ui, sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
 }
 
 .mainContent {
   max-width: 1200px;
   margin: 0 auto;
-  background: rgba($dark, 0.8);
+  background: rgba($dark-gray, 0.6);
   backdrop-filter: blur(8px);
   border-radius: 1rem;
   overflow: hidden;
   border: 1px solid rgba($light, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 // Header
 .header {
   padding: 2rem;
   text-align: center;
-  background: linear-gradient(135deg, rgba($primary, 0.2), transparent);
-  
-  h1 {
+  background: linear-gradient(135deg, rgba($primary, 0.2), rgba($secondary, 0.1));
+  border-bottom: 1px solid rgba($light, 0.05);
+
+  &Title {
     margin: 0;
     font-size: 2.25rem;
+    font-weight: 700;
     background: linear-gradient(to right, $light, $gray);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
-  
-  p {
-    color: rgba($light, 0.8);
+
+  &Subtitle {
     margin: 0.5rem 0 0;
+    color: rgba($light, 0.8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
-// Navigation
-.nav {
+// Feature Navigation
+.featureNav {
   display: flex;
   justify-content: center;
-  padding: 1rem;
+  padding: 0.5rem;
   background: rgba($dark, 0.7);
-  border-bottom: 1px solid rgba($light, 0.1);
+  border-bottom: 1px solid rgba($light, 0.05);
 }
 
-.navButton {
+.featureButton {
   padding: 0.75rem 1.5rem;
-  margin: 0 0.5rem;
+  margin: 0 0.25rem;
   background: none;
   border: none;
-  border-radius: 0.5rem;
   color: $gray;
   font-weight: 500;
+  border-radius: 0.5rem;
   cursor: pointer;
-  display: flex;
-  align-items: center;
   transition: all 0.2s ease;
-  
-  .icon {
-    margin-right: 0.5rem;
-  }
-  
+
   &:hover {
     color: $light;
     background: rgba($light, 0.05);
   }
-  
-  &.active {
+
+  &.activeFeature {
     color: $light;
     background: rgba($primary, 0.2);
-    box-shadow: 0 0 0 1px $primary;
+    box-shadow: 0 0 0 1px rgba($primary, 0.3);
   }
 }
 
-// Content
-.content {
-  padding: 2rem;
-}
-
-// Dashboard
-.dashboard {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
+// Content Cards
 .card {
-  background: rgba($dark, 0.6);
+  background: rgba($dark-gray, 0.4);
   border-radius: 0.75rem;
   padding: 1.5rem;
   border: 1px solid rgba($light, 0.05);
-  transition: transform 0.2s ease;
-  
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
   &:hover {
-    transform: translateY(-3px);
-  }
-  
-  h2 {
-    margin-top: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 }
 
-.counter {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin: 1rem 0;
-  color: $light;
+// Stats Grid
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
 }
 
-.meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  color: $gray;
-}
+.statCard {
+  @extend .card;
+  text-align: center;
 
-// Sources
-.sources {
-  max-width: 800px;
-  margin: 0 auto;
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-}
-
-.sourceItem {
-  background: rgba($dark, 0.6);
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid rgba($light, 0.05);
-  
   h3 {
     margin-top: 0;
-    color: $primary;
+    color: $gray;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }
+}
+
+// Timeline
+.timeline {
+  padding: 1rem;
+  
+  &Item {
+    padding-left: 1.5rem;
+    border-left: 2px solid $primary;
+    margin-bottom: 2rem;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -0.5rem;
+      top: 0;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background: $secondary;
+      border: 2px solid $dark;
+    }
+  }
+}
+
+// Comparison Table
+.comparisonTable {
+  width: 100%;
+  border-collapse: collapse;
+  
+  th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid rgba($light, 0.05);
   }
   
-  a {
-    color: $secondary;
-    text-decoration: none;
-    
-    &:hover {
-      text-decoration: underline;
-    }
+  th {
+    color: $primary;
+    font-weight: 500;
   }
 }
 
@@ -164,9 +164,18 @@ $gray: #94a3b8;
 .footer {
   padding: 1.5rem;
   text-align: center;
-  color: $gray;
-  font-size: 0.9rem;
   border-top: 1px solid rgba($light, 0.05);
+  color: rgba($light, 0.7);
+}
+
+// Animations
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.featureContent {
+  animation: fadeIn 0.3s ease-out;
 }
 
 // Responsive
@@ -174,16 +183,18 @@ $gray: #94a3b8;
   .header {
     padding: 1.5rem 1rem;
     
-    h1 {
+    &Title {
       font-size: 1.75rem;
     }
   }
   
-  .nav {
-    flex-wrap: wrap;
+  .featureNav {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 0.5rem 1rem;
   }
   
-  .dashboard {
+  .statsGrid {
     grid-template-columns: 1fr;
   }
 }
