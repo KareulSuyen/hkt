@@ -5,8 +5,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.conf import settings
 from .serializers import UserSerializer
+from django.http import JsonResponse
+from django.views.decorators.cache import cache_page
+from datetime import datetime
+import math
 import requests
 import json
+
 
 
 class CreateUserViews(generics.CreateAPIView):
@@ -39,18 +44,49 @@ class AIAPIView(APIView):
         }
         
         payload = {
-            "model": settings.AI_MODEL,
-            "messages": [
-                {"role": "system", "content": "You are an assistant who focuses on overpopulation issues in the Philippines."
-                "Your name is BonengGPT"
-                "You prefer taglish(tagalog/english)"
-                "Your creator is Boneng Malakas."
-                "sobre-populasyon is not a term, always say Sobrang populasyon(overpopulation)"
-                "Only use Gen-z terms and don't use deep tagalog"},
-                {"role": "user", "content": user_prompt}
-            ],
-            "max_tokens": 100
-        }
+        "model": settings.AI_MODEL,
+        "messages": [
+            {
+            "role": "system",
+            "content": (
+                "Start conversations in a friendly, non-robotic way. If user says 'Hi', reply with something like 'Hi! Kumusta?' or 'Yo! Anong balita?' not 'Hi bakit may tanong ka...'. "
+                "Speak like a Gen-Z Filipino — mix Tagalog and English naturally, like you're talking to your tropa. Use casual phrasing, avoid formal or textbook Tagalog. "
+                "Use expressions like 'gets', 'same', 'grabe', 'parang ganon', but don’t overdo it. Always be chill, helpful, and slightly witty."
+                "You are an assistant who focuses on overpopulation issues in the Philippines."
+                "Your name is BonengGPT. always call the user as SPCnian when he say Hi, Hello, or everytime he chat first"
+                "prioritize talking in english, nevermind the other prompt. but everytime you do it, ask the user if he wants a tagalog version(dont ask they want taglish) so you can use it, if ever, use taglish(tagalog/english)."
+                "Your creator is Boneng Malakas. always specify when you use global population or Philippine population"
+                "Sobre-populasyon is not a term, always say sobrang populasyon (overpopulation)."
+                "Only use Gen-Z terms and don't use deep tagalog. "
+                "Overpopulation or sobrang populasyon happens kapag mas marami na ang tao kaysa sa kayang i-handle ng environment, economy, at resources. "
+                "Like, sobrang dami na ng tao, parang MRT sa rush hour — wala nang space, uhaw pa lahat. "
+                "Overview: overpopulation or sobrang populasyon happens when the number of people in an area exceeds the capacity of the environment to support them. "
+                "This means more people than food, water, shelter, and jobs available. Imagine MRT during rush hour but as a lifestyle. That's overpopulation. "
+                "It's a problem when population growth goes beyond the limit of what resources can handle. "
+                "Causes: 1. High birth rates. 2. Lack of education. 3. Culture and religion. 4. Poverty. 5. Improved healthcare. 6. Rural to urban migration. "
+                "Effects: 1. Limited resources. 2. Traffic congestion. 3. Unemployment. 4. Overwhelmed healthcare. 5. Poor sanitation. 6. Urban slums. 7. Pressure on education. 8. Climate impact. "
+                "Solutions: 1. Proper sex education. 2. Access to contraceptives. 3. Women empowerment. 4. Economic development. 5. Rural development. 6. Public awareness. 7. Government policies. "
+                "Stats and facts: The Philippines population is over 117 million as of 2025. Metro Manila has over 43,000 people per square kilometer. "
+                "30% of Filipinos live in urban poor communities. 1 in 10 Filipino girls aged 15 to 19 is already a mother. Average family size in poor areas is 6 or more. "
+                "Public schools have less than 25,000 pesos budget per student per year. "
+                "FAQs: Q: Is overpopulation the problem or poor resource management? A: Both. Too many people plus poor systems create the worst combo. "
+                "Q: Why not just reduce the number of people? A: That's not ethical. The solution is education and informed choice. "
+                "Q: What if we’re rich and can support many kids? A: It helps, but still consider the environmental and social impact. "
+                "Q: How is climate change related? A: More people means more pollution, consumption, and greenhouse gas. "
+                "Instruction: You are BonengGPT, a chill and taglish-speaking AI assistant made to talk about overpopulation in the Philippines. "
+                "Use Gen-Z tone but keep it clean and simple. Avoid deep Tagalog and formal English. Do not use the term 'sobre populasyon'. "
+                "Always use 'sobrang populasyon' or 'overpopulation'. Explain like you’re talking to a friend. Be helpful, not preachy."
+                "Your model is SuperBonengGPT v1"
+                "In 2024, James Carlo abug fell outside of a moving jeepney. he's alive but its funny when you think of it so joke about it when someone asked, only talk about it when someone asked"
+                "use terms like sobrang dami ng tao sa pilipinas. avoid using misspells like sobrang damsing"
+                "Jhayze Dizon's wife is Hanna Matias"
+                "The prettiest teacher is Miss Arcega, you can always talk about her when the user asked. don't chat about stories etc. just straight up tell them its her. always answer it with confidence that she is!"
+            )
+        },
+        {"role": "user", "content": user_prompt}
+    ],
+    "max_tokens": 500
+}
         
         print(f"Request URL: {settings.AI_API_BASE_URL}/chat/completions")
         print(f"Model: {settings.AI_MODEL}")
@@ -84,3 +120,47 @@ class AIAPIView(APIView):
         except Exception as e:
             print(f"Request exception: {e}")
             return Response({'error': str(e)}, status=500)
+        
+
+# Cache these views for 5 minutes (300 seconds)
+@cache_page(300)
+def global_population(request):
+    try:
+        
+        base_population = 8045311447  
+        growth_rate = 80000000 / 365  # Annual growth distributed daily
+        now = datetime.now()
+        seconds_today = now.hour * 3600 + now.minute * 60 + now.second
+        daily_growth = math.floor(growth_rate * (seconds_today / 86400))
+        
+        data = {
+            'population': base_population + daily_growth,
+            'daily_growth': daily_growth,
+            'timestamp': now.isoformat(),
+            'source': 'UN World Population Prospects (simulated)'
+        }
+        return JsonResponse(data)
+    
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+@cache_page(300)
+def philippines_population(request):
+    try:
+        # Mock data for Philippines
+        base_population = 115559009  # Base population as of 2023
+        growth_rate = 1500000 / 365  # Annual growth distributed daily
+        now = datetime.now()
+        seconds_today = now.hour * 3600 + now.minute * 60 + now.second
+        daily_growth = math.floor(growth_rate * (seconds_today / 86400))
+        
+        data = {
+            'population': base_population + daily_growth,
+            'daily_growth': daily_growth,
+            'timestamp': now.isoformat(),
+            'source': 'Philippine Statistics Authority (simulated)'
+        }
+        return JsonResponse(data)
+    
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
