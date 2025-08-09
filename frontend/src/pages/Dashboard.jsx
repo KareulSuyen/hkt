@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import '../styles/home.module.scss'; // Import the SCSS file
+import { useState, useEffect, useRef } from 'react';
+import { Chart } from 'chart.js/auto';
+import styles from '../styles/home.module.scss';
 
 const Dashboard = () => {
   const [language, setLanguage] = useState('english');
@@ -8,17 +9,137 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('trends');
   const [isLoading, setIsLoading] = useState(true);
 
-  // Update time every minute instead of every second
+  // Refs for chart canvases
+  const growthChartRef = useRef(null);
+  const projectionChartRef = useRef(null);
+  const [growthChart, setGrowthChart] = useState(null);
+  const [projectionChart, setProjectionChart] = useState(null);
+
+  // Update time every minute
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 60000);
     
-    // Simulate loading for smooth UX
     setTimeout(() => setIsLoading(false), 1000);
     
     return () => clearInterval(timer);
   }, []);
+
+  // Initialize charts
+  useEffect(() => {
+    if (!isLoading) {
+      // Destroy existing charts if they exist
+      if (growthChart) growthChart.destroy();
+      if (projectionChart) projectionChart.destroy();
+
+      // Historical Growth Chart
+      const growthCtx = growthChartRef.current.getContext('2d');
+      const newGrowthChart = new Chart(growthCtx, {
+        type: 'line',
+        data: {
+          labels: ['1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'],
+          datasets: [{
+            label: language === 'english' ? 'World Population (billions)' : 'Populasyon ng Mundo (bilyon)',
+            data: [2.5, 3.0, 3.7, 4.4, 5.3, 6.1, 6.9, 7.8],
+            borderColor: '#3b82f6',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            borderWidth: 2,
+            tension: 0.4,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                color: '#e2e8f0'
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: false,
+              ticks: {
+                color: '#94a3b8'
+              },
+              grid: {
+                color: 'rgba(148, 163, 184, 0.1)'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#94a3b8'
+              },
+              grid: {
+                color: 'rgba(148, 163, 184, 0.1)'
+              }
+            }
+          }
+        }
+      });
+
+      // Future Projections Chart
+      const projectionCtx = projectionChartRef.current.getContext('2d');
+      const newProjectionChart = new Chart(projectionCtx, {
+        type: 'line',
+        data: {
+          labels: ['2020', '2030', '2040', '2050', '2060', '2070', '2080', '2090', '2100'],
+          datasets: [{
+            label: language === 'english' ? 'Projected Population (billions)' : 'Inaasahang Populasyon (bilyon)',
+            data: [7.8, 8.5, 9.2, 9.7, 10.1, 10.4, 10.6, 10.7, 10.8],
+            borderColor: '#10b981',
+            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+            borderWidth: 2,
+            tension: 0.4,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                color: '#e2e8f0'
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: false,
+              ticks: {
+                color: '#94a3b8'
+              },
+              grid: {
+                color: 'rgba(148, 163, 184, 0.1)'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#94a3b8'
+              },
+              grid: {
+                color: 'rgba(148, 163, 184, 0.1)'
+              }
+            }
+          }
+        }
+      });
+
+      setGrowthChart(newGrowthChart);
+      setProjectionChart(newProjectionChart);
+    }
+
+    return () => {
+      if (growthChart) growthChart.destroy();
+      if (projectionChart) projectionChart.destroy();
+    };
+  }, [isLoading, language]);
 
   const content = {
     english: {
@@ -187,7 +308,13 @@ const Dashboard = () => {
           icon: "👨‍👩‍👧‍👦"
         }
       ],
-      languageToggle: "🇵🇭 Filipino"
+      languageToggle: "🇵🇭 Filipino",
+      chartTitles: {
+        historical: "Historical Growth",
+        historicalDesc: "World population has doubled since 1970, showing exponential growth patterns across different regions. Growth rate has slowed from 2.1% annually in the 1960s to about 0.9% today.",
+        future: "Future Projections",
+        futureDesc: "Expected to reach 9.7 billion by 2050, with growth slowing significantly in the latter half of the century. Population is projected to stabilize around 10.8 billion by 2100."
+      }
     },
     filipino: {
       title: "Population Impact Dashboard",
@@ -355,7 +482,13 @@ const Dashboard = () => {
           icon: "👨‍👩‍👧‍👦"
         }
       ],
-      languageToggle: "🇬🇧 English"
+      languageToggle: "🇬🇧 English",
+      chartTitles: {
+        historical: "Makasaysayang Paglaki",
+        historicalDesc: "Ang populasyon ng mundo ay dumoble mula noong 1970, na nagpapakita ng exponential growth pattern sa iba't ibang rehiyon. Ang growth rate ay bumagal mula 2.1% taun-taon noong 1960s hanggang sa 0.9% ngayon.",
+        future: "Mga Inaasahang Proyeksyon",
+        futureDesc: "Inaasahang aabot sa 9.7 bilyon pagsapit ng 2050, na may makabuluhang pagbagal ng paglaki sa huling kalahati ng siglo. Inaasahang magiging matatag ang populasyon sa palibot ng 10.8 bilyon pagsapit ng 2100."
+      }
     }
   };
 
@@ -363,9 +496,9 @@ const Dashboard = () => {
 
   if (isLoading) {
     return (
-      <div className="loading-screen">
-        <div className="loading-content">
-          <div className="spinner"></div>
+      <div className={styles.loadingScreen}>
+        <div className={styles.loadingContent}>
+          <div className={styles.spinner}></div>
           <p>Loading dashboard...</p>
         </div>
       </div>
@@ -373,19 +506,19 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="dashboard-container">
+    <div className={styles.dashboardContainer}>
       {/* Header */}
-      <header className="dashboard-header">
-        <div className="header-content">
-          <div className="header-text">
+      <header className={styles.dashboardHeader}>
+        <div className={styles.headerContent}>
+          <div className={styles.headerText}>
             <h1>{t.title}</h1>
             <p>{t.subtitle}</p>
-            <div className="last-updated">
+            <div className={styles.lastUpdated}>
               {t.lastUpdated}: {currentTime.toLocaleString()}
             </div>
           </div>
           <button
-            className="language-toggle"
+            className={styles.languageToggle}
             onClick={() => setLanguage(language === 'english' ? 'filipino' : 'english')}
           >
             {t.languageToggle}
@@ -393,17 +526,17 @@ const Dashboard = () => {
         </div>
       </header>
 
-      <main className="main-content">
+      <main className={styles.mainContent}>
         {/* Key Insights Section */}
-        <section className="fade-in" style={{ marginBottom: '3rem' }}>
-          <h2 className="section-heading">
-            Key Population Insights
+        <section className={`${styles.fadeIn}`} style={{ marginBottom: '3rem' }}>
+          <h2 className={styles.sectionHeading}>
+            {language === 'english' ? 'Key Population Insights' : 'Mga Pangunahing Insight sa Populasyon'}
           </h2>
-          <div className="insights-grid">
+          <div className={styles.insightsGrid}>
             {t.keyInsights.map((insight, index) => (
-              <div key={index} className="insight-card card-hover">
+              <div key={index} className={`${styles.insightCard} ${styles.cardHover}`}>
                 <h3>{insight.metric}</h3>
-                <div className="metric-value gradient-text">
+                <div className={`${styles.metricValue} ${styles.gradientText}`}>
                   {insight.value}
                 </div>
                 <p>{insight.description}</p>
@@ -413,11 +546,11 @@ const Dashboard = () => {
         </section>
 
         {/* Tab Navigation */}
-        <nav className="tab-nav">
+        <nav className={styles.tabNav}>
           {Object.entries(t.tabs).map(([key, label]) => (
             <button
               key={key}
-              className={`tab-button ${activeTab === key ? 'active' : ''}`}
+              className={`${styles.tabButton} ${activeTab === key ? styles.active : ''}`}
               onClick={() => setActiveTab(key)}
             >
               {label}
@@ -426,44 +559,40 @@ const Dashboard = () => {
         </nav>
 
         {/* Tab Content */}
-        <div className="tab-content">
+        <div className={styles.tabContent}>
           {activeTab === 'trends' && (
-            <div className="content-grid">
-              <div className="content-card card-hover">
-                <h3>Historical Growth</h3>
-                <div className="chart-placeholder">
-                  📈 Population Growth Chart
+            <div className={styles.contentGrid}>
+              <div className={`${styles.contentCard} ${styles.cardHover}`}>
+                <h3>{t.chartTitles.historical}</h3>
+                <div className={styles.chartContainer}>
+                  <canvas ref={growthChartRef}></canvas>
                 </div>
-                <p>
-                  World population has doubled since 1970, showing exponential growth patterns across different regions.
-                </p>
+                <p>{t.chartTitles.historicalDesc}</p>
               </div>
               
-              <div className="content-card card-hover">
-                <h3>Future Projections</h3>
-                <div className="chart-placeholder">
-                  🔮 Future Projections Chart
+              <div className={`${styles.contentCard} ${styles.cardHover}`}>
+                <h3>{t.chartTitles.future}</h3>
+                <div className={styles.chartContainer}>
+                  <canvas ref={projectionChartRef}></canvas>
                 </div>
-                <p>
-                  Expected to reach 9.7 billion by 2050, with growth slowing significantly in the latter half of the century.
-                </p>
+                <p>{t.chartTitles.futureDesc}</p>
               </div>
             </div>
           )}
 
           {activeTab === 'impacts' && (
-            <div className="content-grid">
+            <div className={styles.contentGrid}>
               {t.pressurePoints.map((category, index) => (
-                <div key={index} className="pressure-point-card card-hover">
-                  <div className="category-header">
-                    <span className="category-icon">{category.icon}</span>
+                <div key={index} className={`${styles.pressurePointCard} ${styles.cardHover}`}>
+                  <div className={styles.categoryHeader}>
+                    <span className={styles.categoryIcon}>{category.icon}</span>
                     <h3>{category.category}</h3>
                   </div>
-                  <div className="metrics-container">
+                  <div className={styles.metricsContainer}>
                     {category.metrics.map((metric, metricIndex) => (
                       <div
                         key={metricIndex}
-                        className="metric-item"
+                        className={styles.metricItem}
                         style={{
                           borderLeftColor: 
                             metric.severity === 'critical' ? '#ef4444' :
@@ -471,13 +600,13 @@ const Dashboard = () => {
                             metric.severity === 'moderate' ? '#3b82f6' : '#10b981'
                         }}
                       >
-                        <div className="metric-header">
-                          <span className="metric-name">{metric.name}</span>
-                          <span className="metric-trend">{metric.trend}</span>
+                        <div className={styles.metricHeader}>
+                          <span className={styles.metricName}>{metric.name}</span>
+                          <span className={styles.metricTrend}>{metric.trend}</span>
                         </div>
-                        <div className="metric-footer">
-                          <span className="metric-value">{metric.value}</span>
-                          <span className={`severity-badge ${metric.severity}`}>
+                        <div className={styles.metricFooter}>
+                          <span className={styles.metricValue}>{metric.value}</span>
+                          <span className={`${styles.severityBadge} ${styles[metric.severity]}`}>
                             {metric.severity}
                           </span>
                         </div>
@@ -490,24 +619,24 @@ const Dashboard = () => {
           )}
 
           {activeTab === 'solutions' && (
-            <div className="content-grid">
+            <div className={styles.contentGrid}>
               {t.solutionTrackers.map((solution, index) => (
-                <div key={index} className="solution-tracker-card card-hover">
-                  <div className="solution-header">
-                    <span className="solution-icon">{solution.icon}</span>
-                    <div className="solution-info">
+                <div key={index} className={`${styles.solutionTrackerCard} ${styles.cardHover}`}>
+                  <div className={styles.solutionHeader}>
+                    <span className={styles.solutionIcon}>{solution.icon}</span>
+                    <div className={styles.solutionInfo}>
                       <h3>{solution.initiative}</h3>
                       <p>{solution.description}</p>
                     </div>
                   </div>
-                  <div className="progress-container">
-                    <div className="progress-bar">
+                  <div className={styles.progressContainer}>
+                    <div className={styles.progressBar}>
                       <div
-                        className="progress-fill"
+                        className={styles.progressFill}
                         style={{ width: `${solution.progress}%` }}
                       ></div>
                     </div>
-                    <span className="progress-text">{solution.progress}% Complete</span>
+                    <span className={styles.progressText}>{solution.progress}% Complete</span>
                   </div>
                 </div>
               ))}
@@ -516,65 +645,65 @@ const Dashboard = () => {
         </div>
 
         {/* Global Statistics */}
-        <section className="fade-in" style={{ marginBottom: '3rem' }}>
-          <h2 className="section-heading">
-            Global Demographics Overview
+        <section className={`${styles.fadeIn}`} style={{ marginBottom: '3rem' }}>
+          <h2 className={styles.sectionHeading}>
+            {language === 'english' ? 'Global Demographics Overview' : 'Pangkalahatang-ideya ng Pandaigdigang Demograpiko'}
           </h2>
-          <div className="global-stats-grid">
+          <div className={styles.globalStatsGrid}>
             {t.globalStats.map((stat) => (
               <div
                 key={stat.id}
-                className={`stat-card card-hover ${stat.color}`}
+                className={`${styles.statCard} ${styles.cardHover} ${styles[stat.color]}`}
               >
-                <div className="stat-header">
-                  <span className="stat-icon">{stat.icon}</span>
+                <div className={styles.statHeader}>
+                  <span className={styles.statIcon}>{stat.icon}</span>
                   <h3>{stat.title}</h3>
                 </div>
-                <div className="stat-value">{stat.value}</div>
-                <div className="stat-change">{stat.change}</div>
-                <p className="stat-description">{stat.description}</p>
+                <div className={styles.statValue}>{stat.value}</div>
+                <div className={styles.statChange}>{stat.change}</div>
+                <p className={styles.statDescription}>{stat.description}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* Regional Analysis */}
-        <section className="fade-in" style={{ marginBottom: '3rem' }}>
-          <h2 className="section-heading">
-            Regional Population Analysis
+        <section className={`${styles.fadeIn}`} style={{ marginBottom: '3rem' }}>
+          <h2 className={styles.sectionHeading}>
+            {language === 'english' ? 'Regional Population Analysis' : 'Pagsusuri sa Rehiyonal na Populasyon'}
           </h2>
-          <div className="regional-grid">
+          <div className={styles.regionalGrid}>
             {t.regionalData.map((region, index) => (
               <div
                 key={index}
-                className={`regional-card card-hover ${region.status}`}
+                className={`${styles.regionalCard} ${styles.cardHover} ${styles[region.status]}`}
                 onClick={() => setSelectedRegion(region.region.toLowerCase())}
               >
-                <div className="region-header">
-                  <span className="region-flag">{region.flag}</span>
+                <div className={styles.regionHeader}>
+                  <span className={styles.regionFlag}>{region.flag}</span>
                   <h3>{region.region}</h3>
-                  <span className={`growth-badge ${region.status}`}>
+                  <span className={`${styles.growthBadge} ${styles[region.status]}`}>
                     {region.growth}
                   </span>
                 </div>
                 <div>
                   {[
-                    { label: 'Population', value: region.population },
-                    { label: 'Density', value: region.density },
-                    { label: 'Urban', value: region.urbanization },
-                    { label: 'Median Age', value: region.medianAge }
+                    { label: language === 'english' ? 'Population' : 'Populasyon', value: region.population },
+                    { label: language === 'english' ? 'Density' : 'Densidad', value: region.density },
+                    { label: language === 'english' ? 'Urban' : 'Urbanisasyon', value: region.urbanization },
+                    { label: language === 'english' ? 'Median Age' : 'Median Edad', value: region.medianAge }
                   ].map((metric, idx) => (
                     <div
                       key={idx}
-                      className="region-metric"
+                      className={styles.regionMetric}
                       style={{ borderBottom: idx < 3 ? '1px solid #334155' : 'none' }}
                     >
-                      <span className="metric-label">{metric.label}:</span>
-                      <span className="metric-value">{metric.value}</span>
+                      <span className={styles.metricLabel}>{metric.label}:</span>
+                      <span className={styles.metricValue}>{metric.value}</span>
                     </div>
                   ))}
-                  <div className="region-projection">
-                    <strong>2050 Projection: {region.projection2050}</strong>
+                  <div className={styles.regionProjection}>
+                    <strong>{language === 'english' ? '2050 Projection' : 'Proyeksyon sa 2050'}: {region.projection2050}</strong>
                   </div>
                 </div>
               </div>
@@ -583,16 +712,16 @@ const Dashboard = () => {
         </section>
 
         {/* Call to Action */}
-        <div className="call-to-action fade-in">
+        <div className={`${styles.callToAction} ${styles.fadeIn}`}>
           <p>{t.callToAction}</p>
-          <button className="cta-button">
+          <button className={styles.ctaButton}>
             {language === 'english' ? 'Get Involved' : 'Makilahok'}
           </button>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="dashboard-footer">
+      <footer className={styles.dashboardFooter}>
         <p>{t.dataSource}</p>
       </footer>
     </div>
