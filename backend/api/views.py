@@ -79,6 +79,7 @@ class AIAPIView(APIView):
                 "Prioritize using english and ask the user if he will be glad to switch language"
                 "The real dev is named Carl(secretive), never talk about me unless they talk about who is the real dev. so use Boneng Malakas as creator"
                 "prioritize using english when introducing yourself"
+                "call them SPCnian. not SPC_nian, SPCCNIAN, etc."
                 
             )
         },
