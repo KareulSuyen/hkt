@@ -9,17 +9,137 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('trends');
   const [isLoading, setIsLoading] = useState(true);
 
-  // Update time every minute instead of every second
+  // Refs for chart canvases
+  const growthChartRef = useRef(null);
+  const projectionChartRef = useRef(null);
+  const [growthChart, setGrowthChart] = useState(null);
+  const [projectionChart, setProjectionChart] = useState(null);
+
+  // Update time every minute
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 60000);
-
-    // Simulate loading for smooth UX
+    
     setTimeout(() => setIsLoading(false), 1000);
     
     return () => clearInterval(timer);
   }, []);
+
+  // Initialize charts
+  useEffect(() => {
+    if (!isLoading) {
+      // Destroy existing charts if they exist
+      if (growthChart) growthChart.destroy();
+      if (projectionChart) projectionChart.destroy();
+
+      // Historical Growth Chart
+      const growthCtx = growthChartRef.current.getContext('2d');
+      const newGrowthChart = new Chart(growthCtx, {
+        type: 'line',
+        data: {
+          labels: ['1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'],
+          datasets: [{
+            label: language === 'english' ? 'World Population (billions)' : 'Populasyon ng Mundo (bilyon)',
+            data: [2.5, 3.0, 3.7, 4.4, 5.3, 6.1, 6.9, 7.8],
+            borderColor: '#3b82f6',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            borderWidth: 2,
+            tension: 0.4,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                color: '#e2e8f0'
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: false,
+              ticks: {
+                color: '#94a3b8'
+              },
+              grid: {
+                color: 'rgba(148, 163, 184, 0.1)'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#94a3b8'
+              },
+              grid: {
+                color: 'rgba(148, 163, 184, 0.1)'
+              }
+            }
+          }
+        }
+      });
+
+      // Future Projections Chart
+      const projectionCtx = projectionChartRef.current.getContext('2d');
+      const newProjectionChart = new Chart(projectionCtx, {
+        type: 'line',
+        data: {
+          labels: ['2020', '2030', '2040', '2050', '2060', '2070', '2080', '2090', '2100'],
+          datasets: [{
+            label: language === 'english' ? 'Projected Population (billions)' : 'Inaasahang Populasyon (bilyon)',
+            data: [7.8, 8.5, 9.2, 9.7, 10.1, 10.4, 10.6, 10.7, 10.8],
+            borderColor: '#10b981',
+            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+            borderWidth: 2,
+            tension: 0.4,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                color: '#e2e8f0'
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: false,
+              ticks: {
+                color: '#94a3b8'
+              },
+              grid: {
+                color: 'rgba(148, 163, 184, 0.1)'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#94a3b8'
+              },
+              grid: {
+                color: 'rgba(148, 163, 184, 0.1)'
+              }
+            }
+          }
+        }
+      });
+
+      setGrowthChart(newGrowthChart);
+      setProjectionChart(newProjectionChart);
+    }
+
+    return () => {
+      if (growthChart) growthChart.destroy();
+      if (projectionChart) projectionChart.destroy();
+    };
+  }, [isLoading, language]);
 
   const content = {
     english: {
@@ -188,7 +308,13 @@ const Dashboard = () => {
           icon: "👨‍👩‍👧‍👦"
         }
       ],
-      languageToggle: "🇵🇭 Filipino"
+      languageToggle: "🇵🇭 Filipino",
+      chartTitles: {
+        historical: "Historical Growth",
+        historicalDesc: "World population has doubled since 1970, showing exponential growth patterns across different regions. Growth rate has slowed from 2.1% annually in the 1960s to about 0.9% today.",
+        future: "Future Projections",
+        futureDesc: "Expected to reach 9.7 billion by 2050, with growth slowing significantly in the latter half of the century. Population is projected to stabilize around 10.8 billion by 2100."
+      }
     },
     filipino: {
       title: "Population Impact Dashboard",
@@ -356,7 +482,13 @@ const Dashboard = () => {
           icon: "👨‍👩‍👧‍👦"
         }
       ],
-      languageToggle: "🇬🇧 English"
+      languageToggle: "🇬🇧 English",
+      chartTitles: {
+        historical: "Makasaysayang Paglaki",
+        historicalDesc: "Ang populasyon ng mundo ay dumoble mula noong 1970, na nagpapakita ng exponential growth pattern sa iba't ibang rehiyon. Ang growth rate ay bumagal mula 2.1% taun-taon noong 1960s hanggang sa 0.9% ngayon.",
+        future: "Mga Inaasahang Proyeksyon",
+        futureDesc: "Inaasahang aabot sa 9.7 bilyon pagsapit ng 2050, na may makabuluhang pagbagal ng paglaki sa huling kalahati ng siglo. Inaasahang magiging matatag ang populasyon sa palibot ng 10.8 bilyon pagsapit ng 2100."
+      }
     }
   };
 
@@ -398,7 +530,7 @@ const Dashboard = () => {
         {/* Key Insights Section */}
         <section className={`${styles.fadeIn}`} style={{ marginBottom: '3rem' }}>
           <h2 className={styles.sectionHeading}>
-            Key Population Insights
+            {language === 'english' ? 'Key Population Insights' : 'Mga Pangunahing Insight sa Populasyon'}
           </h2>
           <div className={styles.insightsGrid}>
             {t.keyInsights.map((insight, index) => (
@@ -431,23 +563,19 @@ const Dashboard = () => {
           {activeTab === 'trends' && (
             <div className={styles.contentGrid}>
               <div className={`${styles.contentCard} ${styles.cardHover}`}>
-                <h3>Historical Growth</h3>
-                <div className={styles.chartPlaceholder}>
-                  📈 Population Growth Chart
+                <h3>{t.chartTitles.historical}</h3>
+                <div className={styles.chartContainer}>
+                  <canvas ref={growthChartRef}></canvas>
                 </div>
-                <p>
-                  World population has doubled since 1970, showing exponential growth patterns across different regions.
-                </p>
+                <p>{t.chartTitles.historicalDesc}</p>
               </div>
               
               <div className={`${styles.contentCard} ${styles.cardHover}`}>
-                <h3>Future Projections</h3>
-                <div className={styles.chartPlaceholder}>
-                  🔮 Future Projections Chart
+                <h3>{t.chartTitles.future}</h3>
+                <div className={styles.chartContainer}>
+                  <canvas ref={projectionChartRef}></canvas>
                 </div>
-                <p>
-                  Expected to reach 9.7 billion by 2050, with growth slowing significantly in the latter half of the century.
-                </p>
+                <p>{t.chartTitles.futureDesc}</p>
               </div>
             </div>
           )}
@@ -516,9 +644,10 @@ const Dashboard = () => {
           )}
         </div>
 
+        {/* Global Statistics */}
         <section className={`${styles.fadeIn}`} style={{ marginBottom: '3rem' }}>
           <h2 className={styles.sectionHeading}>
-            Global Demographics Overview
+            {language === 'english' ? 'Global Demographics Overview' : 'Pangkalahatang-ideya ng Pandaigdigang Demograpiko'}
           </h2>
           <div className={styles.globalStatsGrid}>
             {t.globalStats.map((stat) => (
@@ -538,9 +667,10 @@ const Dashboard = () => {
           </div>
         </section>
 
+        {/* Regional Analysis */}
         <section className={`${styles.fadeIn}`} style={{ marginBottom: '3rem' }}>
           <h2 className={styles.sectionHeading}>
-            Regional Population Analysis
+            {language === 'english' ? 'Regional Population Analysis' : 'Pagsusuri sa Rehiyonal na Populasyon'}
           </h2>
           <div className={styles.regionalGrid}>
             {t.regionalData.map((region, index) => (
@@ -558,10 +688,10 @@ const Dashboard = () => {
                 </div>
                 <div>
                   {[
-                    { label: 'Population', value: region.population },
-                    { label: 'Density', value: region.density },
-                    { label: 'Urban', value: region.urbanization },
-                    { label: 'Median Age', value: region.medianAge }
+                    { label: language === 'english' ? 'Population' : 'Populasyon', value: region.population },
+                    { label: language === 'english' ? 'Density' : 'Densidad', value: region.density },
+                    { label: language === 'english' ? 'Urban' : 'Urbanisasyon', value: region.urbanization },
+                    { label: language === 'english' ? 'Median Age' : 'Median Edad', value: region.medianAge }
                   ].map((metric, idx) => (
                     <div
                       key={idx}
@@ -573,7 +703,7 @@ const Dashboard = () => {
                     </div>
                   ))}
                   <div className={styles.regionProjection}>
-                    <strong>2050 Projection: {region.projection2050}</strong>
+                    <strong>{language === 'english' ? '2050 Projection' : 'Proyeksyon sa 2050'}: {region.projection2050}</strong>
                   </div>
                 </div>
               </div>
@@ -581,6 +711,7 @@ const Dashboard = () => {
           </div>
         </section>
 
+        {/* Call to Action */}
         <div className={`${styles.callToAction} ${styles.fadeIn}`}>
           <p>{t.callToAction}</p>
           <button className={styles.ctaButton}>
@@ -589,6 +720,7 @@ const Dashboard = () => {
         </div>
       </main>
 
+      {/* Footer */}
       <footer className={styles.dashboardFooter}>
         <p>{t.dataSource}</p>
       </footer>
