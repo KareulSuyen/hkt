@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import '../styles/home.module.scss'; // Import the SCSS file
 
 const Dashboard = () => {
   const [language, setLanguage] = useState('english');
@@ -360,30 +361,11 @@ const Dashboard = () => {
 
   const t = content[language];
 
-  const formatNumber = (num) => {
-    return num.toLocaleString('en-US', { maximumFractionDigits: 0 });
-  };
-
   if (isLoading) {
     return (
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        height: '100vh', 
-        backgroundColor: '#0f172a',
-        color: '#e2e8f0'
-      }}>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ 
-            width: '50px', 
-            height: '50px', 
-            border: '3px solid #334155',
-            borderTop: '3px solid #3b82f6',
-            borderRadius: '50%',
-            animation: 'spin 1s linear infinite',
-            margin: '0 auto 1rem'
-          }}></div>
+      <div className="loading-screen">
+        <div className="loading-content">
+          <div className="spinner"></div>
           <p>Loading dashboard...</p>
         </div>
       </div>
@@ -391,212 +373,52 @@ const Dashboard = () => {
   }
 
   return (
-    <div style={{ 
-      minHeight: '100vh',
-      fontFamily: "'Inter', system-ui, sans-serif",
-      backgroundColor: '#0f172a',
-      color: '#e2e8f0'
-    }}>
-      <style>
-        {`
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          .fade-in {
-            animation: fadeIn 0.6s ease forwards;
-          }
-          .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          }
-          .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-          }
-          .gradient-text {
-            background: linear-gradient(90deg, #93c5fd, #10b981);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-          }
-          * {
-            box-sizing: border-box;
-          }
-        `}
-      </style>
-
+    <div className="dashboard-container">
       {/* Header */}
-      <header style={{
-        background: 'linear-gradient(135deg, #1e40af 0%, #059669 100%)',
-        padding: '2rem',
-        color: 'white',
-        borderBottom: '1px solid #334155'
-      }}>
-        <div style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          flexWrap: 'wrap',
-          gap: '1rem'
-        }}>
-          <div style={{ flex: 1, minWidth: '300px' }}>
-            <h1 style={{
-              fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
-              margin: '0 0 0.5rem',
-              fontWeight: '800',
-              letterSpacing: '-0.025em'
-            }}>
-              {t.title}
-            </h1>
-            <p style={{
-              margin: '0 0 1rem',
-              opacity: 0.9,
-              fontSize: 'clamp(1rem, 2.5vw, 1.1rem)',
-              lineHeight: 1.4
-            }}>
-              {t.subtitle}
-            </p>
-            <div style={{
-              fontSize: '0.9rem',
-              opacity: 0.8
-            }}>
+      <header className="dashboard-header">
+        <div className="header-content">
+          <div className="header-text">
+            <h1>{t.title}</h1>
+            <p>{t.subtitle}</p>
+            <div className="last-updated">
               {t.lastUpdated}: {currentTime.toLocaleString()}
             </div>
           </div>
           <button
+            className="language-toggle"
             onClick={() => setLanguage(language === 'english' ? 'filipino' : 'english')}
-            style={{
-              padding: '0.75rem 1.5rem',
-              borderRadius: '2rem',
-              border: 'none',
-              background: 'rgba(255, 255, 255, 0.2)',
-              color: 'white',
-              fontWeight: '600',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              backdropFilter: 'blur(5px)',
-              whiteSpace: 'nowrap'
-            }}
-            onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.3)'}
-            onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.2)'}
           >
             {t.languageToggle}
           </button>
         </div>
       </header>
 
-      <main style={{
-        maxWidth: '1400px',
-        margin: '0 auto',
-        padding: '2rem'
-      }}>
+      <main className="main-content">
         {/* Key Insights Section */}
         <section className="fade-in" style={{ marginBottom: '3rem' }}>
-          <h2 style={{
-            fontSize: 'clamp(1.3rem, 3vw, 1.8rem)',
-            marginBottom: '2rem',
-            color: 'white',
-            position: 'relative',
-            paddingBottom: '0.5rem'
-          }}>
+          <h2 className="section-heading">
             Key Population Insights
-            <div style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              width: '4rem',
-              height: '4px',
-              background: 'linear-gradient(90deg, #3b82f6, #10b981)',
-              borderRadius: '2px'
-            }}></div>
           </h2>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '1.5rem'
-          }}>
+          <div className="insights-grid">
             {t.keyInsights.map((insight, index) => (
-              <div
-                key={index}
-                className="card-hover"
-                style={{
-                  background: '#1e293b',
-                  borderRadius: '1rem',
-                  padding: '1.5rem',
-                  border: '1px solid #334155',
-                  textAlign: 'center'
-                }}
-              >
-                <h3 style={{
-                  margin: '0 0 0.5rem',
-                  fontSize: '1.1rem',
-                  color: '#93c5fd'
-                }}>
-                  {insight.metric}
-                </h3>
-                <div className="gradient-text" style={{
-                  fontSize: '2rem',
-                  fontWeight: '800',
-                  margin: '0.5rem 0'
-                }}>
+              <div key={index} className="insight-card card-hover">
+                <h3>{insight.metric}</h3>
+                <div className="metric-value gradient-text">
                   {insight.value}
                 </div>
-                <p style={{
-                  margin: 0,
-                  opacity: 0.8,
-                  fontSize: '0.9rem',
-                  lineHeight: 1.4
-                }}>
-                  {insight.description}
-                </p>
+                <p>{insight.description}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* Tab Navigation */}
-        <nav style={{
-          display: 'flex',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-          gap: '0.5rem',
-          marginBottom: '2rem'
-        }}>
+        <nav className="tab-nav">
           {Object.entries(t.tabs).map(([key, label]) => (
             <button
               key={key}
+              className={`tab-button ${activeTab === key ? 'active' : ''}`}
               onClick={() => setActiveTab(key)}
-              style={{
-                padding: '0.75rem 1.5rem',
-                border: 'none',
-                borderRadius: '2rem',
-                background: activeTab === key ? '#3b82f6' : 'transparent',
-                color: activeTab === key ? 'white' : '#e2e8f0',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                border: `1px solid ${activeTab === key ? '#3b82f6' : '#334155'}`,
-                fontSize: 'clamp(0.9rem, 2vw, 1rem)',
-                whiteSpace: 'nowrap'
-              }}
-              onMouseEnter={(e) => {
-                if (activeTab !== key) {
-                  e.target.style.background = 'rgba(255, 255, 255, 0.05)';
-                  e.target.style.borderColor = '#93c5fd';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeTab !== key) {
-                  e.target.style.background = 'transparent';
-                  e.target.style.borderColor = '#334155';
-                }
-              }}
             >
               {label}
             </button>
@@ -604,63 +426,25 @@ const Dashboard = () => {
         </nav>
 
         {/* Tab Content */}
-        <div style={{ marginBottom: '3rem' }}>
+        <div className="tab-content">
           {activeTab === 'trends' && (
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-              gap: '2rem'
-            }}>
-              <div className="card-hover" style={{
-                background: '#1e293b',
-                borderRadius: '1rem',
-                padding: '2rem',
-                border: '1px solid #334155'
-              }}>
-                <h3 style={{ margin: '0 0 1rem', color: 'white', fontSize: '1.3rem' }}>
-                  Historical Growth
-                </h3>
-                <div style={{
-                  height: '200px',
-                  background: 'rgba(0, 0, 0, 0.2)',
-                  borderRadius: '0.5rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: '1rem 0',
-                  border: '1px dashed #334155',
-                  color: '#94a3b8'
-                }}>
+            <div className="content-grid">
+              <div className="content-card card-hover">
+                <h3>Historical Growth</h3>
+                <div className="chart-placeholder">
                   📈 Population Growth Chart
                 </div>
-                <p style={{ margin: 0, opacity: 0.8, fontSize: '0.95rem' }}>
+                <p>
                   World population has doubled since 1970, showing exponential growth patterns across different regions.
                 </p>
               </div>
               
-              <div className="card-hover" style={{
-                background: '#1e293b',
-                borderRadius: '1rem',
-                padding: '2rem',
-                border: '1px solid #334155'
-              }}>
-                <h3 style={{ margin: '0 0 1rem', color: 'white', fontSize: '1.3rem' }}>
-                  Future Projections
-                </h3>
-                <div style={{
-                  height: '200px',
-                  background: 'rgba(0, 0, 0, 0.2)',
-                  borderRadius: '0.5rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: '1rem 0',
-                  border: '1px dashed #334155',
-                  color: '#94a3b8'
-                }}>
+              <div className="content-card card-hover">
+                <h3>Future Projections</h3>
+                <div className="chart-placeholder">
                   🔮 Future Projections Chart
                 </div>
-                <p style={{ margin: 0, opacity: 0.8, fontSize: '0.95rem' }}>
+                <p>
                   Expected to reach 9.7 billion by 2050, with growth slowing significantly in the latter half of the century.
                 </p>
               </div>
@@ -668,85 +452,32 @@ const Dashboard = () => {
           )}
 
           {activeTab === 'impacts' && (
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-              gap: '2rem'
-            }}>
+            <div className="content-grid">
               {t.pressurePoints.map((category, index) => (
-                <div
-                  key={index}
-                  className="card-hover"
-                  style={{
-                    background: '#1e293b',
-                    borderRadius: '1rem',
-                    padding: '2rem',
-                    border: '1px solid #334155'
-                  }}
-                >
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '1rem',
-                    marginBottom: '1.5rem'
-                  }}>
-                    <span style={{ fontSize: '1.8rem' }}>{category.icon}</span>
-                    <h3 style={{ margin: 0, color: 'white', fontSize: '1.3rem' }}>
-                      {category.category}
-                    </h3>
+                <div key={index} className="pressure-point-card card-hover">
+                  <div className="category-header">
+                    <span className="category-icon">{category.icon}</span>
+                    <h3>{category.category}</h3>
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <div className="metrics-container">
                     {category.metrics.map((metric, metricIndex) => (
                       <div
                         key={metricIndex}
+                        className="metric-item"
                         style={{
-                          background: 'rgba(0, 0, 0, 0.2)',
-                          borderRadius: '0.5rem',
-                          padding: '1rem',
-                          borderLeft: `4px solid ${
+                          borderLeftColor: 
                             metric.severity === 'critical' ? '#ef4444' :
                             metric.severity === 'high' ? '#f59e0b' :
                             metric.severity === 'moderate' ? '#3b82f6' : '#10b981'
-                          }`
                         }}
                       >
-                        <div style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          flexWrap: 'wrap',
-                          marginBottom: '0.5rem',
-                          gap: '0.5rem'
-                        }}>
-                          <span style={{ fontWeight: '500' }}>{metric.name}</span>
-                          <span style={{ opacity: 0.8, fontSize: '0.85rem' }}>
-                            {metric.trend}
-                          </span>
+                        <div className="metric-header">
+                          <span className="metric-name">{metric.name}</span>
+                          <span className="metric-trend">{metric.trend}</span>
                         </div>
-                        <div style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          flexWrap: 'wrap',
-                          gap: '0.5rem'
-                        }}>
-                          <span style={{ fontWeight: '600' }}>{metric.value}</span>
-                          <span style={{
-                            padding: '0.25rem 0.75rem',
-                            borderRadius: '2rem',
-                            fontSize: '0.75rem',
-                            fontWeight: '700',
-                            textTransform: 'uppercase',
-                            background: `${
-                              metric.severity === 'critical' ? 'rgba(239, 68, 68, 0.2)' :
-                              metric.severity === 'high' ? 'rgba(245, 158, 11, 0.2)' :
-                              metric.severity === 'moderate' ? 'rgba(59, 130, 246, 0.2)' : 'rgba(16, 185, 129, 0.2)'
-                            }`,
-                            color: `${
-                              metric.severity === 'critical' ? '#ef4444' :
-                              metric.severity === 'high' ? '#f59e0b' :
-                              metric.severity === 'moderate' ? '#93c5fd' : '#10b981'
-                            }`
-                          }}>
+                        <div className="metric-footer">
+                          <span className="metric-value">{metric.value}</span>
+                          <span className={`severity-badge ${metric.severity}`}>
                             {metric.severity}
                           </span>
                         </div>
@@ -759,72 +490,24 @@ const Dashboard = () => {
           )}
 
           {activeTab === 'solutions' && (
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-              gap: '2rem'
-            }}>
+            <div className="content-grid">
               {t.solutionTrackers.map((solution, index) => (
-                <div
-                  key={index}
-                  className="card-hover"
-                  style={{
-                    background: '#1e293b',
-                    borderRadius: '1rem',
-                    padding: '2rem',
-                    border: '1px solid #334155'
-                  }}
-                >
-                  <div style={{
-                    display: 'flex',
-                    gap: '1rem',
-                    marginBottom: '1.5rem'
-                  }}>
-                    <span style={{ fontSize: '2rem', flexShrink: 0 }}>
-                      {solution.icon}
-                    </span>
-                    <div>
-                      <h3 style={{
-                        margin: '0 0 0.5rem',
-                        color: 'white',
-                        fontSize: '1.2rem'
-                      }}>
-                        {solution.initiative}
-                      </h3>
-                      <p style={{
-                        margin: 0,
-                        opacity: 0.8,
-                        fontSize: '0.95rem',
-                        lineHeight: 1.4
-                      }}>
-                        {solution.description}
-                      </p>
+                <div key={index} className="solution-tracker-card card-hover">
+                  <div className="solution-header">
+                    <span className="solution-icon">{solution.icon}</span>
+                    <div className="solution-info">
+                      <h3>{solution.initiative}</h3>
+                      <p>{solution.description}</p>
                     </div>
                   </div>
-                  <div>
-                    <div style={{
-                      height: '8px',
-                      background: 'rgba(0, 0, 0, 0.3)',
-                      borderRadius: '4px',
-                      overflow: 'hidden',
-                      marginBottom: '0.5rem'
-                    }}>
-                      <div style={{
-                        height: '100%',
-                        background: 'linear-gradient(90deg, #3b82f6, #10b981)',
-                        borderRadius: '4px',
-                        width: `${solution.progress}%`,
-                        transition: 'width 0.5s ease'
-                      }}>
-                      </div>
+                  <div className="progress-container">
+                    <div className="progress-bar">
+                      <div
+                        className="progress-fill"
+                        style={{ width: `${solution.progress}%` }}
+                      ></div>
                     </div>
-                    <span style={{
-                      fontSize: '0.9rem',
-                      fontWeight: '600',
-                      color: '#93c5fd'
-                    }}>
-                      {solution.progress}% Complete
-                    </span>
+                    <span className="progress-text">{solution.progress}% Complete</span>
                   </div>
                 </div>
               ))}
@@ -834,89 +517,22 @@ const Dashboard = () => {
 
         {/* Global Statistics */}
         <section className="fade-in" style={{ marginBottom: '3rem' }}>
-          <h2 style={{
-            fontSize: 'clamp(1.3rem, 3vw, 1.8rem)',
-            marginBottom: '2rem',
-            color: 'white',
-            position: 'relative',
-            paddingBottom: '0.5rem'
-          }}>
+          <h2 className="section-heading">
             Global Demographics Overview
-            <div style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              width: '4rem',
-              height: '4px',
-              background: 'linear-gradient(90deg, #3b82f6, #10b981)',
-              borderRadius: '2px'
-            }}></div>
           </h2>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '1.5rem'
-          }}>
+          <div className="global-stats-grid">
             {t.globalStats.map((stat) => (
               <div
                 key={stat.id}
-                className="card-hover"
-                style={{
-                  background: '#1e293b',
-                  borderRadius: '1rem',
-                  padding: '1.5rem',
-                  border: '1px solid #334155',
-                  borderLeft: `4px solid ${
-                    stat.color === 'primary' ? '#3b82f6' :
-                    stat.color === 'success' ? '#10b981' :
-                    stat.color === 'warning' ? '#f59e0b' : '#ef4444'
-                  }`
-                }}
+                className={`stat-card card-hover ${stat.color}`}
               >
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '1rem',
-                  marginBottom: '1rem'
-                }}>
-                  <span style={{ fontSize: '1.5rem' }}>{stat.icon}</span>
-                  <h3 style={{
-                    margin: 0,
-                    color: 'white',
-                    fontSize: '1.1rem',
-                    flex: 1
-                  }}>
-                    {stat.title}
-                  </h3>
+                <div className="stat-header">
+                  <span className="stat-icon">{stat.icon}</span>
+                  <h3>{stat.title}</h3>
                 </div>
-                <div style={{
-                  fontSize: '2rem',
-                  fontWeight: '800',
-                  margin: '0.5rem 0',
-                  color: `${
-                    stat.color === 'primary' ? '#93c5fd' :
-                    stat.color === 'success' ? '#6ee7b7' :
-                    stat.color === 'warning' ? '#fbbf24' : '#fca5a5'
-                  }`
-                }}>
-                  {stat.value}
-                </div>
-                <div style={{
-                  fontSize: '0.9rem',
-                  opacity: 0.8,
-                  marginBottom: '0.5rem',
-                  fontWeight: '500'
-                }}>
-                  {stat.change}
-                </div>
-                <p style={{
-                  margin: 0,
-                  opacity: 0.7,
-                  fontSize: '0.85rem',
-                  lineHeight: 1.4
-                }}>
-                  {stat.description}
-                </p>
+                <div className="stat-value">{stat.value}</div>
+                <div className="stat-change">{stat.change}</div>
+                <p className="stat-description">{stat.description}</p>
               </div>
             ))}
           </div>
@@ -924,83 +540,20 @@ const Dashboard = () => {
 
         {/* Regional Analysis */}
         <section className="fade-in" style={{ marginBottom: '3rem' }}>
-          <h2 style={{
-            fontSize: 'clamp(1.3rem, 3vw, 1.8rem)',
-            marginBottom: '2rem',
-            color: 'white',
-            position: 'relative',
-            paddingBottom: '0.5rem'
-          }}>
+          <h2 className="section-heading">
             Regional Population Analysis
-            <div style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              width: '4rem',
-              height: '4px',
-              background: 'linear-gradient(90deg, #3b82f6, #10b981)',
-              borderRadius: '2px'
-            }}></div>
           </h2>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '1.5rem'
-          }}>
+          <div className="regional-grid">
             {t.regionalData.map((region, index) => (
               <div
                 key={index}
-                className="card-hover"
+                className={`regional-card card-hover ${region.status}`}
                 onClick={() => setSelectedRegion(region.region.toLowerCase())}
-                style={{
-                  background: '#1e293b',
-                  borderRadius: '1rem',
-                  padding: '1.5rem',
-                  border: '1px solid #334155',
-                  borderLeft: `4px solid ${
-                    region.status === 'rapid-growth' ? '#ef4444' :
-                    region.status === 'moderate-growth' ? '#f59e0b' :
-                    region.status === 'declining' ? '#94a3b8' : '#10b981'
-                  }`,
-                  cursor: 'pointer'
-                }}
               >
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '1rem',
-                  marginBottom: '1rem',
-                  flexWrap: 'wrap'
-                }}>
-                  <span style={{ fontSize: '1.5rem' }}>{region.flag}</span>
-                  <h3 style={{
-                    margin: 0,
-                    flex: 1,
-                    color: 'white',
-                    fontSize: '1.2rem',
-                    minWidth: '0',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis'
-                  }}>
-                    {region.region}
-                  </h3>
-                  <span style={{
-                    fontWeight: '700',
-                    padding: '0.25rem 0.75rem',
-                    borderRadius: '2rem',
-                    fontSize: '0.85rem',
-                    whiteSpace: 'nowrap',
-                    background: `${
-                      region.status === 'rapid-growth' ? 'rgba(239, 68, 68, 0.2)' :
-                      region.status === 'moderate-growth' ? 'rgba(245, 158, 11, 0.2)' :
-                      region.status === 'declining' ? 'rgba(148, 163, 184, 0.2)' : 'rgba(16, 185, 129, 0.2)'
-                    }`,
-                    color: `${
-                      region.status === 'rapid-growth' ? '#ef4444' :
-                      region.status === 'moderate-growth' ? '#f59e0b' :
-                      region.status === 'declining' ? '#94a3b8' : '#10b981'
-                    }`
-                  }}>
+                <div className="region-header">
+                  <span className="region-flag">{region.flag}</span>
+                  <h3>{region.region}</h3>
+                  <span className={`growth-badge ${region.status}`}>
                     {region.growth}
                   </span>
                 </div>
@@ -1013,26 +566,14 @@ const Dashboard = () => {
                   ].map((metric, idx) => (
                     <div
                       key={idx}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        padding: '0.5rem 0',
-                        borderBottom: idx < 3 ? '1px solid #334155' : 'none',
-                        flexWrap: 'wrap',
-                        gap: '0.5rem'
-                      }}
+                      className="region-metric"
+                      style={{ borderBottom: idx < 3 ? '1px solid #334155' : 'none' }}
                     >
-                      <span style={{ opacity: 0.8 }}>{metric.label}:</span>
-                      <span style={{ fontWeight: '500' }}>{metric.value}</span>
+                      <span className="metric-label">{metric.label}:</span>
+                      <span className="metric-value">{metric.value}</span>
                     </div>
                   ))}
-                  <div style={{
-                    marginTop: '1rem',
-                    paddingTop: '0.5rem',
-                    borderTop: '1px solid #334155',
-                    fontSize: '0.95rem',
-                    fontWeight: '600'
-                  }}>
+                  <div className="region-projection">
                     <strong>2050 Projection: {region.projection2050}</strong>
                   </div>
                 </div>
@@ -1042,57 +583,17 @@ const Dashboard = () => {
         </section>
 
         {/* Call to Action */}
-        <div className="fade-in" style={{
-          textAlign: 'center',
-          margin: '3rem 0',
-          padding: '2rem',
-          background: 'rgba(0, 0, 0, 0.2)',
-          borderRadius: '1rem',
-          border: '1px solid #334155'
-        }}>
-          <p style={{
-            fontSize: 'clamp(1.1rem, 3vw, 1.3rem)',
-            marginBottom: '1.5rem',
-            color: 'white'
-          }}>
-            {t.callToAction}
-          </p>
-          <button
-            style={{
-              padding: 'clamp(0.75rem, 2vw, 1rem) clamp(2rem, 4vw, 2.5rem)',
-              border: 'none',
-              borderRadius: '2rem',
-              background: '#3b82f6',
-              color: 'white',
-              fontWeight: '600',
-              fontSize: 'clamp(1rem, 2vw, 1.1rem)',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-2px)';
-              e.target.style.boxShadow = '0 6px 20px rgba(59, 130, 246, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0)';
-              e.target.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
-            }}
-          >
+        <div className="call-to-action fade-in">
+          <p>{t.callToAction}</p>
+          <button className="cta-button">
             {language === 'english' ? 'Get Involved' : 'Makilahok'}
           </button>
         </div>
       </main>
 
       {/* Footer */}
-      <footer style={{
-        textAlign: 'center',
-        padding: '1.5rem',
-        fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
-        opacity: 0.7,
-        borderTop: '1px solid #334155'
-      }}>
-        <p style={{ margin: 0 }}>{t.dataSource}</p>
+      <footer className="dashboard-footer">
+        <p>{t.dataSource}</p>
       </footer>
     </div>
   );

@@ -12,11 +12,13 @@ dist
 dist-ssr
 *.local
 .env
+*.env
 .env.*
+__pycache__/
+*.pyc
 __pycache__
 __pycache__*
 
-# Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
