@@ -1,6 +1,6 @@
 import { ACCESS_TOKEN, REFRESH_TOKEN } from './constants';
 import ProtectedRoute from './components/ProtectedRoute';
-import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
 import Help from './pages/Help';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -35,7 +35,7 @@ const App = () => {
             </ProtectedRoute>
           }
         >
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Dashboard />} />
           <Route path='/help' element={<Help />} />
         </Route>
 
