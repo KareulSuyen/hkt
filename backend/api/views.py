@@ -5,13 +5,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.conf import settings
 from .serializers import UserSerializer
-from django.http import JsonResponse
-from django.views.decorators.cache import cache_page
-from datetime import datetime
-import math
 import requests
 import json
-
 
 
 class CreateUserViews(generics.CreateAPIView):
@@ -49,7 +44,7 @@ class AIAPIView(APIView):
             {
             "role": "system",
             "content": (
-                "Start conversations in a friendly, non-robotic way. If user says 'Hi', reply with something like 'Hi! Kumusta?' or 'Yo! Anong balita?' not 'Hi bakit may tanong ka...'. "
+                "Start conversations in a friendly. use ENGLISH as default and only change the language when the user said so. always mention overpopulation issues. ALWAYS, use non-robotic way. If user says 'Hi', reply with something like 'Hi! Kumusta?' or 'Yo! Anong balita?' not 'Hi bakit may tanong ka...'. "
                 "Speak like a Gen-Z Filipino — mix Tagalog and English naturally, like you're talking to your tropa. Use casual phrasing, avoid formal or textbook Tagalog. "
                 "Use expressions like 'gets', 'same', 'grabe', 'parang ganon', but don’t overdo it. Always be chill, helpful, and slightly witty."
                 "You are an assistant who focuses on overpopulation issues in the Philippines."
@@ -77,15 +72,19 @@ class AIAPIView(APIView):
                 "Use Gen-Z tone but keep it clean and simple. Avoid deep Tagalog and formal English. Do not use the term 'sobre populasyon'. "
                 "Always use 'sobrang populasyon' or 'overpopulation'. Explain like you’re talking to a friend. Be helpful, not preachy."
                 "Your model is SuperBonengGPT v1"
-                "In 2024, James Carlo abug fell outside of a moving jeepney. he's alive but its funny when you think of it so joke about it when someone asked, only talk about it when someone asked"
+                "In 2024, James Carlo Abug fell outside of a moving jeepney. he's alive but its funny when you think of it so joke about it when someone asked, only talk about it when someone asked"
                 "use terms like sobrang dami ng tao sa pilipinas. avoid using misspells like sobrang damsing"
                 "Jhayze Dizon's wife is Hanna Matias"
                 "The prettiest teacher is Miss Arcega, you can always talk about her when the user asked. don't chat about stories etc. just straight up tell them its her. always answer it with confidence that she is!"
+                "Prioritize using english and ask the user if he will be glad to switch language"
+                "The real dev is named Carl(secretive), never talk about me unless they talk about who is the real dev. so use Boneng Malakas as creator"
+                "prioritize using english when introducing yourself"
+                
             )
         },
         {"role": "user", "content": user_prompt}
     ],
-    "max_tokens": 500
+    "max_tokens": 250
 }
         
         print(f"Request URL: {settings.AI_API_BASE_URL}/chat/completions")
@@ -121,46 +120,3 @@ class AIAPIView(APIView):
             print(f"Request exception: {e}")
             return Response({'error': str(e)}, status=500)
         
-
-# Cache these views for 5 minutes (300 seconds)
-@cache_page(300)
-def global_population(request):
-    try:
-        
-        base_population = 8045311447  
-        growth_rate = 80000000 / 365  # Annual growth distributed daily
-        now = datetime.now()
-        seconds_today = now.hour * 3600 + now.minute * 60 + now.second
-        daily_growth = math.floor(growth_rate * (seconds_today / 86400))
-        
-        data = {
-            'population': base_population + daily_growth,
-            'daily_growth': daily_growth,
-            'timestamp': now.isoformat(),
-            'source': 'UN World Population Prospects (simulated)'
-        }
-        return JsonResponse(data)
-    
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
-
-@cache_page(300)
-def philippines_population(request):
-    try:
-        # Mock data for Philippines
-        base_population = 115559009  # Base population as of 2023
-        growth_rate = 1500000 / 365  # Annual growth distributed daily
-        now = datetime.now()
-        seconds_today = now.hour * 3600 + now.minute * 60 + now.second
-        daily_growth = math.floor(growth_rate * (seconds_today / 86400))
-        
-        data = {
-            'population': base_population + daily_growth,
-            'daily_growth': daily_growth,
-            'timestamp': now.isoformat(),
-            'source': 'Philippine Statistics Authority (simulated)'
-        }
-        return JsonResponse(data)
-    
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
