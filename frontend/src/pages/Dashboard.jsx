@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import '../styles/home.module.scss'; // Import the SCSS file
+import { useState, useEffect, useRef } from 'react';
+import { Chart } from 'chart.js/auto';
+import styles from '../styles/home.module.scss';
 
 const Dashboard = () => {
   const [language, setLanguage] = useState('english');
@@ -13,7 +14,7 @@ const Dashboard = () => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 60000);
-    
+
     // Simulate loading for smooth UX
     setTimeout(() => setIsLoading(false), 1000);
     
@@ -363,9 +364,9 @@ const Dashboard = () => {
 
   if (isLoading) {
     return (
-      <div className="loading-screen">
-        <div className="loading-content">
-          <div className="spinner"></div>
+      <div className={styles.loadingScreen}>
+        <div className={styles.loadingContent}>
+          <div className={styles.spinner}></div>
           <p>Loading dashboard...</p>
         </div>
       </div>
@@ -373,19 +374,19 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="dashboard-container">
+    <div className={styles.dashboardContainer}>
       {/* Header */}
-      <header className="dashboard-header">
-        <div className="header-content">
-          <div className="header-text">
+      <header className={styles.dashboardHeader}>
+        <div className={styles.headerContent}>
+          <div className={styles.headerText}>
             <h1>{t.title}</h1>
             <p>{t.subtitle}</p>
-            <div className="last-updated">
+            <div className={styles.lastUpdated}>
               {t.lastUpdated}: {currentTime.toLocaleString()}
             </div>
           </div>
           <button
-            className="language-toggle"
+            className={styles.languageToggle}
             onClick={() => setLanguage(language === 'english' ? 'filipino' : 'english')}
           >
             {t.languageToggle}
@@ -393,17 +394,17 @@ const Dashboard = () => {
         </div>
       </header>
 
-      <main className="main-content">
+      <main className={styles.mainContent}>
         {/* Key Insights Section */}
-        <section className="fade-in" style={{ marginBottom: '3rem' }}>
-          <h2 className="section-heading">
+        <section className={`${styles.fadeIn}`} style={{ marginBottom: '3rem' }}>
+          <h2 className={styles.sectionHeading}>
             Key Population Insights
           </h2>
-          <div className="insights-grid">
+          <div className={styles.insightsGrid}>
             {t.keyInsights.map((insight, index) => (
-              <div key={index} className="insight-card card-hover">
+              <div key={index} className={`${styles.insightCard} ${styles.cardHover}`}>
                 <h3>{insight.metric}</h3>
-                <div className="metric-value gradient-text">
+                <div className={`${styles.metricValue} ${styles.gradientText}`}>
                   {insight.value}
                 </div>
                 <p>{insight.description}</p>
@@ -413,11 +414,11 @@ const Dashboard = () => {
         </section>
 
         {/* Tab Navigation */}
-        <nav className="tab-nav">
+        <nav className={styles.tabNav}>
           {Object.entries(t.tabs).map(([key, label]) => (
             <button
               key={key}
-              className={`tab-button ${activeTab === key ? 'active' : ''}`}
+              className={`${styles.tabButton} ${activeTab === key ? styles.active : ''}`}
               onClick={() => setActiveTab(key)}
             >
               {label}
@@ -426,12 +427,12 @@ const Dashboard = () => {
         </nav>
 
         {/* Tab Content */}
-        <div className="tab-content">
+        <div className={styles.tabContent}>
           {activeTab === 'trends' && (
-            <div className="content-grid">
-              <div className="content-card card-hover">
+            <div className={styles.contentGrid}>
+              <div className={`${styles.contentCard} ${styles.cardHover}`}>
                 <h3>Historical Growth</h3>
-                <div className="chart-placeholder">
+                <div className={styles.chartPlaceholder}>
                   📈 Population Growth Chart
                 </div>
                 <p>
@@ -439,9 +440,9 @@ const Dashboard = () => {
                 </p>
               </div>
               
-              <div className="content-card card-hover">
+              <div className={`${styles.contentCard} ${styles.cardHover}`}>
                 <h3>Future Projections</h3>
-                <div className="chart-placeholder">
+                <div className={styles.chartPlaceholder}>
                   🔮 Future Projections Chart
                 </div>
                 <p>
@@ -452,18 +453,18 @@ const Dashboard = () => {
           )}
 
           {activeTab === 'impacts' && (
-            <div className="content-grid">
+            <div className={styles.contentGrid}>
               {t.pressurePoints.map((category, index) => (
-                <div key={index} className="pressure-point-card card-hover">
-                  <div className="category-header">
-                    <span className="category-icon">{category.icon}</span>
+                <div key={index} className={`${styles.pressurePointCard} ${styles.cardHover}`}>
+                  <div className={styles.categoryHeader}>
+                    <span className={styles.categoryIcon}>{category.icon}</span>
                     <h3>{category.category}</h3>
                   </div>
-                  <div className="metrics-container">
+                  <div className={styles.metricsContainer}>
                     {category.metrics.map((metric, metricIndex) => (
                       <div
                         key={metricIndex}
-                        className="metric-item"
+                        className={styles.metricItem}
                         style={{
                           borderLeftColor: 
                             metric.severity === 'critical' ? '#ef4444' :
@@ -471,13 +472,13 @@ const Dashboard = () => {
                             metric.severity === 'moderate' ? '#3b82f6' : '#10b981'
                         }}
                       >
-                        <div className="metric-header">
-                          <span className="metric-name">{metric.name}</span>
-                          <span className="metric-trend">{metric.trend}</span>
+                        <div className={styles.metricHeader}>
+                          <span className={styles.metricName}>{metric.name}</span>
+                          <span className={styles.metricTrend}>{metric.trend}</span>
                         </div>
-                        <div className="metric-footer">
-                          <span className="metric-value">{metric.value}</span>
-                          <span className={`severity-badge ${metric.severity}`}>
+                        <div className={styles.metricFooter}>
+                          <span className={styles.metricValue}>{metric.value}</span>
+                          <span className={`${styles.severityBadge} ${styles[metric.severity]}`}>
                             {metric.severity}
                           </span>
                         </div>
@@ -490,24 +491,24 @@ const Dashboard = () => {
           )}
 
           {activeTab === 'solutions' && (
-            <div className="content-grid">
+            <div className={styles.contentGrid}>
               {t.solutionTrackers.map((solution, index) => (
-                <div key={index} className="solution-tracker-card card-hover">
-                  <div className="solution-header">
-                    <span className="solution-icon">{solution.icon}</span>
-                    <div className="solution-info">
+                <div key={index} className={`${styles.solutionTrackerCard} ${styles.cardHover}`}>
+                  <div className={styles.solutionHeader}>
+                    <span className={styles.solutionIcon}>{solution.icon}</span>
+                    <div className={styles.solutionInfo}>
                       <h3>{solution.initiative}</h3>
                       <p>{solution.description}</p>
                     </div>
                   </div>
-                  <div className="progress-container">
-                    <div className="progress-bar">
+                  <div className={styles.progressContainer}>
+                    <div className={styles.progressBar}>
                       <div
-                        className="progress-fill"
+                        className={styles.progressFill}
                         style={{ width: `${solution.progress}%` }}
                       ></div>
                     </div>
-                    <span className="progress-text">{solution.progress}% Complete</span>
+                    <span className={styles.progressText}>{solution.progress}% Complete</span>
                   </div>
                 </div>
               ))}
@@ -515,45 +516,43 @@ const Dashboard = () => {
           )}
         </div>
 
-        {/* Global Statistics */}
-        <section className="fade-in" style={{ marginBottom: '3rem' }}>
-          <h2 className="section-heading">
+        <section className={`${styles.fadeIn}`} style={{ marginBottom: '3rem' }}>
+          <h2 className={styles.sectionHeading}>
             Global Demographics Overview
           </h2>
-          <div className="global-stats-grid">
+          <div className={styles.globalStatsGrid}>
             {t.globalStats.map((stat) => (
               <div
                 key={stat.id}
-                className={`stat-card card-hover ${stat.color}`}
+                className={`${styles.statCard} ${styles.cardHover} ${styles[stat.color]}`}
               >
-                <div className="stat-header">
-                  <span className="stat-icon">{stat.icon}</span>
+                <div className={styles.statHeader}>
+                  <span className={styles.statIcon}>{stat.icon}</span>
                   <h3>{stat.title}</h3>
                 </div>
-                <div className="stat-value">{stat.value}</div>
-                <div className="stat-change">{stat.change}</div>
-                <p className="stat-description">{stat.description}</p>
+                <div className={styles.statValue}>{stat.value}</div>
+                <div className={styles.statChange}>{stat.change}</div>
+                <p className={styles.statDescription}>{stat.description}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Regional Analysis */}
-        <section className="fade-in" style={{ marginBottom: '3rem' }}>
-          <h2 className="section-heading">
+        <section className={`${styles.fadeIn}`} style={{ marginBottom: '3rem' }}>
+          <h2 className={styles.sectionHeading}>
             Regional Population Analysis
           </h2>
-          <div className="regional-grid">
+          <div className={styles.regionalGrid}>
             {t.regionalData.map((region, index) => (
               <div
                 key={index}
-                className={`regional-card card-hover ${region.status}`}
+                className={`${styles.regionalCard} ${styles.cardHover} ${styles[region.status]}`}
                 onClick={() => setSelectedRegion(region.region.toLowerCase())}
               >
-                <div className="region-header">
-                  <span className="region-flag">{region.flag}</span>
+                <div className={styles.regionHeader}>
+                  <span className={styles.regionFlag}>{region.flag}</span>
                   <h3>{region.region}</h3>
-                  <span className={`growth-badge ${region.status}`}>
+                  <span className={`${styles.growthBadge} ${styles[region.status]}`}>
                     {region.growth}
                   </span>
                 </div>
@@ -566,14 +565,14 @@ const Dashboard = () => {
                   ].map((metric, idx) => (
                     <div
                       key={idx}
-                      className="region-metric"
+                      className={styles.regionMetric}
                       style={{ borderBottom: idx < 3 ? '1px solid #334155' : 'none' }}
                     >
-                      <span className="metric-label">{metric.label}:</span>
-                      <span className="metric-value">{metric.value}</span>
+                      <span className={styles.metricLabel}>{metric.label}:</span>
+                      <span className={styles.metricValue}>{metric.value}</span>
                     </div>
                   ))}
-                  <div className="region-projection">
+                  <div className={styles.regionProjection}>
                     <strong>2050 Projection: {region.projection2050}</strong>
                   </div>
                 </div>
@@ -582,17 +581,15 @@ const Dashboard = () => {
           </div>
         </section>
 
-        {/* Call to Action */}
-        <div className="call-to-action fade-in">
+        <div className={`${styles.callToAction} ${styles.fadeIn}`}>
           <p>{t.callToAction}</p>
-          <button className="cta-button">
+          <button className={styles.ctaButton}>
             {language === 'english' ? 'Get Involved' : 'Makilahok'}
           </button>
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="dashboard-footer">
+      <footer className={styles.dashboardFooter}>
         <p>{t.dataSource}</p>
       </footer>
     </div>
