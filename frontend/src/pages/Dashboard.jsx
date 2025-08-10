@@ -26,120 +26,142 @@ const Dashboard = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Initialize charts
+  // Initialize charts - now depends on both isLoading and activeTab
   useEffect(() => {
-    if (!isLoading) {
-      // Destroy existing charts if they exist
-      if (growthChart) growthChart.destroy();
-      if (projectionChart) projectionChart.destroy();
-
-      // Historical Growth Chart
-      const growthCtx = growthChartRef.current.getContext('2d');
-      const newGrowthChart = new Chart(growthCtx, {
-        type: 'line',
-        data: {
-          labels: ['1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'],
-          datasets: [{
-            label: language === 'english' ? 'World Population (billions)' : 'Populasyon ng Mundo (bilyon)',
-            data: [2.5, 3.0, 3.7, 4.4, 5.3, 6.1, 6.9, 7.8],
-            borderColor: '#3b82f6',
-            backgroundColor: 'rgba(59, 130, 246, 0.1)',
-            borderWidth: 2,
-            tension: 0.4,
-            fill: true
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'top',
-              labels: {
-                color: '#e2e8f0'
-              }
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: false,
-              ticks: {
-                color: '#94a3b8'
-              },
-              grid: {
-                color: 'rgba(148, 163, 184, 0.1)'
-              }
-            },
-            x: {
-              ticks: {
-                color: '#94a3b8'
-              },
-              grid: {
-                color: 'rgba(148, 163, 184, 0.1)'
-              }
-            }
-          }
+    // Only initialize charts when not loading AND when trends tab is active
+    if (!isLoading && activeTab === 'trends') {
+      // Small delay to ensure canvas elements are visible
+      const timeoutId = setTimeout(() => {
+        // Destroy existing charts if they exist
+        if (growthChart) {
+          growthChart.destroy();
+          setGrowthChart(null);
         }
-      });
-
-      // Future Projections Chart
-      const projectionCtx = projectionChartRef.current.getContext('2d');
-      const newProjectionChart = new Chart(projectionCtx, {
-        type: 'line',
-        data: {
-          labels: ['2020', '2030', '2040', '2050', '2060', '2070', '2080', '2090', '2100'],
-          datasets: [{
-            label: language === 'english' ? 'Projected Population (billions)' : 'Inaasahang Populasyon (bilyon)',
-            data: [7.8, 8.5, 9.2, 9.7, 10.1, 10.4, 10.6, 10.7, 10.8],
-            borderColor: '#10b981',
-            backgroundColor: 'rgba(16, 185, 129, 0.1)',
-            borderWidth: 2,
-            tension: 0.4,
-            fill: true
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'top',
-              labels: {
-                color: '#e2e8f0'
-              }
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: false,
-              ticks: {
-                color: '#94a3b8'
-              },
-              grid: {
-                color: 'rgba(148, 163, 184, 0.1)'
-              }
-            },
-            x: {
-              ticks: {
-                color: '#94a3b8'
-              },
-              grid: {
-                color: 'rgba(148, 163, 184, 0.1)'
-              }
-            }
-          }
+        if (projectionChart) {
+          projectionChart.destroy();
+          setProjectionChart(null);
         }
-      });
 
-      setGrowthChart(newGrowthChart);
-      setProjectionChart(newProjectionChart);
+        // Check if canvas elements exist and are visible
+        if (growthChartRef.current && projectionChartRef.current) {
+          // Historical Growth Chart
+          const growthCtx = growthChartRef.current.getContext('2d');
+          const newGrowthChart = new Chart(growthCtx, {
+            type: 'line',
+            data: {
+              labels: ['1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'],
+              datasets: [{
+                label: language === 'english' ? 'World Population (billions)' : 'Populasyon ng Mundo (bilyon)',
+                data: [2.5, 3.0, 3.7, 4.4, 5.3, 6.1, 6.9, 7.8],
+                borderColor: '#3b82f6',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                borderWidth: 2,
+                tension: 0.4,
+                fill: true
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: 'top',
+                  labels: {
+                    color: '#e2e8f0'
+                  }
+                }
+              },
+              scales: {
+                y: {
+                  beginAtZero: false,
+                  ticks: {
+                    color: '#94a3b8'
+                  },
+                  grid: {
+                    color: 'rgba(148, 163, 184, 0.1)'
+                  }
+                },
+                x: {
+                  ticks: {
+                    color: '#94a3b8'
+                  },
+                  grid: {
+                    color: 'rgba(148, 163, 184, 0.1)'
+                  }
+                }
+              }
+            }
+          });
+
+          // Future Projections Chart
+          const projectionCtx = projectionChartRef.current.getContext('2d');
+          const newProjectionChart = new Chart(projectionCtx, {
+            type: 'line',
+            data: {
+              labels: ['2020', '2030', '2040', '2050', '2060', '2070', '2080', '2090', '2100'],
+              datasets: [{
+                label: language === 'english' ? 'Projected Population (billions)' : 'Inaasahang Populasyon (bilyon)',
+                data: [7.8, 8.5, 9.2, 9.7, 10.1, 10.4, 10.6, 10.7, 10.8],
+                borderColor: '#10b981',
+                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                borderWidth: 2,
+                tension: 0.4,
+                fill: true
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: 'top',
+                  labels: {
+                    color: '#e2e8f0'
+                  }
+                }
+              },
+              scales: {
+                y: {
+                  beginAtZero: false,
+                  ticks: {
+                    color: '#94a3b8'
+                  },
+                  grid: {
+                    color: 'rgba(148, 163, 184, 0.1)'
+                  }
+                },
+                x: {
+                  ticks: {
+                    color: '#94a3b8'
+                  },
+                  grid: {
+                    color: 'rgba(148, 163, 184, 0.1)'
+                  }
+                }
+              }
+            }
+          });
+
+          setGrowthChart(newGrowthChart);
+          setProjectionChart(newProjectionChart);
+        }
+      }, 50); // Small delay to ensure DOM is ready
+
+      return () => clearTimeout(timeoutId);
     }
 
+    // Cleanup function
     return () => {
-      if (growthChart) growthChart.destroy();
-      if (projectionChart) projectionChart.destroy();
+      if (growthChart) {
+        growthChart.destroy();
+        setGrowthChart(null);
+      }
+      if (projectionChart) {
+        projectionChart.destroy();
+        setProjectionChart(null);
+      }
     };
-  }, [isLoading, language]);
+  }, [isLoading, language, activeTab]); // Added activeTab as dependency
 
   const content = {
     english: {

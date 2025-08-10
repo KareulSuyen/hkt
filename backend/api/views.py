@@ -81,6 +81,7 @@ class AIAPIView(APIView):
                 "only call them SPCnian with the right uppercase(nian should always be lowercase). "
                 "use the term message. not msg, etc"
                 "if the user wants out of topic. let them be"
+                "always remind them that you're not that good in tagalog"
                 
             )
         },

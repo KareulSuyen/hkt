@@ -1,15 +1,4 @@
-// Keyframes
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-// Utility classes
 .fadeIn {
   animation: fadeIn 0.6s ease forwards;
 }
@@ -18,19 +7,17 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
   }
 }
 
 .gradientText {
-  background: linear-gradient(90deg, #93c5fd, #10b981);
+  background-color: rgb(0, 156, 187);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-// Dashboard container
 .dashboardContainer {
   min-height: 100vh;
   font-family: "'Inter', system-ui, sans-serif";
@@ -38,7 +25,6 @@
   color: #e2e8f0;
 }
 
-// Loading screen
 .loadingScreen {
   display: flex;
   justify-content: center;
@@ -62,12 +48,11 @@
   }
 }
 
-// Header
 .dashboardHeader {
-  background: linear-gradient(135deg, #1e40af 0%, #059669 100%);
-  padding: 2rem;
+  background: linear-gradient(135deg, #282828 0%, #0f172a 100%);
+  padding: 2.5rem 1.5rem;
   color: white;
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
 
   .headerContent {
     max-width: 1400px;
@@ -76,65 +61,72 @@
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
 
     .headerText {
       flex: 1;
       min-width: 300px;
 
       h1 {
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
-        margin: 0 0 0.5rem;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        margin: 0 0 0.75rem;
         font-weight: 800;
         letter-spacing: -0.025em;
+        line-height: 1.1;
       }
 
       p {
-        margin: 0 0 1rem;
+        margin: 0 0 1.25rem;
         opacity: 0.9;
-        font-size: clamp(1rem, 2.5vw, 1.1rem);
-        line-height: 1.4;
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        line-height: 1.5;
       }
 
       .lastUpdated {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         opacity: 0.8;
+        padding: 0.5rem 0.75rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 0.5rem;
+        display: inline-block;
+        backdrop-filter: blur(10px);
       }
     }
 
     .languageToggle {
-      padding: 0.75rem 1.5rem;
+      padding: 0.875rem 1.75rem;
       border-radius: 2rem;
-      border: none;
-      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
       color: white;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(10px);
       white-space: nowrap;
 
       &:hover {
-        background: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-1px);
       }
     }
   }
 }
 
-// Main content
 .mainContent {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2.5rem 1.5rem;
 }
 
-// Section headings
 .sectionHeading {
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
-  margin-bottom: 2rem;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin-bottom: 2.5rem;
   color: white;
   position: relative;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.75rem;
+  font-weight: 700;
 
   &::after {
     content: '';
@@ -142,170 +134,187 @@
     bottom: 0;
     left: 0;
     width: 4rem;
-    height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #10b981);
+    height: 3px;
     border-radius: 2px;
   }
 }
 
-// Key insights grid
 .insightsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-// Insight card
-.insightCard {
-  background: #1e293b;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  border: 1px solid #334155;
-  text-align: center;
-
-  h3 {
-    margin: 0 0 0.5rem;
-    font-size: 1.1rem;
-    color: #93c5fd;
-  }
-
-  .metricValue {
-    font-size: 2rem;
-    font-weight: 800;
-    margin: 0.5rem 0;
-  }
-
-  p {
-    margin: 0;
-    opacity: 0.8;
-    font-size: 0.9rem;
-    line-height: 1.4;
-  }
-}
-
-// Tab navigation
-.tabNav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-
-  .tabButton {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 2rem;
-    background: transparent;
-    color: #e2e8f0;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid #334155;
-    font-size: clamp(0.9rem, 2vw, 1rem);
-    white-space: nowrap;
-
-    &.active {
-      background: #3b82f6;
-      color: white;
-      border-color: #3b82f6;
-    }
-
-    &:not(.active):hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: #93c5fd;
-    }
-  }
-}
-
-// Tab content
-.tabContent {
-  margin-bottom: 3rem;
-}
-
-// Content grid
-.contentGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
-// Content card
-.contentCard {
+.insightCard {
   background: #1e293b;
-  border-radius: 1rem;
+  border-radius: 1.25rem;
   padding: 2rem;
-  border: 1px solid #334155;
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  text-align: center;
+  backdrop-filter: blur(10px);
 
   h3 {
     margin: 0 0 1rem;
-    color: white;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    color: #93c5fd;
+    font-weight: 600;
   }
 
-  .chartPlaceholder {
-    height: 200px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 1rem 0;
-    border: 1px dashed #334155;
-    color: #94a3b8;
+  .metricValue {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin: 0.75rem 0;
+    line-height: 1;
   }
 
   p {
     margin: 0;
     opacity: 0.8;
     font-size: 0.95rem;
+    line-height: 1.5;
   }
 }
 
-// Pressure point card
+.tabNav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(51, 65, 85, 0.4);
+
+  .tabButton {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 1.5rem;
+    background: transparent;
+    color: #e2e8f0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    white-space: nowrap;
+    position: relative;
+
+    &.active {
+      color: white;
+      border-color: transparent;
+      border-bottom: 1px solid rgb(0, 111, 162);
+    }
+
+    &:not(.active):hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(147, 197, 253, 0.3);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.tabContent {
+  margin-bottom: 4rem;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2.5rem;
+}
+
+.contentCard {
+  background: #1e293b;
+  border-radius: 1.25rem;
+  padding: 2.5rem;
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  backdrop-filter: blur(10px);
+
+  h3 {
+    margin: 0 0 1.5rem;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .chartPlaceholder {
+    height: 220px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.5rem 0;
+    border: 2px dashed rgba(51, 65, 85, 0.6);
+    color: #94a3b8;
+  }
+
+  p {
+    margin: 1.5rem 0 0;
+    opacity: 0.8;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
 .pressurePointCard {
+  background: #1e293b;
+  border-radius: 1.25rem;
+  padding: 2.5rem;
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  backdrop-filter: blur(10px);
+
   .categoryHeader {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.4);
 
     .categoryIcon {
-      font-size: 1.8rem;
+      font-size: 2rem;
     }
 
     h3 {
       margin: 0;
       color: white;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
+      font-weight: 700;
     }
   }
 
   .metricsContainer {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .metricItem {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 0.5rem;
-    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
     border-left: 4px solid;
+    border: 1px solid rgba(51, 65, 85, 0.3);
 
     .metricHeader {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      margin-bottom: 0.5rem;
-      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      gap: 0.75rem;
 
       .metricName {
-        font-weight: 500;
+        font-weight: 600;
+        font-size: 1rem;
       }
 
       .metricTrend {
         opacity: 0.8;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        font-weight: 500;
       }
     }
 
@@ -314,100 +323,128 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.75rem;
 
       .metricValue {
-        font-weight: 600;
+        font-weight: 700;
+        font-size: 1.1rem;
       }
 
       .severityBadge {
-        padding: 0.25rem 0.75rem;
-        border-radius: 2rem;
-        font-size: 0.75rem;
+        padding: 0.4rem 1rem;
+        border-radius: 1.5rem;
+        font-size: 0.8rem;
         font-weight: 700;
         text-transform: uppercase;
+        letter-spacing: 0.025em;
 
         &.critical {
           background: rgba(239, 68, 68, 0.2);
           color: #ef4444;
+          border: 1px solid rgba(239, 68, 68, 0.3);
         }
 
         &.high {
           background: rgba(245, 158, 11, 0.2);
-          color: #f59e0b;
+          color: #ffa200;
+          border: 1px solid rgba(245, 158, 11, 0.3);
         }
 
         &.moderate {
           background: rgba(59, 130, 246, 0.2);
           color: #93c5fd;
+          border: 1px solid rgba(59, 130, 246, 0.3);
         }
       }
     }
   }
 }
 
-// Solution tracker card
 .solutionTrackerCard {
+  background: #1e293b;
+  border-radius: 1.25rem;
+  padding: 2.5rem;
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  backdrop-filter: blur(10px);
+
   .solutionHeader {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.4);
 
     .solutionIcon {
-      font-size: 2rem;
+      font-size: 2.5rem;
       flex-shrink: 0;
     }
 
     .solutionInfo {
       h3 {
-        margin: 0 0 0.5rem;
+        margin: 0 0 0.75rem;
         color: white;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+        font-weight: 700;
       }
 
       p {
         margin: 0;
         opacity: 0.8;
-        font-size: 0.95rem;
-        line-height: 1.4;
+        font-size: 1rem;
+        line-height: 1.6;
       }
     }
   }
 
   .progressContainer {
     .progressBar {
-      height: 8px;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 4px;
+      height: 10px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 6px;
       overflow: hidden;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+      border: 1px solid rgba(51, 65, 85, 0.3);
 
       .progressFill {
         height: 100%;
-        background: linear-gradient(90deg, #3b82f6, #10b981);
-        border-radius: 4px;
-        transition: width 0.5s ease;
+        background: linear-gradient(90deg, #f8d6ff, #203898);
+        border-radius: 6px;
+        transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          animation: shimmer 2s infinite;
+        }
       }
     }
 
     .progressText {
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 0.95rem;
+      font-weight: 700;
       color: #93c5fd;
     }
   }
 }
 
-// Global stats grid
+
 .globalStatsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
-// Stat card
 .statCard {
+  background: #1e293b;
+  border-radius: 1.25rem;
+  padding: 2rem;
+  border: 1px solid rgba(51, 65, 85, 0.6);
   border-left: 4px solid;
+  backdrop-filter: blur(10px);
   
   &.primary {
     border-left-color: #3b82f6;
@@ -436,59 +473,92 @@
   .statHeader {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.4);
 
     .statIcon {
-      font-size: 1.5rem;
+      font-size: 1.75rem;
     }
 
     h3 {
       margin: 0;
       color: white;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       flex: 1;
+      font-weight: 700;
     }
   }
 
   .statValue {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 800;
-    margin: 0.5rem 0;
+    margin: 1rem 0;
+    line-height: 1;
   }
 
   .statChange {
-    font-size: 0.9rem;
+    font-size: 1rem;
     opacity: 0.8;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
+    margin-bottom: 1rem;
+    font-weight: 600;
   }
 
   .statDescription {
     margin: 0;
     opacity: 0.7;
-    font-size: 0.85rem;
-    line-height: 1.4;
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 }
 
-// Regional grid
 .regionalGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
+  
+  @media (min-width: 1400px) {
+    gap: 2rem;
+  }
+  
+  @media (max-width: 1399px) and (min-width: 1200px) {
+    gap: 1.25rem;
+  }
+  
+  @media (max-width: 1199px) and (min-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  @media (max-width: 899px) and (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  @media (max-width: 599px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
-// Regional card
 .regionalCard {
+  background: #1e293b;
+  border-radius: 1.25rem;
+  padding: 1.75rem 1.5rem;
+  border: 1px solid rgba(51, 65, 85, 0.6);
   cursor: pointer;
   border-left: 4px solid;
+  backdrop-filter: blur(10px);
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
 
-  &.rapidGrowth {
+  &.rapid-growth {
     border-left-color: #ef4444;
   }
   
-  &.moderateGrowth {
+  &.moderate-growth {
     border-left-color: #f59e0b;
   }
   
@@ -502,50 +572,83 @@
 
   .regionHeader {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.4);
     flex-wrap: wrap;
 
     .regionFlag {
       font-size: 1.5rem;
+      flex-shrink: 0;
+      
+      @media (min-width: 1200px) {
+        font-size: 1.25rem;
+      }
     }
 
     h3 {
       margin: 0;
       flex: 1;
       color: white;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      font-weight: 700;
       min-width: 0;
       overflow: hidden;
       text-overflow: ellipsis;
+      line-height: 1.3;
+      
+      @media (min-width: 1200px) {
+        font-size: 1rem;
+      }
+      
+      @media (max-width: 599px) {
+        font-size: 1.2rem;
+      }
     }
 
     .growthBadge {
       font-weight: 700;
-      padding: 0.25rem 0.75rem;
-      border-radius: 2rem;
-      font-size: 0.85rem;
+      padding: 0.375rem 0.75rem;
+      border-radius: 1.25rem;
+      font-size: 0.75rem;
       white-space: nowrap;
-
-      &.rapidGrowth {
-        background: rgba(239, 68, 68, 0.2);
-        color: #ef4444;
+      border: 1px solid;
+      flex-shrink: 0;
+      
+      @media (min-width: 1200px) {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
       }
       
-      &.moderateGrowth {
+      @media (max-width: 599px) {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      &.rapid-growth {
+        background: rgba(239, 68, 68, 0.2);
+        color: #ef4444;
+        border-color: rgba(239, 68, 68, 0.3);
+      }
+      
+      &.moderate-growth {
         background: rgba(245, 158, 11, 0.2);
         color: #f59e0b;
+        border-color: rgba(245, 158, 11, 0.3);
       }
       
       &.declining {
         background: rgba(148, 163, 184, 0.2);
         color: #94a3b8;
+        border-color: rgba(148, 163, 184, 0.3);
       }
       
       &.stable {
         background: rgba(16, 185, 129, 0.2);
         color: #10b981;
+        border-color: rgba(16, 185, 129, 0.3);
       }
     }
   }
@@ -553,10 +656,19 @@
   .regionMetric {
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #334155;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.3);
     flex-wrap: wrap;
     gap: 0.5rem;
+    
+    @media (min-width: 1200px) {
+      padding: 0.5rem 0;
+    }
+    
+    @media (max-width: 599px) {
+      padding: 0.75rem 0;
+      gap: 0.75rem;
+    }
 
     &:last-child {
       border-bottom: none;
@@ -564,65 +676,524 @@
 
     .metricLabel {
       opacity: 0.8;
+      font-weight: 500;
+      font-size: 0.85rem;
+      
+      @media (min-width: 1200px) {
+        font-size: 0.8rem;
+      }
+      
+      @media (max-width: 599px) {
+        font-size: 0.9rem;
+      }
     }
 
     .metricValue {
-      font-weight: 500;
+      font-weight: 600;
+      font-size: 0.85rem;
+      
+      @media (min-width: 1200px) {
+        font-size: 0.8rem;
+      }
+      
+      @media (max-width: 599px) {
+        font-size: 0.9rem;
+      }
     }
   }
 
   .regionProjection {
-    margin-top: 1rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid #334155;
-    font-size: 0.95rem;
-    font-weight: 600;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(51, 65, 85, 0.4);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #93c5fd;
+    
+    @media (min-width: 1200px) {
+      font-size: 0.8rem;
+    }
+    
+    @media (max-width: 599px) {
+      font-size: 0.95rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    padding: 1.5rem 1.25rem;
+    min-height: 300px;
+  }
+  
+  @media (max-width: 899px) and (min-width: 600px) {
+    padding: 1.75rem 1.5rem;
+    min-height: 280px;
+  }
+  
+  @media (max-width: 599px) {
+    padding: 2rem 1.5rem;
+    min-height: auto;
   }
 }
 
-// Call to action
 .callToAction {
   text-align: center;
-  margin: 3rem 0;
-  padding: 2rem;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 1rem;
-  border: 1px solid #334155;
+  margin: 4rem 0;
+  padding: 3rem 2rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
 
   p {
-    font-size: clamp(1.1rem, 3vw, 1.3rem);
-    margin-bottom: 1.5rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-bottom: 2rem;
     color: white;
+    font-weight: 600;
+    line-height: 1.4;
   }
 
   .ctaButton {
-    padding: clamp(0.75rem, 2vw, 1rem) clamp(2rem, 4vw, 2.5rem);
+    padding: clamp(1rem, 2vw, 1.25rem) clamp(2.5rem, 4vw, 3rem);
     border: none;
     border-radius: 2rem;
-    background: #3b82f6;
+    background: linear-gradient(135deg, #2e3255, #2a1527);
     color: white;
-    font-weight: 600;
-    font-size: clamp(1rem, 2vw, 1.1rem);
+    font-weight: 700;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    &:active {
+      transform: translateY(-1px);
     }
   }
 }
 
-// Footer
 .dashboardFooter {
   text-align: center;
-  padding: 1.5rem;
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  padding: 1.5rem 1.5rem;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
   opacity: 0.7;
-  border-top: 1px solid #334155;
+  border-top: 1px solid rgba(51, 65, 85, 0.3);
+  background: rgba(30, 41, 59, 0.3);
 
   p {
     margin: 0;
+  }
+}
+
+.chartContainer {
+  height: 240px;
+  width: 100%;
+  margin: 1.5rem 0;
+  position: relative;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  border: 1px solid rgba(51, 65, 85, 0.3);
+  
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+
+@media (min-width: 1400px) {
+  .mainContent {
+    padding: 3rem 2rem;
+  }
+  
+  .insightsGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+  }
+  
+  .globalStatsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  
+  .contentGrid {
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 1399px) and (min-width: 1200px) {
+  .mainContent {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .insightsGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  
+  .globalStatsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+  .insightsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .globalStatsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .contentGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .dashboardHeader {
+    padding: 2rem 1.5rem;
+    
+    .headerContent {
+      .headerText {
+        h1 {
+          font-size: 2rem;
+        }
+        
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  
+  .mainContent {
+    padding: 2rem 1.5rem;
+  }
+  
+  .insightsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .globalStatsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .tabNav {
+    padding: 1rem 1.5rem;
+    gap: 0.5rem;
+    
+    .tabButton {
+      padding: 0.875rem 1.5rem;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@media (max-width: 767px) and (min-width: 600px) {
+  .dashboardHeader {
+    padding: 1.5rem 1rem;
+    
+    .headerContent {
+      gap: 1rem;
+      
+      .headerText {
+        h1 {
+          font-size: 1.75rem;
+          margin-bottom: 0.5rem;
+        }
+        
+        p {
+          font-size: 0.95rem;
+          margin-bottom: 1rem;
+        }
+        
+        .lastUpdated {
+          font-size: 0.8rem;
+          padding: 0.375rem 0.625rem;
+        }
+      }
+      
+      .languageToggle {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+  
+  .mainContent {
+    padding: 1.5rem 1rem;
+  }
+  
+  .sectionHeading {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .insightsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .globalStatsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .tabNav {
+    margin: 0 -1rem 2rem;
+    padding: 1rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    gap: 0.5rem;
+    
+    .tabButton {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.85rem;
+      border-radius: 1.25rem;
+    }
+  }
+  
+  .insightCard,
+  .contentCard,
+  .pressurePointCard,
+  .solutionTrackerCard,
+  .statCard {
+    padding: 1.5rem;
+  }
+  
+  .callToAction {
+    padding: 2rem 1.5rem;
+    margin: 2rem 0;
+    
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .ctaButton {
+      padding: 0.875rem 2rem;
+      font-size: 1rem;
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .dashboardHeader {
+    padding: 1.25rem 1rem;
+    
+    .headerContent {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1.5rem;
+      
+      .headerText {
+        text-align: center;
+        
+        h1 {
+          font-size: 1.6rem;
+          margin-bottom: 0.75rem;
+        }
+        
+        p {
+          font-size: 0.9rem;
+          margin-bottom: 1rem;
+        }
+        
+        .lastUpdated {
+          font-size: 0.75rem;
+          padding: 0.4rem 0.75rem;
+          display: inline-block;
+        }
+      }
+      
+      .languageToggle {
+        align-self: center;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+  
+  .mainContent {
+    padding: 1.25rem 1rem;
+  }
+  
+  .sectionHeading {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .insightsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .globalStatsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .tabNav {
+    margin: 0 -1rem 1.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    
+    .tabButton {
+      width: 100%;
+      padding: 1rem;
+      font-size: 0.95rem;
+      border-radius: 1rem;
+      text-align: center;
+    }
+  }
+  
+  .insightCard {
+    padding: 1.5rem 1.25rem;
+    
+    h3 {
+      font-size: 1rem;
+    }
+    
+    .metricValue {
+      font-size: 1.875rem;
+    }
+    
+    p {
+      font-size: 0.85rem;
+    }
+  }
+  
+  .contentCard,
+  .pressurePointCard,
+  .solutionTrackerCard {
+    padding: 1.5rem 1.25rem;
+    
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
+  
+  .statCard {
+    padding: 1.5rem 1.25rem;
+    
+    .statHeader {
+      .statIcon {
+        font-size: 1.5rem;
+      }
+      
+      h3 {
+        font-size: 1rem;
+      }
+    }
+    
+    .statValue {
+      font-size: 2rem;
+    }
+  }
+  
+  .callToAction {
+    padding: 2rem 1.25rem;
+    margin: 2rem 0;
+    border-radius: 1rem;
+    
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .ctaButton {
+      width: 100%;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      border-radius: 1.5rem;
+    }
+  }
+  
+  .dashboardFooter {
+    padding: 1.5rem 1rem;
+    
+    p {
+      font-size: 0.8rem;
+    }
+  }
+  
+  .chartContainer {
+    height: 200px;
+    margin: 1rem 0;
+    padding: 0.75rem;
+  }
+  
+  .progressContainer {
+    .progressBar {
+      height: 8px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .progressText {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .dashboardHeader {
+    padding: 1rem 0.75rem;
+  }
+  
+  .mainContent {
+    padding: 1rem 0.75rem;
+  }
+  
+  .insightCard,
+  .contentCard,
+  .pressurePointCard,
+  .solutionTrackerCard,
+  .statCard {
+    padding: 1.25rem 1rem;
+  }
+  
+  .callToAction {
+    padding: 1.5rem 1rem;
+  }
+  
+  .tabNav {
+    margin: 0 -0.75rem 1.25rem;
+    padding: 0.75rem;
   }
 }
