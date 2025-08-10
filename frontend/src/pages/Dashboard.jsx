@@ -523,7 +523,6 @@ const Dashboard = () => {
 
   return (
     <div className={styles.dashboardContainer}>
-      {/* Header */}
       <header className={styles.dashboardHeader}>
         <div className={styles.headerContent}>
           <div className={styles.headerText}>
@@ -543,7 +542,6 @@ const Dashboard = () => {
       </header>
 
       <main className={styles.mainContent}>
-        {/* Key Insights Section */}
         <section className={`${styles.fadeIn}`} style={{ marginBottom: '3rem' }}>
           <h2 className={styles.sectionHeading}>
             {language === 'english' ? 'Key Population Insights' : 'Mga Pangunahing Insight sa Populasyon'}
@@ -561,7 +559,6 @@ const Dashboard = () => {
           </div>
         </section>
 
-        {/* Tab Navigation */}
         <nav className={styles.tabNav}>
           {Object.entries(t.tabs).map(([key, label]) => (
             <button

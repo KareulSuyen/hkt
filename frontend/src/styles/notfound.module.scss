@@ -1,0 +1,96 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #252525;
+  font-family: "'Comic Sans MS', cursive, sans-serif";
+  padding: 20px;
+  text-align: center;
+}
+
+.content {
+  max-width: 600px;
+  position: relative;
+}
+
+.title {
+  font-size: 120px;
+  margin: 0;
+  color: #d4a1ff;
+  text-shadow: 3px 3px 0 hsl(178, 95%, 29%);
+}
+
+.subtitle {
+  font-size: 32px;
+  margin: 0 0 15px;
+  color: #8a4fff;
+}
+
+.text {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.illustration {
+  margin: 40px 0;
+  height: 150px;
+  position: relative;
+}
+
+.planet {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: #ffd6a1;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px #ffd6a1;
+}
+
+.rocket {
+  position: absolute;
+  font-size: 40px;
+  top: 20%;
+  left: 30%;
+  transform: rotate(-45deg);
+  animation: float 3s ease-in-out infinite;
+}
+
+.alien {
+  position: absolute;
+  font-size: 30px;
+  bottom: 10%;
+  right: 25%;
+  animation: float 2s ease-in-out infinite alternate;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #8a4fff;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(138, 79, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    background-color: #7b3aff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(138, 79, 255, 0.3);
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
