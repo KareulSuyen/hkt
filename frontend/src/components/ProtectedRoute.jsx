@@ -17,7 +17,6 @@ const ProtectedRoute = ({ children }) => {
         }
 
         try {
-            // Fix: Use the correct token refresh endpoint
             const res = await api.post('/api/token/refresh/', {
                 refresh: storedRefreshToken,
             });
@@ -31,7 +30,6 @@ const ProtectedRoute = ({ children }) => {
             }
         } catch (err) {
             console.log('Token refresh error:', err);
-            // Clear invalid tokens
             localStorage.removeItem(ACCESS_TOKEN);
             localStorage.removeItem(REFRESH_TOKEN);
             setIsAuthorized(false);
@@ -59,7 +57,7 @@ const ProtectedRoute = ({ children }) => {
             }
         } catch (err) {
             console.log('Token decode error:', err);
-            // Token is malformed, clear it
+            
             localStorage.removeItem(ACCESS_TOKEN);
             localStorage.removeItem(REFRESH_TOKEN);
             setIsAuthorized(false);
