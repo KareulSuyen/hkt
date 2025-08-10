@@ -9,13 +9,11 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('trends');
   const [isLoading, setIsLoading] = useState(true);
 
-  // Refs for chart canvases
   const growthChartRef = useRef(null);
   const projectionChartRef = useRef(null);
   const [growthChart, setGrowthChart] = useState(null);
   const [projectionChart, setProjectionChart] = useState(null);
 
-  // Update time every minute
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
@@ -26,13 +24,11 @@ const Dashboard = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Initialize charts - now depends on both isLoading and activeTab
   useEffect(() => {
-    // Only initialize charts when not loading AND when trends tab is active
     if (!isLoading && activeTab === 'trends') {
-      // Small delay to ensure canvas elements are visible
+
       const timeoutId = setTimeout(() => {
-        // Destroy existing charts if they exist
+
         if (growthChart) {
           growthChart.destroy();
           setGrowthChart(null);
@@ -42,9 +38,8 @@ const Dashboard = () => {
           setProjectionChart(null);
         }
 
-        // Check if canvas elements exist and are visible
         if (growthChartRef.current && projectionChartRef.current) {
-          // Historical Growth Chart
+
           const growthCtx = growthChartRef.current.getContext('2d');
           const newGrowthChart = new Chart(growthCtx, {
             type: 'line',
@@ -93,7 +88,6 @@ const Dashboard = () => {
             }
           });
 
-          // Future Projections Chart
           const projectionCtx = projectionChartRef.current.getContext('2d');
           const newProjectionChart = new Chart(projectionCtx, {
             type: 'line',
@@ -145,7 +139,7 @@ const Dashboard = () => {
           setGrowthChart(newGrowthChart);
           setProjectionChart(newProjectionChart);
         }
-      }, 50); // Small delay to ensure DOM is ready
+      }, 50); 
 
       return () => clearTimeout(timeoutId);
     }
@@ -161,13 +155,13 @@ const Dashboard = () => {
         setProjectionChart(null);
       }
     };
-  }, [isLoading, language, activeTab]); // Added activeTab as dependency
+  }, [isLoading, language, activeTab]); 
 
   const content = {
     english: {
       title: "Population Impact Dashboard",
       subtitle: "Visualizing the challenges of rapid population growth",
-      lastUpdated: "Last Updated",
+        lastUpdated: "Last Updated",
       stats: {
         current: "Current Population",
         daily: "Daily Increase",
@@ -733,7 +727,6 @@ const Dashboard = () => {
           </div>
         </section>
 
-        {/* Call to Action */}
         <div className={`${styles.callToAction} ${styles.fadeIn}`}>
           <p>{t.callToAction}</p>
           <button className={styles.ctaButton}>
@@ -742,7 +735,6 @@ const Dashboard = () => {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className={styles.dashboardFooter}>
         <p>{t.dataSource}</p>
       </footer>
