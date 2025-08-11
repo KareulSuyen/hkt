@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import navstyle from '../styles/navbar.module.scss';
 import { FaHandsHelping, FaHome } from 'react-icons/fa';
 import { CgProfile } from "react-icons/cg";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 
 const Navbar = ({toggleSidebar}) => {
@@ -11,7 +12,9 @@ const Navbar = ({toggleSidebar}) => {
         <>
             <nav className={navstyle['nav-bar']}>
                 <div className={navstyle['toggle-btn']}> {/* Navbar toggle btn */}
-                    <button onClick={toggleSidebar}>X</button>
+                    <button onClick={toggleSidebar}>
+                        <RxHamburgerMenu size={30}/>
+                    </button>
                 </div>
                 <div className={navstyle['nav-center']}>
                     <NavLink to='/' className={setActive}>
