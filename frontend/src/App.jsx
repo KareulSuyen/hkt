@@ -16,7 +16,7 @@ const handleLogout = () => {
 
 export const Logout = () => {
   handleLogout();
-  return <Navigate to='/login' replace />;
+  return <Navigate to='/intro' replace />;
 };
 
 export const LogoutAndRegister = () => {
@@ -28,6 +28,15 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Public Introduction Route - First page users see */}
+        <Route path='/' element={<Introduction />} />
+        <Route path='/intro' element={<Introduction />} />
+        
+        {/* Authentication Routes */}
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        
+        {/* Protected Routes */}
         <Route
           path='/'
           element={
@@ -36,13 +45,14 @@ const App = () => {
             </ProtectedRoute>
           }
         >
-          <Route path='/' element={<Dashboard />} />
-          <Route path='/help' element={<Help />} />
+          <Route index element={<Dashboard />} />
+          <Route path='help' element={<Help />} />
         </Route>
 
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
+        {/* Logout Route */}
         <Route path='/logout' element={<Logout />} />
+        
+        {/* 404 Route */}
         <Route path='*' element={<Notfound />} />
       </Routes>
     </BrowserRouter>

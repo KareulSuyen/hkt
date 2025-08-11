@@ -3,14 +3,7 @@ import { Chart } from 'chart.js/auto';
 import styles from '../styles/home.module.scss';
 
 const Dashboard = () => {
-  // Set Tagalog as default language and load from localStorage if available
-  const [language, setLanguage] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('dashboardLanguage') || 'filipino';
-    }
-    return 'filipino';
-  });
-  
+  const [language, setLanguage] = useState('english');
   const [selectedRegion, setSelectedRegion] = useState('global');
   const [currentTime, setCurrentTime] = useState(new Date());
   const [activeTab, setActiveTab] = useState('trends');
@@ -20,13 +13,6 @@ const Dashboard = () => {
   const projectionChartRef = useRef(null);
   const [growthChart, setGrowthChart] = useState(null);
   const [projectionChart, setProjectionChart] = useState(null);
-
-  // Save language preference to localStorage whenever it changes
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('dashboardLanguage', language);
-    }
-  }, [language]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -40,7 +26,9 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!isLoading && activeTab === 'trends') {
+
       const timeoutId = setTimeout(() => {
+
         if (growthChart) {
           growthChart.destroy();
           setGrowthChart(null);
@@ -51,6 +39,7 @@ const Dashboard = () => {
         }
 
         if (growthChartRef.current && projectionChartRef.current) {
+
           const growthCtx = growthChartRef.current.getContext('2d');
           const newGrowthChart = new Chart(growthCtx, {
             type: 'line',
@@ -155,6 +144,7 @@ const Dashboard = () => {
       return () => clearTimeout(timeoutId);
     }
 
+    // Cleanup function
     return () => {
       if (growthChart) {
         growthChart.destroy();
@@ -171,7 +161,7 @@ const Dashboard = () => {
     english: {
       title: "Population Impact Dashboard",
       subtitle: "Visualizing the challenges of rapid population growth",
-      lastUpdated: "Last Updated",
+        lastUpdated: "Last Updated",
       stats: {
         current: "Current Population",
         daily: "Daily Increase",
@@ -743,7 +733,7 @@ const Dashboard = () => {
       </main>
 
       <footer className={styles.dashboardFooter}>
-        <p>{t.dataSource}</p>
+        <p>Data from <span><a href="https://population.un.org/wpp">UN Population Division & World Bank</a></span></p>
       </footer>
     </div>
   );
