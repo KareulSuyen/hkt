@@ -18,7 +18,7 @@
   font-size: 120px;
   margin: 0;
   color: #d4a1ff;
-  text-shadow: 3px 3px 0 hsl(178, 95%, 29%);
+  text-shadow: 3px 3px 0 hsl(178, 100%, 50%);
 }
 
 .subtitle {
@@ -55,9 +55,9 @@
   position: absolute;
   font-size: 40px;
   top: 20%;
-  left: 30%;
+  left: 25%;
   transform: rotate(-45deg);
-  animation: float 3s ease-in-out infinite;
+  animation: float 1s ease-in-out infinite;
 }
 
 .alien {
@@ -65,7 +65,7 @@
   font-size: 30px;
   bottom: 10%;
   right: 25%;
-  animation: float 2s ease-in-out infinite alternate;
+  animation: float 1.5s ease-in-out infinite alternate;
 }
 
 .button {
