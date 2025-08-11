@@ -12,7 +12,7 @@ const Help = () => {
         solutions: 'Solusyon',
         resources: 'Mapagkukunan',
         faq: 'Mga Madalas na Tanong'
-    };
+    };  
 
     const faqData = [
         {
@@ -51,13 +51,15 @@ const Help = () => {
                         </div>
                         
                         <div className={helpstyle.cardGrid}>
-                            <div className={`${helpstyle.featureCard} ${helpstyle.purpleGradient}`}>
-                                <div className={helpstyle.cardIcon}>🌍</div>
-                                <h4 className={helpstyle.cardTitle}>Pandaigdigang Saklaw</h4>
-                                <p className={helpstyle.cardText}>
-                                    Ang populasyon ng mundo ay umabot sa 8 bilyong tao noong 2022, na may iba-ibang rate ng paglaki sa iba't ibang rehiyon.
-                                </p>
-                            </div>
+                            <a href="https://tl.council.science/blog/world-population-day-sustainable-population-growth-for-a-sustainable-future/" target='_blank'>
+                                <div className={`${helpstyle.featureCard} ${helpstyle.purpleGradient}`}>
+                                    <div className={helpstyle.cardIcon}>🌍</div>
+                                    <h4 className={helpstyle.cardTitle}>Pandaigdigang Saklaw</h4>
+                                    <p className={helpstyle.cardText}>
+                                        Ang populasyon ng mundo ay umabot sa 8 bilyong tao noong 2022, na may iba-ibang rate ng paglaki sa iba't ibang rehiyon.
+                                    </p>
+                                </div>
+                            </a>
                             
                             <div className={`${helpstyle.featureCard} ${helpstyle.redGradient}`}>
                                 <div className={helpstyle.cardIcon}>⚖️</div>

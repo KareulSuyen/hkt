@@ -6,12 +6,11 @@ import os
 
 load_dotenv()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # AI Configuration - Complete Groq setup
 GROQ_API_KEY = config('GROQ_API_KEY')
-AI_MODEL = config('AI_MODEL', default='llama-3.2-3b-preview')  # 👈 ADD THIS
+AI_MODEL = config('AI_MODEL', default='deepseek-r1-distill-llama-70b') 
 AI_API_BASE_URL = config('AI_API_BASE_URL', default='https://api.groq.com/openai/v1')  # 👈 ADD THIS
 
 SECRET_KEY = config('DJANGO_SECRET_KEY')
@@ -116,6 +115,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
 # Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'

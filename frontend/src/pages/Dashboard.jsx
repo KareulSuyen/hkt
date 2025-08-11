@@ -728,9 +728,11 @@ const Dashboard = () => {
 
         <div className={`${styles.callToAction} ${styles.fadeIn}`}>
           <p>{t.callToAction}</p>
-          <button className={styles.ctaButton}>
-            {language === 'english' ? 'Get Involved' : 'Makilahok'}
-          </button>
+          <a href="https://betterplaneteducation.org.uk/factsheets/overpopulation-what-are-some-solutions-to-overpopulation" target='_blank'>
+            <button className={styles.ctaButton}>
+              {language === 'english' ? 'Get Involved' : 'Makilahok'}
+            </button>
+          </a>
         </div>
       </main>
 
