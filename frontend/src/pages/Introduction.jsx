@@ -1,5 +1,6 @@
 import styles from '../styles/intro.module.scss';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
+import city from '../../public/images/city.jpg'
 
 const Intro = () => {
   const handleLogout = () => {
@@ -20,7 +21,6 @@ const Intro = () => {
         </div>
       </nav>
 
-      {/* Hero Section - Pangunahing Seksyon */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <div className={styles.heroText}>
@@ -32,16 +32,24 @@ const Intro = () => {
               sa ating panahon ng data-driven na mundo. Maaari ka ring sumubok
               ng iyong kaalaman sa pamamagitan ng aming mga pagsusulit.
             </p>
+            <div className={styles.heroStats}>
+              <div className={styles.stat}>
+                <div className={styles.statNumber}>8.1B</div>
+                <div className={styles.statLabel}>Kasalukuyang Populasyon</div>
+              </div>
+              <div className={styles.stat}>
+                <div className={styles.statNumber}>+81M</div>
+                <div className={styles.statLabel}>Taunang Paglaki</div>
+              </div>
+            </div>
           </div>
-          <div className={styles.heroStats}>
-            <div className={styles.stat}>
-              <div className={styles.statNumber}>8.1B</div>
-              <div className={styles.statLabel}>Kasalukuyang Populasyon</div>
-            </div>
-            <div className={styles.stat}>
-              <div className={styles.statNumber}>+81M</div>
-              <div className={styles.statLabel}>Taunang Paglaki</div>
-            </div>
+          
+          <div className={styles.heroImage}>
+            <img 
+              src={city} 
+              alt="Earth showing population density and environmental impact"
+              className={styles.planetImage}
+            />
           </div>
         </div>
       </section>

@@ -18,6 +18,10 @@ export const Logout = () => {
   handleLogout();
   return <Navigate to='/introduction' replace />;
 };
+export const Intro = () => {
+  handleLogout();
+  return <Navigate to='/introduction' replace />;
+};
 
 export const LogoutAndRegister = () => {
   handleLogout();
