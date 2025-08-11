@@ -27,7 +27,6 @@ const Dashboard = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Reset language toggle text when tab changes
   useEffect(() => {
     setLanguageToggleText(language === 'filipino' ? '🇬🇧 English' : '🇵🇭 Filipino');
   }, [activeTab, language]);
