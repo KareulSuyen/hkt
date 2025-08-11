@@ -15,7 +15,6 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 toggleSidebar();
             }
         };
-
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
@@ -56,14 +55,13 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                     onClick={toggleSidebar}
                 />
             )}
-            
             <aside 
                 ref={sidebarRef}
                 className={`${sidebarstyle.sidebar} ${isSidebarOpen ? sidebarstyle.open : sidebarstyle.closed}`}
             >
                 <div className={sidebarstyle['toggle-btn']}>
                     <button onClick={toggleSidebar}>
-                        <TbLayoutSidebarRightExpandFilled size={30} />
+                        <TbLayoutSidebarRightExpandFilled size={27} />
                     </button>
                 </div>  
                 <div className={sidebarstyle['sidebar-links']}>
