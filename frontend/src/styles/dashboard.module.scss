@@ -438,7 +438,7 @@
   border-left: 4px solid;
   
   &.primary {
-    border-left-color: #3b82f6;
+    border-left-color: #032f75;
     
     .statValue {
       color: #93c5fd;
@@ -454,7 +454,7 @@
   }
   
   &.warning {
-    border-left-color: #3e028c;
+    border-left-color: #411853;
     
     .statValue {
       color: #be24fb;
@@ -545,7 +545,7 @@
   flex-direction: column;
 
   &.rapid-growth {
-    border-left-color: #ef4444;
+    border-left-color: #632222;
   }
   
   &.moderate-growth {
@@ -553,7 +553,7 @@
   }
   
   &.declining {
-    border-left-color: #94a3b8;
+    border-left-color: #555a60;
   }
   
   &.stable {
@@ -620,7 +620,7 @@
       &.rapid-growth {
         background: rgba(239, 68, 68, 0.2);
         color: #ef4444;
-        border-color: rgba(239, 68, 68, 0.3);
+        border-color: rgb(102, 22, 22);
       }
       
       &.moderate-growth {
