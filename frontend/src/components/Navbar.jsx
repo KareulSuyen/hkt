@@ -13,7 +13,7 @@ const Navbar = ({toggleSidebar}) => {
             <nav className={navstyle['nav-bar']}>
                 <div className={navstyle['toggle-btn']}> {/* Navbar toggle btn */}
                     <button onClick={toggleSidebar}>
-                        <RxHamburgerMenu size={30}/>
+                        <RxHamburgerMenu size={30} />
                     </button>
                 </div>
                 <div className={navstyle['nav-center']}>
@@ -21,10 +21,10 @@ const Navbar = ({toggleSidebar}) => {
                         <FaHome size={30} />
                     </NavLink>
                     <NavLink to='/help' className={setActive}>
-                        <FaHandsHelping size={30}/>
+                        <FaHandsHelping size={30} />
                     </NavLink>
                     <NavLink>
-                        <CgProfile size={30}/>
+                        <CgProfile size={30} />
                     </NavLink>
                 </div>
             </nav>
