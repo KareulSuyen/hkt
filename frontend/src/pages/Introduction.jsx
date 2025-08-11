@@ -25,7 +25,7 @@ const Intro = () => {
           <div className={styles.heroText}>
             <h2>Pag-unawa sa Ating <span>Planetaryong Limitasyon</span></h2>
             <p>
-              Sa website na ito, matututo ka tungkol sa overpopulation at mga hamon nito.
+              Sa site na to, matututo ka tungkol sa overpopulation at mga hamon nito.
               Tuklasin ang kritikal na ugnayan ng paglaki ng populasyon, 
               pagkonsumo ng mga likas na yaman, at pagpapanatili ng kalikasan 
               sa ating panahon ng data-driven na mundo. Maaari ka ring sumubok
