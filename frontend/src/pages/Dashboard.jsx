@@ -735,7 +735,7 @@ const Dashboard = () => {
       </main>
 
       <footer className={styles.dashboardFooter}>
-        <p>Data from <span><a href="https://population.un.org/wpp">UN Population Division & World Bank</a></span><SiUnitednations size={20} id={styles['UN-icon']}/></p>
+        <p>Data from &nbsp;<span><a href="https://population.un.org/wpp">UN Population Division & World Bank</a></span><SiUnitednations size={20} id={styles['UN-icon']}/></p>
       </footer>
     </div>
   );
