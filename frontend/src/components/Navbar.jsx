@@ -20,7 +20,7 @@ const Navbar = ({toggleSidebar}) => {
                     <NavLink to='/help' className={setActive}>
                         <FaHandsHelping size={30}/>
                     </NavLink>
-                    <NavLink className={setActive}>
+                    <NavLink>
                         <CgProfile size={30}/>
                     </NavLink>
                 </div>
