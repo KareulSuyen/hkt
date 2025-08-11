@@ -1171,6 +1171,13 @@
 }
 
 footer {
+  justify-content: center;
+  align-items: center;
+
+  p {
+    display: flex;
+    align-items: center;
+  }
   a {
     text-decoration: none;
 
