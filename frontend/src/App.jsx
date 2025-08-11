@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import Notfound from './pages/Notfound';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
+import Introduction from './pages/Introduction';
 
 const handleLogout = () => {
   localStorage.removeItem(ACCESS_TOKEN);
