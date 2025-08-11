@@ -12,13 +12,12 @@
 }
 
 .gradientText {
-  background-color: rgb(0, 156, 187);
-  -webkit-background-clip: text;
+  background: linear-gradient(330deg,rgb(0, 255, 115) 0%, rgb(4, 196, 255) 43%);  -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.dashboardContainer {
+.dashboardContainer { 
   min-height: 100vh;
   font-family: "'Inter', system-ui, sans-serif";
   background-color: #0f172a;
@@ -558,7 +557,7 @@
   }
   
   &.stable {
-    border-left-color: #007c17;
+    border-left-color: #004f0e;
   }
 
   .regionHeader {
