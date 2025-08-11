@@ -15,7 +15,6 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 toggleSidebar();
             }
         };
-
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
@@ -56,7 +55,6 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                     onClick={toggleSidebar}
                 />
             )}
-            
             <aside 
                 ref={sidebarRef}
                 className={`${sidebarstyle.sidebar} ${isSidebarOpen ? sidebarstyle.open : sidebarstyle.closed}`}
