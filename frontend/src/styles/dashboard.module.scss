@@ -101,7 +101,6 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
       white-space: nowrap;
 
       &:hover {
@@ -150,7 +149,6 @@
   padding: 2rem;
   border: 1px solid rgba(51, 65, 85, 0.6);
   text-align: center;
-  backdrop-filter: blur(10px);
 
   h3 {
     margin: 0 0 1rem;
@@ -183,7 +181,6 @@
   padding: 1rem;
   background: rgba(30, 41, 59, 0.5);
   border-radius: 2rem;
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(51, 65, 85, 0.4);
 
   .tabButton {
@@ -229,7 +226,6 @@
   border-radius: 1.25rem;
   padding: 2.5rem;
   border: 1px solid rgba(51, 65, 85, 0.6);
-  backdrop-filter: blur(10px);
 
   h3 {
     margin: 0 0 1.5rem;
@@ -263,7 +259,6 @@
   border-radius: 1.25rem;
   padding: 2.5rem;
   border: 1px solid rgba(51, 65, 85, 0.6);
-  backdrop-filter: blur(10px);
 
   .categoryHeader {
     display: flex;
@@ -364,7 +359,6 @@
   border-radius: 1.25rem;
   padding: 2.5rem;
   border: 1px solid rgba(51, 65, 85, 0.6);
-  backdrop-filter: blur(10px);
 
   .solutionHeader {
     display: flex;
@@ -443,7 +437,6 @@
   padding: 2rem;
   border: 1px solid rgba(51, 65, 85, 0.6);
   border-left: 4px solid;
-  backdrop-filter: blur(10px);
   
   &.primary {
     border-left-color: #3b82f6;
@@ -454,18 +447,18 @@
   }
   
   &.success {
-    border-left-color: #10b981;
+    border-left-color: #005035;
     
     .statValue {
-      color: #6ee7b7;
+      color: #03e88c;
     }
   }
   
   &.warning {
-    border-left-color: #f59e0b;
+    border-left-color: #3e028c;
     
     .statValue {
-      color: #fbbf24;
+      color: #be24fb;
     }
   }
 
@@ -548,7 +541,6 @@
   border: 1px solid rgba(51, 65, 85, 0.6);
   cursor: pointer;
   border-left: 4px solid;
-  backdrop-filter: blur(10px);
   min-height: 320px;
   display: flex;
   flex-direction: column;
@@ -558,7 +550,7 @@
   }
   
   &.moderate-growth {
-    border-left-color: #f59e0b;
+    border-left-color: #00566c;
   }
   
   &.declining {
@@ -566,7 +558,7 @@
   }
   
   &.stable {
-    border-left-color: #10b981;
+    border-left-color: #007c17;
   }
 
   .regionHeader {
