@@ -14,18 +14,22 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   background-color: $dark-bg;
   color: $dark-text;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
 }
 
-// Navigation
 .nav {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
   z-index: 100;
   background-color: rgba($dark-bg, 0.8);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid $dark-border;
+  
+  @media (max-width: 480px) {
+    padding: 0.8rem 0;
+  }
 }
 
 .navContent {
@@ -35,6 +39,14 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  @media (max-width: 768px) {
+    padding: 0 1.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0 1rem;
+  }
 }
 
 .logo {
@@ -46,11 +58,23 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   span {
     color: $dark-primary;
   }
+  
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.3rem;
+  }
 }
 
 .navLinks {
   display: flex;
   gap: 1.5rem;
+  
+  @media (max-width: 480px) {
+    gap: 0.8rem;
+  }
 }
 
 .navLink {
@@ -60,20 +84,31 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   padding: 0.5rem 1rem;
   border-radius: 4px;
   transition: $transition;
+  font-size: 1rem;
   
   &:hover {
     color: $dark-primary;
     background-color: rgba($dark-primary, 0.1);
   }
+  
+  @media (max-width: 768px) {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+  }
 }
 
 // Hero Section
 .hero {
-  height: 100vh;
+  min-height: 100vh; // Changed from height to min-height for better mobile behavior
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 2rem;
+  padding: 6rem 2rem 2rem; // Added top padding for fixed nav
   position: relative;
   overflow: hidden;
   
@@ -89,6 +124,16 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
                 rgba($dark-bg, 1) 70%);
     z-index: -1;
   }
+  
+  @media (max-width: 768px) {
+    padding: 5rem 1.5rem 2rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 4rem 1rem 2rem;
+    justify-content: flex-start;
+    padding-top: 6rem;
+  }
 }
 
 .heroContent {
@@ -98,6 +143,20 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: center;
+  
+  @media (max-width: 1024px) {
+    gap: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding-top: 2rem;
+    gap: 2.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 2rem;
+  }
 }
 
 .heroText {
@@ -110,6 +169,19 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     span {
       color: $dark-primary;
     }
+    
+    @media (max-width: 1024px) {
+      font-size: 2.5rem;
+    }
+    
+    @media (max-width: 768px) {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 1.8rem;
+    }
   }
   
   p {
@@ -117,12 +189,41 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     line-height: 1.8;
     color: $dark-text-secondary;
     max-width: 80%;
+    margin-bottom: 1.5rem;
+    
+    @media (max-width: 1024px) {
+      font-size: 1.1rem;
+    }
+    
+    @media (max-width: 768px) {
+      max-width: 100%;
+      font-size: 1rem;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
   }
 }
 
 .heroStats {
   display: flex;
   gap: 2rem;
+  
+  @media (max-width: 1024px) {
+    gap: 1.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 .stat {
@@ -138,6 +239,18 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     transform: translateY(-5px);
     border-color: $dark-primary;
   }
+  
+  @media (max-width: 1024px) {
+    padding: 1.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 1.2rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
 }
 
 .statNumber {
@@ -145,6 +258,14 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   font-weight: 800;
   color: $dark-primary;
   margin-bottom: 0.5rem;
+  
+  @media (max-width: 1024px) {
+    font-size: 2rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.8rem;
+  }
 }
 
 .statLabel {
@@ -152,6 +273,26 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   color: $dark-text-secondary;
   text-transform: uppercase;
   letter-spacing: 1px;
+  
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+  }
+}
+
+.scrollPrompt {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $dark-text-secondary;
+  font-size: 0.9rem;
+  
+  @media (max-width: 768px) {
+    bottom: 1.5rem;
+  }
 }
 
 .scrollIcon {
@@ -174,11 +315,11 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     border-radius: 2px;
     animation: scroll 2s infinite;
   }
-}
-
-@keyframes float {
-  0%, 100% { transform: translate(-50%, 0); }
-  50% { transform: translate(-50%, -10px); }
+  
+  @media (max-width: 480px) {
+    width: 20px;
+    height: 36px;
+  }
 }
 
 @keyframes scroll {
@@ -192,25 +333,13 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   color: $dark-text-secondary;
   font-size: 0.9rem;
   border-top: 1px solid $dark-border;
-}
-
-@media (max-width: 768px) {
-  .heroContent {
-    grid-template-columns: 1fr;
-    padding-top: 6rem;
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem;
   }
   
-  .heroText {
-    h2 {
-      font-size: 2.2rem;
-    }
-    
-    p {
-      max-width: 100%;
-    }
-  }
-  
-  .heroStats {
-    flex-direction: column;
+  @media (max-width: 480px) {
+    padding: 1rem;
+    font-size: 0.8rem;
   }
 }
