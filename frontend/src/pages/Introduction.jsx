@@ -1,21 +1,24 @@
 import React from 'react';
 import styles from '../styles/intro.module.scss';
+import  { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';  
 
 const Introduction = () => {
+    const handleLogout = () => {
+        localStorage.removeItem(ACCESS_TOKEN);
+        localStorage.removeItem(REFRESH_TOKEN);
+    }
   return (
     <div className={styles.introductionPage}>
-      {/* Navbar */}
       <nav className={styles.navbar}>
         <div className={styles.navContainer}>
           <a href="/" className={styles.siteTitle}>Population Crisis</a>
           <div className={styles.navLinks}>
-            <a href="/login" className={styles.navLink}>Login</a>
-            <a href="/register" className={styles.navLink}>Register</a>
+            <a  onClick={handleLogout} href="/login" className={styles.navLink}>Login</a>
+            <a  onClick={handleLogout} href="/register" className={styles.navLink}>Register</a>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>The Population Challenge</h1>

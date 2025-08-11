@@ -1170,6 +1170,27 @@
   }
 }
 
+footer {
+  justify-content: center;
+  display: flex;
+
+  p {
+    display: flex;
+    align-items: center;
+
+    #UN-icon {
+      margin-left: 7px;
+    }
+  }
+  a {
+    text-decoration: none;
+
+    &:hover{
+      color: cyan;
+    }
+  }
+}
+
 @media (max-width: 479px) {
   .dashboardHeader {
     padding: 1rem 0.75rem;
