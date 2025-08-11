@@ -63,7 +63,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
             >
                 <div className={sidebarstyle['toggle-btn']}>
                     <button onClick={toggleSidebar}>
-                        <TbLayoutSidebarRightExpandFilled size={30} />
+                        <TbLayoutSidebarRightExpandFilled size={27} />
                     </button>
                 </div>  
                 <div className={sidebarstyle['sidebar-links']}>
