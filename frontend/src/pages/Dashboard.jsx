@@ -3,13 +3,14 @@ import { Chart } from 'chart.js/auto';
 import styles from '../styles/dashboard.module.scss';
 import { SiUnitednations } from "react-icons/si";
 
-
 const Dashboard = () => {
-  const [language, setLanguage] = useState('english');
+  // Set Tagalog as default language
+  const [language, setLanguage] = useState('filipino');
   const [selectedRegion, setSelectedRegion] = useState('global');
   const [currentTime, setCurrentTime] = useState(new Date());
   const [activeTab, setActiveTab] = useState('trends');
   const [isLoading, setIsLoading] = useState(true);
+  const [languageToggleText, setLanguageToggleText] = useState('🇬🇧 English');
 
   const growthChartRef = useRef(null);
   const projectionChartRef = useRef(null);
@@ -26,11 +27,14 @@ const Dashboard = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Reset language toggle text when tab changes
+  useEffect(() => {
+    setLanguageToggleText(language === 'filipino' ? '🇬🇧 English' : '🇵🇭 Filipino');
+  }, [activeTab, language]);
+
   useEffect(() => {
     if (!isLoading && activeTab === 'trends') {
-
       const timeoutId = setTimeout(() => {
-
         if (growthChart) {
           growthChart.destroy();
           setGrowthChart(null);
@@ -41,7 +45,6 @@ const Dashboard = () => {
         }
 
         if (growthChartRef.current && projectionChartRef.current) {
-
           const growthCtx = growthChartRef.current.getContext('2d');
           const newGrowthChart = new Chart(growthCtx, {
             type: 'line',
@@ -141,12 +144,11 @@ const Dashboard = () => {
           setGrowthChart(newGrowthChart);
           setProjectionChart(newProjectionChart);
         }
-      }, 50); 
+      }, 50);
 
       return () => clearTimeout(timeoutId);
     }
 
-    // Cleanup function
     return () => {
       if (growthChart) {
         growthChart.destroy();
@@ -157,13 +159,13 @@ const Dashboard = () => {
         setProjectionChart(null);
       }
     };
-  }, [isLoading, language, activeTab]); 
+  }, [isLoading, language, activeTab]);
 
   const content = {
     english: {
       title: "Population Impact Dashboard",
       subtitle: "Visualizing the challenges of rapid population growth",
-        lastUpdated: "Last Updated",
+      lastUpdated: "Last Updated",
       stats: {
         current: "Current Population",
         daily: "Daily Increase",
@@ -326,7 +328,6 @@ const Dashboard = () => {
           icon: "👨‍👩‍👧‍👦"
         }
       ],
-      languageToggle: "🇵🇭 Filipino",
       chartTitles: {
         historical: "Historical Growth",
         historicalDesc: "World population has doubled since 1970, showing exponential growth patterns across different regions. Growth rate has slowed from 2.1% annually in the 1960s to about 0.9% today.",
@@ -500,7 +501,6 @@ const Dashboard = () => {
           icon: "👨‍👩‍👧‍👦"
         }
       ],
-      languageToggle: "🇬🇧 English",
       chartTitles: {
         historical: "Makasaysayang Paglaki",
         historicalDesc: "Ang populasyon ng mundo ay dumoble mula noong 1970, na nagpapakita ng exponential growth pattern sa iba't ibang rehiyon. Ang growth rate ay bumagal mula 2.1% taun-taon noong 1960s hanggang sa 0.9% ngayon.",
@@ -511,6 +511,12 @@ const Dashboard = () => {
   };
 
   const t = content[language];
+
+  const toggleLanguage = () => {
+    const newLanguage = language === 'english' ? 'filipino' : 'english';
+    setLanguage(newLanguage);
+    setLanguageToggleText(newLanguage === 'filipino' ? '🇬🇧 English' : '🇵🇭 Filipino');
+  };
 
   if (isLoading) {
     return (
@@ -536,9 +542,9 @@ const Dashboard = () => {
           </div>
           <button
             className={styles.languageToggle}
-            onClick={() => setLanguage(language === 'english' ? 'filipino' : 'english')}
+            onClick={toggleLanguage}
           >
-            {t.languageToggle}
+            {languageToggleText}
           </button>
         </div>
       </header>

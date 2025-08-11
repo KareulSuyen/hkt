@@ -1,5 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import navstyle from '../styles/navbar.module.scss';
+import { FaHandsHelping, FaHome } from 'react-icons/fa';
+import { CgProfile } from "react-icons/cg";
+
 
 const Navbar = ({toggleSidebar}) => {
     const setActive = ({ isActive }) =>
@@ -11,9 +14,15 @@ const Navbar = ({toggleSidebar}) => {
                     <button onClick={toggleSidebar}>X</button>
                 </div>
                 <div className={navstyle['nav-center']}>
-                    <NavLink to='/' className={setActive}>Home</NavLink>
-                    <NavLink to='/help' className={setActive}>Help</NavLink>
-                    <NavLink className={setActive}>Profile</NavLink>
+                    <NavLink to='/' className={setActive}>
+                        <FaHome size={30} />
+                    </NavLink>
+                    <NavLink to='/help' className={setActive}>
+                        <FaHandsHelping size={30}/>
+                    </NavLink>
+                    <NavLink>
+                        <CgProfile size={30}/>
+                    </NavLink>
                 </div>
             </nav>
         </>
