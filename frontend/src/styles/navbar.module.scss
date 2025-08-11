@@ -23,12 +23,15 @@
         margin-left: auto;
         padding: 17px 10px;
         display: flex;
-        gap: 2rem;
+        gap: 3rem;
         font-size: 17px;
 
         .link {
             text-decoration: none;
+
+            &.active {
+                border-bottom: 1px solid white;
+            }
         }
     }
-
 }
