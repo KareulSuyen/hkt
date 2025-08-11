@@ -1170,6 +1170,16 @@
   }
 }
 
+footer {
+  a {
+    text-decoration: none;
+
+    &:hover{
+      color: cyan;
+    }
+  }
+}
+
 @media (max-width: 479px) {
   .dashboardHeader {
     padding: 1rem 0.75rem;

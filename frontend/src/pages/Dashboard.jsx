@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
-import styles from '../styles/home.module.scss';
+import styles from '../styles/dashboard.module.scss';
+import { SiUnitednations } from "react-icons/si";
+
 
 const Dashboard = () => {
   const [language, setLanguage] = useState('english');
@@ -733,7 +735,7 @@ const Dashboard = () => {
       </main>
 
       <footer className={styles.dashboardFooter}>
-        <p>Data from <span><a href="https://population.un.org/wpp">UN Population Division & World Bank</a></span></p>
+        <p>Data from <span><a href="https://population.un.org/wpp">UN Population Division & World Bank</a><SiUnitednations size={20}/></span></p>
       </footer>
     </div>
   );
