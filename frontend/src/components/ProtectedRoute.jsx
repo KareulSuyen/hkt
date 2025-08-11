@@ -57,7 +57,6 @@ const ProtectedRoute = ({ children }) => {
             }
         } catch (err) {
             console.log('Token decode error:', err);
-            
             localStorage.removeItem(ACCESS_TOKEN);
             localStorage.removeItem(REFRESH_TOKEN);
             setIsAuthorized(false);

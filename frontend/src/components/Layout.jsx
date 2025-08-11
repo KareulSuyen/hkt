@@ -10,7 +10,6 @@ const Layout = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const toggleSidebar = () => setSidebarOpen(prev => !prev);
     
-    // Persist chat open state in localStorage to survive remounts
     const [open, setOpen] = useState(() => {
         try {
             return JSON.parse(localStorage.getItem('chatOpen')) || false;
@@ -113,7 +112,6 @@ const Layout = () => {
                 <Outlet />
             </main>
             
-            {/* Floating AI Button */}
             {!open && (
                 <div
                     onClick={() => setOpen(true)}
@@ -266,40 +264,43 @@ const Layout = () => {
                         )}
 
                         {history.map((msg, index) => (
+                           <div
+                            key={index}
+                            style={{
+                                marginBottom: '16px',
+                                textAlign: msg.sender === 'user' ? 'right' : 'left',
+                                animation: `fadeIn 0.3s ease-out ${index * 0.1}s both`,
+                                display: 'flex',
+                                justifyContent: msg.sender === 'user' ? 'flex-end' : 'flex-start'
+                            }}
+                        >
+                            <style>
+                                {`
+                                    @keyframes fadeIn {
+                                        from { opacity: 0; transform: translateY(10px); }
+                                        to { opacity: 1; transform: translateY(0); }
+                                    }
+                                `}
+                            </style>
                             <div
-                                key={index}
                                 style={{
-                                    marginBottom: '16px',
-                                    textAlign: msg.sender === 'user' ? 'right' : 'left',
-                                    animation: `fadeIn 0.3s ease-out ${index * 0.1}s both`
+                                    display: 'inline-block',
+                                    padding: '12px 16px',
+                                    borderRadius: msg.sender === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
+                                    background: msg.sender === 'user' 
+                                        ? 'linear-gradient(135deg, #000000ff 0%, #000000ff 100%)' 
+                                        : '#2a2a2a',
+                                    maxWidth: '85%',
+                                    wordWrap: 'break-word',
+                                    lineHeight: '1.5',
+                                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                                    border: msg.sender === 'ai' ? '1px solid #333' : 'none',
+                                    textAlign: 'left' // Keep text alignment consistent inside the bubble
                                 }}
                             >
-                                <style>
-                                    {`
-                                        @keyframes fadeIn {
-                                            from { opacity: 0; transform: translateY(10px); }
-                                            to { opacity: 1; transform: translateY(0); }
-                                        }
-                                    `}
-                                </style>
-                                <div
-                                    style={{
-                                        display: 'inline-block',
-                                        padding: '12px 16px',
-                                        borderRadius: msg.sender === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
-                                        background: msg.sender === 'user' 
-                                            ? 'linear-gradient(135deg, #000000ff 0%, #000000ff 100%)' 
-                                            : '#2a2a2a',
-                                        maxWidth: '85%',
-                                        wordWrap: 'break-word',
-                                        lineHeight: '1.5',
-                                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                                        border: msg.sender === 'ai' ? '1px solid #333' : 'none'
-                                    }}
-                                >
-                                    {msg.text}
-                                </div>
+                                {msg.text}
                             </div>
+                        </div>
                         ))}
 
                         {/* Loading indicator when AI is thinking */}
