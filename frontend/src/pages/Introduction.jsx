@@ -59,9 +59,10 @@ const Intro = () => {
         <p>
           <span>
           <img src={spcc} alt="spcc logo" className={styles['spcc-logo']}/>
-        </span>{new Date().getFullYear()}&nbsp;<span id={styles['school-name']}>
+        </span>
+          {new Date().getFullYear()}&nbsp;<span id={styles['school-name']}>
           <a href='https://spcc.edu.ph/' target='blank'>
-            SPCC &nbsp;
+            SPCC&nbsp;
           </a>
         </span>
         Hackathon</p>

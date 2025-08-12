@@ -464,7 +464,7 @@ const Dashboard = () => {
           icon: "🏙️"
         },
         {
-          category: "Climate Impact",
+          category: "Epekto ng klima",
           metrics: [
             { name: "CO₂ Emissions bawat Kapitolyo", value: "4.8 tons/taon", trend: "↑ 1.2%/taon", severity: "high" },
             { name: "Deforestation Rate", value: "10M ektarya/taon", trend: "↓ 2.8%/taon", severity: "moderate" }
