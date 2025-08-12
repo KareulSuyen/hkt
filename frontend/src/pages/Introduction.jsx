@@ -1,6 +1,8 @@
 import styles from '../styles/intro.module.scss';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import city from '../../public/images/city.png'
+import spcc from '../../public/images/spcc.jpg'
+
 
 const Intro = () => {
   const handleLogout = () => {
@@ -54,7 +56,7 @@ const Intro = () => {
       </section>
 
       <footer className={styles.footer}>
-        <p>© {new Date().getFullYear()} SPCC hackathon 2025</p>
+        <p><span><img src={spcc} alt="spcc logo" className={styles['spcc-logo']}/></span>© {new Date().getFullYear()} SPCC Hackathon</p>
       </footer>
     </div>
   );
