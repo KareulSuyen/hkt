@@ -4,9 +4,7 @@ import styles from '../styles/dashboard.module.scss';
 import { SiUnitednations } from "react-icons/si";
 
 const Dashboard = () => {
-  // Set Tagalog as default language
   const [language, setLanguage] = useState('filipino');
-  const [selectedRegion, setSelectedRegion] = useState('global');
   const [currentTime, setCurrentTime] = useState(new Date());
   const [activeTab, setActiveTab] = useState('trends');
   const [isLoading, setIsLoading] = useState(true);
