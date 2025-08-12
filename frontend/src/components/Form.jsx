@@ -38,9 +38,9 @@ const Form = ({ method, route }) => {
         if (isLogin) {
             localStorage.setItem(ACCESS_TOKEN, res.data.access);
             localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-            navigate('/');
+            navigate('/dashboard');
         } else {
-            navigate('/login');
+            navigate('/introduction');
         }
     } catch (err) {
         const status = err.response?.status;

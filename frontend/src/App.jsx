@@ -14,13 +14,19 @@ const handleLogout = () => {
   localStorage.removeItem(REFRESH_TOKEN);
 };
 
+export const Intro = () => {
+  handleLogout();
+  return <Navigate to='/introduction' replace />;
+};
+
 export const Logout = () => {
   handleLogout();
   return <Navigate to='/introduction' replace />;
 };
-export const Intro = () => {
+
+export const Log_in = () => {
   handleLogout();
-  return <Navigate to='/introduction' replace />;
+  return <Navigate to='/login' replace />;
 };
 
 export const LogoutAndRegister = () => {
@@ -32,9 +38,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Introduction />} />
         <Route path='/introduction' element={<Introduction />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Log_in />} />
         <Route path='/register' element={<Register />} />
         
         <Route
@@ -45,10 +50,11 @@ const App = () => {
             </ProtectedRoute>
           }
         >
-          <Route index element={<Dashboard />} />
-          <Route path='help' element={<Help />} />
+          <Route  path='/dashboard' index element={<Dashboard />} />
+          <Route path='/help' element={<Help />} />
         </Route>
         <Route path='/logout' element={<Logout />} />
+        <Route path='/introduction' element={<Intro />} />
         <Route path='*' element={<Notfound />} />
       </Routes>
     </BrowserRouter>
