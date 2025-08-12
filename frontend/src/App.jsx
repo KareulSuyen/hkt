@@ -18,10 +18,6 @@ export const Logout = () => {
   handleLogout();
   return <Navigate to='/introduction' replace />;
 };
-export const Intro = () => {
-  handleLogout();
-  return <Navigate to='/introduction' replace />;
-};
 
 export const LogoutAndRegister = () => {
   handleLogout();
@@ -34,6 +30,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Introduction />} />
         <Route path='/introduction' element={<Introduction />} />
+        
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         

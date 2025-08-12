@@ -220,7 +220,7 @@ $dark-border: #333;
     font-size: 2rem;
     font-weight: 800;
     border-radius: 10px;
-    display: block;
+    display: inline-block;
     background-color: black;
     color: rgb(0, 119, 255);
     margin-bottom: 0.5rem;
@@ -239,6 +239,7 @@ $dark-border: #333;
   font-weight: 600;
 }
 
+
 #world {
     background-image: url('../../public/images/map.jpg');
     background-repeat: no-repeat;
@@ -253,16 +254,34 @@ $dark-border: #333;
 }
 
 .footer {
+  display: flex;
+  align-items: center;
   padding: 2rem;
   text-align: center;
   color: $dark-text-secondary;
-  font-size: 0.9rem;
+  font-size: 1rem;
   border-top: 1px solid $dark-border;
   background: $dark-surface;
   
   @media (max-width: 768px) {
     padding: 1.5rem;
   }
+
+  .spcc-logo {
+    align-items: center;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    margin-bottom: -5px;
+    margin-right: 5px;
+    }
+    
+    #school-name {
+        &:hover {
+        color: cyan;
+    }
+}
+
 }
 
 // Responsive adjustments
