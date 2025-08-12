@@ -1,7 +1,7 @@
 import styles from '../styles/intro.module.scss';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import city from '../../public/images/city.png'
-import spcc from '../../public/images/spcc.jpg'
+import spcc from '../../public/images/spcc-bg.png'
 
 
 const Intro = () => {
@@ -9,7 +9,7 @@ const Intro = () => {
     localStorage.removeItem(ACCESS_TOKEN);
     localStorage.removeItem(REFRESH_TOKEN);
   };
-
+  
   return (
     <div className={styles.darkIntro}>
       <nav className={styles.nav}>
@@ -56,7 +56,15 @@ const Intro = () => {
       </section>
 
       <footer className={styles.footer}>
-        <p><span><img src={spcc} alt="spcc logo" className={styles['spcc-logo']}/></span>© {new Date().getFullYear()} SPCC Hackathon</p>
+        <p>
+          <span>
+          <img src={spcc} alt="spcc logo" className={styles['spcc-logo']}/>
+        </span>{new Date().getFullYear()}&nbsp;<span id={styles['school-name']}>
+          <a href='https://spcc.edu.ph/' target='blank'>
+            SPCC &nbsp;
+          </a>
+        </span>
+        Hackathon</p>
       </footer>
     </div>
   );
