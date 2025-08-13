@@ -8,10 +8,9 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# AI Configuration - Complete Groq setup
 GROQ_API_KEY = config('GROQ_API_KEY')
 AI_MODEL = config('AI_MODEL', default='deepseek-r1-distill-llama-70b') 
-AI_API_BASE_URL = config('AI_API_BASE_URL', default='https://api.groq.com/openai/v1')  # 👈 ADD THIS
+AI_API_BASE_URL = config('AI_API_BASE_URL', default='https://api.groq.com/openai/v1')  
 
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
@@ -121,14 +120,12 @@ CACHES = {
         'LOCATION': 'unique-snowflake',
     }
 }
-# Internationalization
+
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 
-# Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
