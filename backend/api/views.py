@@ -15,8 +15,6 @@ class CreateUserViews(generics.CreateAPIView):
     permission_classes = [AllowAny]
 
 
-# Add this temporary debug version to see what's wrong:
-
 class AIAPIView(APIView):
     permission_classes = [AllowAny]
     authentication_classes = []
@@ -24,7 +22,6 @@ class AIAPIView(APIView):
     def post(self, request):
         print("=== GROQ AUTH DEBUG ===")
         
-        # Check API key
         api_key = getattr(settings, 'GROQ_API_KEY', None)
         print(f"API Key exists: {bool(api_key)}")
         print(f"API Key length: {len(api_key) if api_key else 0}")
