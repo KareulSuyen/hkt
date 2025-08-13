@@ -1,4 +1,3 @@
-# chat/urls.py or api/urls.py depending on app name
 from django.urls import path
 from .views import CreateUserViews, AIAPIView
 
