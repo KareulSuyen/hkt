@@ -3,7 +3,7 @@ import styles from '../styles/intro.module.scss';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import city from '../../public/images/city.png'
 import spcc from '../../public/images/spcc-bg.png'
-import logo from '../../public/images/logo-1.png'
+import logo from '../../public/images/logo.png'
 
 
 const Intro = () => {
