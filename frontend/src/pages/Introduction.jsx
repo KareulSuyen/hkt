@@ -3,6 +3,7 @@ import styles from '../styles/intro.module.scss';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import city from '../../public/images/city.png'
 import spcc from '../../public/images/spcc-bg.png'
+import logo from '../../public/images/logo-1.png'
 
 
 const Intro = () => {
@@ -15,7 +16,10 @@ const Intro = () => {
     <div className={styles.darkIntro}>
       <nav className={styles.nav}>
         <div className={styles.navContent}>
-          <h1 className={styles.logo}>Boneng<span>Malakas</span></h1>
+          <h1 className={styles.logo}>
+            <span>
+              <img src={logo} />
+            </span>Boneng<span>Malakas</span></h1>
           <div className={styles.navLinks}>
             <a onClick={handleLogout} href="/login" className={styles.navLink}>Login</a>
             <a onClick={handleLogout} href="/register" className={styles.navLink}>Register</a>

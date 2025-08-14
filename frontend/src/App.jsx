@@ -28,8 +28,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Introduction />} />
-        <Route path='/introduction' element={<Introduction />} />
+        <Route path='/introduction' index element={<Introduction />} />
         
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
@@ -42,7 +41,7 @@ const App = () => {
             </ProtectedRoute>
           }
         >
-          <Route index element={<Dashboard />} />
+          <Route path='/' element={<Dashboard />} />
           <Route path='help' element={<Help />} />
         </Route>
         <Route path='/logout' element={<Logout />} />
