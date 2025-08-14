@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import sidebarstyle from '../styles/sidebar.module.scss';
 import { TbLayoutSidebarRightExpandFilled } from "react-icons/tb";
