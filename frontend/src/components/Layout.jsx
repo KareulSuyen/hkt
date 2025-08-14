@@ -5,6 +5,8 @@ import { useState, useRef, useEffect } from 'react';
 import { sendPrompt } from '../api';
 import { IoIosSend } from "react-icons/io";
 import { FaRobot } from "react-icons/fa";
+import Profile from '../components/Profile';
+
 
 const Layout = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -102,9 +104,13 @@ const Layout = () => {
         }
     }, [history]);
 
+    const [isProfileOpen, setProfileOpen] = useState(false);
+    const toggleProfile = () => setProfileOpen(prev => !prev);
+
     return (
         <>
-            <Navbar toggleSidebar={toggleSidebar}/>
+            <Navbar toggleSidebar={toggleSidebar} setProfileOpen={toggleProfile}/>
+            <Profile isProfileOpen={isProfileOpen} toggleProfile={toggleProfile}/>
             <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
             <main>
                 <Outlet />

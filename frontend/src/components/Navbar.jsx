@@ -4,7 +4,7 @@ import { FaHandsHelping, FaHome } from 'react-icons/fa';
 import { CgProfile } from "react-icons/cg";
 import { RxHamburgerMenu } from "react-icons/rx";
 
-const Navbar = ({toggleSidebar}) => {
+const Navbar = ({toggleSidebar, toggleProfile}) => {
     const setActive = ({ isActive }) =>
         isActive ? `${navstyle.link} ${navstyle.active}` : navstyle.link
     return (

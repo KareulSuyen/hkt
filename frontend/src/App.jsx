@@ -29,7 +29,6 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/introduction' index element={<Introduction />} />
-        
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         
