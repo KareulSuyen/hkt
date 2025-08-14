@@ -18,9 +18,8 @@ const Layout = () => {
         }
     });
 
-    // Save open state to localStorage on change
     useEffect(() => {
-        localStorage.setItem('chatOpen', JSON.stringify(open));
+        localStorage.setItem('chatOpen', JSON.stringify(!open));
     }, [open]);
 
     const [prompt, setPrompt] = useState('');
@@ -29,7 +28,6 @@ const Layout = () => {
     const chatEndRef = useRef(null);
     const inputRef = useRef(null);
 
-    // Auto-focus input when chat opens or after sending message
     useEffect(() => {
         if (open && inputRef.current && !isLoading) {
             setTimeout(() => {

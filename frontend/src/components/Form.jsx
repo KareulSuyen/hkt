@@ -40,7 +40,7 @@ const Form = ({ method, route }) => {
             localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
             navigate('/');
         } else {
-            navigate('/introduction');
+            navigate('/');
         }
     } catch (err) {
         const status = err.response?.status;
