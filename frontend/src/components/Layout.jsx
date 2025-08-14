@@ -24,6 +24,9 @@ const Layout = () => {
         localStorage.setItem('chatOpen', JSON.stringify(!open));
     }, [open]);
 
+    const [isProfileOpen, setProfileOpen] = useState(false);
+    const toggleProfile = () => setProfileOpen(prev => !prev);
+    
     const [prompt, setPrompt] = useState('');
     const [history, setHistory] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -104,8 +107,6 @@ const Layout = () => {
         }
     }, [history]);
 
-    const [isProfileOpen, setProfileOpen] = useState(false);
-    const toggleProfile = () => setProfileOpen(prev => !prev);
 
     return (
         <>
