@@ -5,7 +5,7 @@ import { CgProfile } from "react-icons/cg";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 
-const Navbar = ({toggleSidebar, toggleProfile, isProfileOpen}) => {
+const Navbar = ({toggleSidebar, toggleProfile}) => {
     const setActive = ({ isActive }) =>
         isActive ? `${navstyle.link} ${navstyle.active}` : navstyle.link
     return (
@@ -23,7 +23,7 @@ const Navbar = ({toggleSidebar, toggleProfile, isProfileOpen}) => {
                     <NavLink to='/help' className={setActive}>
                         <FaHandsHelping size={30} />
                     </NavLink>
-                    <div className={`${navstyle['profile']} ${isProfileOpen ? navstyle.open : navstyle.closed}`}> 
+                    <div className={navstyle['profile-btn']}> 
                         <button onClick={toggleProfile}> 
                             <CgProfile size={30}/>
                         </button>

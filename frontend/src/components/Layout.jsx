@@ -50,9 +50,9 @@ const Layout = () => {
             .join('\n') + `\nUser: ${prompt}\nAI:`;
 
         try {
-            console.log('📤 Sending full prompt:', fullPrompt);
+            console.log('Sending full prompt:', fullPrompt);
             const res = await sendPrompt(fullPrompt);
-            console.log('📥 Received response:', res);
+            console.log('Received response:', res);
 
             const botReply = res.response || "I couldn't generate a response. Please try again.";
 

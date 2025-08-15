@@ -1,0 +1,13 @@
+.profile {
+    width: 250px;
+    height: 100vh;
+    background-color: black;
+}
+
+.open {
+    transform: translateX(0);
+}
+
+.closed {
+    transform: translateX(-100%);
+}
