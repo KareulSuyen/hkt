@@ -19,7 +19,7 @@ const Intro = () => {
           <h1 className={styles.logo}>
             <span>
               <img src={logo} />
-            </span>Boneng<span>Malakas</span></h1>
+            </span>Over<span>Population</span></h1>
           <div className={styles.navLinks}>
             <a onClick={handleLogout} href="/login" className={styles.navLink}>Login</a>
             <a onClick={handleLogout} href="/register" className={styles.navLink}>Register</a>
