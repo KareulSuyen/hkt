@@ -29,7 +29,7 @@ export const sendPrompt = async (prompt) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      timeout: 60000, // 60 seconds
+      timeout: 60000, 
     });
 
     console.log('API response:', response.data);
