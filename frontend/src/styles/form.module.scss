@@ -155,7 +155,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 
 .toggle-password {
     position: absolute;
-    right: 10px;
+    right: 20px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
@@ -172,6 +172,6 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 }
 
 .auth-input {
-    width: 100%;
+    width: 90%;
     padding-right: 40px; 
 }
