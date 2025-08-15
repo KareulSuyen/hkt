@@ -17,17 +17,17 @@ const Navbar = ({toggleSidebar, toggleProfile, isProfileOpen}) => {
                     </button>
                 </div>
                 <div className={navstyle['nav-center']}>
-                    <NavLink to='/' className={setActive}>
+                    <NavLink to='/dashboard' className={setActive}>
                         <FaHome size={30} />
                     </NavLink>
                     <NavLink to='/help' className={setActive}>
                         <FaHandsHelping size={30} />
                     </NavLink>
-                    <aside className={`${navstyle['profile']} ${isProfileOpen ? navstyle.open : navstyle.closed}`}> 
-                        <div className={navstyle['profile-links']}>
+                    <div className={`${navstyle['profile']} ${isProfileOpen ? navstyle.open : navstyle.closed}`}> 
+                        <button onClick={toggleProfile}> 
                             <CgProfile size={30}/>
-                        </div>
-                    </aside>
+                        </button>
+                    </div>
                 </div>
             </nav>
         </>
