@@ -94,7 +94,7 @@ const Form = ({ method, route }) => {
             if (isLogin) {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-                navigate('/dashboard'); 
+                navigate('/'); 
             } else {
                 navigate('/introduction'); 
             }

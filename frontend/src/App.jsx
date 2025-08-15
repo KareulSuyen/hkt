@@ -24,7 +24,7 @@ export const LogoutAndRegister = () => {
   return <Navigate to='/register' replace />;
 };
 
-export const checkToken = () => {
+export const CheckToken = () => {
   localStorage.getItem(ACCESS_TOKEN);
   localStorage.getItem(REFRESH_TOKEN);
 
@@ -41,7 +41,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<checkToken/>} />
         <Route path='/introduction' element={<Introduction />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
@@ -53,7 +52,7 @@ const App = () => {
             </ProtectedRoute>
           }
         >
-          <Route path='/dashboard' index element={<Dashboard />} />
+          <Route path='/' index element={<Dashboard />} />
           <Route path='help' element={<Help />} /> 
         </Route>
         <Route path='/logout' element={<Logout />} />
