@@ -156,7 +156,7 @@
   }
 
   .metricValue {
-    font-size: 2.25rem;
+    font-size: 2rem;
     font-weight: 800;
     margin: 0.75rem 0;
     line-height: 1;
@@ -186,7 +186,7 @@
     border: none;
     border-radius: 1.5rem;
     background: transparent;
-    color: #e2e8f0;
+    color: #ffffff;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -196,7 +196,7 @@
     position: relative;
 
     &.active {
-      color: white;
+      color: rgb(145, 207, 255);
       border-color: transparent;
       border-bottom: 1px solid rgb(0, 111, 162);
     }
@@ -366,7 +366,7 @@
     border-bottom: 1px solid rgba(51, 65, 85, 0.4);
 
     .solutionIcon {
-      font-size: 2.5rem;
+      font-size: 2rem;
       flex-shrink: 0;
     }
 
@@ -469,20 +469,20 @@
     border-bottom: 1px solid rgba(51, 65, 85, 0.4);
 
     .statIcon {
-      font-size: 1.75rem;
+      font-size: 1.5rem;
     }
 
     h3 {
       margin: 0;
       color: white;
-      font-size: 1.2rem;
+      font-size: 1rem;
       flex: 1;
       font-weight: 700;
     }
   }
 
   .statValue {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
     margin: 1rem 0;
     line-height: 1;
