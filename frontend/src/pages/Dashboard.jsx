@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
 import styles from '../styles/dashboard.module.scss';
 import { SiUnitednations } from "react-icons/si";
+import overpopulationVid from '../../public/videos/overpopulation.mp4'
 
 const Dashboard = () => {
   const [language, setLanguage] = useState('filipino');
@@ -729,14 +730,26 @@ const Dashboard = () => {
           </div>
         </section>
 
-        <div className={`${styles.callToAction} ${styles.fadeIn}`}>
+         <div className={`${styles.callToAction} ${styles.fadeIn}`}>
+        <div className={styles.videoContainer}>
+          <video autoPlay muted loop playsInline className={styles.bgVideo}>
+            <source src={overpopulationVid} type="video/mp4" />
+          </video>
+        </div>
+        
+        <div className={styles.content}>
           <p>{t.callToAction}</p>
-          <a href="https://betterplaneteducation.org.uk/factsheets/overpopulation-what-are-some-solutions-to-overpopulation" target='_blank'>
+          <a
+            href="https://betterplaneteducation.org.uk/factsheets/overpopulation-what-are-some-solutions-to-overpopulation"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <button className={styles.ctaButton}>
               {language === 'english' ? 'Get Involved' : 'Makilahok'}
             </button>
           </a>
         </div>
+      </div>
       </main>
 
       <footer className={styles.dashboardFooter}>
