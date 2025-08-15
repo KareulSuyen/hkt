@@ -8,7 +8,6 @@ import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
 
 
-
 const Form = ({ method, route }) => {
     const setIsActive = ({isActive}) => isActive ? `${formstyle.link} ${formstyle.active}` : formstyle.link
     const [username, setUsername] = useState('');
@@ -24,7 +23,6 @@ const Form = ({ method, route }) => {
     const isLogin = method === 'login';
     const actionType = isLogin ? 'Login' : 'Register';
 
-    // Password strength checker
     useEffect(() => {
         if (!password || isLogin) return;
         
@@ -98,7 +96,7 @@ const Form = ({ method, route }) => {
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
                 navigate('/dashboard'); 
             } else {
-                navigate('/dashboard'); 
+                navigate('/introduction'); 
             }
         } catch (err) {
             const status = err.response?.status;
