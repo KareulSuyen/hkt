@@ -4,6 +4,10 @@ import api from '../api';
 import { useState, useEffect } from 'react';
 import formstyle from '../styles/form.module.scss';
 import { NavLink } from 'react-router-dom';
+import { IoIosEye } from "react-icons/io";
+import { IoIosEyeOff } from "react-icons/io";
+
+
 
 const Form = ({ method, route }) => {
     const setIsActive = ({isActive}) => isActive ? `${formstyle.link} ${formstyle.active}` : formstyle.link
@@ -56,7 +60,6 @@ const Form = ({ method, route }) => {
             return;
         }
 
-        // Additional client-side validation for registration
         if (!isLogin) {
             if (password.length < 8) {
                 setErrorMsg('Password must be at least 8 characters long.');
@@ -173,7 +176,7 @@ const Form = ({ method, route }) => {
                                 onClick={togglePasswordVisibility}
                                 aria-label={showPassword ? "Hide password" : "Show password"}
                             >
-                                {showPassword ? '👁️' : '👁️‍🗨️'}
+                                {showPassword ? <IoIosEye size={20} /> : <IoIosEyeOff size={20} />}
                             </button>
                         </div>
                         
@@ -232,12 +235,11 @@ const Form = ({ method, route }) => {
                                     onClick={togglePasswordVisibility}
                                     aria-label={showPassword ? "Hide password" : "Show password"}
                                 >
-                                    {showPassword ? '👁️' : '👁️‍🗨️'}
+                                    {showPassword ? <IoIosEye size={20} /> : <IoIosEyeOff size={20} />}
                                 </button>
                             </div>
                         )}
                         
-                        {/* This is the submit button that was missing */}
                         <button 
                             className={formstyle['submit-btn']} 
                             disabled={loading}
