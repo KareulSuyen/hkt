@@ -28,19 +28,20 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/introduction' index element={<Introduction />} />
+        <Route path='/' element={<Navigate to='/introduction' replace />} />
+        <Route path='/introduction' element={<Introduction />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         
         <Route
-          path='/'
+          path='/dashboard'
           element={
             <ProtectedRoute>
               <Layout />
             </ProtectedRoute>
           }
         >
-          <Route path='/' element={<Dashboard />} />
+          <Route index element={<Dashboard />} />
           <Route path='help' element={<Help />} />
         </Route>
         <Route path='/logout' element={<Logout />} />
