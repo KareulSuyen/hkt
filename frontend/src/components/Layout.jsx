@@ -64,7 +64,7 @@ const Layout = () => {
             setPrompt('');
             setOpen(true);
         } catch (err) {
-            console.error("🚨 AI Error:", err);
+            console.error("AI Error:", err);
 
             let errorMessage = "Error talking to AI.";
             if (err.response) {
@@ -110,7 +110,7 @@ const Layout = () => {
 
     return (
         <>
-            <Navbar toggleSidebar={toggleSidebar} setProfileOpen={toggleProfile}/>
+            <Navbar toggleSidebar={toggleSidebar} toggleProfile={toggleProfile}/>
             <Profile isProfileOpen={isProfileOpen} toggleProfile={toggleProfile}/>
             <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
             <main>
@@ -308,7 +308,6 @@ const Layout = () => {
                         </div>
                         ))}
 
-                        {/* Loading indicator when AI is thinking */}
                         {isLoading && history[history.length - 1]?.sender === 'user' && (
                             <div
                                 style={{
