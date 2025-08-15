@@ -3,7 +3,9 @@ import { Chart } from 'chart.js/auto';
 import styles from '../styles/dashboard.module.scss';
 import { SiUnitednations } from "react-icons/si";
 import overpopulationVid from '../../public/videos/overpopulation.mp4'
-import { IoEnter } from "react-icons/io5";
+import { LuHandHelping } from "react-icons/lu";
+
+
 
 const Dashboard = () => {
   const [language, setLanguage] = useState('filipino');
@@ -747,7 +749,14 @@ const Dashboard = () => {
           rel="noopener noreferrer"
         >
           <button className={styles.ctaButton}>
-            {language === 'english' ? <IoEnter size={20}>Enter</IoEnter> : <IoEnter></IoEnter>}
+            {language === 'english' ? 
+              <span>
+                <LuHandHelping size={20} /> Join&nbsp;
+              </span> : 
+
+              <span>
+                <LuHandHelping size={20} /> Makilahok&nbsp;
+              </span>}
           </button>
         </a>
       </div>
