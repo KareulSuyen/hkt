@@ -23,11 +23,11 @@ const Navbar = ({toggleSidebar, toggleProfile, isProfileOpen}) => {
                     <NavLink to='/help' className={setActive}>
                         <FaHandsHelping size={30} />
                     </NavLink>
-                    <aside className={`${navstyle['profile']} ${isProfileOpen ? navstyle.open : navstyle.closed}`}> 
-                        <div className={navstyle['profile-links']}>
+                    <div className={`${navstyle['profile']} ${isProfileOpen ? navstyle.open : navstyle.closed}`}> 
+                        <button onClick={toggleProfile}> 
                             <CgProfile size={30}/>
-                        </div>
-                    </aside>
+                        </button>
+                    </div>
                 </div>
             </nav>
         </>
