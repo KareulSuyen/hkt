@@ -799,7 +799,8 @@
 
   &:hover {
     padding: clamp(1rem, 1vw, 1rem) clamp(2.5rem, 2.5vw, 2rem);
-
+    border-left: 1px solid rgb(0, 119, 119);
+    border-right: 1px solid rgb(180, 0, 0);
   }
 }
 .dashboardFooter {
