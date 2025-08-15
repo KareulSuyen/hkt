@@ -197,7 +197,6 @@ const Layout = () => {
                         `}
                     </style>
 
-                    {/* Header */}
                     <div
                         style={{
                             background: 'linear-gradient(90deg, #18222dff 0%, #2f3a5cff 100%)',
@@ -243,7 +242,6 @@ const Layout = () => {
                         </button>
                     </div>
 
-                    {/* Chat History */}
                     <div
                         style={{
                             flex: 1,
@@ -340,7 +338,6 @@ const Layout = () => {
                         <div ref={chatEndRef} />
                     </div>
 
-                    {/* Input Area */}
                     <div style={{ 
                         padding: '12px 16px', 
                         borderTop: '1px solid #333',
