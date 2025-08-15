@@ -3,6 +3,7 @@ import { Chart } from 'chart.js/auto';
 import styles from '../styles/dashboard.module.scss';
 import { SiUnitednations } from "react-icons/si";
 import overpopulationVid from '../../public/videos/overpopulation.mp4'
+import { IoEnter } from "react-icons/io5";
 
 const Dashboard = () => {
   const [language, setLanguage] = useState('filipino');
@@ -731,24 +732,24 @@ const Dashboard = () => {
         </section>
 
          <div className={`${styles.callToAction} ${styles.fadeIn}`}>
-        <div className={styles.videoContainer}>
-          <video autoPlay muted loop playsInline className={styles.bgVideo}>
-            <source src={overpopulationVid} type="video/mp4" />
-          </video>
-        </div>
-        
-        <div className={styles.content}>
-          <p>{t.callToAction}</p>
-          <a
-            href="https://betterplaneteducation.org.uk/factsheets/overpopulation-what-are-some-solutions-to-overpopulation"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className={styles.ctaButton}>
-              {language === 'english' ? 'Get Involved' : 'Makilahok'}
-            </button>
-          </a>
-        </div>
+      <div className={styles.videoContainer}>
+        <video autoPlay muted loop playsInline className={styles.bgVideo}>
+          <source src={overpopulationVid} type="video/mp4" />
+        </video>
+      </div>
+      
+    </div>
+      <div className={styles.content}>
+        <p id={styles.suggestion}>{t.callToAction}</p>
+        <a
+          href="https://betterplaneteducation.org.uk/factsheets/overpopulation-what-are-some-solutions-to-overpopulation"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button className={styles.ctaButton}>
+            {language === 'english' ? <IoEnter size={20}>Enter</IoEnter> : <IoEnter></IoEnter>}
+          </button>
+        </a>
       </div>
       </main>
 
