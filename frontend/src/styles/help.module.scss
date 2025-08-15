@@ -265,7 +265,6 @@ a {
   line-height: 1.5;
 }
 
-// Effects section
 .effects {
   animation: fadeIn 0.5s ease-in;
 
@@ -300,11 +299,11 @@ a {
 }
 
 .yellowBorder {
-  border: 1px solid #eab308;
+  border: 1px solid #5f4700;
 }
 
 .pinkBorder {
-  border: 1px solid #ec4899;
+  border: 1px solid #520029;
 }
 
 .effectBgIcon {
@@ -322,11 +321,11 @@ a {
 }
 
 .yellowBorder .effectCardTitle {
-  color: #eab308;
+  color: #b18500;
 }
 
 .pinkBorder .effectCardTitle {
-  color: #ec4899;
+  color: #a50053;
 }
 
 .effectList {
@@ -344,7 +343,7 @@ a {
 
     &::before {
       content: "•";
-      color: #fb923c;
+      color: #2490d3;
       font-size: 20px;
       position: absolute;
       left: 0;
@@ -382,7 +381,6 @@ a {
   }
 }
 
-// Solutions section
 .solutions {
   animation: fadeIn 0.5s ease-in;
 
@@ -674,18 +672,14 @@ a {
   }
 }
 
-// ======================
-// MEDIA QUERIES
-// ======================
+// Media queries
 
-// Large screens (min-width: 1200px)
 @media (min-width: 1200px) {
   .mainContent {
     max-width: 1400px;
   }
 }
 
-// Medium screens (max-width: 992px)
 @media (max-width: 992px) {
   .header {
     padding: 24px;
@@ -717,7 +711,6 @@ a {
   }
 }
 
-// Small screens (max-width: 768px)
 @media (max-width: 768px) {
   .container {
     padding: 10px;
@@ -774,7 +767,6 @@ a {
   }
 }
 
-// Extra small screens (max-width: 576px)
 @media (max-width: 576px) {
   .header {
     padding: 16px;
@@ -838,7 +830,6 @@ a {
   }
 }
 
-// Very small screens (max-width: 400px)
 @media (max-width: 400px) {
   .header {
     padding: 12px;
