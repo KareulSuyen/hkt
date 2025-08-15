@@ -110,9 +110,9 @@ const Layout = () => {
 
     return (
         <>
-            <Navbar toggleSidebar={toggleSidebar} toggleProfile={toggleProfile}/>
-            <Profile isProfileOpen={isProfileOpen} toggleProfile={toggleProfile}/>
-            <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
+            <Navbar toggleSidebar={toggleSidebar} toggleProfile={toggleProfile} />
+            <Profile isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} />
+            <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
             <main>
                 <Outlet />
             </main>
