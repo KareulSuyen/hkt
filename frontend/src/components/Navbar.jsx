@@ -17,7 +17,7 @@ const Navbar = ({toggleSidebar, toggleProfile, isProfileOpen}) => {
                     </button>
                 </div>
                 <div className={navstyle['nav-center']}>
-                    <NavLink to='/' className={setActive}>
+                    <NavLink to='/dashboard' className={setActive}>
                         <FaHome size={30} />
                     </NavLink>
                     <NavLink to='/help' className={setActive}>
