@@ -855,3 +855,96 @@ a {
     font-size: 15px;
   }
 }
+
+// Visual Guide Section
+.visualGuide {
+    padding: 1rem;
+}
+
+.visualGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.visualCard {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(30, 30, 30, 0.7);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.visualImageContainer {
+    height: 180px;
+    overflow: hidden;
+}
+
+.visualImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+
+    .visualCard:hover & {
+        transform: scale(1.05);
+    }
+}
+
+.visualText {
+    padding: 1.2rem;
+    flex-grow: 1;
+}
+
+.visualTitle {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: #f0f0f0;
+}
+
+.visualDescription {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #d1d5db;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .visualGrid {
+        grid-template-columns: 1fr;
+    }
+    
+    .visualImageContainer {
+        height: 150px;
+    }
+}
+
+.visualGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+
+    // For larger screens, show 3 columns
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    // For medium screens, show 2 columns
+    @media (max-width: 1199px) and (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    // For mobile, show 1 column
+    @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+    }
+}

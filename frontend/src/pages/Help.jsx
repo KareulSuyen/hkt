@@ -1,6 +1,24 @@
 import { useState } from 'react';
 import helpstyle from '../styles/help.module.scss';
 
+const VisualCard = ({ image, title, description }) => {
+    return (
+        <div className={helpstyle.visualCard}>
+            <div className={helpstyle.visualImageContainer}>
+                <img 
+                    src={image} 
+                    alt={title} 
+                    className={helpstyle.visualImage}
+                />
+            </div>
+            <div className={helpstyle.visualText}>
+                <h4 className={helpstyle.visualTitle}>{title}</h4>
+                <p className={helpstyle.visualDescription}>{description}</p>
+            </div>
+        </div>
+    );
+};
+
 const Help = () => {
     const [activeSection, setActiveSection] = useState('overview');
     const [expandedFAQ, setExpandedFAQ] = useState(null);
@@ -11,7 +29,8 @@ const Help = () => {
         effects: 'Epekto',
         solutions: 'Solusyon',
         resources: 'Mapagkukunan',
-        faq: 'Mga Madalas na Tanong'
+        faq: 'Mga Madalas na Tanong',
+        visual: 'Gabay Biswal'
     };  
 
     const faqData = [
@@ -260,7 +279,52 @@ const Help = () => {
                         </div>
                     </div>
                 );
-            
+
+            case 'visual':
+                return (
+                    <div className={helpstyle.visualGuide}>
+                        <h3 className={helpstyle.sectionTitle}>Gabay Biswal sa Sobrang Populasyon</h3>
+                        <p className={helpstyle.sectionSubtitle}>Mga pangunahing konsepto sa pamamagitan ng mga larawan at paliwanag</p>
+                        
+                        <div className={helpstyle.visualGrid}>
+                            <VisualCard
+                                image="/images/population-density.jpg"
+                                title="Densidad ng Populasyon"
+                                description="Ang pagdami ng tao sa urban areas ay nagdudulot ng matinding pagsisikip at pressure sa mga resources at imprastraktura."
+                            />
+                            
+                            <VisualCard
+                                image="/images/resource-depletion.jpg"
+                                title="Pagkaubos ng Resources"
+                                description="Ang sobrang populasyon ay humahantong sa mabilis na pagkaubos ng likas na yaman tulad ng tubig, lupa, at enerhiya."
+                            />
+                            
+                            <VisualCard
+                                image="/images/environment-impact.jpg"
+                                title="Epekto sa Kapaligiran"
+                                description="Ang deforestation, polusyon, at pagkawala ng biodiversity ay direktang epekto ng sobrang populasyon."
+                            />
+                            
+                            <VisualCard
+                                image="/images/urban-slums.jpg"
+                                title="Urbanisasyon at Kahirapan"
+                                description="Ang mabilis na urbanisasyon ay nagreresulta sa paglaki ng mga informal settlements at slum areas."
+                            />
+                            
+                            <VisualCard
+                                image="/images/education-solution.jpg"
+                                title="Edukasyon Bilang Solusyon"
+                                description="Ang pagpapabuti ng access sa edukasyon, lalo na para sa kababaihan, ay isa sa pinakaepektibong paraan upang mapabagal ang paglaki ng populasyon."
+                            />
+
+                            <VisualCard
+                                image="/images/family-planning.jpg"
+                                title="Family Planning"
+                                description="Ang access sa modernong family planning methods ay nakakatulong sa mga pamilya na planuhin ang kanilang kinabukasan at makontrol ang populasyon."
+                            />
+                        </div>
+                    </div>
+                );
             default:
                 return null;
         }
