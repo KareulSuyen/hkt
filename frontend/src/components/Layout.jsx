@@ -1,18 +1,20 @@
 import Navbar from '../components/Navbar';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
+import Profile from '../components/Profile';
 import { useState, useRef, useEffect } from 'react';
 import { sendPrompt } from '../api';
 import { IoIosSend } from "react-icons/io";
 import { FaRobot } from "react-icons/fa";
-import Profile from '../components/Profile';
 
 
 const Layout = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const toggleSidebar = () => setSidebarOpen(prev => !prev);
     
-    // Changed to default to false (closed)
+    const [isProfileOpen, setProfileOpen] = useState(false);
+    const toggleProfile = () => setProfileOpen(prev => !prev);
+    
     const [open, setOpen] = useState(() => {
         try {
             const saved = localStorage.getItem('chatOpen');
@@ -26,8 +28,6 @@ const Layout = () => {
         localStorage.setItem('chatOpen', JSON.stringify(open));
     }, [open]);
 
-    const [isProfileOpen, setProfileOpen] = useState(false);
-    const toggleProfile = () => setProfileOpen(prev => !prev);
     
     const [prompt, setPrompt] = useState('');
     const [history, setHistory] = useState([]);
