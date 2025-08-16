@@ -15,7 +15,6 @@ const Layout = () => {
     const [isProfileOpen, setProfileOpen] = useState(false);
     const toggleProfile = () => setProfileOpen(prev => !prev);
     
-    // Removed localStorage logic - chatbot starts closed by default
     const [open, setOpen] = useState(false);
     
     const [prompt, setPrompt] = useState('');
@@ -289,7 +288,7 @@ const Layout = () => {
                                     lineHeight: '1.5',
                                     boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                                     border: msg.sender === 'ai' ? '1px solid #333' : 'none',
-                                    textAlign: 'left' // Keep text alignment consistent inside the bubble
+                                    textAlign: 'left' 
                                 }}
                             >
                                 {msg.text}
