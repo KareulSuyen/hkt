@@ -856,7 +856,6 @@ a {
   }
 }
 
-// Visual Guide Section
 .visualGuide {
     padding: 1rem;
 }
@@ -916,7 +915,6 @@ a {
     color: #d1d5db;
 }
 
-// Responsive adjustments
 @media (max-width: 768px) {
     .visualGrid {
         grid-template-columns: 1fr;
@@ -933,17 +931,14 @@ a {
     gap: 2rem;
     margin-top: 2rem;
 
-    // For larger screens, show 3 columns
     @media (min-width: 1200px) {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    // For medium screens, show 2 columns
     @media (max-width: 1199px) and (min-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    // For mobile, show 1 column
     @media (max-width: 767px) {
         grid-template-columns: 1fr;
     }
