@@ -75,19 +75,9 @@
       p {
         margin: 0 0 1.25rem;
         opacity: 0.9;
-        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        font-size: clamp(1rem, 1.5vw, 1.1rem);
         line-height: 1.5;
         color: rgb(213, 242, 255);
-      }
-
-      .lastUpdated {
-        font-size: 0.95rem;
-        opacity: 0.8;
-        padding: 0.5rem 0.75rem;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 0.5rem;
-        display: inline-block;
-        backdrop-filter: blur(10px);
       }
     }
 

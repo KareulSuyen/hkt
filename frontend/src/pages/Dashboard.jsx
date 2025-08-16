@@ -536,9 +536,6 @@ const Dashboard = () => {
           <div className={styles.headerText}>
             <h1>{t.title}</h1>
             <p>{t.subtitle}</p>
-            <div className={styles.lastUpdated}>
-              {t.lastUpdated}: {currentTime.toLocaleString()}
-            </div>
           </div>
           <button
             className={styles.languageToggle}
