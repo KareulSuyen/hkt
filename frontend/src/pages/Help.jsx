@@ -288,7 +288,7 @@ const Help = () => {
                         
                         <div className={helpstyle.visualGrid}>
                             <VisualCard
-                                image="/images/population-densityBG.png"
+                                image="/images/population-density.png"
                                 title="Densidad ng Populasyon"
                                 description="Ang pagdami ng tao sa urban areas ay nagdudulot ng matinding pagsisikip at pressure sa mga resources at imprastraktura."
                             />
