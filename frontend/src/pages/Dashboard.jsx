@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
 import styles from '../styles/dashboard.module.scss';
 import { SiUnitednations } from "react-icons/si";
-import overpopulationVid from '../../public/videos/overpopulation.mp4'
+import overpopulationVid from '/videos/overpopulation.mp4'
 import { LuHandHelping } from "react-icons/lu";
 
 
