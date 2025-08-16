@@ -15,19 +15,8 @@ const Layout = () => {
     const [isProfileOpen, setProfileOpen] = useState(false);
     const toggleProfile = () => setProfileOpen(prev => !prev);
     
-    const [open, setOpen] = useState(() => {
-        try {
-            const saved = localStorage.getItem('chatOpen');
-            return saved ? JSON.parse(saved) : false;
-        } catch {
-            return false;
-        }
-    });
-
-    useEffect(() => {
-        localStorage.setItem('chatOpen', JSON.stringify(open));
-    }, [open]);
-
+    // Removed localStorage logic - chatbot starts closed by default
+    const [open, setOpen] = useState(false);
     
     const [prompt, setPrompt] = useState('');
     const [history, setHistory] = useState([]);
@@ -179,22 +168,22 @@ const Layout = () => {
                             }
                             .message-typing-indicator span {
                                 display: inline-block;
-                                width: '8px',
-                                height: '8px',
-                                border-radius: '50%',
-                                background: '#4ade80',
-                                margin: '0 2px',
-                                animation: 'bounce 1.4s infinite ease-in-out',
+                                width: '8px';
+                                height: '8px';
+                                border-radius: '50%';
+                                background: '#4ade80';
+                                margin: '0 2px';
+                                animation: 'bounce 1.4s infinite ease-in-out';
                             }
                             .message-typing-indicator span:nth-child(2) {
-                                animation-delay: '0.2s',
+                                animation-delay: '0.2s';
                             }
                             .message-typing-indicator span:nth-child(3) {
-                                animation-delay: '0.4s',
+                                animation-delay: '0.4s';
                             }
                             @keyframes bounce {
-                                0%, 80%, 100% { transform: 'translateY(0)', }
-                                40% { transform: 'translateY(-8px)', }
+                                0%, 80%, 100% { transform: 'translateY(0)'; }
+                                40% { transform: 'translateY(-8px)'; }
                             }
                         `}
                     </style>
