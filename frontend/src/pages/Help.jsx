@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import helpstyle from '../styles/help.module.scss';
+import { FaEarthAsia } from "react-icons/fa6";
+
 
 const VisualCard = ({ image, title, description }) => {
     return (
@@ -334,7 +336,9 @@ const Help = () => {
         <div className={helpstyle.container}>
             <div className={helpstyle.mainContent}>
                 <div className={helpstyle.header}>
-                    <div className={helpstyle.headerIcon}>🌍</div>
+                    <div className={helpstyle.headerIcon}>
+                        <FaEarthAsia size={50}/>
+                    </div>
                     <h1 className={helpstyle.headerTitle}>Gabay sa Sobrang Populasyon</h1>
                     <p className={helpstyle.headerSubtitle}>
                         Pag-unawa sa mga hamon at solusyon para sa sustainable na paglaki ng populasyon
