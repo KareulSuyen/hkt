@@ -288,31 +288,31 @@ const Help = () => {
                         
                         <div className={helpstyle.visualGrid}>
                             <VisualCard
-                                image="/images/population-density.jpg"
+                                image="/images/population-densityBG.png"
                                 title="Densidad ng Populasyon"
                                 description="Ang pagdami ng tao sa urban areas ay nagdudulot ng matinding pagsisikip at pressure sa mga resources at imprastraktura."
                             />
                             
                             <VisualCard
-                                image="/images/resource-depletion.jpg"
+                                image="/images/resources-depletion.png"
                                 title="Pagkaubos ng Resources"
                                 description="Ang sobrang populasyon ay humahantong sa mabilis na pagkaubos ng likas na yaman tulad ng tubig, lupa, at enerhiya."
                             />
                             
                             <VisualCard
-                                image="/images/environment-impact.jpg"
+                                image="/images/deforestation.png"
                                 title="Epekto sa Kapaligiran"
                                 description="Ang deforestation, polusyon, at pagkawala ng biodiversity ay direktang epekto ng sobrang populasyon."
                             />
                             
                             <VisualCard
-                                image="/images/urban-slums.jpg"
+                                image="/images/urbanization.png"
                                 title="Urbanisasyon at Kahirapan"
                                 description="Ang mabilis na urbanisasyon ay nagreresulta sa paglaki ng mga informal settlements at slum areas."
                             />
                             
                             <VisualCard
-                                image="/images/education-solution.jpg"
+                                image="/images/education.jpg"
                                 title="Edukasyon Bilang Solusyon"
                                 description="Ang pagpapabuti ng access sa edukasyon, lalo na para sa kababaihan, ay isa sa pinakaepektibong paraan upang mapabagal ang paglaki ng populasyon."
                             />
