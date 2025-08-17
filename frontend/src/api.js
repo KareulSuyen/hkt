@@ -57,7 +57,7 @@ export const sendPrompt = async (prompt) => {
       
     } else if (error.request) {
 
-      console.error('🌐 Network Error - No response received:', error.request);
+      console.error('Network Error - No response received:', error.request);
       throw new Error('Network Error: No response from server');
       
     } else {
