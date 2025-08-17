@@ -7,82 +7,21 @@ import { sendPrompt } from '../api';
 import { IoIosSend } from "react-icons/io";
 import { FaRobot } from "react-icons/fa";
 
+
 const Layout = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
+    const toggleSidebar = () => setSidebarOpen(prev => !prev);
+    
     const [isProfileOpen, setProfileOpen] = useState(false);
+    const toggleProfile = () => setProfileOpen(prev => !prev);
+    
     const [open, setOpen] = useState(false);
+    
     const [prompt, setPrompt] = useState('');
     const [history, setHistory] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    
-    // Store scroll position to preserve it when sidebar closes
-    const scrollPositionRef = useRef(0);
     const chatEndRef = useRef(null);
     const inputRef = useRef(null);
-
-    // Modified toggle functions that preserve scroll position
-    const toggleSidebar = () => {
-        if (isSidebarOpen) {
-            // Before closing, store current scroll position
-            scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
-        }
-        setSidebarOpen(prev => !prev);
-    };
-
-    const toggleProfile = () => {
-        if (isProfileOpen) {
-            // Before closing, store current scroll position
-            scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
-        }
-        setProfileOpen(prev => !prev);
-    };
-
-    // Restore scroll position when sidebar/profile closes
-    useEffect(() => {
-        if (!isSidebarOpen && !isProfileOpen && scrollPositionRef.current > 0) {
-            // Use requestAnimationFrame to ensure DOM has updated
-            requestAnimationFrame(() => {
-                window.scrollTo({
-                    top: scrollPositionRef.current,
-                    behavior: 'instant' // Use 'instant' to avoid smooth scrolling back
-                });
-                scrollPositionRef.current = 0; // Reset after restoring
-            });
-        }
-    }, [isSidebarOpen, isProfileOpen]);
-
-    // Prevent body scroll when sidebar is open (optional - helps with scroll jumping)
-    useEffect(() => {
-        if (isSidebarOpen || isProfileOpen) {
-            // Store current scroll position before preventing scroll
-            scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
-            document.body.style.overflow = 'hidden';
-            document.body.style.position = 'fixed';
-            document.body.style.top = `-${scrollPositionRef.current}px`;
-            document.body.style.width = '100%';
-        } else {
-            // Restore scroll when closing
-            document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-            
-            if (scrollPositionRef.current > 0) {
-                window.scrollTo({
-                    top: scrollPositionRef.current,
-                    behavior: 'instant'
-                });
-            }
-        }
-
-        // Cleanup on unmount
-        return () => {
-            document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-        };
-    }, [isSidebarOpen, isProfileOpen]);
 
     useEffect(() => {
         if (open && inputRef.current && !isLoading) {
@@ -158,6 +97,7 @@ const Layout = () => {
         }
     }, [history]);
 
+
     return (
         <>
             <Navbar toggleSidebar={toggleSidebar} toggleProfile={toggleProfile} />
@@ -227,22 +167,22 @@ const Layout = () => {
                             }
                             .message-typing-indicator span {
                                 display: inline-block;
-                                width: 8px;
-                                height: 8px;
-                                border-radius: 50%;
-                                background: #4ade80;
-                                margin: 0 2px;
-                                animation: bounce 1.4s infinite ease-in-out;
+                                width: '8px';
+                                height: '8px';
+                                border-radius: '50%';
+                                background: '#4ade80';
+                                margin: '0 2px';
+                                animation: 'bounce 1.4s infinite ease-in-out';
                             }
                             .message-typing-indicator span:nth-child(2) {
-                                animation-delay: 0.2s;
+                                animation-delay: '0.2s';
                             }
                             .message-typing-indicator span:nth-child(3) {
-                                animation-delay: 0.4s;
+                                animation-delay: '0.4s';
                             }
                             @keyframes bounce {
-                                0%, 80%, 100% { transform: translateY(0); }
-                                40% { transform: translateY(-8px); }
+                                0%, 80%, 100% { transform: 'translateY(0)'; }
+                                40% { transform: 'translateY(-8px)'; }
                             }
                         `}
                     </style>
