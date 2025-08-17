@@ -265,7 +265,6 @@ a {
   line-height: 1.5;
 }
 
-// Effects section
 .effects {
   animation: fadeIn 0.5s ease-in;
 
@@ -300,11 +299,11 @@ a {
 }
 
 .yellowBorder {
-  border: 1px solid #eab308;
+  border: 1px solid #5f4700;
 }
 
 .pinkBorder {
-  border: 1px solid #ec4899;
+  border: 1px solid #520029;
 }
 
 .effectBgIcon {
@@ -322,11 +321,11 @@ a {
 }
 
 .yellowBorder .effectCardTitle {
-  color: #eab308;
+  color: #b18500;
 }
 
 .pinkBorder .effectCardTitle {
-  color: #ec4899;
+  color: #a50053;
 }
 
 .effectList {
@@ -344,7 +343,7 @@ a {
 
     &::before {
       content: "•";
-      color: #fb923c;
+      color: #2490d3;
       font-size: 20px;
       position: absolute;
       left: 0;
@@ -382,7 +381,6 @@ a {
   }
 }
 
-// Solutions section
 .solutions {
   animation: fadeIn 0.5s ease-in;
 
@@ -674,18 +672,14 @@ a {
   }
 }
 
-// ======================
-// MEDIA QUERIES
-// ======================
+// Media queries
 
-// Large screens (min-width: 1200px)
 @media (min-width: 1200px) {
   .mainContent {
     max-width: 1400px;
   }
 }
 
-// Medium screens (max-width: 992px)
 @media (max-width: 992px) {
   .header {
     padding: 24px;
@@ -717,7 +711,6 @@ a {
   }
 }
 
-// Small screens (max-width: 768px)
 @media (max-width: 768px) {
   .container {
     padding: 10px;
@@ -774,7 +767,6 @@ a {
   }
 }
 
-// Extra small screens (max-width: 576px)
 @media (max-width: 576px) {
   .header {
     padding: 16px;
@@ -838,7 +830,6 @@ a {
   }
 }
 
-// Very small screens (max-width: 400px)
 @media (max-width: 400px) {
   .header {
     padding: 12px;
@@ -863,4 +854,92 @@ a {
   .resourceTitle {
     font-size: 15px;
   }
+}
+
+.visualGuide {
+    padding: 1rem;
+}
+
+.visualGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.visualCard {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(30, 30, 30, 0.7);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.visualImageContainer {
+    height: 180px;
+    overflow: hidden;
+}
+
+.visualImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+
+    .visualCard:hover & {
+        transform: scale(1.05);
+    }
+}
+
+.visualText {
+    padding: 1.2rem;
+    flex-grow: 1;
+}
+
+.visualTitle {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: #f0f0f0;
+}
+
+.visualDescription {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #d1d5db;
+}
+
+@media (max-width: 768px) {
+    .visualGrid {
+        grid-template-columns: 1fr;
+    }
+    
+    .visualImageContainer {
+        height: 150px;
+    }
+}
+
+.visualGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 1199px) and (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+    }
 }

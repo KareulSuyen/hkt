@@ -1,9 +1,9 @@
 {/* Static Intro page loloololol boneng boneng boneng boneng boneng boneng boneng boneng boneng */}
 import styles from '../styles/intro.module.scss';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
-import city from '../../public/images/city.png'
-import spcc from '../../public/images/spcc-bg.png'
-import logo from '../../public/images/logo.png'
+import city from '/images/city.png'
+import spcc from '/images/spcc-bg.png'
+import logo from '/images/logo.png'
 
 
 const Intro = () => {
@@ -19,7 +19,7 @@ const Intro = () => {
           <h1 className={styles.logo}>
             <span>
               <img src={logo} />
-            </span>Boneng<span>Malakas</span></h1>
+            </span>Over<span>Population</span></h1>
           <div className={styles.navLinks}>
             <a onClick={handleLogout} href="/login" className={styles.navLink}>Login</a>
             <a onClick={handleLogout} href="/register" className={styles.navLink}>Register</a>
@@ -32,7 +32,7 @@ const Intro = () => {
           <div className={styles.heroText}>
             <h2>Pag-unawa sa Ating <span>Planetaryong Limitasyon</span></h2>
             <p>
-              Sa site na to, matututo ka tungkol sa overpopulation at mga hamon nito.
+              Sa site na to, matututo ka tungkol sa sobrang populasyon at mga hamon nito.
               Tuklasin ang kritikal na ugnayan ng paglaki ng populasyon, 
               pagkonsumo ng mga likas na yaman, at pagpapanatili ng kalikasan 
               sa ating panahon ng data-driven na mundo. Maaari ka ring sumubok
@@ -41,11 +41,11 @@ const Intro = () => {
             <div className={styles.heroStats}>
               <div className={styles.stat} id={styles.world}>
                 <div className={styles.statNumber}>8.1B</div>
-                <div className={styles.statLabel}>Kasalukuyang Populasyon</div>
+                <div className={styles.statLabel}>Kasalukuyang Populasyon ng mundo</div>
               </div>
               <div className={styles.stat} id={styles.stats}>
                 <div className={styles.statNumber}>112.7M</div>
-                <div className={styles.statLabel}>Populasyon sa Pilipinas</div>
+                <div className={styles.statLabel}>Kasalukuyang populasyon sa Pilipinas</div>
               </div>
             </div>
           </div>

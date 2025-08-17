@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
 import styles from '../styles/dashboard.module.scss';
 import { SiUnitednations } from "react-icons/si";
+import overpopulationVid from '/videos/overpopulation.mp4'
+import { LuHandHelping } from "react-icons/lu";
+
 
 const Dashboard = () => {
   const [language, setLanguage] = useState('filipino');
@@ -533,9 +536,6 @@ const Dashboard = () => {
           <div className={styles.headerText}>
             <h1>{t.title}</h1>
             <p>{t.subtitle}</p>
-            <div className={styles.lastUpdated}>
-              {t.lastUpdated}: {currentTime.toLocaleString()}
-            </div>
           </div>
           <button
             className={styles.languageToggle}
@@ -729,18 +729,37 @@ const Dashboard = () => {
           </div>
         </section>
 
-        <div className={`${styles.callToAction} ${styles.fadeIn}`}>
-          <p>{t.callToAction}</p>
-          <a href="https://betterplaneteducation.org.uk/factsheets/overpopulation-what-are-some-solutions-to-overpopulation" target='_blank'>
-            <button className={styles.ctaButton}>
-              {language === 'english' ? 'Get Involved' : 'Makilahok'}
-            </button>
-          </a>
-        </div>
+         <div className={`${styles.callToAction} ${styles.fadeIn}`}>
+      <div className={styles.videoContainer}>
+        <video autoPlay muted loop playsInline className={styles.bgVideo}>
+          <source src={overpopulationVid} type="video/mp4" />
+        </video>
+      </div>
+      
+    </div>
+      <div className={styles.content}>
+        <p id={styles.suggestion}>{t.callToAction}</p>
+        <a
+          href="https://betterplaneteducation.org.uk/factsheets/overpopulation-what-are-some-solutions-to-overpopulation"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button className={styles.ctaButton}>
+            {language === 'english' ? 
+              <span>
+                <LuHandHelping size={20} /> Join&nbsp;
+              </span> : 
+
+              <span>
+                <LuHandHelping size={20} /> Makilahok&nbsp;
+              </span>}
+          </button>
+        </a>
+      </div>
       </main>
 
       <footer className={styles.dashboardFooter}>
-        <p>Data from &nbsp;<span><a href="https://population.un.org/wpp">UN Population Division & World Bank</a></span><SiUnitednations size={20} id={styles['UN-icon']}/></p>
+        <p>Data from &nbsp;<span><a href="https://population.un.org/wpp" target='_blank'>UN Population Division & World Bank</a></span><SiUnitednations size={20} id={styles['UN-icon']}/></p>
       </footer>
     </div>
   );

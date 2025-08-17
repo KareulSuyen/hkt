@@ -1,29 +1,22 @@
 import Navbar from '../components/Navbar';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
+import Profile from '../components/Profile';
 import { useState, useRef, useEffect } from 'react';
 import { sendPrompt } from '../api';
 import { IoIosSend } from "react-icons/io";
 import { FaRobot } from "react-icons/fa";
-import Profile from '../components/Profile';
 
 
 const Layout = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const toggleSidebar = () => setSidebarOpen(prev => !prev);
     
-    const [open, setOpen] = useState(() => {
-        try {
-            return JSON.parse(localStorage.getItem('chatOpen')) || false;
-        } catch {
-            return false;
-        }
-    });
-
-    useEffect(() => {
-        localStorage.setItem('chatOpen', JSON.stringify(!open));
-    }, [open]);
-
+    const [isProfileOpen, setProfileOpen] = useState(false);
+    const toggleProfile = () => setProfileOpen(prev => !prev);
+    
+    const [open, setOpen] = useState(false);
+    
     const [prompt, setPrompt] = useState('');
     const [history, setHistory] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -47,9 +40,9 @@ const Layout = () => {
             .join('\n') + `\nUser: ${prompt}\nAI:`;
 
         try {
-            console.log('📤 Sending full prompt:', fullPrompt);
+            console.log('Sending full prompt:', fullPrompt);
             const res = await sendPrompt(fullPrompt);
-            console.log('📥 Received response:', res);
+            console.log('Received response:', res);
 
             const botReply = res.response || "I couldn't generate a response. Please try again.";
 
@@ -61,7 +54,7 @@ const Layout = () => {
             setPrompt('');
             setOpen(true);
         } catch (err) {
-            console.error("🚨 AI Error:", err);
+            console.error("AI Error:", err);
 
             let errorMessage = "Error talking to AI.";
             if (err.response) {
@@ -104,14 +97,12 @@ const Layout = () => {
         }
     }, [history]);
 
-    const [isProfileOpen, setProfileOpen] = useState(false);
-    const toggleProfile = () => setProfileOpen(prev => !prev);
 
     return (
         <>
-            <Navbar toggleSidebar={toggleSidebar} setProfileOpen={toggleProfile}/>
-            <Profile isProfileOpen={isProfileOpen} toggleProfile={toggleProfile}/>
-            <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
+            <Navbar toggleSidebar={toggleSidebar} toggleProfile={toggleProfile} />
+            <Profile isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} />
+            <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
             <main>
                 <Outlet />
             </main>
@@ -176,27 +167,26 @@ const Layout = () => {
                             }
                             .message-typing-indicator span {
                                 display: inline-block;
-                                width: 8px;
-                                height: 8px;
-                                border-radius: 50%;
-                                background: #4ade80;
-                                margin: 0 2px;
-                                animation: bounce 1.4s infinite ease-in-out;
+                                width: '8px';
+                                height: '8px';
+                                border-radius: '50%';
+                                background: '#4ade80';
+                                margin: '0 2px';
+                                animation: 'bounce 1.4s infinite ease-in-out';
                             }
                             .message-typing-indicator span:nth-child(2) {
-                                animation-delay: 0.2s;
+                                animation-delay: '0.2s';
                             }
                             .message-typing-indicator span:nth-child(3) {
-                                animation-delay: 0.4s;
+                                animation-delay: '0.4s';
                             }
                             @keyframes bounce {
-                                0%, 80%, 100% { transform: translateY(0); }
-                                40% { transform: translateY(-8px); }
+                                0%, 80%, 100% { transform: 'translateY(0)'; }
+                                40% { transform: 'translateY(-8px)'; }
                             }
                         `}
                     </style>
 
-                    {/* Header */}
                     <div
                         style={{
                             background: 'linear-gradient(90deg, #18222dff 0%, #2f3a5cff 100%)',
@@ -242,7 +232,6 @@ const Layout = () => {
                         </button>
                     </div>
 
-                    {/* Chat History */}
                     <div
                         style={{
                             flex: 1,
@@ -299,7 +288,7 @@ const Layout = () => {
                                     lineHeight: '1.5',
                                     boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                                     border: msg.sender === 'ai' ? '1px solid #333' : 'none',
-                                    textAlign: 'left' // Keep text alignment consistent inside the bubble
+                                    textAlign: 'left' 
                                 }}
                             >
                                 {msg.text}
@@ -307,7 +296,6 @@ const Layout = () => {
                         </div>
                         ))}
 
-                        {/* Loading indicator when AI is thinking */}
                         {isLoading && history[history.length - 1]?.sender === 'user' && (
                             <div
                                 style={{
@@ -340,7 +328,6 @@ const Layout = () => {
                         <div ref={chatEndRef} />
                     </div>
 
-                    {/* Input Area */}
                     <div style={{ 
                         padding: '12px 16px', 
                         borderTop: '1px solid #333',

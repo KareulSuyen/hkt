@@ -14,10 +14,12 @@ dist-ssr
 .env
 *.env
 .env.*
+!.env.example
 __pycache__/
 *.pyc
 __pycache__
 __pycache__*
+db.sqlite3*
 
 .vscode/*
 !.vscode/extensions.json

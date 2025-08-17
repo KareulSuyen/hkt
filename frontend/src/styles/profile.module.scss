@@ -1,0 +1,18 @@
+.profile {
+    width: 250px;
+    position: absolute;
+    height: 100vh;
+    background-color: rgb(35, 35, 35);
+    top: 0;
+    transition: ease-in-out .2s;
+    z-index: 1000;
+    border-right: 1px solid rgb(97, 97, 97);
+}
+
+.open {
+    transform: translateX(0);
+}
+
+.closed {
+    transform: translateX(-100%);
+}
