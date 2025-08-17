@@ -5,6 +5,8 @@ import { SiUnitednations } from "react-icons/si";
 import overpopulationVid from '/videos/overpopulation.mp4'
 import { LuHandHelping } from "react-icons/lu";
 import { FaEarthAsia } from "react-icons/fa6";
+import { FaGlobeAmericas } from "react-icons/fa";
+
 
 
 const Dashboard = () => {
@@ -273,7 +275,7 @@ const Dashboard = () => {
           urbanization: "82%",
           medianAge: "38.5",
           projection2050: "425M",
-          flag: "🇺🇸",
+          flag: <FaGlobeAmericas size={25} />,
           status: "stable"
         }
       ],
@@ -446,7 +448,7 @@ const Dashboard = () => {
           urbanization: "82%",
           medianAge: "38.5",
           projection2050: "425M",
-          flag: "🇺🇸",
+          flag: <FaGlobeAmericas size={25} />,
           status: "stable"
         }
       ],

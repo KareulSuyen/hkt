@@ -15,40 +15,73 @@ const Layout = () => {
     const [history, setHistory] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     
+    // Store scroll position to preserve it when sidebar closes
+    const scrollPositionRef = useRef(0);
     const chatEndRef = useRef(null);
     const inputRef = useRef(null);
 
-
-    const scrollPositionRef = useRef(0);
-
-    // Store scroll position before any sidebar toggle
+    // Modified toggle functions that preserve scroll position
     const toggleSidebar = () => {
-        scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
+        if (isSidebarOpen) {
+            // Before closing, store current scroll position
+            scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
+        }
         setSidebarOpen(prev => !prev);
     };
 
     const toggleProfile = () => {
-        scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
+        if (isProfileOpen) {
+            // Before closing, store current scroll position
+            scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
+        }
         setProfileOpen(prev => !prev);
     };
 
-    // Restore scroll position after sidebar state changes
+    // Restore scroll position when sidebar/profile closes
     useEffect(() => {
-        // Use multiple methods to ensure scroll position is restored
-        const restoreScroll = () => {
-            if (scrollPositionRef.current >= 0) {
-                window.scrollTo(0, scrollPositionRef.current);
-                document.documentElement.scrollTop = scrollPositionRef.current;
-                document.body.scrollTop = scrollPositionRef.current;
-            }
-        };
+        if (!isSidebarOpen && !isProfileOpen && scrollPositionRef.current > 0) {
+            // Use requestAnimationFrame to ensure DOM has updated
+            requestAnimationFrame(() => {
+                window.scrollTo({
+                    top: scrollPositionRef.current,
+                    behavior: 'instant' // Use 'instant' to avoid smooth scrolling back
+                });
+                scrollPositionRef.current = 0; // Reset after restoring
+            });
+        }
+    }, [isSidebarOpen, isProfileOpen]);
 
-        // Try multiple times to ensure it works
-        requestAnimationFrame(restoreScroll);
-        setTimeout(restoreScroll, 0);
-        setTimeout(restoreScroll, 10);
-        setTimeout(restoreScroll, 50);
-        
+    // Prevent body scroll when sidebar is open (optional - helps with scroll jumping)
+    useEffect(() => {
+        if (isSidebarOpen || isProfileOpen) {
+            // Store current scroll position before preventing scroll
+            scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
+            document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollPositionRef.current}px`;
+            document.body.style.width = '100%';
+        } else {
+            // Restore scroll when closing
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            
+            if (scrollPositionRef.current > 0) {
+                window.scrollTo({
+                    top: scrollPositionRef.current,
+                    behavior: 'instant'
+                });
+            }
+        }
+
+        // Cleanup on unmount
+        return () => {
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+        };
     }, [isSidebarOpen, isProfileOpen]);
 
     useEffect(() => {
@@ -211,13 +244,6 @@ const Layout = () => {
                                 0%, 80%, 100% { transform: translateY(0); }
                                 40% { transform: translateY(-8px); }
                             }
-                            @keyframes fadeIn {
-                                from { opacity: 0; transform: translateY(10px); }
-                                to { opacity: 1; transform: translateY(0); }
-                            }
-                            @keyframes spin { 
-                                to { transform: rotate(360deg); } 
-                            }
                         `}
                     </style>
 
@@ -301,6 +327,14 @@ const Layout = () => {
                                 justifyContent: msg.sender === 'user' ? 'flex-end' : 'flex-start'
                             }}
                         >
+                            <style>
+                                {`
+                                    @keyframes fadeIn {
+                                        from { opacity: 0; transform: translateY(10px); }
+                                        to { opacity: 1; transform: translateY(0); }
+                                    }
+                                `}
+                            </style>
                             <div
                                 style={{
                                     display: 'inline-block',
@@ -424,7 +458,11 @@ const Layout = () => {
                                         borderTopColor: 'white',
                                         borderRadius: '50%',
                                         animation: 'spin 1s linear infinite'
-                                    }} />
+                                    }}>
+                                        <style>
+                                            {`@keyframes spin { to { transform: rotate(360deg); } }`}
+                                        </style>
+                                    </div>
                                 ) : (
                                     <IoIosSend size={20}/>
                                 )}
