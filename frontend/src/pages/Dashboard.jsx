@@ -4,6 +4,7 @@ import styles from '../styles/dashboard.module.scss';
 import { SiUnitednations } from "react-icons/si";
 import overpopulationVid from '/videos/overpopulation.mp4'
 import { LuHandHelping } from "react-icons/lu";
+import { FaEarthAsia } from "react-icons/fa6";
 
 
 const Dashboard = () => {
@@ -250,7 +251,7 @@ const Dashboard = () => {
           urbanization: "51%",
           medianAge: "32.1",
           projection2050: "5.3B",
-          flag: "🌏",
+          flag: <FaEarthAsia size={25}/>,
           status: "moderate-growth"
         },
         {
@@ -266,7 +267,7 @@ const Dashboard = () => {
         },
         {
           region: "North America",
-          population: "618M",
+          population: "580M",
           growth: "+0.6%",
           density: "20/km²",
           urbanization: "82%",

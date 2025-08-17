@@ -7,21 +7,49 @@ import { sendPrompt } from '../api';
 import { IoIosSend } from "react-icons/io";
 import { FaRobot } from "react-icons/fa";
 
-
 const Layout = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
-    const toggleSidebar = () => setSidebarOpen(prev => !prev);
-    
     const [isProfileOpen, setProfileOpen] = useState(false);
-    const toggleProfile = () => setProfileOpen(prev => !prev);
-    
     const [open, setOpen] = useState(false);
-    
     const [prompt, setPrompt] = useState('');
     const [history, setHistory] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    
     const chatEndRef = useRef(null);
     const inputRef = useRef(null);
+
+
+    const scrollPositionRef = useRef(0);
+
+    // Store scroll position before any sidebar toggle
+    const toggleSidebar = () => {
+        scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
+        setSidebarOpen(prev => !prev);
+    };
+
+    const toggleProfile = () => {
+        scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
+        setProfileOpen(prev => !prev);
+    };
+
+    // Restore scroll position after sidebar state changes
+    useEffect(() => {
+        // Use multiple methods to ensure scroll position is restored
+        const restoreScroll = () => {
+            if (scrollPositionRef.current >= 0) {
+                window.scrollTo(0, scrollPositionRef.current);
+                document.documentElement.scrollTop = scrollPositionRef.current;
+                document.body.scrollTop = scrollPositionRef.current;
+            }
+        };
+
+        // Try multiple times to ensure it works
+        requestAnimationFrame(restoreScroll);
+        setTimeout(restoreScroll, 0);
+        setTimeout(restoreScroll, 10);
+        setTimeout(restoreScroll, 50);
+        
+    }, [isSidebarOpen, isProfileOpen]);
 
     useEffect(() => {
         if (open && inputRef.current && !isLoading) {
@@ -97,7 +125,6 @@ const Layout = () => {
         }
     }, [history]);
 
-
     return (
         <>
             <Navbar toggleSidebar={toggleSidebar} toggleProfile={toggleProfile} />
@@ -167,22 +194,29 @@ const Layout = () => {
                             }
                             .message-typing-indicator span {
                                 display: inline-block;
-                                width: '8px';
-                                height: '8px';
-                                border-radius: '50%';
-                                background: '#4ade80';
-                                margin: '0 2px';
-                                animation: 'bounce 1.4s infinite ease-in-out';
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: #4ade80;
+                                margin: 0 2px;
+                                animation: bounce 1.4s infinite ease-in-out;
                             }
                             .message-typing-indicator span:nth-child(2) {
-                                animation-delay: '0.2s';
+                                animation-delay: 0.2s;
                             }
                             .message-typing-indicator span:nth-child(3) {
-                                animation-delay: '0.4s';
+                                animation-delay: 0.4s;
                             }
                             @keyframes bounce {
-                                0%, 80%, 100% { transform: 'translateY(0)'; }
-                                40% { transform: 'translateY(-8px)'; }
+                                0%, 80%, 100% { transform: translateY(0); }
+                                40% { transform: translateY(-8px); }
+                            }
+                            @keyframes fadeIn {
+                                from { opacity: 0; transform: translateY(10px); }
+                                to { opacity: 1; transform: translateY(0); }
+                            }
+                            @keyframes spin { 
+                                to { transform: rotate(360deg); } 
                             }
                         `}
                     </style>
@@ -267,14 +301,6 @@ const Layout = () => {
                                 justifyContent: msg.sender === 'user' ? 'flex-end' : 'flex-start'
                             }}
                         >
-                            <style>
-                                {`
-                                    @keyframes fadeIn {
-                                        from { opacity: 0; transform: translateY(10px); }
-                                        to { opacity: 1; transform: translateY(0); }
-                                    }
-                                `}
-                            </style>
                             <div
                                 style={{
                                     display: 'inline-block',
@@ -398,11 +424,7 @@ const Layout = () => {
                                         borderTopColor: 'white',
                                         borderRadius: '50%',
                                         animation: 'spin 1s linear infinite'
-                                    }}>
-                                        <style>
-                                            {`@keyframes spin { to { transform: rotate(360deg); } }`}
-                                        </style>
-                                    </div>
+                                    }} />
                                 ) : (
                                     <IoIosSend size={20}/>
                                 )}
