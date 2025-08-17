@@ -424,7 +424,7 @@ const Dashboard = () => {
           urbanization: "51%",
           medianAge: "32.1",
           projection2050: "5.3B",
-          flag: "🌏",
+          flag: <FaEarthAsia size={25} />,
           status: "moderate-growth"
         },
         {
