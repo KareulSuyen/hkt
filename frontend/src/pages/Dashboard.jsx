@@ -266,7 +266,7 @@ const Dashboard = () => {
         },
         {
           region: "North America",
-          population: "580M",
+          population: "618M",
           growth: "+0.6%",
           density: "20/km²",
           urbanization: "82%",
