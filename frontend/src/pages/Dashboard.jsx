@@ -6,6 +6,8 @@ import overpopulationVid from '/videos/overpopulation.mp4'
 import { LuHandHelping } from "react-icons/lu";
 import { FaEarthAsia } from "react-icons/fa6";
 import { FaGlobeAmericas } from "react-icons/fa";
+import { FaEarthEurope } from "react-icons/fa6";
+import { FaEarthAfrica } from "react-icons/fa6";
 
 
 
@@ -242,7 +244,7 @@ const Dashboard = () => {
           urbanization: "43%",
           medianAge: "19.7",
           projection2050: "2.5B",
-          flag: "🌍",
+          flag: <FaEarthAfrica  size={25} />,
           status: "rapid-growth"
         },
         {
@@ -253,7 +255,7 @@ const Dashboard = () => {
           urbanization: "51%",
           medianAge: "32.1",
           projection2050: "5.3B",
-          flag: <FaEarthAsia size={25}/>,
+          flag: <FaEarthAsia size={25} />,
           status: "moderate-growth"
         },
         {
@@ -264,7 +266,7 @@ const Dashboard = () => {
           urbanization: "75%",
           medianAge: "43.1",
           projection2050: "715M",
-          flag: "🇪🇺",
+          flag: <FaEarthEurope size={25} />,
           status: "declining"
         },
         {
@@ -415,7 +417,7 @@ const Dashboard = () => {
           urbanization: "43%",
           medianAge: "19.7",
           projection2050: "2.5B",
-          flag: "🌍",
+          flag: <FaEarthAfrica  size={25} />,
           status: "rapid-growth"
         },
         {
@@ -437,7 +439,7 @@ const Dashboard = () => {
           urbanization: "75%",
           medianAge: "43.1",
           projection2050: "715M",
-          flag: "🇪🇺",
+          flag: <FaEarthEurope size={25}/>,
           status: "declining"
         },
         {
