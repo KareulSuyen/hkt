@@ -254,12 +254,18 @@ $dark-border: #333;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    border-radius: 5rem 10px;
+}
+#world, #stats {
+  border: 1px solid #535353;
 }
 #stats {
     background-image: url('/images/Pilipinas.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    border-radius: 10px 5rem;
+
 }
 
 .footer {
