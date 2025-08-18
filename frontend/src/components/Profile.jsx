@@ -9,9 +9,9 @@ const Profile = ({ isProfileOpen, toggleProfile }) => {
                 <button onClick={toggleProfile}>X</button>
             </div>
             <div className={profilestyle['profile-links']}>
-                <a href="#">Test link</a>
-                <a href="#">Test link</a>
-                <a href="#">Test link</a>
+                <p>Test</p>
+                <p>Test</p>
+                <p>Test</p>
             </div>
         </aside>
     </>
