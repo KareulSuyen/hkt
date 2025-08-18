@@ -12,7 +12,6 @@ import { FaEarthAfrica } from "react-icons/fa6";
 
 const Dashboard = () => {
   const [language, setLanguage] = useState('filipino');
-  const [currentTime, setCurrentTime] = useState(new Date());
   const [activeTab, setActiveTab] = useState('trends');
   const [isLoading, setIsLoading] = useState(true);
   const [languageToggleText, setLanguageToggleText] = useState('🇬🇧 English');
