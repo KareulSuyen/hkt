@@ -7,6 +7,7 @@ import { LuHandHelping } from "react-icons/lu";
 import { FaEarthAsia } from "react-icons/fa6";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { FaEarthEurope } from "react-icons/fa6";
+import { FaEarthAfrica } from "react-icons/fa6";
 
 
 
@@ -243,7 +244,7 @@ const Dashboard = () => {
           urbanization: "43%",
           medianAge: "19.7",
           projection2050: "2.5B",
-          flag: "🌍",
+          flag: <FaEarthAfrica  size={25} />,
           status: "rapid-growth"
         },
         {
@@ -416,7 +417,7 @@ const Dashboard = () => {
           urbanization: "43%",
           medianAge: "19.7",
           projection2050: "2.5B",
-          flag: "🌍",
+          flag: <FaEarthAfrica  size={25} />,
           status: "rapid-growth"
         },
         {
