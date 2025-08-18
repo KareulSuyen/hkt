@@ -10,7 +10,6 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
     const setActive = ({ isActive }) =>
         isActive ? `${sidebarstyle.link} ${sidebarstyle.active}` : sidebarstyle.link;
 
-    // Outside click detection
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (sidebarRef.current && !sidebarRef.current.contains(event.target) && isSidebarOpen) {
@@ -23,27 +22,23 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
         };
     }, [isSidebarOpen, toggleSidebar]);
 
-    // Fixed scroll position handling
     useEffect(() => {
         if (isSidebarOpen) {
-            // Store current scroll position when opening
+
             scrollPositionRef.current = window.scrollY || window.pageYOffset;
             
-            // Prevent body scroll
             document.body.style.position = 'fixed';
             document.body.style.top = `-${scrollPositionRef.current}px`;
             document.body.style.left = '0';
             document.body.style.right = '0';
             document.body.style.overflow = 'hidden';
         } else {
-            // Restore body styles
             document.body.style.position = '';
             document.body.style.top = '';
             document.body.style.left = '';
             document.body.style.right = '';
             document.body.style.overflow = '';
             
-            // Restore scroll position
             if (scrollPositionRef.current > 0) {
                 window.scrollTo({
                     top: scrollPositionRef.current,
@@ -53,7 +48,6 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
             }
         }
 
-        // Cleanup function
         return () => {
             document.body.style.position = '';
             document.body.style.top = '';
@@ -65,7 +59,6 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
 
     return (
         <>
-            {/* Re-added backdrop for blur effect */}
             {isSidebarOpen && (
                 <div 
                     className={sidebarstyle.backdrop}
