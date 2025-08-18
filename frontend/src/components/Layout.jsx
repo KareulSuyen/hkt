@@ -91,11 +91,12 @@ const Layout = () => {
         }
     }, [history]);
     
+    {/* Boneng Malakas */}
+
     {/* Sidebar State */}
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const toggleSidebar = () => setSidebarOpen(prev => !prev);
     
-    {/* Boneng Malakas */}
     {/* Profile state */}
     const [isProfileOpen, setProfileOpen] = useState(false);
     const toggleProfile = () => setProfileOpen(prev => !prev);
@@ -136,7 +137,7 @@ const Layout = () => {
                 </div>
             )}
             
-            {/* Chatbox */}
+            {/* AI Chatbox */}
             {open && (
                 <div
                     className="ai-chatbox"

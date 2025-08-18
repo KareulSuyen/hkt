@@ -131,7 +131,7 @@ const Form = ({ method, route }) => {
         }
     };
 
-        return (
+    return (
         <>
             <div className={formstyle['auth-page']}>
                 <div className={formstyle['auth-title']}>
