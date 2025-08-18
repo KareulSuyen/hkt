@@ -9,12 +9,6 @@ import { FaRobot } from "react-icons/fa";
 
 
 const Layout = () => {
-    const [isSidebarOpen, setSidebarOpen] = useState(false);
-    const toggleSidebar = () => setSidebarOpen(prev => !prev);
-    
-    const [isProfileOpen, setProfileOpen] = useState(false);
-    const toggleProfile = () => setProfileOpen(prev => !prev);
-    
     const [open, setOpen] = useState(false);
     
     const [prompt, setPrompt] = useState('');
@@ -22,7 +16,7 @@ const Layout = () => {
     const [isLoading, setIsLoading] = useState(false);
     const chatEndRef = useRef(null);
     const inputRef = useRef(null);
-
+    
     useEffect(() => {
         if (open && inputRef.current && !isLoading) {
             setTimeout(() => {
@@ -30,22 +24,22 @@ const Layout = () => {
             }, 100);
         }
     }, [open, isLoading]);
-
+    
     const handleChat = async () => {
         if (!prompt.trim()) return;
         setIsLoading(true);
-
+        
         const fullPrompt = history
-            .map(msg => (msg.sender === 'user' ? `User: ${msg.text}` : `AI: ${msg.text}`))
-            .join('\n') + `\nUser: ${prompt}\nAI:`;
-
+        .map(msg => (msg.sender === 'user' ? `User: ${msg.text}` : `AI: ${msg.text}`))
+        .join('\n') + `\nUser: ${prompt}\nAI:`;
+        
         try {
             console.log('Sending full prompt:', fullPrompt);
             const res = await sendPrompt(fullPrompt);
             console.log('Received response:', res);
-
+            
             const botReply = res.response || "I couldn't generate a response. Please try again.";
-
+            
             setHistory(prev => [
                 ...prev,
                 { sender: 'user', text: prompt },
@@ -55,7 +49,7 @@ const Layout = () => {
             setOpen(true);
         } catch (err) {
             console.error("AI Error:", err);
-
+            
             let errorMessage = "Error talking to AI.";
             if (err.response) {
                 if (err.response.data?.error) {
@@ -70,7 +64,7 @@ const Layout = () => {
             } else {
                 errorMessage = `${err.message}`;
             }
-
+            
             setHistory(prev => [
                 ...prev,
                 { sender: 'user', text: prompt },
@@ -81,7 +75,7 @@ const Layout = () => {
             setIsLoading(false);
         }
     };
-
+    
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
@@ -90,14 +84,22 @@ const Layout = () => {
             }
         }
     };
-
+    
     useEffect(() => {
         if (chatEndRef.current) {
             chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     }, [history]);
-
-
+    
+    {/* Sidebar State */}
+    const [isSidebarOpen, setSidebarOpen] = useState(false);
+    const toggleSidebar = () => setSidebarOpen(prev => !prev);
+    
+    {/* Boneng Malakas */}
+    {/* Profile state */}
+    const [isProfileOpen, setProfileOpen] = useState(false);
+    const toggleProfile = () => setProfileOpen(prev => !prev);
+    
     return (
         <>
             <Navbar toggleSidebar={toggleSidebar} toggleProfile={toggleProfile} />
