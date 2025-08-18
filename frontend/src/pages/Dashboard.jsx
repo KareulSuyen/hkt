@@ -208,7 +208,7 @@ const Dashboard = () => {
           title: "Aging Population",
           value: "771M",
           change: "↑ 65+ years old",
-          icon: "👴",
+          icon: "👨‍🦳",
           description: "Fastest growing age demographic globally",
           color: "warning"
         }
@@ -381,7 +381,7 @@ const Dashboard = () => {
           title: "Tumatandang Populasyon",
           value: "771M",
           change: "↑ 65+ taong gulang",
-          icon: "👴",
+          icon: "👨‍🦳",
           description: "Pinakamabilis na lumalaking age demographic sa mundo",
           color: "warning"
         }
