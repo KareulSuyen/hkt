@@ -11,6 +11,7 @@
     .toggle-btn {   
         position: absolute;
         margin-left: 1rem;
+        margin-top: 5px;
 
         button {
             cursor: pointer;
@@ -42,6 +43,23 @@
             background: none;
             border: none;
             background-color: none;
+        }
+    }
+    
+    .nav-title {
+        position: fixed;
+        margin-left: 5.5rem;
+        display: flex;
+        align-items: center;
+
+        img {
+            margin-right: 5px;
+            height: 30px;
+            width: 30px;
+        }
+        
+        span {
+            color: #3a86ff;
         }
     }
 }
