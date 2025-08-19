@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import profilestyle from '../styles/profile.module.scss';
 import { TbLayoutSidebarRightCollapseFilled } from "react-icons/tb";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
+import { CiLogout } from "react-icons/ci";
+
 
 const Profile = ({ isProfileOpen, toggleProfile }) => {
     const navigate = useNavigate();
@@ -25,7 +27,12 @@ const Profile = ({ isProfileOpen, toggleProfile }) => {
                     <a href="#">Test</a>
 
                     <div className={profilestyle['logout-btn']}>
-                        <button onClick={handleLogout}>Log Out</button>
+                        <CiLogout size={25}/>
+                        <span>
+                            <button onClick={handleLogout}>
+                                Log Out
+                            </button>
+                        </span>
                     </div>
                 </div>
             </aside>
