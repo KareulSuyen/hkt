@@ -3,7 +3,7 @@ import navstyle from '../styles/navbar.module.scss';
 import { FaHandsHelping, FaHome } from 'react-icons/fa';
 import { CgProfile } from "react-icons/cg";
 import { RxHamburgerMenu } from "react-icons/rx";
-
+import spccbg from '/images/logo.png';
 
 const Navbar = ({ toggleSidebar, toggleProfile }) => {
     const setActive = ({ isActive }) =>
@@ -15,6 +15,10 @@ const Navbar = ({ toggleSidebar, toggleProfile }) => {
                     <button onClick={toggleSidebar}>
                         <RxHamburgerMenu size={30} />
                     </button>
+                </div>
+                <div className={navstyle['nav-title']}>
+                    <img src={spccbg} />
+                    <h2>Over<span>population</span></h2>
                 </div>
                 <div className={navstyle['nav-center']}>
                     <NavLink to='/' className={setActive}>
