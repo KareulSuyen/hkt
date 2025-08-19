@@ -5,10 +5,11 @@ import { SiUnitednations } from "react-icons/si";
 import overpopulationVid from '/videos/overpopulation.mp4'
 import { LuHandHelping } from "react-icons/lu";
 import { FaEarthAsia } from "react-icons/fa6";
-import { FaGlobeAmericas } from "react-icons/fa";
+import { FaGlobeAmericas, FaChartLine } from "react-icons/fa";
 import { FaEarthEurope } from "react-icons/fa6";
 import { FaEarthAfrica } from "react-icons/fa6";
-import { FaChartLine } from "react-icons/fa";
+import { IoPeople } from "react-icons/io5";
+import { MdOutlineEmojiPeople } from "react-icons/md";
 
 
 const Dashboard = () => {
@@ -198,7 +199,7 @@ const Dashboard = () => {
           title: "Demographic Dividend",
           value: "2.1B",
           change: "Young workforce (15-34)",
-          icon: "👥",
+          icon: <IoPeople size={30} />,
           description: "Working-age population driving economic growth",
           color: "success"
         },
@@ -371,7 +372,7 @@ const Dashboard = () => {
           title: "Demographic Dividend",
           value: "2.1B",
           change: "Batang workforce (15-34)",
-          icon: "👥",
+          icon: <IoPeople size={30} />,
           description: "Working-age population na nangunguna sa economic growth",
           color: "success"
         },
