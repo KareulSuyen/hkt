@@ -13,9 +13,13 @@ const Profile = ({ isProfileOpen, toggleProfile }) => {
                     </button>
                 </div>
                 <div className={profilestyle['profile-links']}>
-                    <p>Test</p>
-                    <p>Test</p>
-                    <p>Test</p>
+                    <a href="#">Test</a>
+                    <a href="#">Test</a>
+                    <a href="#">Test</a>
+
+                    <div className={profilestyle['logout-btn']}>
+                        <button>Log Out</button>
+                    </div>
                 </div>
             </aside>
         </>

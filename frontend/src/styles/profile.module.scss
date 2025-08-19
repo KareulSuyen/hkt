@@ -10,14 +10,19 @@
     border-radius: 10px;
 
     .toggle-btn {
+        margin-bottom: 15px;
         button {
             background: none;
             border: none;
             padding: 5px;
+            cursor: pointer;
         }
     }
 
     .profile-links {
+        gap: 1.5rem;
+        display: flex;
+        flex-direction: column;
         padding: 8px;
     }
 }
