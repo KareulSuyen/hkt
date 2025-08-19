@@ -32,7 +32,7 @@
     }
 
     .profile-links {
-        gap: 1rem;
+        gap: 1.5rem;
         display: flex;
         flex-direction: column;
         padding: 8px;
@@ -55,6 +55,23 @@
             padding: 10px;
             &:hover {
                 background-color: rgb(52, 52, 52);
+            }
+        }
+
+        .guidelines {
+            display: flex;
+            align-items: center;
+
+            button {
+                cursor: pointer;
+                font-size: 15px;
+                background: none;
+                border: none;
+            }
+        }
+        .guidelines, .logout-btn {
+            &:hover {
+                color: red;
             }
         }
     }

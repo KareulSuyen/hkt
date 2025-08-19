@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import profilestyle from '../styles/profile.module.scss';
-import { TbLayoutSidebarRightCollapseFilled } from "react-icons/tb";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import { CiLogout } from "react-icons/ci";
+import { TbArrowGuide } from "react-icons/tb";
 
 
 const Profile = ({ isProfileOpen, toggleProfile }) => {
@@ -21,8 +21,12 @@ const Profile = ({ isProfileOpen, toggleProfile }) => {
                     <button onClick={toggleProfile}>X</button>
                 </div>
                 <div className={profilestyle['profile-links']}>
-                    <a href="#">Test</a>
-                    <a href="#">Test</a>
+                    <div className={profilestyle.guidelines}>
+                        <TbArrowGuide size={25} />
+                        <span>
+                            <button>Guidelines</button>
+                        </span>
+                    </div>
 
                     <div className={profilestyle['logout-btn']}>
                         <CiLogout size={25}/>
