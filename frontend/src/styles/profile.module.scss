@@ -1,7 +1,7 @@
 .profile {
     width: 250px;
     position: fixed;
-    height: 40vh;
+    height: 250px;
     background-color: rgb(35, 35, 35);
     right: 0;
     transition: ease-in-out .2s;
@@ -13,6 +13,9 @@
 
     .toggle-btn {
         margin-bottom: 15px;
+        display: flex;
+        justify-content: flex-end;
+
         button {
             background: none;
             border: none;
