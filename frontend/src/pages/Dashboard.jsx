@@ -8,6 +8,7 @@ import { FaEarthAsia } from "react-icons/fa6";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { FaEarthEurope } from "react-icons/fa6";
 import { FaEarthAfrica } from "react-icons/fa6";
+import { FaChartLine } from "react-icons/fa";
 
 
 const Dashboard = () => {
@@ -188,7 +189,7 @@ const Dashboard = () => {
           title: "Global Growth Rate",
           value: "0.87%",
           change: "↓ 0.18% vs 2020",
-          icon: "📊",
+          icon: <FaChartLine size={30}/>,
           description: "Annual population increase has slowed significantly",
           color: "primary"
         },
@@ -361,7 +362,7 @@ const Dashboard = () => {
           title: "Pandaigdigang Growth Rate",
           value: "0.87%",
           change: "↓ 0.18% vs 2020",
-          icon: "📊",
+          icon: <FaChartLine size={30}/>,
           description: "Ang taunang pagtaas ng populasyon ay bumagal nang malaki",
           color: "primary"
         },
