@@ -18,7 +18,7 @@ const Navbar = ({ toggleSidebar, toggleProfile }) => {
                 </div>
                 <div className={navstyle['nav-title']}>
                     <img src={spccbg} />
-                    <h2>Over<span>population</span></h2>
+                    <h2>Over<span>Population</span></h2>
                 </div>
                 <div className={navstyle['nav-center']}>
                     <NavLink to='/' className={setActive}>
@@ -29,7 +29,7 @@ const Navbar = ({ toggleSidebar, toggleProfile }) => {
                     </NavLink>
                     <div className={navstyle['profile-btn']}> 
                         <button onClick={toggleProfile}> 
-                            <CgProfile size={30}/>
+                            <CgProfile size={30} />
                         </button>
                     </div>
                 </div>
