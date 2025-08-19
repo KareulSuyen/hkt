@@ -7,13 +7,15 @@
     transition: ease-in-out .2s;
     z-index: 1000;
     border-radius: 10px;
-    border: 1px solid rgb(40, 40, 40);
     margin-right: 10px;
+    
     
     .toggle-btn {
         margin-bottom: 15px;
         display: flex;
         justify-content: flex-end;
+        background-color: black;
+        border-radius: 5px;
 
         button {
             background: none;
