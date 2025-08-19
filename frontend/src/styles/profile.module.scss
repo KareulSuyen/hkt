@@ -6,8 +6,10 @@
     right: 0;
     transition: ease-in-out .2s;
     z-index: 1000;
-    border-right: 1px solid rgb(97, 97, 97);
     border-radius: 10px;
+    border: 1px solid rgb(40, 40, 40);
+    margin-right: 10px;
+    
 
     .toggle-btn {
         margin-bottom: 15px;
@@ -20,17 +22,31 @@
     }
 
     .profile-links {
-        gap: 1.5rem;
+        gap: 1rem;
         display: flex;
         flex-direction: column;
         padding: 8px;
+
+        .logout-btn {
+            button {
+                background: none;
+                font-size: 15px;
+                border: none;
+                padding: 8px;
+                cursor: pointer;
+            }
+        }
+
+        a {
+            border-radius: 10px;
+            padding: 10px;
+            &:hover {
+                background-color: rgb(52, 52, 52);
+            }
+        }
     }
 }
 
-.open {
-    transform: translateX(0);
-}
-
 .closed {
-    transform: translateX(100%);
+    display: none;
 }
