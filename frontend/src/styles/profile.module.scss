@@ -28,6 +28,9 @@
         padding: 8px;
 
         .logout-btn {
+            display: flex;
+            align-items: center;
+            
             button {
                 background: none;
                 font-size: 15px;
