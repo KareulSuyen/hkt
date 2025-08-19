@@ -18,9 +18,7 @@ const Profile = ({ isProfileOpen, toggleProfile }) => {
         <>
             <aside className={`${profilestyle.profile} ${isProfileOpen ? profilestyle.open : profilestyle.closed}`}>
                 <div className={profilestyle['toggle-btn']}> {/* Profile toggle-btn */}
-                    <button onClick={toggleProfile}>
-                        <TbLayoutSidebarRightCollapseFilled size={30}/>
-                    </button>
+                    <button onClick={toggleProfile}>X</button>
                 </div>
                 <div className={profilestyle['profile-links']}>
                     <a href="#">Test</a>
