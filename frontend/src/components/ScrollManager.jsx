@@ -1,25 +1,31 @@
-import { useEffect, useRef } from "react";
+// components/ScrollManager.js
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-const scrollPositions = {};
+const scrollMemory = {};
 
-const ScrollManager = () => { 
-  const { pathname } = useLocation();
-  const prevPath = useRef(pathname);
+export default function ScrollManager() {
+  const { pathname, search, hash } = useLocation();
+  const fullPath = pathname + search + hash;
 
   useEffect(() => {
-    scrollPositions[prevPath.current] = window.scrollY;
+    // Save current scroll position before changing routes
+    const currentScroll = window.scrollY;
+    scrollMemory[fullPath] = currentScroll;
 
-    if (scrollPositions[pathname] !== undefined) {
-      window.scrollTo(0, scrollPositions[pathname]);
+    // Restore scroll position for the new route
+    const savedScroll = scrollMemory[fullPath];
+    
+    if (savedScroll !== undefined) {
+      window.scrollTo(0, savedScroll);
     } else {
-      window.scrollTo(0, 0);
+      // First time visiting this route, scroll to top
+      if (!hash) {
+        window.scrollTo(0, 0);
+      }
     }
 
-    prevPath.current = pathname;
-  }, [pathname]);
+  }, [fullPath, hash]);
 
   return null;
 }
-
-export default ScrollManager;
