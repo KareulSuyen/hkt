@@ -127,11 +127,11 @@ const Help = () => {
                                     </div>
                                     <div className={helpstyle.pyramidVisual}>
                                         <div className={helpstyle.pyramidDemo}>
-                                            <div className={helpstyle.pyramidLevel} style={{width: '95%'}}>0-14 years</div>
-                                            <div className={helpstyle.pyramidLevel} style={{width: '80%'}}>15-29 years</div>
-                                            <div className={helpstyle.pyramidLevel} style={{width: '60%'}}>30-44 years</div>
-                                            <div className={helpstyle.pyramidLevel} style={{width: '40%'}}>45-59 years</div>
                                             <div className={helpstyle.pyramidLevel} style={{width: '20%'}}>60+ years</div>
+                                            <div className={helpstyle.pyramidLevel} style={{width: '40%'}}>45-59 years</div>
+                                            <div className={helpstyle.pyramidLevel} style={{width: '60%'}}>30-44 years</div>
+                                            <div className={helpstyle.pyramidLevel} style={{width: '80%'}}>15-29 years</div>
+                                            <div className={helpstyle.pyramidLevel} style={{width: '95%'}}>0-14 years</div>
                                         </div>
                                     </div>
                                 </div>
