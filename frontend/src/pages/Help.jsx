@@ -7,7 +7,7 @@ import { FaScaleUnbalanced } from "react-icons/fa6";
 import { ImEarth } from "react-icons/im";
 import { BsBuildings, BsBuildingFillExclamation } from "react-icons/bs";
 import { CiMap } from "react-icons/ci";
-import { TbGeometry } from "react-icons/tb";
+import { TbGeometry, TbBulb } from "react-icons/tb";
 import { MdOutlineQueryStats } from "react-icons/md";
 import { GiPlantRoots, GiJourney, GiPineTree, GiThreeLeaves } from "react-icons/gi";
 import { BiSolidError } from "react-icons/bi";
@@ -300,7 +300,7 @@ const Help = () => {
                                     <p>Pantay na access sa resources at opportunities para sa lahat</p>
                                 </div>
                                 <div className={helpstyle.importanceItem}>
-                                    <div className={helpstyle.importanceIcon}>💡</div>
+                                    <div className={helpstyle.importanceIcon}><TbBulb size={30} /> </div>
                                     <h5>Innovation</h5>
                                     <p>Pag-develop ng mga bagong solusyon para sa sustainable living</p>
                                 </div>
