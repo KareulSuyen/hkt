@@ -9,6 +9,7 @@ import { BsBuildings } from "react-icons/bs";
 import { CiMap } from "react-icons/ci";
 import { TbGeometry } from "react-icons/tb";
 import { MdOutlineQueryStats } from "react-icons/md";
+import { GiPlantRoots, GiJourney } from "react-icons/gi";
 
 
 const VisualCard = ({ image, title, description }) => {
@@ -165,7 +166,7 @@ const Help = () => {
                                 </div>
                                 <div className={helpstyle.theoryCard}>
                                     <div className={helpstyle.theoryHeader}>
-                                        <div className={helpstyle.theoryIcon}>🌱</div>
+                                        <div className={helpstyle.theoryIcon}><GiPlantRoots size={30} /> </div>
                                         <h5>Neo-Malthusian Theory</h5>
                                         <span className={helpstyle.theoryYear}>(1960s)</span>
                                     </div>
@@ -341,14 +342,12 @@ const Help = () => {
                         {/* Enhanced call-to-action */}
                         <div className={helpstyle.overviewCallToAction}>
                             <div className={helpstyle.ctaContent}>
-                                <h4>🚀 Simulan ang Inyong Journey</h4>
+                                <h4><GiJourney /> Start your journey</h4>
                                 <p>
                                     Ang pag-unawa sa sobrang populasyon ay hindi lamang tungkol sa mga numero - ito ay tungkol sa 
-                                    paglikha ng sustainable na kinabukasan para sa lahat. Tuklasin ang mga susunod na sections 
-                                    upang malaman ang mga specific na sanhi, epekto, at solusyon.
+                                    paglikha ng sustainable na kinabukasan para sa lahat.
                                 </p>
                                 <div className={helpstyle.nextSteps}>
-                                    <span>Susunod na mga paksa: </span>
                                     <div className={helpstyle.nextButtons}>
                                         <button onClick={() => setActiveSection('causes')}>Mga Sanhi →</button>
                                         <button onClick={() => setActiveSection('effects')}>Mga Epekto →</button>
