@@ -9,7 +9,7 @@ import { BsBuildings, BsBuildingFillExclamation } from "react-icons/bs";
 import { CiMap } from "react-icons/ci";
 import { TbGeometry } from "react-icons/tb";
 import { MdOutlineQueryStats } from "react-icons/md";
-import { GiPlantRoots, GiJourney, GiPineTree } from "react-icons/gi";
+import { GiPlantRoots, GiJourney, GiPineTree, GiThreeLeaves } from "react-icons/gi";
 import { BiSolidError } from "react-icons/bi";
 import { SiGoogleearthengine, SiCodemagic } from "react-icons/si";
 import { LuWeight } from "react-icons/lu";
@@ -290,7 +290,7 @@ const Help = () => {
                                     <p>Ang mga desisyon ngayon ay makakaapekto sa sustainability para sa susunod na mga henerasyon</p>
                                 </div>
                                 <div className={helpstyle.importanceItem}>
-                                    <div className={helpstyle.importanceIcon}>🌿</div>
+                                    <div className={helpstyle.importanceIcon}><GiThreeLeaves size={30} /></div>
                                     <h5>Environmental Protection</h5>
                                     <p>Pag-unawa sa relationship sa pagitan ng population at environmental degradation</p>
                                 </div>
