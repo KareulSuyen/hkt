@@ -943,7 +943,6 @@ a {
     }
 }
 
-// Simplified Overview Section - Clean and streamlined
 .overview {
   animation: fadeIn 0.5s ease-in;
 
@@ -968,7 +967,7 @@ a {
   }
 
   .subsectionTitle {
-    color: #34d399;
+    color: #b9d0e2;
     font-size: 20px;
     font-weight: 600;
     margin: 40px 0 20px 0;
@@ -998,7 +997,6 @@ a {
     }
   }
 
-  // Simplified Concepts Section
   .conceptSection {
     margin-bottom: 40px;
   }
@@ -1044,7 +1042,6 @@ a {
     margin: 0;
   }
 
-  // Simplified Population Pyramid Section
   .pyramidSection {
     margin-bottom: 40px;
     background: #1e293b;
@@ -1116,7 +1113,7 @@ a {
   }
 
   .pyramidLevel {
-    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    background: linear-gradient(135deg, #2a5f6f, #09454e);
     color: white;
     padding: 12px;
     text-align: center;
@@ -1130,7 +1127,6 @@ a {
     }
   }
 
-  // Simplified Current Situation Section
   .currentSituationSection {
     margin-bottom: 40px;
   }
@@ -1150,7 +1146,6 @@ a {
     }
   }
 
-  // Simplified Theories Section
   .theoriesSection {
     margin-bottom: 40px;
     background: #1e293b;
@@ -1214,7 +1209,6 @@ a {
     font-size: 13px;
   }
 
-  // Simplified Card Grid
   .cardGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1257,7 +1251,6 @@ a {
     margin: 0;
   }
 
-  // Simplified Affected Regions Section
   .affectedRegionsSection {
     margin-bottom: 40px;
     background: #1e293b;
@@ -1284,7 +1277,7 @@ a {
     transition: all 0.3s ease;
     
     &:hover {
-      border-color: #fb923c;
+      border-color: #5a310e;
     }
   }
 
@@ -1325,7 +1318,6 @@ a {
     }
   }
 
-  // Simplified Indicators Section
   .indicatorsSection {
     margin-bottom: 40px;
   }
@@ -1349,10 +1341,10 @@ a {
       transform: translateY(-2px);
     }
     
-    &:nth-child(1):hover { border-color: #60a5fa; }
-    &:nth-child(2):hover { border-color: #14b8a6; }
-    &:nth-child(3):hover { border-color: #f87171; }
-    &:nth-child(4):hover { border-color: #34d399; }
+    &:nth-child(1):hover { border-color: #092445; }
+    &:nth-child(2):hover { border-color: #10615b; }
+    &:nth-child(3):hover { border-color: #361010; }
+    &:nth-child(4):hover { border-color: #08462f; }
   }
 
   .indicatorIcon {
@@ -1391,7 +1383,6 @@ a {
     }
   }
 
-  // Simplified Importance Section
   .importanceSection {
     margin-bottom: 40px;
     background: #1e293b;
@@ -1417,7 +1408,7 @@ a {
     
     &:hover {
       transform: translateY(-2px);
-      border-color: #34d399;
+      border-color: #044e33;
     }
   }
 
@@ -1440,7 +1431,6 @@ a {
     margin: 0;
   }
 
-  // Simplified Myths Section
   .mythsSection {
     margin-bottom: 40px;
     background: #1e293b;
@@ -1492,7 +1482,7 @@ a {
     background: rgba(52, 211, 153, 0.1);
     
     strong {
-      color: #34d399;
+      color: #3a6982;
     }
   }
 
@@ -1501,7 +1491,6 @@ a {
     flex-shrink: 0;
   }
 
-  // Simplified Call to Action
   .overviewCallToAction {
     background: #1e293b;
     padding: 32px;
@@ -1570,7 +1559,6 @@ a {
     }
   }
 
-  // Responsive
   @media (max-width: 768px) {
     .pyramidContent {
       grid-template-columns: 1fr;
