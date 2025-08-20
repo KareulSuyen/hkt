@@ -25,15 +25,13 @@ const Layout = () => {
         }
     }, [open, isLoading]);
     
-    const handleChat = async (customPrompt = null) => {
-        const messageToSend = customPrompt || prompt;
-        if (!messageToSend.trim()) return;
-        
+    const handleChat = async () => {
+        if (!prompt.trim()) return;
         setIsLoading(true);
         
         const fullPrompt = history
         .map(msg => (msg.sender === 'user' ? `User: ${msg.text}` : `AI: ${msg.text}`))
-        .join('\n') + `\nUser: ${messageToSend}\nAI:`;
+        .join('\n') + `\nUser: ${prompt}\nAI:`;
         
         try {
             console.log('Sending full prompt:', fullPrompt);
@@ -44,7 +42,7 @@ const Layout = () => {
             
             setHistory(prev => [
                 ...prev,
-                { sender: 'user', text: messageToSend },
+                { sender: 'user', text: prompt },
                 { sender: 'ai', text: botReply }
             ]);
             setPrompt('');
@@ -69,7 +67,7 @@ const Layout = () => {
             
             setHistory(prev => [
                 ...prev,
-                { sender: 'user', text: messageToSend },
+                { sender: 'user', text: prompt },
                 { sender: 'ai', text: errorMessage }
             ]);
             setPrompt('');
@@ -85,14 +83,6 @@ const Layout = () => {
                 handleChat();
             }
         }
-    };
-    
-    // Function to handle guidelines request
-    const handleGuidelinesRequest = () => {
-        setOpen(true);
-        setTimeout(() => {
-            handleChat("Please show me the guidelines");
-        }, 100);
     };
     
     useEffect(() => {
@@ -114,11 +104,7 @@ const Layout = () => {
     return (
         <>
             <Navbar toggleSidebar={toggleSidebar} toggleProfile={toggleProfile} />
-            <Profile 
-                isProfileOpen={isProfileOpen} 
-                toggleProfile={toggleProfile}
-                onGuidelinesClick={handleGuidelinesRequest}
-            />
+            <Profile isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} />
             <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
             <main>
                 <Outlet />
@@ -379,7 +365,7 @@ const Layout = () => {
                                 onKeyDown={handleKeyDown}
                             />
                             <button
-                                onClick={() => handleChat()}
+                                onClick={handleChat}
                                 disabled={isLoading || !prompt.trim()}
                                 style={{
                                     width: '40px',

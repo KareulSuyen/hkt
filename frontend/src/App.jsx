@@ -25,18 +25,6 @@ export const LogoutAndRegister = () => {
   return <Navigate to='/register' replace />;
 };
 
-export const CheckToken = () => {
-  localStorage.getItem(ACCESS_TOKEN);
-  localStorage.getItem(REFRESH_TOKEN);
-
-  if (ACCESS_TOKEN || REFRESH_TOKEN) {
-    return <Navigate to='/dashboard' />
-  } else if (!ACCESS_TOKEN || !REFRESH_TOKEN) {
-    return <Navigate to='/introduction' />
-  } else {
-    return <Navigate to='/introduction' />
-  }
-} 
 
 const App = () => {
   return (
