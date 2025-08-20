@@ -568,7 +568,6 @@ const Dashboard = () => {
             ))}
           </div>
         </section>
-
         <nav className={styles.tabNav}>
           {Object.entries(t.tabs).map(([key, label]) => (
             <button
@@ -580,7 +579,6 @@ const Dashboard = () => {
             </button>
           ))}
         </nav>
-
         {/* Tab Content */}
         <div className={styles.tabContent}>
           {activeTab === 'trends' && (
@@ -602,7 +600,7 @@ const Dashboard = () => {
               </div>
             </div>
           )}
-
+          
           {activeTab === 'impacts' && (
             <div className={styles.contentGrid}>
               {t.pressurePoints.map((category, index) => (
