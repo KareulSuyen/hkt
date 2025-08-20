@@ -943,7 +943,6 @@ a {
     }
 }
 
-// Simplified Overview Section - Clean and streamlined
 .overview {
   animation: fadeIn 0.5s ease-in;
 
@@ -968,7 +967,7 @@ a {
   }
 
   .subsectionTitle {
-    color: #34d399;
+    color: #b9d0e2;
     font-size: 20px;
     font-weight: 600;
     margin: 40px 0 20px 0;
@@ -998,7 +997,6 @@ a {
     }
   }
 
-  // Simplified Concepts Section
   .conceptSection {
     margin-bottom: 40px;
   }
@@ -1044,7 +1042,6 @@ a {
     margin: 0;
   }
 
-  // Simplified Population Pyramid Section
   .pyramidSection {
     margin-bottom: 40px;
     background: #1e293b;
@@ -1116,7 +1113,7 @@ a {
   }
 
   .pyramidLevel {
-    background: linear-gradient(135deg, #095b5e, #09454e);
+    background: linear-gradient(135deg, #2a5f6f, #09454e);
     color: white;
     padding: 12px;
     text-align: center;
@@ -1411,7 +1408,7 @@ a {
     
     &:hover {
       transform: translateY(-2px);
-      border-color: #34d399;
+      border-color: #044e33;
     }
   }
 

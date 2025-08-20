@@ -4,6 +4,8 @@ import { FaEarthAsia } from "react-icons/fa6";
 import { FaPeopleCarry, FaRecycle } from "react-icons/fa";
 import { FcStatistics } from "react-icons/fc";
 import { FaScaleUnbalanced } from "react-icons/fa6";
+import { ImEarth } from "react-icons/im";
+
 
 
 const VisualCard = ({ image, title, description }) => {
@@ -223,7 +225,7 @@ const Help = () => {
                                     </div>
                                 </div>
                                 <div className={helpstyle.regionItem}>
-                                    <span className={helpstyle.regionFlag}>🌍</span>
+                                    <span className={helpstyle.regionFlag}><ImEarth size={30}/></span>
                                     <div className={helpstyle.regionInfo}>
                                         <strong>Sub-Saharan Africa</strong>
                                         <p>Rehiyon na may pinakamabilis na population growth rate sa kasalukuyan</p>
