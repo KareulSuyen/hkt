@@ -5,13 +5,18 @@ import { CiLogout } from "react-icons/ci";
 import { TbArrowGuide } from "react-icons/tb";
 
 
-const Profile = ({ isProfileOpen, toggleProfile }) => {
+const Profile = ({ isProfileOpen, toggleProfile, onGuidelinesClick }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
         localStorage.removeItem(ACCESS_TOKEN);
         localStorage.removeItem(REFRESH_TOKEN);
         navigate('/introduction'); 
+    };
+
+    const handleGuidelinesClick = () => {
+        toggleProfile(); // Close the profile
+        onGuidelinesClick(); // Trigger the guidelines request in Layout
     };
 
     return (
@@ -24,10 +29,9 @@ const Profile = ({ isProfileOpen, toggleProfile }) => {
                     <div className={profilestyle.guidelines}>
                         <TbArrowGuide size={25} />
                         <span>
-                            <button>Guidelines</button>
+                            <button onClick={handleGuidelinesClick}>Guidelines</button>
                         </span>
                     </div>
-
                     <div className={profilestyle['logout-btn']}>
                         <CiLogout size={25}/>
                         <span>
