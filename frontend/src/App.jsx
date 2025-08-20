@@ -5,10 +5,11 @@ import Help from './pages/Help';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Notfound from './pages/Notfound';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import Introduction from './pages/Introduction';
 import ScrollManager from './components/ScrollManager';
+import { useEffect } from 'react';
 
 const handleLogout = () => {
   localStorage.removeItem(ACCESS_TOKEN);
@@ -16,15 +17,36 @@ const handleLogout = () => {
 };
 
 export const Logout = () => {
-  handleLogout();
-  return <Navigate to='/introduction' replace />;
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    handleLogout();
+    navigate('/introduction', { replace: true });
+    
+    window.history.pushState(null, '', window.location.href);
+    window.onpopstate = function() {
+      window.history.go(1);
+    };
+  }, [navigate]);
+
+  return null;
 };
 
 export const LogoutAndRegister = () => {
-  handleLogout();
-  return <Navigate to='/register' replace />;
-};
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    handleLogout();
+    navigate('/register', { replace: true });
+    
+    window.history.pushState(null, '', window.location.href);
+    window.onpopstate = function() {
+      window.history.go(1);
+    };
+  }, [navigate]);
 
+  return null;
+};
 
 const App = () => {
   return (
