@@ -8,6 +8,7 @@ import Notfound from './pages/Notfound';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import Introduction from './pages/Introduction';
+import ScrollManager from './components/ScrollManager';
 
 const handleLogout = () => {
   localStorage.removeItem(ACCESS_TOKEN);
@@ -40,6 +41,7 @@ export const CheckToken = () => {
 const App = () => {
   return (
     <BrowserRouter>
+      <ScrollManager />
       <Routes>
         <Route path='/introduction' element={<Introduction />} />
         <Route path='/login' element={<Login />} />
