@@ -7,8 +7,7 @@ import { FaScaleUnbalanced } from "react-icons/fa6";
 import { ImEarth } from "react-icons/im";
 import { BsBuildings } from "react-icons/bs";
 import { CiMap } from "react-icons/ci";
-
-
+import { TbGeometry } from "react-icons/tb";
 
 
 const VisualCard = ({ image, title, description }) => {
@@ -149,7 +148,7 @@ const Help = () => {
                             <div className={helpstyle.theoriesGrid}>
                                 <div className={helpstyle.theoryCard}>
                                     <div className={helpstyle.theoryHeader}>
-                                        <div className={helpstyle.theoryIcon}>👨‍🔬</div>
+                                        <div className={helpstyle.theoryIcon}><TbGeometry size={30} /></div>
                                         <h5>Malthusian Theory</h5>
                                         <span className={helpstyle.theoryYear}>(1798)</span>
                                     </div>
