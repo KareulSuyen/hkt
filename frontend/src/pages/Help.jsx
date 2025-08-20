@@ -149,7 +149,7 @@ const Help = () => {
                             <div className={helpstyle.theoriesGrid}>
                                 <div className={helpstyle.theoryCard}>
                                     <div className={helpstyle.theoryHeader}>
-                                        <div className={helpstyle.theoryIcon}><TbGeometry size={30} /></div>
+                                        <div className={helpstyle.theoryIcon}><TbGeometry size={30} /> </div>
                                         <h5>Malthusian Theory</h5>
                                         <span className={helpstyle.theoryYear}>(1798)</span>
                                     </div>
@@ -157,7 +157,7 @@ const Help = () => {
                                 </div>
                                 <div className={helpstyle.theoryCard}>
                                     <div className={helpstyle.theoryHeader}>
-                                        <div className={helpstyle.theoryIcon}><MdOutlineQueryStats size={30} /></div>
+                                        <div className={helpstyle.theoryIcon}><MdOutlineQueryStats size={30} /> </div>
                                         <h5>Demographic Transition Model</h5>
                                         <span className={helpstyle.theoryYear}>(1929)</span>
                                     </div>
