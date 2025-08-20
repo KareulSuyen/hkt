@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import helpstyle from '../styles/help.module.scss';
 import { FaEarthAsia } from "react-icons/fa6";
-import { FaPeopleCarry, FaRecycle } from "react-icons/fa";
+import { FaPeopleCarry, FaRecycle, FaGlobeAsia } from "react-icons/fa";
 import { FcStatistics } from "react-icons/fc";
 import { FaScaleUnbalanced } from "react-icons/fa6";
 import { ImEarth } from "react-icons/im";
 import { BsBuildings } from "react-icons/bs";
+import { CiMap } from "react-icons/ci";
+
+
 
 
 const VisualCard = ({ image, title, description }) => {
@@ -192,10 +195,10 @@ const Help = () => {
                         </div>
 
                         <div className={helpstyle.affectedRegionsSection}>
-                            <h4 className={helpstyle.subsectionTitle}>🗺️ Mga Rehiyong Pinaka-naapektuhan</h4>
+                            <h4 className={helpstyle.subsectionTitle}><CiMap size={30} /> Mga Rehiyong Pinaka-naapektuhan</h4>
                             <div className={helpstyle.regionsContainer}>
                                 <div className={helpstyle.regionItem}>
-                                    <span className={helpstyle.regionFlag}>🇮🇳</span>
+                                    <span className={helpstyle.regionFlag}><FaGlobeAsia size={30} /></span>
                                     <div className={helpstyle.regionInfo}>
                                         <strong>South Asia</strong>
                                         <p>Kasama ang India at Bangladesh, na may pinakamataas na population density sa mundo</p>
