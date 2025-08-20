@@ -5,6 +5,8 @@ import { FaPeopleCarry, FaRecycle } from "react-icons/fa";
 import { FcStatistics } from "react-icons/fc";
 import { FaScaleUnbalanced } from "react-icons/fa6";
 import { ImEarth } from "react-icons/im";
+import { BsBuildings } from "react-icons/bs";
+
 
 
 
@@ -225,7 +227,7 @@ const Help = () => {
                                     </div>
                                 </div>
                                 <div className={helpstyle.regionItem}>
-                                    <span className={helpstyle.regionFlag}><ImEarth size={30}/></span>
+                                    <span className={helpstyle.regionFlag}><ImEarth size={30} /></span>
                                     <div className={helpstyle.regionInfo}>
                                         <strong>Sub-Saharan Africa</strong>
                                         <p>Rehiyon na may pinakamabilis na population growth rate sa kasalukuyan</p>
@@ -236,7 +238,7 @@ const Help = () => {
                                     </div>
                                 </div>
                                 <div className={helpstyle.regionItem}>
-                                    <span className={helpstyle.regionFlag}>🏙️</span>
+                                    <span className={helpstyle.regionFlag}><BsBuildings size={30} /></span>
                                     <div className={helpstyle.regionInfo}>
                                         <strong>Mga Megacities</strong>
                                         <p>Urban areas tulad ng Manila, Lagos, at Dhaka na may mahigit 10 milyong residente</p>
