@@ -15,6 +15,8 @@ import { SiGoogleearthengine, SiCodemagic } from "react-icons/si";
 import { LuWeight } from "react-icons/lu";
 import { AiOutlineQuestion } from "react-icons/ai";
 import { FcCancel } from "react-icons/fc";
+import { IoCheckmarkDoneSharp } from "react-icons/io5";
+
 
 
 const VisualCard = ({ image, title, description }) => {
@@ -317,7 +319,7 @@ const Help = () => {
                                         <strong>Mali:</strong> "Ang mundo ay mauubusan ng pagkain"
                                     </div>
                                     <div className={helpstyle.mythTruth}>
-                                        <span className={helpstyle.truthIcon}>✅</span>
+                                        <span className={helpstyle.truthIcon}><IoCheckmarkDoneSharp size={20}/></span>
                                         <strong>Totoo:</strong> May sapat na pagkain para sa lahat, ngunit hindi pantay ang distribution at maraming nasasayang.
                                     </div>
                                 </div>
@@ -327,7 +329,7 @@ const Help = () => {
                                         <strong>Mali:</strong> "Lahat ng bansa ay may sobrang populasyon"
                                     </div>
                                     <div className={helpstyle.mythTruth}>
-                                        <span className={helpstyle.truthIcon}>✅</span>
+                                        <span className={helpstyle.truthIcon}><IoCheckmarkDoneSharp size={20}/></span>
                                         <strong>Totoo:</strong> May mga bansa na aging population at bumababa pa ang birth rates tulad ng Japan at Germany.
                                     </div>
                                 </div>
@@ -337,7 +339,7 @@ const Help = () => {
                                         <strong>Mali:</strong> "Technology ay sosolusyon sa lahat"
                                     </div>
                                     <div className={helpstyle.mythTruth}>
-                                        <span className={helpstyle.truthIcon}>✅</span>
+                                        <span className={helpstyle.truthIcon}><IoCheckmarkDoneSharp size={20}/></span>
                                         <strong>Totoo:</strong> Technology ay makakatulong pero kailangan din ng behavioral change at sustainable practices.
                                     </div>
                                 </div>
