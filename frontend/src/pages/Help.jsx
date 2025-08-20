@@ -8,8 +8,6 @@ import { ImEarth } from "react-icons/im";
 import { BsBuildings } from "react-icons/bs";
 
 
-
-
 const VisualCard = ({ image, title, description }) => {
     return (
         <div className={helpstyle.visualCard}>
@@ -105,7 +103,6 @@ const Help = () => {
                         </div>
 
                         <div className={helpstyle.pyramidSection}>
-                            <h4 className={helpstyle.subsectionTitle}>Pag-unawa sa Population Structure</h4>
                             <div className={helpstyle.pyramidContainer}>
                                 <div className={helpstyle.pyramidContent}>
                                     <div className={helpstyle.pyramidText}>
@@ -192,24 +189,6 @@ const Help = () => {
                                     Ang maximum na populasyong maaaring suportahan ng isang kapaligiran nang walang hanggan.
                                 </p>
                             </div>
-
-                            <div className={`${helpstyle.featureCard} ${helpstyle.blueGradient}`}>
-                                <div className={helpstyle.cardIcon}>🏙️</div>
-                                <h4 className={helpstyle.cardTitle}>Urbanisasyon</h4>
-                                <p className={helpstyle.cardText}>
-                                    68% ng populasyon ay nakatira sa mga lungsod, na nagdudulot ng mga hamon sa housing, transportation, at utilities.
-                                </p>
-                            </div>
-
-                            <div className={`${helpstyle.featureCard} ${helpstyle.greenGradient}`}>
-                                <div className={helpstyle.cardIcon}>🌱</div>
-                                <h4 className={helpstyle.cardTitle}>Sustainability</h4>
-                                <p className={helpstyle.cardText}>
-                                    Ang balance sa pagitan ng population growth at environmental protection ay susi sa sustainable development.
-                                </p>
-                            </div>
-
-                           
                         </div>
 
                         <div className={helpstyle.affectedRegionsSection}>
