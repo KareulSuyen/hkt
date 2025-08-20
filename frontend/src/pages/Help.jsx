@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import helpstyle from '../styles/help.module.scss';
 import { FaEarthAsia } from "react-icons/fa6";
-import { FaPeopleCarry, FaRecycle } from "react-icons/fa";
+import { FaPeopleCarry, FaRecycle, FaGlobeAsia } from "react-icons/fa";
 import { FcStatistics } from "react-icons/fc";
 import { FaScaleUnbalanced } from "react-icons/fa6";
 import { ImEarth } from "react-icons/im";
 import { BsBuildings } from "react-icons/bs";
+import { CiMap } from "react-icons/ci";
 
 
 
@@ -105,7 +106,6 @@ const Help = () => {
                         </div>
 
                         <div className={helpstyle.pyramidSection}>
-                            <h4 className={helpstyle.subsectionTitle}>Pag-unawa sa Population Structure</h4>
                             <div className={helpstyle.pyramidContainer}>
                                 <div className={helpstyle.pyramidContent}>
                                     <div className={helpstyle.pyramidText}>
@@ -192,31 +192,13 @@ const Help = () => {
                                     Ang maximum na populasyong maaaring suportahan ng isang kapaligiran nang walang hanggan.
                                 </p>
                             </div>
-
-                            <div className={`${helpstyle.featureCard} ${helpstyle.blueGradient}`}>
-                                <div className={helpstyle.cardIcon}>🏙️</div>
-                                <h4 className={helpstyle.cardTitle}>Urbanisasyon</h4>
-                                <p className={helpstyle.cardText}>
-                                    68% ng populasyon ay nakatira sa mga lungsod, na nagdudulot ng mga hamon sa housing, transportation, at utilities.
-                                </p>
-                            </div>
-
-                            <div className={`${helpstyle.featureCard} ${helpstyle.greenGradient}`}>
-                                <div className={helpstyle.cardIcon}>🌱</div>
-                                <h4 className={helpstyle.cardTitle}>Sustainability</h4>
-                                <p className={helpstyle.cardText}>
-                                    Ang balance sa pagitan ng population growth at environmental protection ay susi sa sustainable development.
-                                </p>
-                            </div>
-
-                           
                         </div>
 
                         <div className={helpstyle.affectedRegionsSection}>
-                            <h4 className={helpstyle.subsectionTitle}>🗺️ Mga Rehiyong Pinaka-naapektuhan</h4>
+                            <h4 className={helpstyle.subsectionTitle}><CiMap size={30} /> Mga Rehiyong Pinaka-naapektuhan</h4>
                             <div className={helpstyle.regionsContainer}>
                                 <div className={helpstyle.regionItem}>
-                                    <span className={helpstyle.regionFlag}>🇮🇳</span>
+                                    <span className={helpstyle.regionFlag}><FaGlobeAsia size={30} /></span>
                                     <div className={helpstyle.regionInfo}>
                                         <strong>South Asia</strong>
                                         <p>Kasama ang India at Bangladesh, na may pinakamataas na population density sa mundo</p>
