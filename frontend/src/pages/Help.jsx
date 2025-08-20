@@ -13,6 +13,7 @@ import { GiPlantRoots, GiJourney } from "react-icons/gi";
 import { BiSolidError } from "react-icons/bi";
 import { SiGoogleearthengine } from "react-icons/si";
 import { LuWeight } from "react-icons/lu";
+import { FaHandHoldingWater } from "react-icons/fa";
 
 
 const VisualCard = ({ image, title, description }) => {
@@ -250,7 +251,7 @@ const Help = () => {
                                     </ul>
                                 </div>
                                 <div className={helpstyle.indicatorCard}>
-                                    <div className={helpstyle.indicatorIcon}>💧</div>
+                                    <div className={helpstyle.indicatorIcon}><FaHandHoldingWater size={30}/> </div>
                                     <h5>Resource Scarcity</h5>
                                     <ul>
                                         <li>Water shortage</li>
