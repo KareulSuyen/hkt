@@ -285,7 +285,7 @@ const Help = () => {
                             <h4 className={helpstyle.subsectionTitle}><AiOutlineQuestion size={30} /> Bakit Mahalaga ang Pag-unawa sa Sobrang Populasyon?</h4>
                             <div className={helpstyle.importanceGrid}>
                                 <div className={helpstyle.importanceItem}>
-                                    <div className={helpstyle.importanceIcon}>🔮</div>
+                                    <div className={helpstyle.importanceIcon}><SiCodemagic size={30} /> </div>
                                     <h5>Para sa Hinaharap</h5>
                                     <p>Ang mga desisyon ngayon ay makakaapekto sa sustainability para sa susunod na mga henerasyon</p>
                                 </div>
