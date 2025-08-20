@@ -358,6 +358,9 @@ const Help = () => {
                                         <button onClick={() => setActiveSection('causes')}>Mga Sanhi →</button>
                                         <button onClick={() => setActiveSection('effects')}>Mga Epekto →</button>
                                         <button onClick={() => setActiveSection('solutions')}>Mga Solusyon →</button>
+                                        <button onClick={() => setActiveSection('resources')}>Mga karagdagang impormasyon →</button>
+                                        <button onClick={() => setActiveSection('faq')}>Mga madalas na tanong →</button>
+                                        <button onClick={() => setActiveSection('visual')}>Mga Gabay →</button>
                                     </div>
                                 </div>
                             </div>
