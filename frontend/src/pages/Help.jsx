@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import helpstyle from '../styles/help.module.scss';
 import { FaEarthAsia } from "react-icons/fa6";
-import { FaPeopleCarry, FaRecycle, FaGlobeAsia } from "react-icons/fa";
+import { FaPeopleCarry, FaRecycle, FaGlobeAsia, FaHospital, FaHandHoldingWater } from "react-icons/fa";
 import { FcStatistics } from "react-icons/fc";
 import { FaScaleUnbalanced } from "react-icons/fa6";
 import { ImEarth } from "react-icons/im";
@@ -13,7 +13,6 @@ import { GiPlantRoots, GiJourney } from "react-icons/gi";
 import { BiSolidError } from "react-icons/bi";
 import { SiGoogleearthengine } from "react-icons/si";
 import { LuWeight } from "react-icons/lu";
-import { FaHandHoldingWater } from "react-icons/fa";
 
 
 const VisualCard = ({ image, title, description }) => {
@@ -260,7 +259,7 @@ const Help = () => {
                                     </ul>
                                 </div>
                                 <div className={helpstyle.indicatorCard}>
-                                    <div className={helpstyle.indicatorIcon}>🏥</div>
+                                    <div className={helpstyle.indicatorIcon}><FaHospital size={30} /></div>
                                     <h5>Service Strain</h5>
                                     <ul>
                                         <li>Overcrowded hospitals</li>
