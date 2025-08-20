@@ -14,6 +14,7 @@ import { BiSolidError } from "react-icons/bi";
 import { SiGoogleearthengine, SiCodemagic } from "react-icons/si";
 import { LuWeight } from "react-icons/lu";
 import { AiOutlineQuestion } from "react-icons/ai";
+import { FcCancel } from "react-icons/fc";
 
 
 const VisualCard = ({ image, title, description }) => {
@@ -308,11 +309,11 @@ const Help = () => {
                         </div>
 
                         <div className={helpstyle.mythsSection}>
-                            <h4 className={helpstyle.subsectionTitle}>❌ Mga Karaniwang Mali na Pag-unawa</h4>
+                            <h4 className={helpstyle.subsectionTitle}><FcCancel size={30}/> Mga Karaniwang Mali na Pag-unawa</h4>
                             <div className={helpstyle.mythsContainer}>
                                 <div className={helpstyle.mythItem}>
                                     <div className={helpstyle.mythHeader}>
-                                        <span className={helpstyle.mythIcon}>❌</span>
+                                        <span className={helpstyle.mythIcon}><FcCancel size={20}/> </span>
                                         <strong>Mali:</strong> "Ang mundo ay mauubusan ng pagkain"
                                     </div>
                                     <div className={helpstyle.mythTruth}>
@@ -322,7 +323,7 @@ const Help = () => {
                                 </div>
                                 <div className={helpstyle.mythItem}>
                                     <div className={helpstyle.mythHeader}>
-                                        <span className={helpstyle.mythIcon}>❌</span>
+                                        <span className={helpstyle.mythIcon}><FcCancel size={20}/> </span>
                                         <strong>Mali:</strong> "Lahat ng bansa ay may sobrang populasyon"
                                     </div>
                                     <div className={helpstyle.mythTruth}>
@@ -332,7 +333,7 @@ const Help = () => {
                                 </div>
                                 <div className={helpstyle.mythItem}>
                                     <div className={helpstyle.mythHeader}>
-                                        <span className={helpstyle.mythIcon}>❌</span>
+                                        <span className={helpstyle.mythIcon}><FcCancel size={20}/> </span>
                                         <strong>Mali:</strong> "Technology ay sosolusyon sa lahat"
                                     </div>
                                     <div className={helpstyle.mythTruth}>
