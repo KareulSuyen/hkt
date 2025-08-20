@@ -15,8 +15,8 @@ const Profile = ({ isProfileOpen, toggleProfile, onGuidelinesClick }) => {
     };
 
     const handleGuidelinesClick = () => {
-        toggleProfile(); // Close the profile
-        onGuidelinesClick(); // Trigger the guidelines request in Layout
+        toggleProfile(); 
+        onGuidelinesClick();
     };
 
     return (
