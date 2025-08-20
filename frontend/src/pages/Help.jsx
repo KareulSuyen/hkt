@@ -10,6 +10,9 @@ import { CiMap } from "react-icons/ci";
 import { TbGeometry } from "react-icons/tb";
 import { MdOutlineQueryStats } from "react-icons/md";
 import { GiPlantRoots, GiJourney } from "react-icons/gi";
+import { BiSolidError } from "react-icons/bi";
+import { SiGoogleearthengine } from "react-icons/si";
+import { LuWeight } from "react-icons/lu";
 
 
 const VisualCard = ({ image, title, description }) => {
@@ -178,7 +181,7 @@ const Help = () => {
                         <div className={helpstyle.cardGrid}>
                             <a href="https://tl.council.science/blog/world-population-day-sustainable-population-growth-for-a-sustainable-future/" target='_blank'>
                                 <div className={`${helpstyle.featureCard} ${helpstyle.purpleGradient}`}>
-                                    <div className={helpstyle.cardIcon}>🌍</div>
+                                    <div className={helpstyle.cardIcon}><SiGoogleearthengine size={30} /> </div>
                                     <h4 className={helpstyle.cardTitle}>Pandaigdigang Saklaw</h4>
                                     <p className={helpstyle.cardText}>
                                         Ang populasyon ng mundo ay umabot sa 8 bilyong tao noong 2022, na may iba-ibang rate ng paglaki sa iba't ibang rehiyon.
@@ -187,7 +190,7 @@ const Help = () => {
                             </a>
                             
                             <div className={`${helpstyle.featureCard} ${helpstyle.redGradient}`}>
-                                <div className={helpstyle.cardIcon}>⚖️</div>
+                                <div className={helpstyle.cardIcon}><LuWeight size={30} /> </div>
                                 <h4 className={helpstyle.cardTitle}>Carrying Capacity</h4>
                                 <p className={helpstyle.cardText}>
                                     Ang maximum na populasyong maaaring suportahan ng isang kapaligiran nang walang hanggan.
@@ -235,7 +238,7 @@ const Help = () => {
                         </div>
 
                         <div className={helpstyle.indicatorsSection}>
-                            <h4 className={helpstyle.subsectionTitle}>🚨 Mga Palatandaan ng Sobrang Populasyon</h4>
+                            <h4 className={helpstyle.subsectionTitle}><BiSolidError size={30} /> Mga Palatandaan ng Sobrang Populasyon</h4>
                             <div className={helpstyle.indicatorsGrid}>
                                 <div className={helpstyle.indicatorCard}>
                                     <div className={helpstyle.indicatorIcon}>🏘️</div>
