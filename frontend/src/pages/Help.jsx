@@ -70,7 +70,167 @@ const Help = () => {
                                 na nagreresulta sa pagkakasubos ng resources, pagkasira ng kapaligiran, at pagbaba ng kalidad ng buhay.
                             </p>
                         </div>
-                        
+
+                        {/* Intro Timeline */}
+                        <div className={helpstyle.timelineSection}>
+                            <h4 className={helpstyle.subsectionTitle}>📈 Timeline ng Population Growth</h4>
+                            <div className={helpstyle.timeline}>
+                                <div className={helpstyle.timelineItem}>
+                                    <div className={helpstyle.timelineDot}></div>
+                                    <div className={helpstyle.timelineContent}>
+                                        <div className={helpstyle.timelineYear}>1800</div>
+                                        <div className={helpstyle.timelineDesc}>1 Billion - Unang beses naabot ang 1B population</div>
+                                    </div>
+                                </div>
+                                <div className={helpstyle.timelineItem}>
+                                    <div className={helpstyle.timelineDot}></div>
+                                    <div className={helpstyle.timelineContent}>
+                                        <div className={helpstyle.timelineYear}>1927</div>
+                                        <div className={helpstyle.timelineDesc}>2 Billion - 127 taon ang kinailangan</div>
+                                    </div>
+                                </div>
+                                <div className={helpstyle.timelineItem}>
+                                    <div className={helpstyle.timelineDot}></div>
+                                    <div className={helpstyle.timelineContent}>
+                                        <div className={helpstyle.timelineYear}>1960</div>
+                                        <div className={helpstyle.timelineDesc}>3 Billion - 33 taon lamang</div>
+                                    </div>
+                                </div>
+                                <div className={helpstyle.timelineItem}>
+                                    <div className={helpstyle.timelineDot}></div>
+                                    <div className={helpstyle.timelineContent}>
+                                        <div className={helpstyle.timelineYear}>1974</div>
+                                        <div className={helpstyle.timelineDesc}>4 Billion - Population explosion era</div>
+                                    </div>
+                                </div>
+                                <div className={helpstyle.timelineItem}>
+                                    <div className={helpstyle.timelineDot}></div>
+                                    <div className={helpstyle.timelineContent}>
+                                        <div className={helpstyle.timelineYear}>2024</div>
+                                        <div className={helpstyle.timelineDesc}>8.1 Billion - Bumabagal na ang growth rate</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Mga Pangunahing Konsepto */}
+                        <div className={helpstyle.conceptSection}>
+                            <h4 className={helpstyle.subsectionTitle}>🎯 Mga Pangunahing Konsepto</h4>
+                            <div className={helpstyle.conceptGrid}>
+                                <div className={helpstyle.conceptCard}>
+                                    <div className={helpstyle.conceptIcon}>🎯</div>
+                                    <h5>Carrying Capacity</h5>
+                                    <p>Ang maximum na bilang ng mga tao na maaaring suportahan ng isang lugar nang walang hanggan, batay sa available na resources at technology.</p>
+                                </div>
+                                <div className={helpstyle.conceptCard}>
+                                    <div className={helpstyle.conceptIcon}>📊</div>
+                                    <h5>Population Density</h5>
+                                    <p>Ang bilang ng mga tao bawat square kilometer. Ang mataas na density ay maaaring magdulot ng mga problema kahit hindi pa naabot ang carrying capacity.</p>
+                                </div>
+                                <div className={helpstyle.conceptCard}>
+                                    <div className={helpstyle.conceptIcon}>⚖️</div>
+                                    <h5>Resource Distribution</h5>
+                                    <p>Hindi pantay na pamamahagi ng mga resources ang madalas na dahilan ng mga problema sa populasyon, hindi lamang ang kakulangan nito.</p>
+                                </div>
+                                <div className={helpstyle.conceptCard}>
+                                    <div className={helpstyle.conceptIcon}>🔄</div>
+                                    <h5>Demographic Transition</h5>
+                                    <p>Ang proseso kung saan bumababa ang birth at death rates habang umuunlad ang isang bansa.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Population Pyramid Explanation */}
+                        <div className={helpstyle.pyramidSection}>
+                            <h4 className={helpstyle.subsectionTitle}>📊 Pag-unawa sa Population Structure</h4>
+                            <div className={helpstyle.pyramidContainer}>
+                                <div className={helpstyle.pyramidContent}>
+                                    <div className={helpstyle.pyramidText}>
+                                        <h5>Population Pyramid</h5>
+                                        <p>Ang hugis ng population pyramid ay nagpapakita ng age at gender distribution ng populasyon:</p>
+                                        <ul>
+                                            <li><strong>Pyramid Shape:</strong> Mataas na birth rate, mabilis na population growth</li>
+                                            <li><strong>Bell Shape:</strong> Stable na population, developed countries</li>
+                                            <li><strong>Inverted Shape:</strong> Aging population, mababang birth rate</li>
+                                        </ul>
+                                    </div>
+                                    <div className={helpstyle.pyramidVisual}>
+                                        <div className={helpstyle.pyramidDemo}>
+                                            <div className={helpstyle.pyramidLevel} style={{width: '100%'}}>0-14 years</div>
+                                            <div className={helpstyle.pyramidLevel} style={{width: '80%'}}>15-29 years</div>
+                                            <div className={helpstyle.pyramidLevel} style={{width: '60%'}}>30-44 years</div>
+                                            <div className={helpstyle.pyramidLevel} style={{width: '40%'}}>45-59 years</div>
+                                            <div className={helpstyle.pyramidLevel} style={{width: '20%'}}>60+ years</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Kasalukuyang Kalagayan */}
+                        <div className={helpstyle.currentSituationSection}>
+                            <h4 className={helpstyle.subsectionTitle}>📈 Kasalukuyang Kalagayan ng Pandaigdigang Populasyon</h4>
+                            <div className={helpstyle.statisticsContainer}>
+                                <div className={helpstyle.statCard}>
+                                    <div className={helpstyle.statNumber}>8.1B</div>
+                                    <div className={helpstyle.statLabel}>Kasalukuyang populasyon ng mundo (2024)</div>
+                                </div>
+                                <div className={helpstyle.statCard}>
+                                    <div className={helpstyle.statNumber}>67M</div>
+                                    <div className={helpstyle.statLabel}>Taunang pagtaas ng populasyon</div>
+                                </div>
+                                <div className={helpstyle.statCard}>
+                                    <div className={helpstyle.statNumber}>0.8%</div>
+                                    <div className={helpstyle.statLabel}>Kasalukuyang growth rate (bumababa)</div>
+                                </div>
+                                <div className={helpstyle.statCard}>
+                                    <div className={helpstyle.statNumber}>2064</div>
+                                    <div className={helpstyle.statLabel}>Projected peak year (10.4B)</div>
+                                </div>
+                            </div>
+                            
+                            <div className={helpstyle.situationText}>
+                                <p>
+                                    Bagamat bumabagal na ang pandaigdigang population growth, ang mga lokal na problema ng sobrang populasyon 
+                                    ay patuloy pa rin sa mga partikular na rehiyon. Ang mga urban areas sa mga developing countries ay 
+                                    nakakaranas ng mabilis na paglaki na lampas sa kanilang kapasidad na magbigay ng sapat na infrastructure 
+                                    at services.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Mga Teorya at Mga Modelo */}
+                        <div className={helpstyle.theoriesSection}>
+                            <h4 className={helpstyle.subsectionTitle}>🧠 Mga Kilalang Teorya tungkol sa Populasyon</h4>
+                            <div className={helpstyle.theoriesGrid}>
+                                <div className={helpstyle.theoryCard}>
+                                    <div className={helpstyle.theoryHeader}>
+                                        <div className={helpstyle.theoryIcon}>👨‍🔬</div>
+                                        <h5>Malthusian Theory</h5>
+                                        <span className={helpstyle.theoryYear}>(1798)</span>
+                                    </div>
+                                    <p>Ni Thomas Malthus - Ang populasyon ay tumutubo nang geometric habang ang pagkain ay arithmetic lamang, na hahantong sa kagutuman at digmaan.</p>
+                                </div>
+                                <div className={helpstyle.theoryCard}>
+                                    <div className={helpstyle.theoryHeader}>
+                                        <div className={helpstyle.theoryIcon}>📊</div>
+                                        <h5>Demographic Transition Model</h5>
+                                        <span className={helpstyle.theoryYear}>(1929)</span>
+                                    </div>
+                                    <p>Ni Warren Thompson - Ang mga bansa ay dumadaan sa apat na yugto: mataas na birth/death rates → mababang death rates → mababang birth rates → stable.</p>
+                                </div>
+                                <div className={helpstyle.theoryCard}>
+                                    <div className={helpstyle.theoryHeader}>
+                                        <div className={helpstyle.theoryIcon}>🌱</div>
+                                        <h5>Neo-Malthusian Theory</h5>
+                                        <span className={helpstyle.theoryYear}>(1960s)</span>
+                                    </div>
+                                    <p>Modernong bersyon na tumutukoy sa environmental limits at sustainable development sa konteksto ng population growth.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Enhanced Feature Cards Grid */}
                         <div className={helpstyle.cardGrid}>
                             <a href="https://tl.council.science/blog/world-population-day-sustainable-population-growth-for-a-sustainable-future/" target='_blank'>
                                 <div className={`${helpstyle.featureCard} ${helpstyle.purpleGradient}`}>
@@ -88,6 +248,205 @@ const Help = () => {
                                 <p className={helpstyle.cardText}>
                                     Ang maximum na populasyong maaaring suportahan ng isang kapaligiran nang walang hanggan.
                                 </p>
+                            </div>
+
+                            <div className={`${helpstyle.featureCard} ${helpstyle.blueGradient}`}>
+                                <div className={helpstyle.cardIcon}>🏙️</div>
+                                <h4 className={helpstyle.cardTitle}>Urbanisasyon</h4>
+                                <p className={helpstyle.cardText}>
+                                    68% ng populasyon ay nakatira sa mga lungsod, na nagdudulot ng mga hamon sa housing, transportation, at utilities.
+                                </p>
+                            </div>
+
+                            <div className={`${helpstyle.featureCard} ${helpstyle.greenGradient}`}>
+                                <div className={helpstyle.cardIcon}>🌱</div>
+                                <h4 className={helpstyle.cardTitle}>Sustainability</h4>
+                                <p className={helpstyle.cardText}>
+                                    Ang balance sa pagitan ng population growth at environmental protection ay susi sa sustainable development.
+                                </p>
+                            </div>
+
+                            <div className={`${helpstyle.featureCard} ${helpstyle.orangeGradient}`}>
+                                <div className={helpstyle.cardIcon}>📚</div>
+                                <h4 className={helpstyle.cardTitle}>Education Impact</h4>
+                                <p className={helpstyle.cardText}>
+                                    Ang female education ay pinakamahalagang factor sa pagbaba ng fertility rates sa buong mundo.
+                                </p>
+                            </div>
+
+                            <div className={`${helpstyle.featureCard} ${helpstyle.tealGradient}`}>
+                                <div className={helpstyle.cardIcon}>💰</div>
+                                <h4 className={helpstyle.cardTitle}>Economic Development</h4>
+                                <p className={helpstyle.cardText}>
+                                    Ang pag-unlad ng ekonomiya ay may direct relationship sa pagbaba ng birth rates at population stabilization.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Mga Rehiyong Naapektuhan */}
+                        <div className={helpstyle.affectedRegionsSection}>
+                            <h4 className={helpstyle.subsectionTitle}>🗺️ Mga Rehiyong Pinaka-naapektuhan</h4>
+                            <div className={helpstyle.regionsContainer}>
+                                <div className={helpstyle.regionItem}>
+                                    <span className={helpstyle.regionFlag}>🇮🇳</span>
+                                    <div className={helpstyle.regionInfo}>
+                                        <strong>South Asia</strong>
+                                        <p>Kasama ang India at Bangladesh, na may pinakamataas na population density sa mundo</p>
+                                        <div className={helpstyle.regionStats}>
+                                            <span>Population: 2B+</span>
+                                            <span>Density: 303/km²</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={helpstyle.regionItem}>
+                                    <span className={helpstyle.regionFlag}>🌍</span>
+                                    <div className={helpstyle.regionInfo}>
+                                        <strong>Sub-Saharan Africa</strong>
+                                        <p>Rehiyon na may pinakamabilis na population growth rate sa kasalukuyan</p>
+                                        <div className={helpstyle.regionStats}>
+                                            <span>Growth Rate: 2.7%</span>
+                                            <span>Projected: 2.1B by 2050</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={helpstyle.regionItem}>
+                                    <span className={helpstyle.regionFlag}>🏙️</span>
+                                    <div className={helpstyle.regionInfo}>
+                                        <strong>Mga Megacities</strong>
+                                        <p>Urban areas tulad ng Manila, Lagos, at Dhaka na may mahigit 10 milyong residente</p>
+                                        <div className={helpstyle.regionStats}>
+                                            <span>33 Megacities worldwide</span>
+                                            <span>Tokyo: 37.4M largest</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Mga Indikator ng Sobrang Populasyon */}
+                        <div className={helpstyle.indicatorsSection}>
+                            <h4 className={helpstyle.subsectionTitle}>🚨 Mga Palatandaan ng Sobrang Populasyon</h4>
+                            <div className={helpstyle.indicatorsGrid}>
+                                <div className={helpstyle.indicatorCard}>
+                                    <div className={helpstyle.indicatorIcon}>🏘️</div>
+                                    <h5>Urban Overcrowding</h5>
+                                    <ul>
+                                        <li>Mga slum areas na lumalaki</li>
+                                        <li>Traffic congestion</li>
+                                        <li>Insufficient housing</li>
+                                    </ul>
+                                </div>
+                                <div className={helpstyle.indicatorCard}>
+                                    <div className={helpstyle.indicatorIcon}>💧</div>
+                                    <h5>Resource Scarcity</h5>
+                                    <ul>
+                                        <li>Water shortage</li>
+                                        <li>Food insecurity</li>
+                                        <li>Energy crisis</li>
+                                    </ul>
+                                </div>
+                                <div className={helpstyle.indicatorCard}>
+                                    <div className={helpstyle.indicatorIcon}>🏥</div>
+                                    <h5>Service Strain</h5>
+                                    <ul>
+                                        <li>Overcrowded hospitals</li>
+                                        <li>Educational system overload</li>
+                                        <li>Inadequate public transport</li>
+                                    </ul>
+                                </div>
+                                <div className={helpstyle.indicatorCard}>
+                                    <div className={helpstyle.indicatorIcon}>🌳</div>
+                                    <h5>Environmental Impact</h5>
+                                    <ul>
+                                        <li>Deforestation</li>
+                                        <li>Air at water pollution</li>
+                                        <li>Loss of biodiversity</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Bakit Mahalaga */}
+                        <div className={helpstyle.importanceSection}>
+                            <h4 className={helpstyle.subsectionTitle}>❓ Bakit Mahalaga ang Pag-unawa sa Sobrang Populasyon?</h4>
+                            <div className={helpstyle.importanceGrid}>
+                                <div className={helpstyle.importanceItem}>
+                                    <div className={helpstyle.importanceIcon}>🔮</div>
+                                    <h5>Para sa Hinaharap</h5>
+                                    <p>Ang mga desisyon ngayon ay makakaapekto sa sustainability para sa susunod na mga henerasyon</p>
+                                </div>
+                                <div className={helpstyle.importanceItem}>
+                                    <div className={helpstyle.importanceIcon}>🌿</div>
+                                    <h5>Environmental Protection</h5>
+                                    <p>Pag-unawa sa relationship sa pagitan ng population at environmental degradation</p>
+                                </div>
+                                <div className={helpstyle.importanceItem}>
+                                    <div className={helpstyle.importanceIcon}>🤝</div>
+                                    <h5>Social Justice</h5>
+                                    <p>Pantay na access sa resources at opportunities para sa lahat</p>
+                                </div>
+                                <div className={helpstyle.importanceItem}>
+                                    <div className={helpstyle.importanceIcon}>💡</div>
+                                    <h5>Innovation</h5>
+                                    <p>Pag-develop ng mga bagong solusyon para sa sustainable living</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Mga Maling Pag-unawa */}
+                        <div className={helpstyle.mythsSection}>
+                            <h4 className={helpstyle.subsectionTitle}>❌ Mga Karaniwang Mali na Pag-unawa</h4>
+                            <div className={helpstyle.mythsContainer}>
+                                <div className={helpstyle.mythItem}>
+                                    <div className={helpstyle.mythHeader}>
+                                        <span className={helpstyle.mythIcon}>❌</span>
+                                        <strong>Mali:</strong> "Ang mundo ay mauubusan ng pagkain"
+                                    </div>
+                                    <div className={helpstyle.mythTruth}>
+                                        <span className={helpstyle.truthIcon}>✅</span>
+                                        <strong>Totoo:</strong> May sapat na pagkain para sa lahat, ngunit hindi pantay ang distribution at maraming nasasayang.
+                                    </div>
+                                </div>
+                                <div className={helpstyle.mythItem}>
+                                    <div className={helpstyle.mythHeader}>
+                                        <span className={helpstyle.mythIcon}>❌</span>
+                                        <strong>Mali:</strong> "Lahat ng bansa ay may sobrang populasyon"
+                                    </div>
+                                    <div className={helpstyle.mythTruth}>
+                                        <span className={helpstyle.truthIcon}>✅</span>
+                                        <strong>Totoo:</strong> May mga bansa na aging population at bumababa pa ang birth rates tulad ng Japan at Germany.
+                                    </div>
+                                </div>
+                                <div className={helpstyle.mythItem}>
+                                    <div className={helpstyle.mythHeader}>
+                                        <span className={helpstyle.mythIcon}>❌</span>
+                                        <strong>Mali:</strong> "Technology ay sosolusyon sa lahat"
+                                    </div>
+                                    <div className={helpstyle.mythTruth}>
+                                        <span className={helpstyle.truthIcon}>✅</span>
+                                        <strong>Totoo:</strong> Technology ay makakatulong pero kailangan din ng behavioral change at sustainable practices.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Enhanced call-to-action */}
+                        <div className={helpstyle.overviewCallToAction}>
+                            <div className={helpstyle.ctaContent}>
+                                <h4>🚀 Simulan ang Inyong Journey</h4>
+                                <p>
+                                    Ang pag-unawa sa sobrang populasyon ay hindi lamang tungkol sa mga numero - ito ay tungkol sa 
+                                    paglikha ng sustainable na kinabukasan para sa lahat. Tuklasin ang mga susunod na sections 
+                                    upang malaman ang mga specific na sanhi, epekto, at solusyon.
+                                </p>
+                                <div className={helpstyle.nextSteps}>
+                                    <span>Susunod na mga paksa: </span>
+                                    <div className={helpstyle.nextButtons}>
+                                        <button onClick={() => setActiveSection('causes')}>Mga Sanhi →</button>
+                                        <button onClick={() => setActiveSection('effects')}>Mga Epekto →</button>
+                                        <button onClick={() => setActiveSection('solutions')}>Mga Solusyon →</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
