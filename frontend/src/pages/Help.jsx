@@ -8,6 +8,7 @@ import { ImEarth } from "react-icons/im";
 import { BsBuildings } from "react-icons/bs";
 import { CiMap } from "react-icons/ci";
 import { TbGeometry } from "react-icons/tb";
+import { MdOutlineQueryStats } from "react-icons/md";
 
 
 const VisualCard = ({ image, title, description }) => {
@@ -156,7 +157,7 @@ const Help = () => {
                                 </div>
                                 <div className={helpstyle.theoryCard}>
                                     <div className={helpstyle.theoryHeader}>
-                                        <div className={helpstyle.theoryIcon}>📊</div>
+                                        <div className={helpstyle.theoryIcon}><MdOutlineQueryStats size={30} /></div>
                                         <h5>Demographic Transition Model</h5>
                                         <span className={helpstyle.theoryYear}>(1929)</span>
                                     </div>
