@@ -9,7 +9,7 @@ import { BsBuildings, BsBuildingFillExclamation } from "react-icons/bs";
 import { CiMap } from "react-icons/ci";
 import { TbGeometry } from "react-icons/tb";
 import { MdOutlineQueryStats } from "react-icons/md";
-import { GiPlantRoots, GiJourney } from "react-icons/gi";
+import { GiPlantRoots, GiJourney, GiPineTree } from "react-icons/gi";
 import { BiSolidError } from "react-icons/bi";
 import { SiGoogleearthengine } from "react-icons/si";
 import { LuWeight } from "react-icons/lu";
@@ -268,7 +268,7 @@ const Help = () => {
                                     </ul>
                                 </div>
                                 <div className={helpstyle.indicatorCard}>
-                                    <div className={helpstyle.indicatorIcon}>🌳</div>
+                                    <div className={helpstyle.indicatorIcon}><GiPineTree size={30} /></div>
                                     <h5>Environmental Impact</h5>
                                     <ul>
                                         <li>Deforestation</li>
