@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import helpstyle from '../styles/help.module.scss';
 import { FaEarthAsia } from "react-icons/fa6";
+import { FaPeopleCarry, FaRecycle } from "react-icons/fa";
+import { FcStatistics } from "react-icons/fc";
+import { FaScaleUnbalanced } from "react-icons/fa6";
 
 
 const VisualCard = ({ image, title, description }) => {
@@ -71,78 +74,34 @@ const Help = () => {
                             </p>
                         </div>
 
-                        {/* Intro Timeline */}
-                        <div className={helpstyle.timelineSection}>
-                            <h4 className={helpstyle.subsectionTitle}>📈 Timeline ng Population Growth</h4>
-                            <div className={helpstyle.timeline}>
-                                <div className={helpstyle.timelineItem}>
-                                    <div className={helpstyle.timelineDot}></div>
-                                    <div className={helpstyle.timelineContent}>
-                                        <div className={helpstyle.timelineYear}>1800</div>
-                                        <div className={helpstyle.timelineDesc}>1 Billion - Unang beses naabot ang 1B population</div>
-                                    </div>
-                                </div>
-                                <div className={helpstyle.timelineItem}>
-                                    <div className={helpstyle.timelineDot}></div>
-                                    <div className={helpstyle.timelineContent}>
-                                        <div className={helpstyle.timelineYear}>1927</div>
-                                        <div className={helpstyle.timelineDesc}>2 Billion - 127 taon ang kinailangan</div>
-                                    </div>
-                                </div>
-                                <div className={helpstyle.timelineItem}>
-                                    <div className={helpstyle.timelineDot}></div>
-                                    <div className={helpstyle.timelineContent}>
-                                        <div className={helpstyle.timelineYear}>1960</div>
-                                        <div className={helpstyle.timelineDesc}>3 Billion - 33 taon lamang</div>
-                                    </div>
-                                </div>
-                                <div className={helpstyle.timelineItem}>
-                                    <div className={helpstyle.timelineDot}></div>
-                                    <div className={helpstyle.timelineContent}>
-                                        <div className={helpstyle.timelineYear}>1974</div>
-                                        <div className={helpstyle.timelineDesc}>4 Billion - Population explosion era</div>
-                                    </div>
-                                </div>
-                                <div className={helpstyle.timelineItem}>
-                                    <div className={helpstyle.timelineDot}></div>
-                                    <div className={helpstyle.timelineContent}>
-                                        <div className={helpstyle.timelineYear}>2024</div>
-                                        <div className={helpstyle.timelineDesc}>8.1 Billion - Bumabagal na ang growth rate</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Mga Pangunahing Konsepto */}
                         <div className={helpstyle.conceptSection}>
-                            <h4 className={helpstyle.subsectionTitle}>🎯 Mga Pangunahing Konsepto</h4>
+                            <h4 className={helpstyle.subsectionTitle}>Mga Pangunahing Konsepto</h4>
                             <div className={helpstyle.conceptGrid}>
                                 <div className={helpstyle.conceptCard}>
-                                    <div className={helpstyle.conceptIcon}>🎯</div>
+                                    <div className={helpstyle.conceptIcon}><FaPeopleCarry size={30} /></div>
                                     <h5>Carrying Capacity</h5>
                                     <p>Ang maximum na bilang ng mga tao na maaaring suportahan ng isang lugar nang walang hanggan, batay sa available na resources at technology.</p>
                                 </div>
                                 <div className={helpstyle.conceptCard}>
-                                    <div className={helpstyle.conceptIcon}>📊</div>
+                                    <div className={helpstyle.conceptIcon}><FcStatistics size={30} /></div>
                                     <h5>Population Density</h5>
                                     <p>Ang bilang ng mga tao bawat square kilometer. Ang mataas na density ay maaaring magdulot ng mga problema kahit hindi pa naabot ang carrying capacity.</p>
                                 </div>
                                 <div className={helpstyle.conceptCard}>
-                                    <div className={helpstyle.conceptIcon}>⚖️</div>
+                                    <div className={helpstyle.conceptIcon}><FaScaleUnbalanced size={30} /></div>
                                     <h5>Resource Distribution</h5>
                                     <p>Hindi pantay na pamamahagi ng mga resources ang madalas na dahilan ng mga problema sa populasyon, hindi lamang ang kakulangan nito.</p>
                                 </div>
                                 <div className={helpstyle.conceptCard}>
-                                    <div className={helpstyle.conceptIcon}>🔄</div>
+                                    <div className={helpstyle.conceptIcon}><FaRecycle size={30} /></div>
                                     <h5>Demographic Transition</h5>
                                     <p>Ang proseso kung saan bumababa ang birth at death rates habang umuunlad ang isang bansa.</p>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Population Pyramid Explanation */}
                         <div className={helpstyle.pyramidSection}>
-                            <h4 className={helpstyle.subsectionTitle}>📊 Pag-unawa sa Population Structure</h4>
+                            <h4 className={helpstyle.subsectionTitle}>Pag-unawa sa Population Structure</h4>
                             <div className={helpstyle.pyramidContainer}>
                                 <div className={helpstyle.pyramidContent}>
                                     <div className={helpstyle.pyramidText}>
@@ -167,27 +126,9 @@ const Help = () => {
                             </div>
                         </div>
 
-                        {/* Kasalukuyang Kalagayan */}
                         <div className={helpstyle.currentSituationSection}>
-                            <h4 className={helpstyle.subsectionTitle}>📈 Kasalukuyang Kalagayan ng Pandaigdigang Populasyon</h4>
-                            <div className={helpstyle.statisticsContainer}>
-                                <div className={helpstyle.statCard}>
-                                    <div className={helpstyle.statNumber}>8.1B</div>
-                                    <div className={helpstyle.statLabel}>Kasalukuyang populasyon ng mundo (2024)</div>
-                                </div>
-                                <div className={helpstyle.statCard}>
-                                    <div className={helpstyle.statNumber}>67M</div>
-                                    <div className={helpstyle.statLabel}>Taunang pagtaas ng populasyon</div>
-                                </div>
-                                <div className={helpstyle.statCard}>
-                                    <div className={helpstyle.statNumber}>0.8%</div>
-                                    <div className={helpstyle.statLabel}>Kasalukuyang growth rate (bumababa)</div>
-                                </div>
-                                <div className={helpstyle.statCard}>
-                                    <div className={helpstyle.statNumber}>2064</div>
-                                    <div className={helpstyle.statLabel}>Projected peak year (10.4B)</div>
-                                </div>
-                            </div>
+                            <h4 className={helpstyle.subsectionTitle}>Kasalukuyang Kalagayan ng Pandaigdigang Populasyon</h4>
+                            
                             
                             <div className={helpstyle.situationText}>
                                 <p>
@@ -199,9 +140,8 @@ const Help = () => {
                             </div>
                         </div>
 
-                        {/* Mga Teorya at Mga Modelo */}
                         <div className={helpstyle.theoriesSection}>
-                            <h4 className={helpstyle.subsectionTitle}>🧠 Mga Kilalang Teorya tungkol sa Populasyon</h4>
+                            <h4 className={helpstyle.subsectionTitle}>Mga Kilalang Teorya tungkol sa Populasyon</h4>
                             <div className={helpstyle.theoriesGrid}>
                                 <div className={helpstyle.theoryCard}>
                                     <div className={helpstyle.theoryHeader}>
@@ -230,7 +170,6 @@ const Help = () => {
                             </div>
                         </div>
 
-                        {/* Enhanced Feature Cards Grid */}
                         <div className={helpstyle.cardGrid}>
                             <a href="https://tl.council.science/blog/world-population-day-sustainable-population-growth-for-a-sustainable-future/" target='_blank'>
                                 <div className={`${helpstyle.featureCard} ${helpstyle.purpleGradient}`}>
@@ -266,24 +205,9 @@ const Help = () => {
                                 </p>
                             </div>
 
-                            <div className={`${helpstyle.featureCard} ${helpstyle.orangeGradient}`}>
-                                <div className={helpstyle.cardIcon}>📚</div>
-                                <h4 className={helpstyle.cardTitle}>Education Impact</h4>
-                                <p className={helpstyle.cardText}>
-                                    Ang female education ay pinakamahalagang factor sa pagbaba ng fertility rates sa buong mundo.
-                                </p>
-                            </div>
-
-                            <div className={`${helpstyle.featureCard} ${helpstyle.tealGradient}`}>
-                                <div className={helpstyle.cardIcon}>💰</div>
-                                <h4 className={helpstyle.cardTitle}>Economic Development</h4>
-                                <p className={helpstyle.cardText}>
-                                    Ang pag-unlad ng ekonomiya ay may direct relationship sa pagbaba ng birth rates at population stabilization.
-                                </p>
-                            </div>
+                           
                         </div>
 
-                        {/* Mga Rehiyong Naapektuhan */}
                         <div className={helpstyle.affectedRegionsSection}>
                             <h4 className={helpstyle.subsectionTitle}>🗺️ Mga Rehiyong Pinaka-naapektuhan</h4>
                             <div className={helpstyle.regionsContainer}>
@@ -323,7 +247,6 @@ const Help = () => {
                             </div>
                         </div>
 
-                        {/* Mga Indikator ng Sobrang Populasyon */}
                         <div className={helpstyle.indicatorsSection}>
                             <h4 className={helpstyle.subsectionTitle}>🚨 Mga Palatandaan ng Sobrang Populasyon</h4>
                             <div className={helpstyle.indicatorsGrid}>
@@ -393,7 +316,6 @@ const Help = () => {
                             </div>
                         </div>
 
-                        {/* Mga Maling Pag-unawa */}
                         <div className={helpstyle.mythsSection}>
                             <h4 className={helpstyle.subsectionTitle}>❌ Mga Karaniwang Mali na Pag-unawa</h4>
                             <div className={helpstyle.mythsContainer}>
