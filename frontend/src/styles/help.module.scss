@@ -561,7 +561,6 @@ a {
   
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 32px rgba(167, 139, 250, 0.3);
     border-color: #a78bfa;
   }
 }
@@ -670,8 +669,6 @@ a {
     border-top: 1px solid #334155;
   }
 }
-
-// Media queries
 
 @media (min-width: 1200px) {
   .mainContent {
@@ -1501,7 +1498,7 @@ a {
     transition: all 0.3s ease;
     
     &:hover {
-      border-color: #345378;
+      border-color: #2f4764;
     }
   }
 

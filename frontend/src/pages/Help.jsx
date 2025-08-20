@@ -137,6 +137,25 @@ const Help = () => {
                                 </div>
                             </div>
                         </div>
+                        <div className={helpstyle.cardGrid}>
+                            <a href="https://tl.council.science/blog/world-population-day-sustainable-population-growth-for-a-sustainable-future/" target='_blank'>
+                                <div className={`${helpstyle.featureCard} ${helpstyle.purpleGradient}`}>
+                                    <div className={helpstyle.cardIcon}><SiGoogleearthengine size={30} /> </div>
+                                    <h4 className={helpstyle.cardTitle}>Pandaigdigang Saklaw</h4>
+                                    <p className={helpstyle.cardText}>
+                                        Ang populasyon ng mundo ay umabot sa 8 bilyong tao noong 2022, na may iba-ibang rate ng paglaki sa iba't ibang rehiyon.
+                                    </p>
+                                </div>
+                            </a>
+                            
+                            <div className={`${helpstyle.featureCard} ${helpstyle.redGradient}`}>
+                                <div className={helpstyle.cardIcon}><LuWeight size={30} /> </div>
+                                <h4 className={helpstyle.cardTitle}>Carrying Capacity</h4>
+                                <p className={helpstyle.cardText}>
+                                    Ang maximum na populasyong maaaring suportahan ng isang kapaligiran nang walang hanggan.
+                                </p>
+                            </div>
+                        </div>
 
                         <div className={helpstyle.currentSituationSection}>
                             <h4 className={helpstyle.subsectionTitle}>Kasalukuyang Kalagayan ng Pandaigdigang Populasyon</h4>
@@ -182,25 +201,6 @@ const Help = () => {
                             </div>
                         </div>
 
-                        <div className={helpstyle.cardGrid}>
-                            <a href="https://tl.council.science/blog/world-population-day-sustainable-population-growth-for-a-sustainable-future/" target='_blank'>
-                                <div className={`${helpstyle.featureCard} ${helpstyle.purpleGradient}`}>
-                                    <div className={helpstyle.cardIcon}><SiGoogleearthengine size={30} /> </div>
-                                    <h4 className={helpstyle.cardTitle}>Pandaigdigang Saklaw</h4>
-                                    <p className={helpstyle.cardText}>
-                                        Ang populasyon ng mundo ay umabot sa 8 bilyong tao noong 2022, na may iba-ibang rate ng paglaki sa iba't ibang rehiyon.
-                                    </p>
-                                </div>
-                            </a>
-                            
-                            <div className={`${helpstyle.featureCard} ${helpstyle.redGradient}`}>
-                                <div className={helpstyle.cardIcon}><LuWeight size={30} /> </div>
-                                <h4 className={helpstyle.cardTitle}>Carrying Capacity</h4>
-                                <p className={helpstyle.cardText}>
-                                    Ang maximum na populasyong maaaring suportahan ng isang kapaligiran nang walang hanggan.
-                                </p>
-                            </div>
-                        </div>
 
                         <div className={helpstyle.affectedRegionsSection}>
                             <h4 className={helpstyle.subsectionTitle}><CiMap size={30} /> Mga Rehiyong Pinaka-naapektuhan</h4>
@@ -346,7 +346,6 @@ const Help = () => {
                             </div>
                         </div>
 
-                        {/* Enhanced call-to-action */}
                         <div className={helpstyle.overviewCallToAction}>
                             <div className={helpstyle.ctaContent}>
                                 <h4><GiJourney /> Start your journey</h4>
