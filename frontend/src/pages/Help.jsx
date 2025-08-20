@@ -11,8 +11,9 @@ import { TbGeometry } from "react-icons/tb";
 import { MdOutlineQueryStats } from "react-icons/md";
 import { GiPlantRoots, GiJourney, GiPineTree } from "react-icons/gi";
 import { BiSolidError } from "react-icons/bi";
-import { SiGoogleearthengine } from "react-icons/si";
+import { SiGoogleearthengine, SiCodemagic } from "react-icons/si";
 import { LuWeight } from "react-icons/lu";
+import { AiOutlineQuestion } from "react-icons/ai";
 
 
 const VisualCard = ({ image, title, description }) => {
@@ -281,10 +282,10 @@ const Help = () => {
 
                         {/* Bakit Mahalaga */}
                         <div className={helpstyle.importanceSection}>
-                            <h4 className={helpstyle.subsectionTitle}>❓ Bakit Mahalaga ang Pag-unawa sa Sobrang Populasyon?</h4>
+                            <h4 className={helpstyle.subsectionTitle}><AiOutlineQuestion size={30} /> Bakit Mahalaga ang Pag-unawa sa Sobrang Populasyon?</h4>
                             <div className={helpstyle.importanceGrid}>
                                 <div className={helpstyle.importanceItem}>
-                                    <div className={helpstyle.importanceIcon}>🔮</div>
+                                    <div className={helpstyle.importanceIcon}><SiCodemagic size={30} /> </div>
                                     <h5>Para sa Hinaharap</h5>
                                     <p>Ang mga desisyon ngayon ay makakaapekto sa sustainability para sa susunod na mga henerasyon</p>
                                 </div>
