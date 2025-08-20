@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import helpstyle from '../styles/help.module.scss';
 import { FaEarthAsia } from "react-icons/fa6";
-import { FaPeopleCarry, FaRecycle, FaGlobeAsia, FaHospital, FaHandHoldingWater } from "react-icons/fa";
+import { FaPeopleCarry, FaRecycle, FaGlobeAsia, FaHospital, FaHandHoldingWater, FaPrayingHands } from "react-icons/fa";
 import { FcStatistics } from "react-icons/fc";
 import { FaScaleUnbalanced } from "react-icons/fa6";
 import { ImEarth } from "react-icons/im";
@@ -286,16 +286,16 @@ const Help = () => {
                             <div className={helpstyle.importanceGrid}>
                                 <div className={helpstyle.importanceItem}>
                                     <div className={helpstyle.importanceIcon}><SiCodemagic size={30} /> </div>
-                                    <h5>Para sa Hinaharap</h5>
+                                    <h5>For the future</h5>
                                     <p>Ang mga desisyon ngayon ay makakaapekto sa sustainability para sa susunod na mga henerasyon</p>
                                 </div>
                                 <div className={helpstyle.importanceItem}>
-                                    <div className={helpstyle.importanceIcon}><GiThreeLeaves size={30} /></div>
+                                    <div className={helpstyle.importanceIcon}><GiThreeLeaves size={30} /> </div>
                                     <h5>Environmental Protection</h5>
                                     <p>Pag-unawa sa relationship sa pagitan ng population at environmental degradation</p>
                                 </div>
                                 <div className={helpstyle.importanceItem}>
-                                    <div className={helpstyle.importanceIcon}>🤝</div>
+                                    <div className={helpstyle.importanceIcon}><FaPrayingHands size={30} /> </div>
                                     <h5>Social Justice</h5>
                                     <p>Pantay na access sa resources at opportunities para sa lahat</p>
                                 </div>
