@@ -5,7 +5,7 @@ import { FaPeopleCarry, FaRecycle, FaGlobeAsia } from "react-icons/fa";
 import { FcStatistics } from "react-icons/fc";
 import { FaScaleUnbalanced } from "react-icons/fa6";
 import { ImEarth } from "react-icons/im";
-import { BsBuildings } from "react-icons/bs";
+import { BsBuildings, BsBuildingFillExclamation } from "react-icons/bs";
 import { CiMap } from "react-icons/ci";
 import { TbGeometry } from "react-icons/tb";
 import { MdOutlineQueryStats } from "react-icons/md";
@@ -241,7 +241,7 @@ const Help = () => {
                             <h4 className={helpstyle.subsectionTitle}><BiSolidError size={30} /> Mga Palatandaan ng Sobrang Populasyon</h4>
                             <div className={helpstyle.indicatorsGrid}>
                                 <div className={helpstyle.indicatorCard}>
-                                    <div className={helpstyle.indicatorIcon}>🏘️</div>
+                                    <div className={helpstyle.indicatorIcon}><BsBuildingFillExclamation size={30} /> </div>
                                     <h5>Urban Overcrowding</h5>
                                     <ul>
                                         <li>Mga slum areas na lumalaki</li>
