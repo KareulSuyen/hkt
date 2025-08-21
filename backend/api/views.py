@@ -103,7 +103,6 @@ class AIAPIView(APIView):
     ],
     "max_tokens": 250
 }
-        
         print(f"Request URL: {settings.AI_API_BASE_URL}/chat/completions")
         print(f"Model: {settings.AI_MODEL}")
         print(f"Authorization header: Bearer {api_key[:10]}..." if api_key else "No API key")
