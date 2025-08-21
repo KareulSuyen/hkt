@@ -429,7 +429,7 @@
   border-left: 4px solid;
   
   &.primary {
-    border-left-color: #032f75;
+    border: none;
     
     .statValue {
       color: #93c5fd;
@@ -437,7 +437,7 @@
   }
   
   &.success {
-    border-left-color: #005035;
+    border: none;
     
     .statValue {
       color: #03d1e8;
@@ -445,7 +445,7 @@
   }
   
   &.warning {
-    border-left-color: #562d68;
+    border: none;
     
     .statValue {
       color: #6e56c6;
