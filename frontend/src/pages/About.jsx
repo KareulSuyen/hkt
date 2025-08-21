@@ -116,7 +116,7 @@ const AboutUs = () => {
               </p>
               <div className={styles.projectLinks}>
                 <a 
-                  href="https://github.com/your-team/project-repo" 
+                  href="https://github.com/greysuyen/hkktn" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className={styles.projectLink}
