@@ -6,11 +6,16 @@ import { useState, useRef, useEffect } from 'react';
 import { sendPrompt } from '../api';
 import { IoIosSend } from "react-icons/io";
 import { FaRobot } from "react-icons/fa";
+import ReportIssueForm from '../components/ReportIssueForm';
 
 
 const Layout = () => {
     const [open, setOpen] = useState(false);
     
+    const [isReportIssueOpen, setIsReportIssueOpen] = useState(false);
+    const handleOpenReportIssue = () => setIsReportIssueOpen(true);
+    const handleCloseReportIssue = () => setIsReportIssueOpen(false);
+        
     const [prompt, setPrompt] = useState('');
     const [history, setHistory] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -119,7 +124,16 @@ const Layout = () => {
                 toggleProfile={toggleProfile}
                 onGuidelinesClick={handleGuidelinesRequest}
             />
-            <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+            <ReportIssueForm 
+                isOpen={isReportIssueOpen} 
+                onClose={handleCloseReportIssue} 
+            />
+
+            <Sidebar 
+                isSidebarOpen={isSidebarOpen} 
+                toggleSidebar={toggleSidebar} 
+                onOpenReportIssue={handleOpenReportIssue}
+            />
             <main>
                 <Outlet />
             </main>

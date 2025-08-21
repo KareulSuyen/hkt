@@ -68,4 +68,47 @@ export const sendPrompt = async (prompt) => {
   }
 };
 
+export const submitIssueReport = async (reportData) => {
+  try {
+    console.log('Submitting issue report:', reportData);
+    
+    const response = await axios.post(`${API_BASE_URL}/report-issue/`, reportData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      timeout: 30000,
+    });
+
+    console.log('Report submission response:', response.data);
+    return response.data;
+    
+  } catch (error) {
+    console.error('Report submission error:', error);
+    
+    if (error.response) {
+      console.error('Error Status:', error.response.status);
+      console.error('Error Data:', error.response.data);
+      
+      let errorMsg = 'Failed to submit report';
+      
+      if (error.response.data?.error) {
+        errorMsg = error.response.data.error;
+      } else if (error.response.data) {
+        const errors = Object.values(error.response.data).flat().join(', ');
+        errorMsg = errors || errorMsg;
+      }
+      
+      throw new Error(errorMsg);
+      
+    } else if (error.request) {
+      console.error('Network Error - No response received:', error.request);
+      throw new Error('Network Error: No response from server');
+      
+    } else {
+      console.error('Request Setup Error:', error.message);
+      throw new Error(`Request Error: ${error.message}`);
+    }
+  }
+};
+
 export default api;
