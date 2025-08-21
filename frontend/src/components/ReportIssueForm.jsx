@@ -51,20 +51,12 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                 message: response.message || 'Report submitted successfully!'
             });
             
-            // Clear form after successful submission
             setFormData({
                 name: '',
                 email: '',
                 error_type: 'bugs',
                 message: ''
             });
-            
-            // Auto close after 3 seconds
-            setTimeout(() => {
-                onClose();
-                setSubmitStatus(null);
-            }, 3000);
-            
         } catch (error) {
             console.error('Report submission error:', error);
             setSubmitStatus({
@@ -93,7 +85,6 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
         <div className="report-issue-modal-overlay">
             <div className="report-issue-modal-container">
                 <div className="report-issue-modal">
-                    {/* Header */}
                     <div className="modal-header">
                         <div className="header-content">
                             <div className="header-icon">
@@ -113,9 +104,7 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                         </button>
                     </div>
 
-                    {/* Content */}
                     <div className="modal-content">
-                        {/* Status Message */}
                         {submitStatus && (
                             <div className={`status-message ${submitStatus.type}`}>
                                 {submitStatus.type === 'success' ? (
@@ -127,9 +116,7 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                             </div>
                         )}
 
-                        {/* Form */}
                         <form onSubmit={handleSubmit} className="issue-form">
-                            {/* Name Field */}
                             <div className="form-field">
                                 <label>Name *</label>
                                 <input
@@ -144,7 +131,6 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                                 />
                             </div>
 
-                            {/* Email Field */}
                             <div className="form-field">
                                 <label>Email *</label>
                                 <input
@@ -159,7 +145,6 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                                 />
                             </div>
 
-                            {/* Issue Type */}
                             <div className="form-field">
                                 <label>Type of Issue *</label>
                                 <div className="category-grid">
@@ -182,7 +167,6 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                                 </div>
                             </div>
 
-                            {/* Message Field */}
                             <div className="form-field">
                                 <label>Message *</label>
                                 <textarea
@@ -197,7 +181,6 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                                 />
                             </div>
 
-                            {/* Actions */}
                             <div className="form-actions">
                                 <button
                                     type="button"
@@ -265,7 +248,6 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                     border: 1px solid rgba(255, 255, 255, 0.1);
                 }
                 
-                /* Header */
                 .modal-header {
                     background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
                     padding: 1.5rem;
@@ -334,14 +316,12 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                     opacity: 0.5;
                 }
                 
-                /* Content */
                 .modal-content {
                     padding: 1.5rem;
                     max-height: 70vh;
                     overflow-y: auto;
                 }
                 
-                /* Status Message */
                 .status-message {
                     display: flex;
                     align-items: flex-start;
@@ -370,7 +350,6 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                     flex: 1;
                 }
                 
-                /* Form */
                 .issue-form {
                     display: flex;
                     flex-direction: column;
@@ -415,7 +394,6 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                     line-height: 1.5;
                 }
                 
-                /* Category Grid */
                 .category-grid {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);

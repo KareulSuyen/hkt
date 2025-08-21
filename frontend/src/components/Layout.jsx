@@ -92,7 +92,6 @@ const Layout = () => {
         }
     };
     
-    // Function to handle guidelines request
     const handleGuidelinesRequest = () => {
         setOpen(true);
         setTimeout(() => {
