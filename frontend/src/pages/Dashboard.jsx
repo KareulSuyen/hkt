@@ -237,28 +237,6 @@ const Dashboard = () => {
       ],
       regionalData: [
         {
-          region: "Africa",
-          population: "1.4B",
-          growth: "+2.4%",
-          density: "45/km²",
-          urbanization: "43%",
-          medianAge: "19.7",
-          projection2050: "2.5B",
-          flag: <FaEarthAfrica  size={25} />,
-          status: "rapid-growth"
-        },
-        {
-          region: "Asia",
-          population: "4.6B",
-          growth: "+0.7%",
-          density: "150/km²",
-          urbanization: "51%",
-          medianAge: "32.1",
-          projection2050: "5.3B",
-          flag: <FaEarthAsia size={25} />,
-          status: "moderate-growth"
-        },
-        {
           region: "Europe",
           population: "745M",
           growth: "-0.1%",
@@ -279,7 +257,29 @@ const Dashboard = () => {
           projection2050: "425M",
           flag: <FaGlobeAmericas size={25} />,
           status: "stable"
-        }
+        },
+        {
+          region: "Asia",
+          population: "4.6B",
+          growth: "+0.7%",
+          density: "150/km²",
+          urbanization: "51%",
+          medianAge: "32.1",
+          projection2050: "5.3B",
+          flag: <FaEarthAsia size={25} />,
+          status: "moderate-growth"
+        },
+        {
+          region: "Africa",
+          population: "1.4B",
+          growth: "+2.4%",
+          density: "45/km²",
+          urbanization: "43%",
+          medianAge: "19.7",
+          projection2050: "2.5B",
+          flag: <FaEarthAfrica  size={25} />,
+          status: "rapid-growth"
+        },
       ],
       pressurePoints: [
         {
@@ -410,15 +410,26 @@ const Dashboard = () => {
       ],
       regionalData: [
         {
-          region: "Africa",
-          population: "1.4B",
-          growth: "+2.4%",
-          density: "45/km²",
-          urbanization: "43%",
-          medianAge: "19.7",
-          projection2050: "2.5B",
-          flag: <FaEarthAfrica  size={25} />,
-          status: "rapid-growth"
+          region: "Europe",
+          population: "745M",
+          growth: "-0.1%",
+          density: "34/km²",
+          urbanization: "75%",
+          medianAge: "43.1",
+          projection2050: "715M",
+          flag: <FaEarthEurope size={25} />,
+          status: "declining"
+        },
+        {
+          region: "North America",
+          population: "580M",
+          growth: "+0.6%",
+          density: "20/km²",
+          urbanization: "82%",
+          medianAge: "38.5",
+          projection2050: "425M",
+          flag: <FaGlobeAmericas size={25} />,
+          status: "stable"
         },
         {
           region: "Asia",
@@ -432,27 +443,16 @@ const Dashboard = () => {
           status: "moderate-growth"
         },
         {
-          region: "Europe",
-          population: "745M",
-          growth: "-0.1%",
-          density: "34/km²",
-          urbanization: "75%",
-          medianAge: "43.1",
-          projection2050: "715M",
-          flag: <FaEarthEurope size={25}/>,
-          status: "declining"
+          region: "Africa",
+          population: "1.4B",
+          growth: "+2.4%",
+          density: "45/km²",
+          urbanization: "43%",
+          medianAge: "19.7",
+          projection2050: "2.5B",
+          flag: <FaEarthAfrica  size={25} />,
+          status: "rapid-growth"
         },
-        {
-          region: "North America",
-          population: "580M",
-          growth: "+0.6%",
-          density: "20/km²",
-          urbanization: "82%",
-          medianAge: "38.5",
-          projection2050: "425M",
-          flag: <FaGlobeAmericas size={25} />,
-          status: "stable"
-        }
       ],
       pressurePoints: [
         {
