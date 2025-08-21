@@ -321,12 +321,6 @@ const Dashboard = () => {
           icon: "🏗️"
         },
         {
-          initiative: "Renewable Energy Transition",
-          description: "Shifting to clean energy sources to reduce per-capita environmental impact",
-          progress: 38,
-          icon: "⚡"
-        },
-        {
           initiative: "Family Planning Programs",
           description: "Supporting reproductive health and family planning worldwide",
           progress: 65,
@@ -492,12 +486,6 @@ const Dashboard = () => {
           description: "Paglikha ng compact, resource-efficient na mga lungsod na may green infrastructure",
           progress: 42,
           icon: "🏗️"
-        },
-        {
-          initiative: "Renewable Energy Transition",
-          description: "Paglipat sa mga malinis na pinagkukunan ng enerhiya upang mabawasan ang environmental impact",
-          progress: 38,
-          icon: "⚡"
         },
         {
           initiative: "Family Planning Programs",
