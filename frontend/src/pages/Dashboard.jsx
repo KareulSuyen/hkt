@@ -323,7 +323,7 @@ const Dashboard = () => {
         },
         {
           initiative: "Family Planning Programs",
-          description: "Supporting reproductive job, health, and family planning worldwide.",
+          description: "Supporting reproductive job, health, and family planning all around the world .",
           progress: 65,
           icon: <MdOutlineFamilyRestroom size={35} />
         }
