@@ -10,6 +10,7 @@ import { FaEarthEurope,FaEarthAfrica, FaBuildingUser } from "react-icons/fa6";
 import { IoPeople } from "react-icons/io5";
 import { MdOutlineEmojiPeople } from "react-icons/md";
 import { GiPlantSeed, GiThermometerHot } from "react-icons/gi";
+import { LuConstruction } from "react-icons/lu";
 
 
 const Dashboard = () => {
@@ -318,7 +319,7 @@ const Dashboard = () => {
           initiative: "Sustainable Urban Planning",
           description: "Creating compact, resource-efficient cities with green infrastructure.",
           progress: 42,
-          icon: "🏗️"
+          icon: <LuConstruction size={35} />
         },
         {
           initiative: "Family Planning Programs",
@@ -485,7 +486,7 @@ const Dashboard = () => {
           initiative: "Sustainable Urban Planning",
           description: "Paglikha ng compact, resource-efficient na mga lungsod na may green infrastructure.",
           progress: 42,
-          icon: "🏗️"
+          icon: <LuConstruction size={35} />
         },
         {
           initiative: "Family Planning Programs",
