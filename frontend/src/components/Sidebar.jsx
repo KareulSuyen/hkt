@@ -78,10 +78,14 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 </div>  
                 <div className={sidebarstyle['sidebar-links']}>
                     <NavLink to='#' className={setActive}>Test Link</NavLink>
-                    <NavLink to='#' className={setActive}>Test Link</NavLink>
                     <NavLink to='#' className={setActive}><MdOutlineQuiz size={28}/>Quiz</NavLink>
+                    <NavLink to='#' className={setActive}>Test Link</NavLink>
                 </div>
             </aside>
+
+            <footer>
+                <a href="#">@2025 Spcc hackathon</a>
+            </footer>
         </>
     );
 };
