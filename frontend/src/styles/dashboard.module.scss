@@ -432,7 +432,7 @@
     border: none;
     
     .statValue {
-      color: #93c5fd;
+      color: #688eba;
     }
   }
   
@@ -440,7 +440,7 @@
     border: none;
     
     .statValue {
-      color: #03d1e8;
+      color: #0e99a9;
     }
   }
   
@@ -448,7 +448,7 @@
     border: none;
     
     .statValue {
-      color: #6e56c6;
+      color: #513f91;
     }
   }
 
@@ -536,19 +536,19 @@
   flex-direction: column;
 
   &.rapid-growth {
-    border-left-color: #632222;
+    border: none;
   }
   
   &.moderate-growth {
-    border-left-color: #00566c;
+    border: none;
   }
   
   &.declining {
-    border-left-color: #555a60;
+    border: none;
   }
   
   &.stable {
-    border-left-color: #004f0e;
+    border: none;
   }
 
   .regionHeader {
