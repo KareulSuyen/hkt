@@ -4,6 +4,7 @@ import sidebarstyle from '../styles/sidebar.module.scss';
 import { TbLayoutSidebarRightExpandFilled } from "react-icons/tb";
 import { MdOutlineQuiz } from "react-icons/md";
 import spcc from '/images/spcc-bg.png'
+import { FaUsers } from "react-icons/fa";
 
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
@@ -77,9 +78,24 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                     </button>
                 </div>  
                 <div className={sidebarstyle['sidebar-links']}>
-                    <NavLink to='#' className={setActive}>Test Link</NavLink>
-                    <NavLink to='#' className={setActive}><MdOutlineQuiz size={28}/>Quiz</NavLink>
-                    <NavLink to='#' className={setActive}>Test Link</NavLink>
+                    <div className={sidebarstyle['quiz-tab']}>
+                            <MdOutlineQuiz size={25} className={sidebarstyle['sidebar-icon']} />
+                        <NavLink to='#' className={setActive}>
+                            Quiz
+                        </NavLink>
+                    </div>
+                    <div className={sidebarstyle['about-tab']}>
+                            <FaUsers size={25} className={sidebarstyle['sidebar-icon']} />
+                        <NavLink to='#' className={setActive}>
+                            About Us
+                        </NavLink>
+                    </div>
+                    <div className={sidebarstyle['quiz-tab']}>
+                            <MdOutlineQuiz size={25}/>
+                        <NavLink to='#' className={setActive}>
+                            Quiz
+                        </NavLink>
+                    </div>
                 </div>
 
                 <footer className={sidebarstyle.footer}>
