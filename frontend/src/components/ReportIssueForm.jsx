@@ -379,7 +379,7 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                 
                 .form-field {
                     display: flex;
-                    flexDirection: column;
+                    flex-direction: column;
                     gap: 0.5rem;
                 }
                 
@@ -444,9 +444,10 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                 }
                 
                 .category-button.selected {
-                    background: rgba(59, 130, 246, 0.1);
+                    background: rgba(59, 130, 246, 0.2);
                     border-color: #3b82f6;
                     color: #f8fafc;
+                    box-shadow: 0 0 0 1px #3b82f6;
                 }
                 
                 .category-button:disabled {
