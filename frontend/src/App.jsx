@@ -1,6 +1,7 @@
 import { ACCESS_TOKEN, REFRESH_TOKEN } from './constants';
 import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from './pages/Dashboard';
+import Quiz from './pages/Quiz';
 import Help from './pages/Help';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -10,6 +11,7 @@ import Layout from './components/Layout';
 import Introduction from './pages/Introduction';
 import ScrollManager from './components/ScrollManager';
 import { useEffect } from 'react';
+
 
 const handleLogout = () => {
   localStorage.removeItem(ACCESS_TOKEN);
@@ -66,6 +68,7 @@ const App = () => {
         >
           <Route path='/' index element={<Dashboard />} />
           <Route path='help' element={<Help />} /> 
+          <Route path='quiz' element={<Quiz />} /> -
         </Route>
         <Route path='/logout' element={<Logout />} />
         <Route path='*' element={<Notfound />} />

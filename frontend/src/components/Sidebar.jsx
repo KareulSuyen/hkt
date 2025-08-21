@@ -5,16 +5,9 @@ import { TbLayoutSidebarRightExpandFilled } from "react-icons/tb";
 import { MdOutlineQuiz } from "react-icons/md";
 import spcc from '/images/spcc-bg.png'
 import { FaUsers } from "react-icons/fa";
-import { MdBugReport } from "react-icons/md";
 
 
-const Sidebar = ({ isSidebarOpen, toggleSidebar, onOpenReportIssue }) => {
-    const handleReportIssueClick = (e) => {
-        e.preventDefault();
-        onOpenReportIssue();
-        toggleSidebar();
-    };
-    
+const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
     const sidebarRef = useRef(null);
     const scrollPositionRef = useRef(0);
     
@@ -87,7 +80,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, onOpenReportIssue }) => {
                 <div className={sidebarstyle['sidebar-links']}>
                     <div className={sidebarstyle['quiz-tab']}>
                             <MdOutlineQuiz size={25} className={sidebarstyle['sidebar-icon']} />
-                        <NavLink to='#' className={setActive}>
+                        <NavLink to='/quiz' className={setActive} onClick={toggleSidebar}>
                             Quiz
                         </NavLink>
                     </div>
@@ -98,13 +91,9 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, onOpenReportIssue }) => {
                         </NavLink>
                     </div>
                     <div className={sidebarstyle['quiz-tab']}>
-                        <MdBugReport size={25} className={sidebarstyle['sidebar-icon']} />
-                        <NavLink 
-                            to='#' 
-                            className={setActive}
-                            onClick={handleReportIssueClick}
-                        >
-                            Report an Issue
+                            <MdOutlineQuiz size={25}/>
+                        <NavLink to='#' className={setActive}>
+                            Quiz
                         </NavLink>
                     </div>
                 </div>
