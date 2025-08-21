@@ -30,7 +30,6 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
 
             scrollPositionRef.current = window.scrollY || window.pageYOffset;
             
-            document.body.style.position = 'fixed';
             document.body.style.top = `-${scrollPositionRef.current}px`;
             document.body.style.left = '0';
             document.body.style.right = '0';

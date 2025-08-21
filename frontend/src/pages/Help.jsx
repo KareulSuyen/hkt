@@ -19,7 +19,6 @@ import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { GoNorthStar } from "react-icons/go";
 
 
-
 const VisualCard = ({ image, title, description }) => {
     return (
         <div className={helpstyle.visualCard}>
