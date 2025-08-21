@@ -5,7 +5,7 @@ import { CiLogout } from "react-icons/ci";
 import { TbArrowGuide } from "react-icons/tb";
 
 
-const Profile = ({ isProfileOpen, toggleProfile, onGuidelinesClick }) => {
+const Profile = ({ isProfileOpen, toggleProfile, onGuidelinesClick }) => { {/* Hulaan mo~~~ :> */}
     const navigate = useNavigate();
 
     const handleLogout = () => {

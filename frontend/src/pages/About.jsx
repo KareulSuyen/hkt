@@ -45,12 +45,10 @@ const AboutUs = () => {
   return (
     <section className={styles.aboutSection}>
       <div className={styles.container}>
-        {/* Hero Image Container */}
         <div className={styles.imageContainer}>
-          {/* Image will be added here later */}
+          {/* Image hehhehehehe */}
         </div>
 
-        {/* About Us Content */}
         <div className={styles.aboutContent}>
           <h2 className={styles.sectionTitle}>About Us</h2>
           <p className={styles.description}>
@@ -62,7 +60,7 @@ const AboutUs = () => {
           </p>
         </div>
 
-        {/* Team Members */}
+        {/* Boneng's Employers */}
         <div className={styles.teamSection}>
           <h3 className={styles.teamTitle}>Our Team</h3>
           <div className={styles.teamGrid}>
@@ -106,7 +104,6 @@ const AboutUs = () => {
           </div>
         </div>
 
-        {/* Hackathon Project Container */}
         <div className={styles.projectSection}>
           <h3 className={styles.projectTitle}>Current Project</h3>
           <div className={styles.projectCard}>

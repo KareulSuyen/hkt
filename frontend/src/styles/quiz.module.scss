@@ -1,7 +1,5 @@
-// quiz.module.scss - Improved Dark Theme
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-// Color Variables
 $bg-primary: #0f0f0f;
 $bg-secondary: #1a1a1a;
 $bg-tertiary: #2d2d2d;
@@ -22,8 +20,8 @@ $extreme: #8b5cf6;
 
 @mixin card-hover {
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -32,9 +30,13 @@ $extreme: #8b5cf6;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .quizContainer {
   min-height: 100vh;
-  background: linear-gradient(135deg, $bg-primary 0%, #1a1a1a 50%, #0f0f0f 100%);
+  background: linear-gradient(135deg, $bg-primary 0%, #1a1a1a 100%);
   color: $text-primary;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   padding: 2rem;
@@ -45,71 +47,52 @@ $extreme: #8b5cf6;
 }
 
 .difficultySelection {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   text-align: center;
 }
 
 .title {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
   background: linear-gradient(135deg, $text-primary 0%, $text-secondary 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.02em;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 }
 
 .subtitle {
   font-size: 1.1rem;
   color: $text-secondary;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.6;
 }
 
 .difficultyGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 1rem;
-  
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(4, minmax(250px, 1fr));
-    gap: 1rem;
-  }
-  
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-  
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-    gap: 1rem;
-  }
 }
 
 .difficultyCard {
   @include glass-effect;
-  padding: 2rem 1.5rem;
-  border-radius: 20px;
+  padding: 2rem;
+  border-radius: 16px;
   cursor: pointer;
   @include smooth-transition;
   @include card-hover;
   text-align: center;
   position: relative;
   overflow: hidden;
-  min-height: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   
   &::before {
     content: '';
@@ -117,129 +100,66 @@ $extreme: #8b5cf6;
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: var(--accent-gradient);
+    height: 4px;
+    background: var(--accent-color);
     transform: scaleX(0);
-    transform-origin: left;
-    @include smooth-transition(transform, 0.4s);
-    border-radius: 20px 20px 0 0;
+    @include smooth-transition(transform);
   }
   
-  &::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border-radius: 22px;
-    opacity: 0;
-    z-index: -1;
-    @include smooth-transition(opacity, 0.3s);
-  }
-  
-  &:hover {
-    border-color: transparent;
-    
-    &::before {
-      transform: scaleX(1);
-    }
-    
-    &::after {
-      opacity: 0.2;
-    }
+  &:hover::before {
+    transform: scaleX(1);
   }
   
   &.easy {
     --accent-color: #{$easy};
-    --accent-gradient: linear-gradient(135deg, #{$easy}, #{lighten($easy, 10%)});
   }
   
   &.medium {
     --accent-color: #{$medium};
-    --accent-gradient: linear-gradient(135deg, #{$medium}, #{lighten($medium, 10%)});
   }
   
   &.hard {
     --accent-color: #{$hard};
-    --accent-gradient: linear-gradient(135deg, #{$hard}, #{lighten($hard, 10%)});
   }
   
   &.extreme {
     --accent-color: #{$extreme};
-    --accent-gradient: linear-gradient(135deg, #{$extreme}, #{lighten($extreme, 10%)});
   }
   
   h3 {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     margin: 1rem 0 0.5rem 0;
     color: var(--accent-color);
-    letter-spacing: -0.01em;
   }
   
   p {
     color: $text-secondary;
     margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-    line-height: 1.5;
   }
 }
 
-// IMPROVED: Better icon styling
 .difficultyIcon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: var(--accent-color);
-  display: inline-block;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  @include smooth-transition(transform, 0.3s);
-  
-  .difficultyCard:hover & {
-    transform: scale(1.1) rotate(5deg);
-  }
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
-// IMPROVED: Better stats layout
 .difficultyStats {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  margin-top: auto;
+  gap: 0.5rem;
   
   span {
-    background: rgba(255, 255, 255, 0.08);
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
     color: $text-secondary;
-    font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    @include smooth-transition;
-    
-    &:hover {
-      background: rgba(255, 255, 255, 0.12);
-      color: $text-primary;
-    }
-    
-    // Icons for stats
-    &:first-child::before {
-      content: "📝 ";
-      margin-right: 0.5rem;
-    }
-    
-    &:last-child::before {
-      content: "⏱️ ";
-      margin-right: 0.5rem;
-    }
   }
 }
 
-// Quiz Header (keeping your existing styles with minor improvements)
 .quizHeader {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto 2rem auto;
   display: flex;
   justify-content: space-between;
@@ -260,24 +180,20 @@ $extreme: #8b5cf6;
 .progressBar {
   background: $bg-tertiary;
   height: 8px;
-  border-radius: 6px;
+  border-radius: 4px;
   overflow: hidden;
   margin-bottom: 0.5rem;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .progressFill {
   height: 100%;
-  @include smooth-transition(width, 0.6s);
-  border-radius: 6px;
-  background: linear-gradient(90deg, #4f46e5, #7c3aed);
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+  @include smooth-transition(width, 0.5s);
+  border-radius: 4px;
 }
 
 .progressText {
   font-size: 0.9rem;
   color: $text-secondary;
-  font-weight: 500;
 }
 
 .statsSection {
@@ -288,7 +204,6 @@ $extreme: #8b5cf6;
   @media (max-width: 768px) {
     justify-content: center;
     width: 100%;
-    flex-wrap: wrap;
   }
 }
 
@@ -300,72 +215,53 @@ $extreme: #8b5cf6;
   color: white;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .scoreDisplay {
   font-weight: 600;
   color: $text-primary;
-  padding: 0.5rem 1rem;
-  background: rgba(79, 70, 229, 0.1);
-  border-radius: 12px;
-  border: 1px solid rgba(79, 70, 229, 0.3);
 }
 
 .timer {
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 1rem;
   background: $bg-tertiary;
-  border-radius: 12px;
+  border-radius: 8px;
   font-weight: 600;
   @include smooth-transition;
-  border: 1px solid $border;
   
   &.urgent {
-    background: linear-gradient(135deg, $hard, darken($hard, 10%));
+    background: $hard;
     color: white;
     animation: pulse 1s infinite;
-    border-color: $hard;
-    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
   }
 }
 
 @keyframes pulse {
-  0%, 100% { 
-    transform: scale(1);
-    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
-  }
-  50% { 
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5);
-  }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
-// Question Container (keeping existing with improvements)
 .questionContainer {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
   @include glass-effect;
-  padding: 3rem;
-  border-radius: 24px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  padding: 2.5rem;
+  border-radius: 20px;
   
   @media (max-width: 768px) {
-    padding: 2rem;
-    margin: 0 1rem;
+    padding: 1.5rem;
   }
 }
 
 .question {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
   line-height: 1.4;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   color: $text-primary;
   text-align: center;
-  letter-spacing: -0.01em;
 }
 
-// Options (keeping existing with minor improvements)
 .optionsContainer {
   display: grid;
   gap: 1rem;
@@ -376,10 +272,10 @@ $extreme: #8b5cf6;
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1.5rem;
+  padding: 1.2rem;
   background: $bg-secondary;
   border: 2px solid $border;
-  border-radius: 16px;
+  border-radius: 12px;
   cursor: pointer;
   @include smooth-transition;
   text-align: left;
@@ -388,28 +284,24 @@ $extreme: #8b5cf6;
   
   &:hover:not(:disabled) {
     border-color: $border-hover;
-    background: lighten($bg-secondary, 5%);
-    transform: translateX(4px);
+    background: lighten($bg-secondary, 3%);
   }
   
   &.selected {
     border-color: #4f46e5;
-    background: rgba(79, 70, 229, 0.15);
-    box-shadow: 0 4px 16px rgba(79, 70, 229, 0.2);
+    background: rgba(79, 70, 229, 0.1);
   }
   
   &.correctAnswer {
     border-color: $easy;
-    background: rgba($easy, 0.15);
+    background: rgba($easy, 0.1);
     color: $easy;
-    box-shadow: 0 4px 16px rgba($easy, 0.2);
   }
   
   &.wrongAnswer {
     border-color: $hard;
-    background: rgba($hard, 0.15);
+    background: rgba($hard, 0.1);
     color: $hard;
-    box-shadow: 0 4px 16px rgba($hard, 0.2);
   }
   
   &:disabled {
@@ -418,41 +310,37 @@ $extreme: #8b5cf6;
 }
 
 .optionLetter {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: $bg-tertiary;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+  font-weight: 600;
   flex-shrink: 0;
-  font-size: 0.9rem;
 }
 
 .optionText {
   flex: 1;
-  font-weight: 500;
 }
 
-// Rest of your styles remain the same but with minor enhancements...
 .explanationContainer {
-  background: rgba(79, 70, 229, 0.08);
-  border: 1px solid rgba(79, 70, 229, 0.3);
-  border-radius: 16px;
+  background: rgba(79, 70, 229, 0.05);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+  border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 2rem;
   
   h3 {
     color: #8b5cf6;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     font-size: 1.1rem;
-    font-weight: 600;
   }
   
   p {
     color: $text-secondary;
-    line-height: 1.6;
+    line-height: 1.5;
     margin: 0;
   }
 }
@@ -462,21 +350,20 @@ $extreme: #8b5cf6;
 }
 
 .submitButton, .nextButton {
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  background: #4f46e5;
   color: white;
   border: none;
-  padding: 1.25rem 2.5rem;
-  border-radius: 16px;
+  padding: 1rem 2rem;
+  border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   @include smooth-transition;
   min-width: 200px;
-  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
   
   &:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(79, 70, 229, 0.4);
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
   }
   
   &:disabled {
@@ -487,35 +374,224 @@ $extreme: #8b5cf6;
   }
 }
 
+.resultsContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
 
-@media (max-width: 1024px) {
-  .difficultyCard {
-    min-height: 280px;
-    padding: 1.5rem;
+.resultsHeader {
+  @include glass-effect;
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+}
+
+.resultsTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: $text-primary;
+}
+
+.scoreDisplay {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: $bg-secondary;
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  border: 3px solid;
+  margin-bottom: 1rem;
+  
+  .scoreNumber {
+    font-size: 3rem;
+    font-weight: 700;
   }
   
-  .difficultyIcon {
-    font-size: 2rem;
-    padding: 0.75rem;
+  .scoreTotal {
+    font-size: 1.5rem;
+    color: $text-secondary;
   }
 }
 
-@media (max-width: 480px) {
-  .quizContainer {
-    padding: 0.5rem;
+.scorePercentage {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: $text-primary;
+}
+
+.scoreMessage {
+  font-size: 1.1rem;
+  color: $text-secondary;
+  margin: 0;
+}
+
+.reviewSection {
+  @include glass-effect;
+  padding: 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  text-align: left;
+  
+  h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: $text-primary;
+  }
+}
+
+.reviewItem {
+  background: $bg-secondary;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.questionNumber {
+  color: #8b5cf6;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.reviewItem h4 {
+  color: $text-primary;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.answerComparison {
+  margin-bottom: 1rem;
+}
+
+.answerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  
+  span:first-child {
+    color: $text-secondary;
+    font-weight: 500;
+  }
+  
+  span:last-child {
+    font-weight: 600;
+    
+    &.correct {
+      color: $easy;
+    }
+    
+    &.incorrect {
+      color: $hard;
+    }
+  }
+}
+
+.explanation {
+  background: rgba(139, 92, 246, 0.05);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  color: $text-secondary;
+  font-style: italic;
+  margin: 0;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.restartButton, .newDifficultyButton {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  @include smooth-transition;
+  min-width: 160px;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.restartButton {
+  background: $bg-tertiary;
+  color: $text-primary;
+  border: 2px solid $border;
+  
+  &:hover {
+    border-color: $border-hover;
+    background: lighten($bg-tertiary, 5%);
+  }
+}
+
+.newDifficultyButton {
+  color: white;
+  border: 2px solid transparent;
+}
+
+@media (max-width: 768px) {
+  .difficultyGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   .difficultyCard {
-    min-height: 250px;
-    padding: 1.25rem;
+    padding: 1.5rem;
   }
   
-  .title {
-    margin-bottom: 0.75rem;
+  .questionContainer {
+    margin: 0 -0.5rem;
   }
   
-  .subtitle {
-    margin-bottom: 2rem;
-    font-size: 1rem;
+  .question {
+    font-size: 1.2rem;
+  }
+  
+  .optionButton {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .resultsHeader {
+    padding: 2rem 1rem;
+  }
+  
+  .scoreDisplay {
+    padding: 1.5rem 2rem;
+    
+    .scoreNumber {
+      font-size: 2rem;
+    }
+    
+    .scoreTotal {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .quizContainer {
+    color-scheme: dark;
   }
 }

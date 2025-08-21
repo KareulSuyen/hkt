@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from api.views import ReportIssueView  # Import the view directly
+from api.views import ReportIssueView 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -15,5 +15,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include('api.urls')),
     path('ai/', include('api.urls')),
-    path('report-issue/', ReportIssueView.as_view(), name='report-issue'),  # Add this line
+    path('report-issue/', ReportIssueView.as_view(), name='report-issue'), 
 ]

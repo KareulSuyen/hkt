@@ -154,7 +154,6 @@ const Quiz = () => {
 
   const currentQuestions = difficulty ? quizQuestions[difficulty] : [];
 
-  // Timer effect
   useEffect(() => {
     if (difficulty && !quizCompleted && !showExplanation && timeLeft > 0) {
       const timer = setTimeout(() => {
@@ -188,7 +187,6 @@ const Quiz = () => {
 
   const handleNextQuestion = () => {
     if (showExplanation) {
-      // Move to next question
       const newAnswers = [...answers, selectedAnswer];
       setAnswers(newAnswers);
       
@@ -205,7 +203,6 @@ const Quiz = () => {
         setQuizCompleted(true);
       }
     } else {
-      // Show explanation
       setShowExplanation(true);
     }
   };
@@ -354,14 +351,7 @@ const Quiz = () => {
               className={styles.restartButton}
               onClick={restartQuiz}
             >
-              Subukan Muli
-            </button>
-            <button 
-              className={styles.newDifficultyButton}
-              onClick={() => startQuiz(difficulty)}
-              style={{ backgroundColor: getDifficultyColor() }}
-            >
-              Same Difficulty
+              Exit
             </button>
           </div>
         </div>
