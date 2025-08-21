@@ -134,28 +134,28 @@
   
   &:nth-child(1) { 
     background: linear-gradient(135deg, #333 0%, #24292e 100%);
-    
+    transform: scale(1.1);
+
     &:hover {
       background: linear-gradient(135deg, #24292e 0%, #000 100%);
-      transform: scale(1.1);
     }
   }
   
   &:nth-child(2) { 
     background: linear-gradient(135deg, #1877f2 0%, #42a5f5 100%);
-    
+    transform: scale(1.1);
+
     &:hover {
       background: linear-gradient(135deg, #166fe5 0%, #1877f2 100%);
-      transform: scale(1.1);
     }
   }
   
   &:nth-child(3) { 
     background: linear-gradient(135deg, #e1306c 0%, #fd1d1d 50%, #f77737 100%);
-    
+    transform: scale(1.1);
+
     &:hover {
       background: linear-gradient(135deg, #d62976 0%, #fa7e1e 50%, #feda75 100%);
-      transform: scale(1.1);
     }
   }
 }
