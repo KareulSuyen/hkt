@@ -80,7 +80,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <div className={sidebarstyle['sidebar-links']}>
                     <div className={sidebarstyle['quiz-tab']}>
                             <MdOutlineQuiz size={25} className={sidebarstyle['sidebar-icon']} />
-                        <NavLink to='/quiz' className={setActive}>
+                        <NavLink to='/quiz' className={setActive} onClick={toggleSidebar}>
                             Quiz
                         </NavLink>
                     </div>
