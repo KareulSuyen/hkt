@@ -310,19 +310,19 @@ const Dashboard = () => {
       solutionTrackers: [
         {
           initiative: "Global Education Access",
-          description: "Expanding quality education to reduce birth rates and empower communities",
+          description: "Expanding quality education to reduce birth rates and empower communities.",
           progress: 73,
           icon: "📚"
         },
         {
           initiative: "Sustainable Urban Planning",
-          description: "Creating compact, resource-efficient cities with green infrastructure",
+          description: "Creating compact, resource-efficient cities with green infrastructure.",
           progress: 42,
           icon: "🏗️"
         },
         {
           initiative: "Family Planning Programs",
-          description: "Supporting reproductive health and family planning worldwide",
+          description: "Supporting reproductive job, health, and family planning worldwide.",
           progress: 65,
           icon: "👨‍👩‍👧‍👦"
         }
@@ -350,7 +350,7 @@ const Dashboard = () => {
         solutions: "Mga Solusyon"
       },
       callToAction: "Alamin kung paano ka makakatulong",
-      dataSource: "Data mula sa UN Population Division & World Bank",
+      dataSource: "Data mula sa UN Population Division & World Bank.",
       globalStats: [
         {
           id: 'growth-rate',
@@ -358,7 +358,7 @@ const Dashboard = () => {
           value: "0.87%",
           change: "↓ 0.18% vs 2020",
           icon: <FaChartLine size={30}/>,
-          description: "Ang taunang pagtaas ng populasyon ay bumagal nang malaki",
+          description: "Ang taunang pagtaas ng populasyon ay bumagal nang malaki.",
           color: "primary"
         },
         {
@@ -367,7 +367,7 @@ const Dashboard = () => {
           value: "2.1B",
           change: "Batang workforce (15-34)",
           icon: <IoPeople size={30} />,
-          description: "Working-age population na nangunguna sa economic growth",
+          description: "Working-age population na nangunguna sa economic growth.",
           color: "success"
         },
         {
@@ -376,7 +376,7 @@ const Dashboard = () => {
           value: "771M",
           change: "↑ 65+ taong gulang",
           icon: <MdOutlineEmojiPeople size={30} />,
-          description: "Pinakamabilis na lumalaking age demographic sa mundo",
+          description: "Pinakamabilis na lumalaking age demographic sa mundo.",
           color: "warning"
         }
       ],
@@ -384,22 +384,22 @@ const Dashboard = () => {
         {
           metric: "Populasyon ng Mundo",
           value: "8.1 bilyon",
-          description: "Kasalukuyang pandaigdigang populasyon noong 2024"
+          description: "Kasalukuyang pandaigdigang populasyon noong 2024."
         },
         {
           metric: "Araw-araw na Paglaki",
           value: "+227,000",
-          description: "Net na pagtaas ng populasyon kada araw"
+          description: "Net na pagtaas ng populasyon kada araw."
         },
         {
           metric: "Taunang Paglaki",
           value: "+67 milyon",
-          description: "Net na pagtaas ng populasyon kada taon"
+          description: "Net na pagtaas ng populasyon kada taon."
         },
         {
           metric: "Inaasahang Peak",
           value: "2080s",
-          description: "Kailan maaaring mag-stabilize ang pandaigdigang populasyon"
+          description: "Kailan maaaring mag-stabilize ang pandaigdigang populasyon."
         }
       ],
       regionalData: [
@@ -477,19 +477,19 @@ const Dashboard = () => {
       solutionTrackers: [
         {
           initiative: "Global Education Access",
-          description: "Pagpapalawak ng quality education para mabawasan ang birth rates at mabigyan ng kapangyarihan ang mga komunidad",
+          description: "Pagpapalawak ng quality education para mabawasan ang birth rates.",
           progress: 73,
           icon: "📚"
         },
         {
           initiative: "Sustainable Urban Planning",
-          description: "Paglikha ng compact, resource-efficient na mga lungsod na may green infrastructure",
+          description: "Paglikha ng compact, resource-efficient na mga lungsod na may green infrastructure.",
           progress: 42,
           icon: "🏗️"
         },
         {
           initiative: "Family Planning Programs",
-          description: "Pagsuporta sa reproductive health at family planning sa buong mundo",
+          description: "Pagsuporta sa reproductive health at family planning sa buong mundo.",
           progress: 65,
           icon: "👨‍👩‍👧‍👦"
         }
