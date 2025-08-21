@@ -1,4 +1,3 @@
-# api/models.py
 from django.db import models
 
 class ReportIssue(models.Model):

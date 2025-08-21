@@ -105,8 +105,8 @@ const Layout = () => {
         }
     }, [history]);
     
+    
     {/* Boneng Malakas */}
-
     {/* Sidebar State */}
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const toggleSidebar = () => setSidebarOpen(prev => !prev);
@@ -164,7 +164,6 @@ const Layout = () => {
                 </div>
             )}
             
-            {/* AI Chatbox */}
             {open && (
                 <div
                     className="ai-chatbox"

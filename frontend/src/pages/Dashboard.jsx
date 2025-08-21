@@ -568,7 +568,6 @@ const Dashboard = () => {
             </button>
           ))}
         </nav>
-        {/* Tab Content */}
         <div className={styles.tabContent}>
           {activeTab === 'trends' && (
             <div className={styles.contentGrid}>
@@ -654,7 +653,6 @@ const Dashboard = () => {
           )}
         </div>
 
-        {/* Global Statistics */}
         <section className={`${styles.fadeIn}`} style={{ marginBottom: '3rem' }}>
           <h2 className={styles.sectionHeading}>
             {language === 'english' ? 'Global Demographics Overview' : 'Pangkalahatang-ideya ng Pandaigdigang Demograpiko'}
@@ -677,7 +675,6 @@ const Dashboard = () => {
           </div>
         </section>
 
-        {/* Regional Analysis */}
         <section className={`${styles.fadeIn}`} style={{ marginBottom: '3rem' }}>
           <h2 className={styles.sectionHeading}>
             {language === 'english' ? 'Regional Population Analysis' : 'Pagsusuri sa Rehiyonal na Populasyon'}
