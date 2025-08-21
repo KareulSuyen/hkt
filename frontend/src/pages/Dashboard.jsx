@@ -4,7 +4,7 @@ import styles from '../styles/dashboard.module.scss';
 import { SiUnitednations } from "react-icons/si";
 import overpopulationVid from '/videos/overpopulation.mp4'
 import { LuHandHelping } from "react-icons/lu";
-import { FaEarthAsia } from "react-icons/fa6";
+import { FaEarthAsia, FaBook } from "react-icons/fa6";
 import { FaGlobeAmericas, FaChartLine } from "react-icons/fa";
 import { FaEarthEurope,FaEarthAfrica, FaBuildingUser } from "react-icons/fa6";
 import { IoPeople } from "react-icons/io5";
@@ -312,7 +312,7 @@ const Dashboard = () => {
           initiative: "Global Education Access",
           description: "Expanding quality education to reduce birth rates and empower communities.",
           progress: 73,
-          icon: "📚"
+          icon: <FaBook size={35} />
         },
         {
           initiative: "Sustainable Urban Planning",
@@ -479,7 +479,7 @@ const Dashboard = () => {
           initiative: "Global Education Access",
           description: "Pagpapalawak ng quality education para mabawasan ang birth rates.",
           progress: 73,
-          icon: "📚"
+          icon: <FaBook size={35} />
         },
         {
           initiative: "Sustainable Urban Planning",
