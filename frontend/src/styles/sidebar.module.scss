@@ -37,6 +37,26 @@
         flex-direction: column;
         gap: 2rem;
     }
+
+    footer {
+        align-items: center;
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        justify-content: center;
+        padding: 10px;
+
+        a {
+            text-align: center;
+        }
+
+        img {
+            margin-right: 5px;
+            margin-top: 3px;
+            width: 22px;
+            height: 22px;
+        }
+    }
 }
 
 .open {
