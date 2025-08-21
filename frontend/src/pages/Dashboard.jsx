@@ -6,8 +6,7 @@ import overpopulationVid from '/videos/overpopulation.mp4'
 import { LuHandHelping } from "react-icons/lu";
 import { FaEarthAsia } from "react-icons/fa6";
 import { FaGlobeAmericas, FaChartLine } from "react-icons/fa";
-import { FaEarthEurope } from "react-icons/fa6";
-import { FaEarthAfrica } from "react-icons/fa6";
+import { FaEarthEurope,FaEarthAfrica, FaBuildingUser } from "react-icons/fa6";
 import { IoPeople } from "react-icons/io5";
 import { MdOutlineEmojiPeople } from "react-icons/md";
 import { GiPlantSeed } from "react-icons/gi";
@@ -297,7 +296,7 @@ const Dashboard = () => {
             { name: "Slum Population", value: "1.1B people", trend: "↑ 3.2%/year", severity: "critical" },
             { name: "Traffic Congestion Index", value: "127 (avg)", trend: "↑ 4.1%/year", severity: "high" }
           ],
-          icon: "🏙️"
+          icon: <FaBuildingUser size={35} />
         },
         {
           category: "Climate Impact",
@@ -464,7 +463,7 @@ const Dashboard = () => {
             { name: "Slum Population", value: "1.1B tao", trend: "↑ 3.2%/taon", severity: "critical" },
             { name: "Traffic Congestion Index", value: "127 (avg)", trend: "↑ 4.1%/taon", severity: "high" }
           ],
-          icon: "🏙️"
+          icon: <FaBuildingUser size={35} />
         },
         {
           category: "Epekto ng klima",
