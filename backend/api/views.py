@@ -10,7 +10,8 @@ from .models import ReportIssue
 import requests
 import json
 import logging
-
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 logger = logging.getLogger(__name__)
 
 class CreateUserViews(generics.CreateAPIView):
@@ -175,7 +176,7 @@ class ReportIssueView(generics.CreateAPIView):
     queryset = ReportIssue.objects.all()
     serializer_class = ReportIssueSerializer
     permission_classes = [AllowAny]
-    
+
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         
@@ -183,55 +184,33 @@ class ReportIssueView(generics.CreateAPIView):
             report = serializer.save()
             
             try:
-                subject = f"BonengGPT Issue Report: {report.error_type.title()}"
-                message = f"""
-                New issue report received:
+                # --- Admin Email ---
+                admin_subject = f"BonengGPT Issue Report: {report.error_type.title()}"
+                admin_html_content = render_to_string('emails/report_admin.html', {'report': report})
 
-                Name: {report.name}
-                Email: {report.email}
-                Error Type: {report.get_error_type_display()}
-                Submitted: {report.created_at.strftime('%Y-%m-%d %H:%M:%S')}
-
-                Message:
-                {report.message}
-
-                ---
-                This email was automatically generated from BonengMalakas Issue Report System.
-                """
-                
                 if hasattr(settings, 'EMAIL_HOST_USER') and settings.EMAIL_HOST_USER:
-                    send_mail(
-                        subject=subject,
-                        message=message,
+                    admin_msg = EmailMultiAlternatives(
+                        subject=admin_subject,
+                        body='',  # fallback plain text
                         from_email=settings.DEFAULT_FROM_EMAIL,
-                        recipient_list=[settings.EMAIL_HOST_USER],
-                        fail_silently=False,
+                        to=[settings.EMAIL_HOST_USER],
                     )
-                    
+                    admin_msg.attach_alternative(admin_html_content, "text/html")
+                    admin_msg.send(fail_silently=False)
+
+                    # --- User Email ---
                     user_subject = "Issue Report Received - BonengMalakas"
-                    user_message = f"""
-                    Hi {report.name},
+                    user_html_content = render_to_string('emails/report_user.html', {'report': report})
 
-                    Thank you for reporting an issue with BonengMalakas. We have received your report and will look into it.
-
-                    Your Report Details:
-                    - Type: {report.get_error_type_display()}
-                    - Submitted: {report.created_at.strftime('%Y-%m-%d %H:%M:%S')}
-
-                    We'll get back to you if we need more information.
-
-                    Best regards,
-                    BonengGPT Team
-                    """
-                    
-                    send_mail(
+                    user_msg = EmailMultiAlternatives(
                         subject=user_subject,
-                        message=user_message,
+                        body='',  # fallback plain text
                         from_email=settings.DEFAULT_FROM_EMAIL,
-                        recipient_list=[report.email],
-                        fail_silently=True,
+                        to=[report.email],
                     )
-                    
+                    user_msg.attach_alternative(user_html_content, "text/html")
+                    user_msg.send(fail_silently=True)
+
                     logger.info(f"Issue report emails sent successfully for {report.name}")
                     
                     return Response({
@@ -241,24 +220,23 @@ class ReportIssueView(generics.CreateAPIView):
                 else:
                     # Email not configured, just save to database
                     logger.info(f"Issue report saved but no email sent (email not configured) for {report.name}")
-                    
                     return Response({
                         'message': 'Issue report submitted successfully!',
                         'report_id': report.id
                     }, status=status.HTTP_201_CREATED)
-                    
+
             except BadHeaderError:
                 logger.error("Invalid header found in email")
                 return Response({
                     'message': 'Issue report saved successfully, but email notification failed.',
                     'report_id': report.id
                 }, status=status.HTTP_201_CREATED)
-                
+
             except Exception as e:
                 logger.error(f"Email sending failed: {str(e)}")
                 return Response({
                     'message': 'Issue report saved successfully, but email notification failed.',
                     'report_id': report.id
                 }, status=status.HTTP_201_CREATED)
-        
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

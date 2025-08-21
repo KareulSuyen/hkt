@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>New Issue Report</title>
+  </head>
+  <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; margin:auto; background:#ffffff; border-collapse:collapse; border-radius:8px; overflow:hidden;">
+      <!-- Header -->
+      <tr>
+        <td style="background:#ff4d4d; color:#fff; padding:20px; text-align:center; font-size:20px; font-weight:bold;">
+          🚨 New Issue Report
+        </td>
+      </tr>
+      <!-- Body -->
+      <tr>
+        <td style="padding:20px;">
+          <p><strong>Name:</strong> {{ report.name }}</p>
+          <p><strong>Email:</strong> {{ report.email }}</p>
+          <p><strong>Error Type:</strong> {{ report.get_error_type_display }}</p>
+          <p><strong>Submitted:</strong> {{ report.created_at }}</p>
+
+          <p><strong>Message:</strong></p>
+          <p style="padding:15px; background:#f9f9f9; border:1px solid #eee; border-radius:4px; line-height:1.5;">
+            {{ report.message|linebreaks }}
+          </p>
+        </td>
+      </tr>
+      <!-- Footer -->
+      <tr>
+        <td style="padding:20px; font-size:12px; color:#999; text-align:center; background:#f4f4f4;">
+          This email was automatically generated from BonengMalakas Issue Report System.
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
