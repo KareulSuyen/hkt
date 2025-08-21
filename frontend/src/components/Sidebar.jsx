@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import sidebarstyle from '../styles/sidebar.module.scss';
 import { TbLayoutSidebarRightExpandFilled } from "react-icons/tb";
 import { MdOutlineQuiz } from "react-icons/md";
+import spcc from '/images/spcc-bg.png'
 
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
@@ -81,11 +82,21 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                     <NavLink to='#' className={setActive}><MdOutlineQuiz size={28}/>Quiz</NavLink>
                     <NavLink to='#' className={setActive}>Test Link</NavLink>
                 </div>
+
+                <footer className={sidebarstyle.footer}>
+                        <p>
+                          <span>
+                          <img src={spcc} alt="spcc logo" className={sidebarstyle['spcc-logo']}/>
+                        </span>
+                          {new Date().getFullYear()}&nbsp;<span id={sidebarstyle['school-name']}>
+                          <a href='https://spcc.edu.ph/' target='blank'>
+                            SPCC&nbsp;
+                          </a>
+                        </span>
+                        Hackathon</p>
+                      </footer>
             </aside>
 
-            <footer>
-                <a href="#">@2025 Spcc hackathon</a>
-            </footer>
         </>
     );
 };
