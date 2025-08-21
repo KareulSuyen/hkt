@@ -8,8 +8,9 @@ import { FaEarthAsia, FaBook } from "react-icons/fa6";
 import { FaGlobeAmericas, FaChartLine } from "react-icons/fa";
 import { FaEarthEurope,FaEarthAfrica, FaBuildingUser } from "react-icons/fa6";
 import { IoPeople } from "react-icons/io5";
-import { MdOutlineEmojiPeople } from "react-icons/md";
+import { MdOutlineEmojiPeople, MdOutlineFamilyRestroom } from "react-icons/md";
 import { GiPlantSeed, GiThermometerHot } from "react-icons/gi";
+import { LuConstruction } from "react-icons/lu";
 
 
 const Dashboard = () => {
@@ -318,13 +319,13 @@ const Dashboard = () => {
           initiative: "Sustainable Urban Planning",
           description: "Creating compact, resource-efficient cities with green infrastructure.",
           progress: 42,
-          icon: "🏗️"
+          icon: <LuConstruction size={35} />
         },
         {
           initiative: "Family Planning Programs",
           description: "Supporting reproductive job, health, and family planning worldwide.",
           progress: 65,
-          icon: "👨‍👩‍👧‍👦"
+          icon: <MdOutlineFamilyRestroom size={35} />
         }
       ],
       chartTitles: {
@@ -485,13 +486,13 @@ const Dashboard = () => {
           initiative: "Sustainable Urban Planning",
           description: "Paglikha ng compact, resource-efficient na mga lungsod na may green infrastructure.",
           progress: 42,
-          icon: "🏗️"
+          icon: <LuConstruction size={35} />
         },
         {
           initiative: "Family Planning Programs",
           description: "Pagsuporta sa reproductive health at family planning sa buong mundo.",
           progress: 65,
-          icon: "👨‍👩‍👧‍👦"
+          icon: <MdOutlineFamilyRestroom size={35} />
         }
       ],
       chartTitles: {
