@@ -1,19 +1,23 @@
+# api/views.py
 from django.contrib.auth.models import User
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.conf import settings
-from .serializers import UserSerializer
+from django.core.mail import send_mail, BadHeaderError
+from .serializers import UserSerializer, ReportIssueSerializer
+from .models import ReportIssue
 import requests
 import json
+import logging
 
+logger = logging.getLogger(__name__)
 
 class CreateUserViews(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
-
 
 class AIAPIView(APIView):
     permission_classes = [AllowAny]
@@ -61,7 +65,7 @@ class AIAPIView(APIView):
                 "9. you can shuffle the qustions, create your questions etc. just be sure to use facts \n"
                 "10. NEVER PRINT THE USER THOUGHTS and something like AI: etc. \n"
                 "Speak like a Gen-Z Filipino — mix Tagalog and English naturally, like you're talking to your tropa. Use casual phrasing, avoid formal or textbook Tagalog. "
-                "Use expressions like 'gets', 'same', 'grabe', 'parang ganon', but don’t overdo it. Always be chill, helpful, and slightly witty."
+                "Use expressions like 'gets', 'same', 'grabe', 'parang ganon', but don't overdo it. Always be chill, helpful, and slightly witty."
                 "You are an assistant who focuses on overpopulation issues in the Philippines."
                 "Your name is BonengGPT. always call the user as SPCnian when he say Hi, Hello, or everytime he chat first. your Agenda is to advocate people about overpopulation"
                 "Your creator is Boneng Malakas. always specify when you use global population or Philippine population"
@@ -79,11 +83,11 @@ class AIAPIView(APIView):
                 "Public schools have less than 25,000 pesos budget per student per year. "
                 "FAQs: Q: Is overpopulation the problem or poor resource management? A: Both. Too many people plus poor systems create the worst combo. "
                 "Q: Why not just reduce the number of people? A: That's not ethical. The solution is education and informed choice. "
-                "Q: What if we’re rich and can support many kids? A: It helps, but still consider the environmental and social impact. "
+                "Q: What if we're rich and can support many kids? A: It helps, but still consider the environmental and social impact. "
                 "Q: How is climate change related? A: More people means more pollution, consumption, and greenhouse gas. "
                 "Instruction: You are BonengGPT, a chill and taglish-speaking AI assistant made to talk about overpopulation in the Philippines. "
                 "Use Gen-Z tone but keep it clean and simple. Avoid deep Tagalog and formal English. Do not use the term 'sobre populasyon'. "
-                "Always use 'sobrang populasyon' or 'overpopulation'. Explain like you’re talking to a friend. Be helpful, not preachy."
+                "Always use 'sobrang populasyon' or 'overpopulation'. Explain like you're talking to a friend. Be helpful, not preachy."
                 "Your model is SuperBonengGPT v1"
                 "In 2024, James Carlo Abug fell outside of a moving jeepney. there's no video about it. he's alive but its funny when you think of it so joke about it when someone asked, only talk about it when someone asked"
                 "use terms like sobrang dami ng tao sa pilipinas. avoid using misspells like sobrang damsing"
@@ -133,4 +137,100 @@ class AIAPIView(APIView):
         except Exception as e:
             print(f"Request exception: {e}")
             return Response({'error': str(e)}, status=500)
+
+class ReportIssueView(generics.CreateAPIView):
+    queryset = ReportIssue.objects.all()
+    serializer_class = ReportIssueSerializer
+    permission_classes = [AllowAny]
+    
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
         
+        if serializer.is_valid():
+            # Save to database
+            report = serializer.save()
+            
+            # Try to send email (but don't fail if email settings are not configured)
+            try:
+                subject = f"BonengGPT Issue Report: {report.error_type.title()}"
+                message = f"""
+New issue report received:
+
+Name: {report.name}
+Email: {report.email}
+Error Type: {report.get_error_type_display()}
+Submitted: {report.created_at.strftime('%Y-%m-%d %H:%M:%S')}
+
+Message:
+{report.message}
+
+---
+This email was automatically generated from BonengGPT Issue Report System.
+                """
+                
+                # Check if email is configured
+                if hasattr(settings, 'EMAIL_HOST_USER') and settings.EMAIL_HOST_USER:
+                    # Send email to admin/developer
+                    send_mail(
+                        subject=subject,
+                        message=message,
+                        from_email=settings.DEFAULT_FROM_EMAIL,
+                        recipient_list=[settings.EMAIL_HOST_USER],
+                        fail_silently=False,
+                    )
+                    
+                    # Send confirmation email to user
+                    user_subject = "Issue Report Received - BonengGPT"
+                    user_message = f"""
+Hi {report.name},
+
+Thank you for reporting an issue with BonengGPT. We have received your report and will look into it.
+
+Your Report Details:
+- Type: {report.get_error_type_display()}
+- Submitted: {report.created_at.strftime('%Y-%m-%d %H:%M:%S')}
+
+We'll get back to you if we need more information.
+
+Best regards,
+BonengGPT Team
+                    """
+                    
+                    send_mail(
+                        subject=user_subject,
+                        message=user_message,
+                        from_email=settings.DEFAULT_FROM_EMAIL,
+                        recipient_list=[report.email],
+                        fail_silently=True,
+                    )
+                    
+                    logger.info(f"Issue report emails sent successfully for {report.name}")
+                    
+                    return Response({
+                        'message': 'Issue report submitted successfully! You should receive a confirmation email shortly.',
+                        'report_id': report.id
+                    }, status=status.HTTP_201_CREATED)
+                else:
+                    # Email not configured, just save to database
+                    logger.info(f"Issue report saved but no email sent (email not configured) for {report.name}")
+                    
+                    return Response({
+                        'message': 'Issue report submitted successfully!',
+                        'report_id': report.id
+                    }, status=status.HTTP_201_CREATED)
+                    
+            except BadHeaderError:
+                logger.error("Invalid header found in email")
+                return Response({
+                    'message': 'Issue report saved successfully, but email notification failed.',
+                    'report_id': report.id
+                }, status=status.HTTP_201_CREATED)
+                
+            except Exception as e:
+                logger.error(f"Email sending failed: {str(e)}")
+                return Response({
+                    'message': 'Issue report saved successfully, but email notification failed.',
+                    'report_id': report.id
+                }, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
