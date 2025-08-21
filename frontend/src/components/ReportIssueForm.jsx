@@ -433,7 +433,6 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                     opacity: 0.5;
                 }
                 
-                /* Form Actions */
                 .form-actions {
                     display: flex;
                     gap: 0.75rem;
@@ -486,7 +485,6 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                     color: #6b7280;
                 }
                 
-                /* Spinner */
                 .spinner {
                     width: 1rem;
                     height: 1rem;
@@ -496,7 +494,6 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                     animation: spin 1s linear infinite;
                 }
                 
-                /* Animations */
                 @keyframes backdropFadeIn {
                     from { opacity: 0; }
                     to { opacity: 1; }
@@ -517,7 +514,6 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
                     to { transform: rotate(360deg); }
                 }
                 
-                /* Responsive Design */
                 @media (max-width: 640px) {
                     .report-issue-modal-container {
                         max-width: calc(100vw - 2rem);
