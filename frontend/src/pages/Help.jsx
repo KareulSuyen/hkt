@@ -283,7 +283,6 @@ const Help = () => {
                             </div>
                         </div>
 
-                        {/* Bakit Mahalaga */}
                         <div className={helpstyle.importanceSection}>
                             <h4 className={helpstyle.subsectionTitle}><RiQuestionAnswerLine size={30} /> Bakit Mahalaga ang Pag-unawa sa Sobrang Populasyon?</h4>
                             <div className={helpstyle.importanceGrid}>
