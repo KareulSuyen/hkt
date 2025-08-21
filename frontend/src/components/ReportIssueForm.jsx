@@ -1,9 +1,9 @@
-// src/components/ReportIssueForm.jsx
 import { useState } from 'react';
 import { submitIssueReport } from '../api';
 import { IoIosSend, IoMdClose } from "react-icons/io";
 import { MdBugReport, MdCode, MdDesignServices, MdSpeed, MdLightbulb, MdMoreHoriz } from "react-icons/md";
 import { FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
+
 
 const ReportIssueForm = ({ isOpen, onClose }) => {
     const [formData, setFormData] = useState({
