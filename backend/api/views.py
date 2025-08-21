@@ -116,7 +116,6 @@ class AIAPIView(APIView):
 
                 4. Quizzes & Leaderboards  
                 - Quizzes are for self-testing, not cheating.  
-                - Leaderboards highlight effort — play fair!  
 
                 5. Reporting Problems  
                 - Use the “Report a Problem” feature for bugs, errors, or inappropriate content.  
@@ -197,7 +196,7 @@ class ReportIssueView(generics.CreateAPIView):
                 {report.message}
 
                 ---
-                This email was automatically generated from BonengGPT Issue Report System.
+                This email was automatically generated from BonengMalakas Issue Report System.
                 """
                 
                 if hasattr(settings, 'EMAIL_HOST_USER') and settings.EMAIL_HOST_USER:
@@ -209,11 +208,11 @@ class ReportIssueView(generics.CreateAPIView):
                         fail_silently=False,
                     )
                     
-                    user_subject = "Issue Report Received - BonengGPT"
+                    user_subject = "Issue Report Received - BonengMalakas"
                     user_message = f"""
                     Hi {report.name},
 
-                    Thank you for reporting an issue with BonengGPT. We have received your report and will look into it.
+                    Thank you for reporting an issue with BonengMalakas. We have received your report and will look into it.
 
                     Your Report Details:
                     - Type: {report.get_error_type_display()}
