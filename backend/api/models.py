@@ -14,7 +14,7 @@ class ReportIssue(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     error_type = models.CharField(max_length=20, choices=ERROR_TYPE_CHOICES)
-    message = models.CharField(max_length=2000)
+    message = models.CharField(max_length=3500)
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
