@@ -1,37 +1,128 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>New Issue Report</title>
-  </head>
-  <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
-    <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; margin:auto; background:#ffffff; border-collapse:collapse; border-radius:8px; overflow:hidden;">
-      <!-- Header -->
-      <tr>
-        <td style="background:#ff4d4d; color:#fff; padding:20px; text-align:center; font-size:20px; font-weight:bold;">
-          🚨 New Issue Report
-        </td>
-      </tr>
-      <!-- Body -->
-      <tr>
-        <td style="padding:20px;">
-          <p><strong>Name:</strong> {{ report.name }}</p>
-          <p><strong>Email:</strong> {{ report.email }}</p>
-          <p><strong>Error Type:</strong> {{ report.get_error_type_display }}</p>
-          <p><strong>Submitted:</strong> {{ report.created_at }}</p>
-
-          <p><strong>Message:</strong></p>
-          <p style="padding:15px; background:#f9f9f9; border:1px solid #eee; border-radius:4px; line-height:1.5;">
-            {{ report.message|linebreaks }}
-          </p>
-        </td>
-      </tr>
-      <!-- Footer -->
-      <tr>
-        <td style="padding:20px; font-size:12px; color:#999; text-align:center; background:#f4f4f4;">
-          This email was automatically generated from BonengMalakas Issue Report System.
-        </td>
-      </tr>
-    </table>
-  </body>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #111827;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #d1d5db;
+            line-height: 1.5;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #1f2937;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background-color: #374151;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #f9fafb;
+        }
+        
+        .content {
+            padding: 24px;
+        }
+        
+        .info-item {
+            margin-bottom: 16px;
+        }
+        
+        .info-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #9ca3af;
+            margin-bottom: 4px;
+        }
+        
+        .info-value {
+            font-size: 16px;
+            color: #f3f4f6;
+        }
+        
+        .message-section {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #374151;
+        }
+        
+        .message-section h3 {
+            margin: 0 0 12px;
+            font-size: 16px;
+            color: #f9fafb;
+        }
+        
+        .message-content {
+            background-color: #111827;
+            padding: 16px;
+            border-radius: 6px;
+            color: #e5e7eb;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            background-color: #374151;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>New Issue Report</h1>
+        </div>
+        
+        <div class="content">
+            <div class="info-item">
+                <span class="info-label">Name:</span>
+                <span class="info-value">{{ report.name }}</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Email:</span>
+                <span class="info-value">{{ report.email }}</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Issue Type:</span>
+                <span class="info-value">{{ report.get_error_type_display }}</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Submit date:</span>
+                <span class="info-value">{{ report.created_at }}</span>
+            </div>
+            
+            <div class="message-section">
+                <h3>Message</h3>
+                <div class="message-content">
+                    {{ report.message|linebreaks }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>BonengMalakas Issue Report System</p>
+            <p>This email was generated automatically</p>
+        </div>
+    </div>
+</body>
 </html>
