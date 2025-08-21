@@ -99,7 +99,7 @@ class AIAPIView(APIView):
                 "If you're not sure about the words when using tagalog, remind them that you're still currently learning and still not that good"
                 "if the user prefer tagalog. use Taglish"
                 
-                """** GUIDELINES **\n""
+                """** GUIDELINES || ONLY SHOW THIS GUIDELINES WHEN THE USER ASKED FOR IT**\n""
 
                 1. Respect the Purpose  
                 - This platform is for learning and awareness about overpopulation.  
@@ -184,27 +184,25 @@ class ReportIssueView(generics.CreateAPIView):
             report = serializer.save()
             
             try:
-                # --- Admin Email ---
                 admin_subject = f"BonengGPT Issue Report: {report.error_type.title()}"
                 admin_html_content = render_to_string('emails/report_admin.html', {'report': report})
 
                 if hasattr(settings, 'EMAIL_HOST_USER') and settings.EMAIL_HOST_USER:
                     admin_msg = EmailMultiAlternatives(
                         subject=admin_subject,
-                        body='',  # fallback plain text
+                        body='',  
                         from_email=settings.DEFAULT_FROM_EMAIL,
                         to=[settings.EMAIL_HOST_USER],
                     )
                     admin_msg.attach_alternative(admin_html_content, "text/html")
                     admin_msg.send(fail_silently=False)
 
-                    # --- User Email ---
                     user_subject = "Issue Report Received - BonengMalakas"
                     user_html_content = render_to_string('emails/report_user.html', {'report': report})
 
                     user_msg = EmailMultiAlternatives(
                         subject=user_subject,
-                        body='',  # fallback plain text
+                        body='', 
                         from_email=settings.DEFAULT_FROM_EMAIL,
                         to=[report.email],
                     )
@@ -218,7 +216,6 @@ class ReportIssueView(generics.CreateAPIView):
                         'report_id': report.id
                     }, status=status.HTTP_201_CREATED)
                 else:
-                    # Email not configured, just save to database
                     logger.info(f"Issue report saved but no email sent (email not configured) for {report.name}")
                     return Response({
                         'message': 'Issue report submitted successfully!',
