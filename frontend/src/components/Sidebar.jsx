@@ -2,6 +2,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import sidebarstyle from '../styles/sidebar.module.scss';
 import { TbLayoutSidebarRightExpandFilled } from "react-icons/tb";
+import { MdOutlineQuiz } from "react-icons/md";
+
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
     const sidebarRef = useRef(null);
@@ -77,7 +79,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <div className={sidebarstyle['sidebar-links']}>
                     <NavLink to='#' className={setActive}>Test Link</NavLink>
                     <NavLink to='#' className={setActive}>Test Link</NavLink>
-                    <NavLink to='#' className={setActive}>Test Link</NavLink>
+                    <NavLink to='#' className={setActive}><MdOutlineQuiz size={28}/>Quiz</NavLink>
                 </div>
             </aside>
         </>
