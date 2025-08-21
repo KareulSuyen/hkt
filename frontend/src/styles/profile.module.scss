@@ -6,16 +6,16 @@
     right: 0;
     transition: ease-in-out .2s;
     z-index: 1000;
-    border-radius: 10px;
-    margin-right: 10px;
-    
-    
+    margin-right: 8px;
+    border: 1px solid rgb(74, 74, 74);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+
     .toggle-btn {
         margin-bottom: 15px;
         display: flex;
         justify-content: flex-end;
-        background: linear-gradient(120deg, rgb(58, 58, 99), rgb(14, 19, 48));
-        border-radius: 5px;
+        background: linear-gradient(120deg, rgb(62, 62, 62), rgb(14, 19, 48));
         height: 40px;
         
         button {
