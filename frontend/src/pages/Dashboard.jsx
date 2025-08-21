@@ -9,7 +9,7 @@ import { FaGlobeAmericas, FaChartLine } from "react-icons/fa";
 import { FaEarthEurope,FaEarthAfrica, FaBuildingUser } from "react-icons/fa6";
 import { IoPeople } from "react-icons/io5";
 import { MdOutlineEmojiPeople } from "react-icons/md";
-import { GiPlantSeed } from "react-icons/gi";
+import { GiPlantSeed, GiThermometerHot } from "react-icons/gi";
 
 
 const Dashboard = () => {
@@ -304,7 +304,7 @@ const Dashboard = () => {
             { name: "CO₂ Emissions per Capita", value: "4.8 tons/year", trend: "↑ 1.2%/year", severity: "high" },
             { name: "Deforestation Rate", value: "10M hectares/year", trend: "↓ 2.8%/year", severity: "moderate" }
           ],
-          icon: "🌡️"
+          icon: <GiThermometerHot size={30} />
         }
       ],
       solutionTrackers: [
@@ -471,7 +471,7 @@ const Dashboard = () => {
             { name: "CO₂ Emissions bawat Kapitolyo", value: "4.8 tons/taon", trend: "↑ 1.2%/taon", severity: "high" },
             { name: "Deforestation Rate", value: "10M ektarya/taon", trend: "↓ 2.8%/taon", severity: "moderate" }
           ],
-          icon: "🌡️"
+          icon: <GiThermometerHot size={30} />
         }
       ],
       solutionTrackers: [
