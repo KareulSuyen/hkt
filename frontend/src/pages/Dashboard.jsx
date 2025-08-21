@@ -10,6 +10,7 @@ import { FaEarthEurope } from "react-icons/fa6";
 import { FaEarthAfrica } from "react-icons/fa6";
 import { IoPeople } from "react-icons/io5";
 import { MdOutlineEmojiPeople } from "react-icons/md";
+import { GiPlantSeed } from "react-icons/gi";
 
 
 const Dashboard = () => {
@@ -288,7 +289,7 @@ const Dashboard = () => {
             { name: "Arable Land per Capita", value: "0.19 hectares", trend: "↓ 2.1%/year", severity: "critical" },
             { name: "Freshwater Availability", value: "6,000 m³/person", trend: "↓ 1.8%/year", severity: "high" }
           ],
-          icon: "🌾"
+          icon: <GiPlantSeed size={35} />
         },
         {
           category: "Urban Challenges",
@@ -455,7 +456,7 @@ const Dashboard = () => {
             { name: "Arable Land bawat Kapitolyo", value: "0.19 ektarya", trend: "↓ 2.1%/taon", severity: "critical" },
             { name: "Freshwater Availability", value: "6,000 m³/tao", trend: "↓ 1.8%/taon", severity: "high" }
           ],
-          icon: "🌾"
+          icon: <GiPlantSeed size={35} />
         },
         {
           category: "Mga Urban na Hamon",
