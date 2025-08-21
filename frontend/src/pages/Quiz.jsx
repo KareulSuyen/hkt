@@ -11,7 +11,6 @@ const Quiz = () => {
   const [timeLeft, setTimeLeft] = useState(30);
   const [showExplanation, setShowExplanation] = useState(false);
 
-  // Quiz questions organized by difficulty
   const quizQuestions = {
     easy: [
       {
@@ -253,7 +252,7 @@ const Quiz = () => {
             >
               <div className={styles.difficultyIcon}>🟢</div>
               <h3>Easy</h3>
-              <p>Mga basic na konsepto</p>
+              <p>Mga madaling konsepto</p>
               <div className={styles.difficultyStats}>
                 <span>5 tanong</span>
                 <span>45 segundo bawat tanong</span>
