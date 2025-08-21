@@ -8,7 +8,7 @@ import { FaEarthAsia, FaBook } from "react-icons/fa6";
 import { FaGlobeAmericas, FaChartLine } from "react-icons/fa";
 import { FaEarthEurope,FaEarthAfrica, FaBuildingUser } from "react-icons/fa6";
 import { IoPeople } from "react-icons/io5";
-import { MdOutlineEmojiPeople } from "react-icons/md";
+import { MdOutlineEmojiPeople, MdOutlineFamilyRestroom } from "react-icons/md";
 import { GiPlantSeed, GiThermometerHot } from "react-icons/gi";
 import { LuConstruction } from "react-icons/lu";
 
@@ -325,7 +325,7 @@ const Dashboard = () => {
           initiative: "Family Planning Programs",
           description: "Supporting reproductive job, health, and family planning worldwide.",
           progress: 65,
-          icon: "👨‍👩‍👧‍👦"
+          icon: <MdOutlineFamilyRestroom size={35} />
         }
       ],
       chartTitles: {
@@ -492,7 +492,7 @@ const Dashboard = () => {
           initiative: "Family Planning Programs",
           description: "Pagsuporta sa reproductive health at family planning sa buong mundo.",
           progress: 65,
-          icon: "👨‍👩‍👧‍👦"
+          icon: <MdOutlineFamilyRestroom size={35} />
         }
       ],
       chartTitles: {
