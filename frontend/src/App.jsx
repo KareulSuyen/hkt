@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import Quiz from './pages/Quiz';
 import Help from './pages/Help';
 import Login from './pages/Login';
+import About from './pages/About'
 import Register from './pages/Register';
 import Notfound from './pages/Notfound';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
@@ -11,7 +12,6 @@ import Layout from './components/Layout';
 import Introduction from './pages/Introduction';
 import ScrollManager from './components/ScrollManager';
 import { useEffect } from 'react';
-
 
 const handleLogout = () => {
   localStorage.removeItem(ACCESS_TOKEN);
@@ -68,7 +68,8 @@ const App = () => {
         >
           <Route path='/' index element={<Dashboard />} />
           <Route path='help' element={<Help />} /> 
-          <Route path='quiz' element={<Quiz />} /> -
+          <Route path='quiz' element={<Quiz />} />
+          <Route path='about' element={<About />} />
         </Route>
         <Route path='/logout' element={<Logout />} />
         <Route path='*' element={<Notfound />} />

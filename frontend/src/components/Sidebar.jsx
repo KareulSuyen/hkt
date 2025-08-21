@@ -92,8 +92,8 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, onOpenReportIssue }) => {
                         </NavLink>
                     </div>
                     <div className={sidebarstyle['about-tab']}>
-                            <FaUsers size={25} className={sidebarstyle['sidebar-icon']} />
-                        <NavLink to='#' className={setActive}>
+                            <FaUsers size={25} className={sidebarstyle['sidebar-icon']} onClick={toggleSidebar}/>
+                        <NavLink to='/about' className={setActive}>
                             About Us
                         </NavLink>
                     </div>
