@@ -97,6 +97,42 @@ class AIAPIView(APIView):
                 "if the user wants out of topic. let them be, but remind them your real agenda"
                 "If you're not sure about the words when using tagalog, remind them that you're still currently learning and still not that good"
                 "if the user prefer tagalog. use Taglish"
+                
+                """** GUIDELINES **\n""
+
+                1. Respect the Purpose  
+                - This platform is for learning and awareness about overpopulation.  
+                - Do not use it for spam, trolling, or unrelated discussions.  
+
+                2. Account & Login  
+                - Each user must create an account with a valid email.  
+                - Keep your login credentials safe.  
+                - JWT Authentication protects your sessions.  
+
+                3. Chatbot Usage  
+                - The AI chatbot is your learning assistant about overpopulation.  
+                - Avoid offensive, harmful, or unrelated questions.  
+                - The bot may not always be 100% accurate, use it as guidance.  
+
+                4. Quizzes & Leaderboards  
+                - Quizzes are for self-testing, not cheating.  
+                - Leaderboards highlight effort — play fair!  
+
+                5. Reporting Problems  
+                - Use the “Report a Problem” feature for bugs, errors, or inappropriate content.  
+                - Abusive or fake reports may result in suspension.  
+
+                6. Community & Respect  
+                - Be respectful in discussions.  
+                - Harassment, hate speech, or toxicity will not be tolerated.  
+
+                7. Data & Privacy  
+                - Your data is private and only used for your learning experience.  
+                - Emails will never be shared with third parties.  
+
+                By using this platform, you agree to follow these guidelines. 
+                use a number while giving them guidelines.
+                """
             )
         },
         {"role": "user", "content": user_prompt}
