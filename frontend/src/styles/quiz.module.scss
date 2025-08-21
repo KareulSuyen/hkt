@@ -1,0 +1,608 @@
+// quiz.module.scss - Dark Theme
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+// Color Variables
+$bg-primary: #0f0f0f;
+$bg-secondary: #1a1a1a;
+$bg-tertiary: #2d2d2d;
+$text-primary: #ffffff;
+$text-secondary: #b0b0b0;
+$text-muted: #6b7280;
+$border: #3a3a3a;
+$border-hover: #4a4a4a;
+
+// Difficulty Colors
+$easy: #10b981;
+$medium: #f59e0b;
+$hard: #ef4444;
+$extreme: #8b5cf6;
+
+// Animation mixins
+@mixin smooth-transition($property: all, $duration: 0.3s) {
+  transition: $property $duration cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@mixin card-hover {
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@mixin glass-effect {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quizContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, $bg-primary 0%, #1a1a1a 100%);
+  color: $text-primary;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+}
+
+// Difficulty Selection Screen
+.difficultySelection {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, $text-primary 0%, $text-secondary 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: $text-secondary;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.difficultyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.difficultyCard {
+  @include glass-effect;
+  padding: 2rem;
+  border-radius: 16px;
+  cursor: pointer;
+  @include smooth-transition;
+  @include card-hover;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent-color);
+    transform: scaleX(0);
+    @include smooth-transition(transform);
+  }
+  
+  &:hover::before {
+    transform: scaleX(1);
+  }
+  
+  &.easy {
+    --accent-color: #{$easy};
+  }
+  
+  &.medium {
+    --accent-color: #{$medium};
+  }
+  
+  &.hard {
+    --accent-color: #{$hard};
+  }
+  
+  &.extreme {
+    --accent-color: #{$extreme};
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1rem 0 0.5rem 0;
+    color: var(--accent-color);
+  }
+  
+  p {
+    color: $text-secondary;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.difficultyIcon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.difficultyStats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+  span {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: $text-secondary;
+  }
+}
+
+// Quiz Header
+.quizHeader {
+  max-width: 900px;
+  margin: 0 auto 2rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.progressSection {
+  flex: 1;
+  min-width: 200px;
+}
+
+.progressBar {
+  background: $bg-tertiary;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progressFill {
+  height: 100%;
+  @include smooth-transition(width, 0.5s);
+  border-radius: 4px;
+}
+
+.progressText {
+  font-size: 0.9rem;
+  color: $text-secondary;
+}
+
+.statsSection {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  
+  @media (max-width: 768px) {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.difficultyBadge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.scoreDisplay {
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.timer {
+  padding: 0.5rem 1rem;
+  background: $bg-tertiary;
+  border-radius: 8px;
+  font-weight: 600;
+  @include smooth-transition;
+  
+  &.urgent {
+    background: $hard;
+    color: white;
+    animation: pulse 1s infinite;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+// Question Container
+.questionContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  @include glass-effect;
+  padding: 2.5rem;
+  border-radius: 20px;
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+}
+
+.question {
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  color: $text-primary;
+  text-align: center;
+}
+
+// Options
+.optionsContainer {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.optionButton {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem;
+  background: $bg-secondary;
+  border: 2px solid $border;
+  border-radius: 12px;
+  cursor: pointer;
+  @include smooth-transition;
+  text-align: left;
+  font-size: 1rem;
+  color: $text-primary;
+  
+  &:hover:not(:disabled) {
+    border-color: $border-hover;
+    background: lighten($bg-secondary, 3%);
+  }
+  
+  &.selected {
+    border-color: #4f46e5;
+    background: rgba(79, 70, 229, 0.1);
+  }
+  
+  &.correctAnswer {
+    border-color: $easy;
+    background: rgba($easy, 0.1);
+    color: $easy;
+  }
+  
+  &.wrongAnswer {
+    border-color: $hard;
+    background: rgba($hard, 0.1);
+    color: $hard;
+  }
+  
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.optionLetter {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: $bg-tertiary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.optionText {
+  flex: 1;
+}
+
+// Explanation
+.explanationContainer {
+  background: rgba(79, 70, 229, 0.05);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  
+  h3 {
+    color: #8b5cf6;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  p {
+    color: $text-secondary;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+// Action Buttons
+.actionSection {
+  text-align: center;
+}
+
+.submitButton, .nextButton {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  @include smooth-transition;
+  min-width: 200px;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+// Results Screen
+.resultsContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.resultsHeader {
+  @include glass-effect;
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+}
+
+.resultsTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: $text-primary;
+}
+
+.scoreDisplay {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: $bg-secondary;
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  border: 3px solid;
+  margin-bottom: 1rem;
+  
+  .scoreNumber {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+  
+  .scoreTotal {
+    font-size: 1.5rem;
+    color: $text-secondary;
+  }
+}
+
+.scorePercentage {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: $text-primary;
+}
+
+.scoreMessage {
+  font-size: 1.1rem;
+  color: $text-secondary;
+  margin: 0;
+}
+
+// Review Section
+.reviewSection {
+  @include glass-effect;
+  padding: 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  text-align: left;
+  
+  h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: $text-primary;
+  }
+}
+
+.reviewItem {
+  background: $bg-secondary;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.questionNumber {
+  color: #8b5cf6;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.reviewItem h4 {
+  color: $text-primary;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.answerComparison {
+  margin-bottom: 1rem;
+}
+
+.answerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  
+  span:first-child {
+    color: $text-secondary;
+    font-weight: 500;
+  }
+  
+  span:last-child {
+    font-weight: 600;
+    
+    &.correct {
+      color: $easy;
+    }
+    
+    &.incorrect {
+      color: $hard;
+    }
+  }
+}
+
+.explanation {
+  background: rgba(139, 92, 246, 0.05);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  color: $text-secondary;
+  font-style: italic;
+  margin: 0;
+}
+
+// Action Buttons
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.restartButton, .newDifficultyButton {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  @include smooth-transition;
+  min-width: 160px;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.restartButton {
+  background: $bg-tertiary;
+  color: $text-primary;
+  border: 2px solid $border;
+  
+  &:hover {
+    border-color: $border-hover;
+    background: lighten($bg-tertiary, 5%);
+  }
+}
+
+.newDifficultyButton {
+  color: white;
+  border: 2px solid transparent;
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .difficultyGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .difficultyCard {
+    padding: 1.5rem;
+  }
+  
+  .questionContainer {
+    margin: 0 -0.5rem;
+  }
+  
+  .question {
+    font-size: 1.2rem;
+  }
+  
+  .optionButton {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .resultsHeader {
+    padding: 2rem 1rem;
+  }
+  
+  .scoreDisplay {
+    padding: 1.5rem 2rem;
+    
+    .scoreNumber {
+      font-size: 2rem;
+    }
+    
+    .scoreTotal {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .quizContainer {
+    color-scheme: dark;
+  }
+}
