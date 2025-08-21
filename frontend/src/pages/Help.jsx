@@ -13,7 +13,7 @@ import { GiPlantRoots, GiJourney, GiPineTree, GiThreeLeaves } from "react-icons/
 import { BiSolidError } from "react-icons/bi";
 import { SiGoogleearthengine, SiCodemagic } from "react-icons/si";
 import { LuWeight } from "react-icons/lu";
-import { AiOutlineQuestion } from "react-icons/ai";
+import { RiQuestionAnswerLine } from "react-icons/ri";
 import { FcCancel } from "react-icons/fc";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { GoNorthStar } from "react-icons/go";
@@ -286,7 +286,7 @@ const Help = () => {
 
                         {/* Bakit Mahalaga */}
                         <div className={helpstyle.importanceSection}>
-                            <h4 className={helpstyle.subsectionTitle}><AiOutlineQuestion size={30} /> Bakit Mahalaga ang Pag-unawa sa Sobrang Populasyon?</h4>
+                            <h4 className={helpstyle.subsectionTitle}><RiQuestionAnswerLine size={30} /> Bakit Mahalaga ang Pag-unawa sa Sobrang Populasyon?</h4>
                             <div className={helpstyle.importanceGrid}>
                                 <div className={helpstyle.importanceItem}>
                                     <div className={helpstyle.importanceIcon}><SiCodemagic size={30} /> </div>
