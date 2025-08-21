@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Report Received</title>
+  </head>
+  <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: auto; background-color: #ffffff; border-collapse: collapse;">
+      <tr>
+        <td style="padding: 20px; border-bottom: 1px solid #ddd;">
+          <h2 style="color: #333;">Hi {{ report.name }} 👋</h2>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 20px;">
+          <p>Thanks for reporting an issue with BonengMalakas! We've received your report and will look into it.</p>
+          <h3>Your Report Details:</h3>
+          <p><strong>Type:</strong> {{ report.get_error_type_display }}</p>
+          <p><strong>Submitted:</strong> {{ report.created_at }}</p>
+          <p>We'll get back to you if we need more information.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 20px; font-size: 12px; color: #999; border-top: 1px solid #ddd;">
+          BonengGPT Team
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
