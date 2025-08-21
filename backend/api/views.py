@@ -1,4 +1,3 @@
-# api/views.py
 from django.contrib.auth.models import User
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -147,30 +146,26 @@ class ReportIssueView(generics.CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         
         if serializer.is_valid():
-            # Save to database
             report = serializer.save()
             
-            # Try to send email (but don't fail if email settings are not configured)
             try:
                 subject = f"BonengGPT Issue Report: {report.error_type.title()}"
                 message = f"""
-New issue report received:
+                New issue report received:
 
-Name: {report.name}
-Email: {report.email}
-Error Type: {report.get_error_type_display()}
-Submitted: {report.created_at.strftime('%Y-%m-%d %H:%M:%S')}
+                Name: {report.name}
+                Email: {report.email}
+                Error Type: {report.get_error_type_display()}
+                Submitted: {report.created_at.strftime('%Y-%m-%d %H:%M:%S')}
 
-Message:
-{report.message}
+                Message:
+                {report.message}
 
----
-This email was automatically generated from BonengGPT Issue Report System.
+                ---
+                This email was automatically generated from BonengGPT Issue Report System.
                 """
                 
-                # Check if email is configured
                 if hasattr(settings, 'EMAIL_HOST_USER') and settings.EMAIL_HOST_USER:
-                    # Send email to admin/developer
                     send_mail(
                         subject=subject,
                         message=message,
@@ -179,21 +174,20 @@ This email was automatically generated from BonengGPT Issue Report System.
                         fail_silently=False,
                     )
                     
-                    # Send confirmation email to user
                     user_subject = "Issue Report Received - BonengGPT"
                     user_message = f"""
-Hi {report.name},
+                    Hi {report.name},
 
-Thank you for reporting an issue with BonengGPT. We have received your report and will look into it.
+                    Thank you for reporting an issue with BonengGPT. We have received your report and will look into it.
 
-Your Report Details:
-- Type: {report.get_error_type_display()}
-- Submitted: {report.created_at.strftime('%Y-%m-%d %H:%M:%S')}
+                    Your Report Details:
+                    - Type: {report.get_error_type_display()}
+                    - Submitted: {report.created_at.strftime('%Y-%m-%d %H:%M:%S')}
 
-We'll get back to you if we need more information.
+                    We'll get back to you if we need more information.
 
-Best regards,
-BonengGPT Team
+                    Best regards,
+                    BonengGPT Team
                     """
                     
                     send_mail(
@@ -207,7 +201,7 @@ BonengGPT Team
                     logger.info(f"Issue report emails sent successfully for {report.name}")
                     
                     return Response({
-                        'message': 'Issue report submitted successfully! You should receive a confirmation email shortly.',
+                        'message': 'Issue report submitted successfully! BonengMalakas will receive an email shortly.',
                         'report_id': report.id
                     }, status=status.HTTP_201_CREATED)
                 else:
