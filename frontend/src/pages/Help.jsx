@@ -16,6 +16,7 @@ import { LuWeight } from "react-icons/lu";
 import { AiOutlineQuestion } from "react-icons/ai";
 import { FcCancel } from "react-icons/fc";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
+import { GoNorthStar } from "react-icons/go";
 
 
 
@@ -481,7 +482,7 @@ const Help = () => {
                         </div>
                         
                         <div className={helpstyle.callToAction}>
-                            <div className={helpstyle.actionIcon}>🌟</div>
+                            <div className={helpstyle.actionIcon}><GoNorthStar size={40} /> </div>
                             <h4>Kailangan ng Sama-samang Aksyon</h4>
                             <p>
                                 Ang pagtugon sa sobrang populasyon ay nangangailangan ng coordinated na efforts mula sa mga gobyerno, komunidad, 
