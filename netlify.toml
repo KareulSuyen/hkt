@@ -1,12 +1,23 @@
 [build]
-  base = "frontend/"
+  publish = "dist"  # or your build folder
   command = "npm run build"
-  publish = "dist/"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_ENV = "production"
+
+[[redirects]]
+  from = "https://bonengmalakas.netlify.app/*"
+  to = "https://bonengmalakas.site/:splat"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+[headers]
+  [headers."/*"]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
