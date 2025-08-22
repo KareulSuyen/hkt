@@ -345,6 +345,15 @@ $dark-border: #333;
       height: 33px;
       width: 33px;
     }
+    .navLink {
+      color: $dark-text-secondary;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.7rem .8rem;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
   }
 }
 @media(max-width: 350px) {
