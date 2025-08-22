@@ -1,9 +1,11 @@
-Django>=4.2,<5.0
-djangorestframework>=3.14
-djangorestframework-simplejwt
-python-dotenv
-psycopg2-binary
+# Add these to your existing requirements.txt
+gunicorn==21.2.0
+whitenoise==6.6.0
+dj-database-url==2.1.0
+psycopg2-binary==2.9.9
+django
+djangorestframework
 django-cors-headers
-Pillow
-
-#Makakalimutin Aq!
+djangorestframework-simplejwt
+python-decouple
+python-dotenv
