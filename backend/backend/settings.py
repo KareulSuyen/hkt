@@ -16,7 +16,6 @@ AI_API_BASE_URL = config('AI_API_BASE_URL', default='https://api.groq.com/openai
 
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
-# Production vs Development
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['*'] if DEBUG else [
@@ -58,7 +57,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # For static files on Render
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -76,14 +75,15 @@ REST_FRAMEWORK = {
     ),
 }
 
-# CORS Settings - More specific for production
 if DEBUG:
-    CORS_ALLOW_ALL_ORIGINS = True  # Only for development
+    CORS_ALLOW_ALL_ORIGINS = True  
 else:
     CORS_ALLOWED_ORIGINS = [
+        'http://localhost:5173',
         "https://bonengmalakas.netlify.app",  
         "https://hkktn-3.onrender.com", 
-        "https://www.bonengmalakas.site",     # www version (optional)
+        "https://www.bonengmalakas.site",    
+        'http://127.0.0.1:8000',
     ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -105,7 +105,6 @@ TEMPLATES = [
     },
 ]
 
-# Email Config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = config('EMAIL_HOST', default='smtp.gmail.com')
 EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
@@ -116,9 +115,7 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default=EMAIL_HOST_USER)
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-# Database - Support both local SQLite and Render PostgreSQL
 if 'DATABASE_URL' in os.environ:
-    # Production database (Render PostgreSQL)
     DATABASES = {
         'default': dj_database_url.parse(
             os.environ.get('DATABASE_URL'),
@@ -127,7 +124,6 @@ if 'DATABASE_URL' in os.environ:
         )
     }
 else:
-    # Development database (SQLite)
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -162,22 +158,18 @@ TIME_ZONE = 'Asia/Manila'
 USE_I18N = True
 USE_TZ = True
 
-# Static files configuration for production
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Security settings for production
 if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
-    # Add these for HTTPS
-    SECURE_SSL_REDIRECT = False  # Render handles HTTPS
+    SECURE_SSL_REDIRECT = False
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Logging configuration for better debugging
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
