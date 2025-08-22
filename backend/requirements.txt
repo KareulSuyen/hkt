@@ -9,3 +9,4 @@ django-cors-headers
 djangorestframework-simplejwt
 python-decouple
 python-dotenv
+requests
