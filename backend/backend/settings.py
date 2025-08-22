@@ -76,14 +76,10 @@ REST_FRAMEWORK = {
     ),
 }
 
-if DEBUG:
-    CORS_ALLOW_ALL_ORIGINS = True
-else:
-    CORS_ALLOWED_ORIGINS = [
-        "https://bonengmalakas.netlify.app/",  
-        "https://localhost:3000", 
-    ]
-
+CORS_ALLOWED_ORIGINS = [
+    "https://bonengmalakas.netlify.app/",  
+    "https://localhost:3000", 
+]   
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'backend.urls'
