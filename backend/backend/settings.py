@@ -83,6 +83,7 @@ else:
     CORS_ALLOWED_ORIGINS = [
         "https://bonengmalakas.netlify.app",  
         "https://hkktn-3.onrender.com", 
+        "https://www.bonengmalakas.site",     # www version (optional)
     ]
 
 CORS_ALLOW_CREDENTIALS = True
