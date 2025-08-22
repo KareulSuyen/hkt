@@ -19,12 +19,11 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 # Production vs Development
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-# Update ALLOWED_HOSTS for production
 ALLOWED_HOSTS = ['*'] if DEBUG else [
     'localhost', 
     '127.0.0.1',
-    'hkktn-3.onrender.com',  # Your actual Render domain
-    'bonengmalakas.netlify.app',  # Also add your Netlify domain
+    'hkktn-3.onrender.com',
+    'bonengmalakas.netlify.app',
 ]
 
 SIMPLE_JWT = {
@@ -59,7 +58,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add WhiteNoise for static files
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # For static files on Render
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,12 +76,15 @@ REST_FRAMEWORK = {
     ),
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "https://bonengmalakas.netlify.app",  
-    "https://localhost:3000", 
-    "https://hkktn-3.onrender.com", 
+# CORS Settings - More specific for production
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True  # Only for development
+else:
+    CORS_ALLOWED_ORIGINS = [
+        "https://bonengmalakas.netlify.app",  
+        "https://hkktn-3.onrender.com", 
+    ]
 
-]   
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'backend.urls'
@@ -107,18 +109,24 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = config('EMAIL_HOST', default='smtp.gmail.com')
 EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default=EMAIL_HOST_USER)
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database - Support both local SQLite and Render PostgreSQL
 if 'DATABASE_URL' in os.environ:
+    # Production database (Render PostgreSQL)
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+        'default': dj_database_url.parse(
+            os.environ.get('DATABASE_URL'),
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
 else:
+    # Development database (SQLite)
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -162,5 +170,29 @@ if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
+    # Add these for HTTPS
+    SECURE_SSL_REDIRECT = False  # Render handles HTTPS
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Logging configuration for better debugging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
