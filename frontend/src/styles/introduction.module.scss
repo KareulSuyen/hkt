@@ -321,6 +321,12 @@ $dark-border: #333;
 }
 
 @media(max-width: 500px) {
+  .navLinks {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+  }
+
   .logo {
     font-size: .8rem;
     font-weight: 700;
