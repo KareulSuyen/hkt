@@ -319,3 +319,25 @@ $dark-border: #333;
     order: 3;
   }
 }
+
+@media(max-width: 500px) {
+  .logo {
+    font-size: .8rem;
+    font-weight: 700;
+    margin: 0;
+    color: $dark-text;
+    display: flex;
+    align-items: center;
+    
+    span {
+      color: $dark-primary;
+    }
+    
+    img {
+      margin-right: 5px;
+      padding-top: 10px;
+      height: 33px;
+      width: 33px;
+    }
+  }
+}
