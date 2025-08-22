@@ -1,17 +1,20 @@
+import json
+import logging
+import requests
+import traceback
+
+from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.mail import EmailMultiAlternatives, BadHeaderError, send_mail
+from django.template.loader import render_to_string
+
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.conf import settings
-from django.core.mail import send_mail, BadHeaderError
-from .serializers import UserSerializer, ReportIssueSerializer
+
 from .models import ReportIssue
-import requests
-import json
-import logging
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string
+from .serializers import UserSerializer, ReportIssueSerializer
 logger = logging.getLogger(__name__)
 
 class CreateUserViews(generics.CreateAPIView):
@@ -178,62 +181,126 @@ class ReportIssueView(generics.CreateAPIView):
     permission_classes = [AllowAny]
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        
-        if serializer.is_valid():
-            report = serializer.save()
+        try:
+            print("=== REPORT ISSUE DEBUG START ===")
+            print(f"Request data: {request.data}")
             
+            # Check serializer validation
+            serializer = self.get_serializer(data=request.data)
+            print(f"Serializer created: {serializer}")
+            
+            if not serializer.is_valid():
+                print(f"Serializer errors: {serializer.errors}")
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+            print("Serializer is valid, attempting to save...")
+            
+            # Try to save the report
             try:
-                admin_subject = f"BonengGPT Issue Report: {report.error_type.title()}"
+                report = serializer.save()
+                print(f"Report saved successfully: ID={report.id}, Name={report.name}")
+            except Exception as save_error:
+                print(f"ERROR saving report: {save_error}")
+                print(f"Save error traceback: {traceback.format_exc()}")
+                return Response({
+                    'error': f'Failed to save report: {str(save_error)}'
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            
+            # Check email configuration
+            print("Checking email configuration...")
+            email_host_user = getattr(settings, 'EMAIL_HOST_USER', None)
+            email_host_password = getattr(settings, 'EMAIL_HOST_PASSWORD', None)
+            default_from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', None)
+            
+            print(f"EMAIL_HOST_USER exists: {bool(email_host_user)}")
+            print(f"EMAIL_HOST_PASSWORD exists: {bool(email_host_password)}")
+            print(f"DEFAULT_FROM_EMAIL: {default_from_email}")
+            
+            if not email_host_user:
+                print("No email configuration found, skipping email...")
+                return Response({
+                    'message': 'Issue report submitted successfully! (Email notification skipped - not configured)',
+                    'report_id': report.id
+                }, status=status.HTTP_201_CREATED)
+            
+            # Try to render templates
+            try:
+                print("Attempting to render admin template...")
                 admin_html_content = render_to_string('emails/report_admin.html', {'report': report})
-
-                if hasattr(settings, 'EMAIL_HOST_USER') and settings.EMAIL_HOST_USER:
-                    admin_msg = EmailMultiAlternatives(
-                        subject=admin_subject,
-                        body='',  
-                        from_email=settings.DEFAULT_FROM_EMAIL,
-                        to=[settings.EMAIL_HOST_USER],
-                    )
-                    admin_msg.attach_alternative(admin_html_content, "text/html")
-                    admin_msg.send(fail_silently=False)
-
-                    user_subject = "Issue Report Received - BonengMalakas"
-                    user_html_content = render_to_string('emails/report_user.html', {'report': report})
-
-                    user_msg = EmailMultiAlternatives(
-                        subject=user_subject,
-                        body='', 
-                        from_email=settings.DEFAULT_FROM_EMAIL,
-                        to=[report.email],
-                    )
-                    user_msg.attach_alternative(user_html_content, "text/html")
-                    user_msg.send(fail_silently=True)
-
-                    logger.info(f"Issue report emails sent successfully for {report.name}")
-                    
-                    return Response({
-                        'message': 'Issue report submitted successfully! BonengMalakas will receive an email shortly.',
-                        'report_id': report.id
-                    }, status=status.HTTP_201_CREATED)
-                else:
-                    logger.info(f"Issue report saved but no email sent (email not configured) for {report.name}")
-                    return Response({
-                        'message': 'Issue report submitted successfully!',
-                        'report_id': report.id
-                    }, status=status.HTTP_201_CREATED)
-
-            except BadHeaderError:
-                logger.error("Invalid header found in email")
+                print(f"Admin template rendered successfully, length: {len(admin_html_content)}")
+                
+                print("Attempting to render user template...")
+                user_html_content = render_to_string('emails/report_user.html', {'report': report})
+                print(f"User template rendered successfully, length: {len(user_html_content)}")
+                
+            except Exception as template_error:
+                print(f"ERROR rendering templates: {template_error}")
+                print(f"Template error traceback: {traceback.format_exc()}")
+                return Response({
+                    'error': f'Template rendering failed: {str(template_error)}',
+                    'report_id': report.id
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            
+            # Try to send emails
+            try:
+                print("Attempting to send admin email...")
+                admin_subject = f"BonengGPT Issue Report: {report.error_type.title()}"
+                
+                admin_msg = EmailMultiAlternatives(
+                    subject=admin_subject,
+                    body=f"New issue report from {report.name} ({report.email})\n\nType: {report.error_type}\nMessage: {report.message}",
+                    from_email=default_from_email or email_host_user,
+                    to=[email_host_user],
+                )
+                admin_msg.attach_alternative(admin_html_content, "text/html")
+                admin_msg.send(fail_silently=False)
+                print("Admin email sent successfully!")
+                
+                print("Attempting to send user email...")
+                user_subject = "Issue Report Received - BonengMalakas"
+                user_msg = EmailMultiAlternatives(
+                    subject=user_subject,
+                    body=f"Hi {report.name},\n\nThank you for your report. We'll look into it soon!\n\nBonengMalakas Team",
+                    from_email=default_from_email or email_host_user,
+                    to=[report.email],
+                )
+                user_msg.attach_alternative(user_html_content, "text/html")
+                user_msg.send(fail_silently=True)  # User email can fail silently
+                print("User email sent successfully!")
+                
+            except BadHeaderError as header_error:
+                print(f"Bad header error: {header_error}")
+                return Response({
+                    'message': 'Issue report saved successfully, but email notification failed (bad header).',
+                    'report_id': report.id,
+                    'error_details': str(header_error)
+                }, status=status.HTTP_201_CREATED)
+                
+            except Exception as email_error:
+                print(f"ERROR sending emails: {email_error}")
+                print(f"Email error traceback: {traceback.format_exc()}")
                 return Response({
                     'message': 'Issue report saved successfully, but email notification failed.',
-                    'report_id': report.id
+                    'report_id': report.id,
+                    'error_details': str(email_error)
                 }, status=status.HTTP_201_CREATED)
-
-            except Exception as e:
-                logger.error(f"Email sending failed: {str(e)}")
-                return Response({
-                    'message': 'Issue report saved successfully, but email notification failed.',
-                    'report_id': report.id
-                }, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+            print("=== REPORT ISSUE DEBUG SUCCESS ===")
+            return Response({
+                'message': 'Issue report submitted successfully! BonengMalakas will receive an email shortly.',
+                'report_id': report.id
+            }, status=status.HTTP_201_CREATED)
+            
+        except Exception as main_error:
+            print(f"=== MAIN ERROR IN REPORT VIEW ===")
+            print(f"Error: {main_error}")
+            print(f"Full traceback: {traceback.format_exc()}")
+            
+            logger.error(f"ReportIssueView Exception: {str(main_error)}")
+            logger.error(f"Full traceback: {traceback.format_exc()}")
+            
+            return Response({
+                'error': 'Internal server error occurred while processing your request.',
+                'details': str(main_error) if getattr(settings, 'DEBUG', False) else 'Contact support for assistance.',
+                'traceback': traceback.format_exc() if getattr(settings, 'DEBUG', False) else None
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
