@@ -23,7 +23,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = ['*'] if DEBUG else [
     'localhost', 
     '127.0.0.1',
-    'your-app-name.onrender.com',  # Replace with your Render app name
+    'hkktn-3.onrender.com',  # Your actual Render domain
+    'bonengmalakas.netlify.app',  # Also add your Netlify domain
 ]
 
 SIMPLE_JWT = {
@@ -79,6 +80,8 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "https://bonengmalakas.netlify.app",  
     "https://localhost:3000", 
+    "https://hkktn-3.onrender.com", 
+
 ]   
 CORS_ALLOW_CREDENTIALS = True
 
