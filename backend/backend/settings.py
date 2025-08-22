@@ -19,7 +19,6 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 # Production vs Development
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-# Update ALLOWED_HOSTS for production
 ALLOWED_HOSTS = ['*'] if DEBUG else [
     'localhost', 
     '127.0.0.1',
