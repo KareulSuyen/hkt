@@ -77,7 +77,7 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "https://bonengmalakas.netlify.app/",  
+    "https://bonengmalakas.netlify.app",  
     "https://localhost:3000", 
 ]   
 CORS_ALLOW_CREDENTIALS = True
