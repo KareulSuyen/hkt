@@ -340,10 +340,7 @@ $dark-border: #333;
     }
     
     img {
-      margin-right: 10px;
-      padding-top: 10px;
-      height: 33px;
-      width: 33px;
+      display: none;
     }
     .navLink {
       color: $dark-text-secondary;
@@ -372,13 +369,6 @@ $dark-border: #333;
     
     span {
       color: $dark-primary;
-    }
-    
-    img {
-      margin-right: 10px;
-      padding-top: 10px;
-      height: 33px;
-      width: 33px;
     }
   }
 }
