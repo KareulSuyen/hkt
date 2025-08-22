@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import sidebarstyle from '../styles/sidebar.module.scss';
 import { TbLayoutSidebarRightExpandFilled } from "react-icons/tb";
 import { MdOutlineQuiz } from "react-icons/md";
-import spcc from '/images/spcc-bg.png'
+import spcc from '../../public/images/spcc-bg.png';
 import { FaUsers } from "react-icons/fa";
 import { MdBugReport } from "react-icons/md";
 

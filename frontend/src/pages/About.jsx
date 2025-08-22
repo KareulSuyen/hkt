@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaGithub, FaFacebook, FaInstagram } from "react-icons/fa";
 import styles from '../styles/about.module.scss';
+import logo from '../../public/images/logo.png';
 
 const AboutUs = () => {
   const [scrollY, setScrollY] = useState(0);

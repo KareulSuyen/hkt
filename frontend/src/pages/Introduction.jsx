@@ -1,9 +1,9 @@
 {/* Static Intro page loloololol boneng boneng boneng boneng boneng boneng boneng boneng boneng */}
 import styles from '../styles/introduction.module.scss';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
-import city from '/images/city.png'
-import spcc from '/images/spcc-bg.png'
-import logo from '/images/logo.png'
+import city from '../../public/images/city.png'
+import spcc from '../../public/images/spcc-bg.png'
+import logo from '../../public/images/logo.png'
 
 
 const Intro = () => {
