@@ -3,5 +3,8 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/hkktn/',  
+  base: './',  // This fixes the asset paths
+  build: {
+    outDir: 'dist',
+  },
 })
