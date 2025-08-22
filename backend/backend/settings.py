@@ -84,6 +84,7 @@ else:
         "https://hkktn-3.onrender.com", 
         "https://www.bonengmalakas.site",    
         'http://127.0.0.1:8000',
+        'https://bonengmalakas.site',
     ]
 
 CORS_ALLOW_CREDENTIALS = True
