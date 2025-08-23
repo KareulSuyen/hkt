@@ -16,7 +16,7 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
     const [submitStatus, setSubmitStatus] = useState(null);
 
     const errorTypeOptions = [
-        { value: 'bugs', label: 'Bugs', icon: MdBugReport },
+        { value: 'bug', label: 'Bugs', icon: MdBugReport },
         { value: 'ai', label: 'AI Issues', icon: MdCode },
         { value: 'ui', label: 'UI/UX Problems', icon: MdDesignServices },
         { value: 'performance', label: 'Performance Issues', icon: MdSpeed },
