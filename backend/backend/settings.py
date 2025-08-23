@@ -1,4 +1,3 @@
-# Updated settings.py for Render deployment
 from pathlib import Path
 from dotenv import load_dotenv
 from datetime import timedelta
@@ -16,14 +15,12 @@ AI_API_BASE_URL = config('AI_API_BASE_URL', default='https://api.groq.com/openai
 
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
-# Production vs Development
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-# Update ALLOWED_HOSTS for production
 ALLOWED_HOSTS = ['*'] if DEBUG else [
     'localhost', 
     '127.0.0.1',
-    'your-app-name.onrender.com',  # Replace with your Render app name
+    'your-app-name.onrender.com', 
 ]
 
 SIMPLE_JWT = {
@@ -58,7 +55,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add WhiteNoise for static files
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -72,17 +69,16 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',  # Allow public access by default
+        'rest_framework.permissions.AllowAny',  
     ),
 }
 
-# CORS settings - Update for production
 if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
 else:
     CORS_ALLOWED_ORIGINS = [
-        "https://bonengmalakas.netlify.app",  # Replace with your Netlify URL
-        "https://localhost:3000",  # For local development
+        "https://bonengmalakas.netlify.app",  
+        "https://localhost:3000",  
     ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -104,7 +100,6 @@ TEMPLATES = [
     },
 ]
 
-# Email Config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = config('EMAIL_HOST', default='smtp.gmail.com')
 EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
@@ -115,7 +110,6 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default=EMAIL_HOST_USER)
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-# Database - Support both local SQLite and Render PostgreSQL
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
@@ -155,11 +149,9 @@ TIME_ZONE = 'Asia/Manila'
 USE_I18N = True
 USE_TZ = True
 
-# Static files configuration for production
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Security settings for production
 if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
