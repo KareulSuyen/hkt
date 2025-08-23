@@ -121,16 +121,6 @@ const Form = ({ method, route }) => {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-
-    const getPasswordStrengthColor = () => {
-        switch(passwordStrength) {
-            case 'Weak': return '#ff4444';
-            case 'Medium': return '#ffbb33';
-            case 'Strong': return '#00C851';
-            default: return 'transparent';
-        }
-    };
-
     return (
         <>
             <div className={formstyle['auth-page']}>
@@ -188,31 +178,6 @@ const Form = ({ method, route }) => {
                                 >
                                     {passwordStrength}
                                 </span>
-                                {showTooltip && (
-                                    <div className={formstyle['tooltip']}>
-                                        <div style={{
-                                            width: '100%',
-                                            height: '4px',
-                                            background: `linear-gradient(to right, 
-                                                #ff4444 0%, 
-                                                #ff4444 40%, 
-                                                #ffbb33 40%, 
-                                                #ffbb33 70%, 
-                                                #00C851 70%, 
-                                                #00C851 100%)`,
-                                            marginBottom: '8px'
-                                        }}/>
-                                        Password strength factors:
-                                        <ul>
-                                            <li>Length (8+ characters recommended)</li>
-                                            <li>Uppercase letters</li>
-                                            <li>Lowercase letters</li>
-                                            <li>Numbers</li>
-                                            <li>Special characters</li>
-                                            <li>Avoid common patterns</li>
-                                        </ul>
-                                    </div>
-                                )}
                             </div>
                         )}
                         
