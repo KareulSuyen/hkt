@@ -3,7 +3,7 @@ from .views import (
     CreateUserViews, 
     AIAPIView, 
     ReportIssueView,
-
+)
 from .views import CreateUserViews, AIAPIView, ReportIssueView
 
 
