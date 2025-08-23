@@ -1,3 +1,5 @@
+# Update the imports at the top of your api/views.py
+
 from django.contrib.auth.models import User
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -5,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.conf import settings
 from django.core.mail import send_mail, BadHeaderError
-from .serializers import UserSerializer, ReportIssueSerializer
+from .serializers import UserSerializer, ReportIssueSerializer  # Add UserSerializer here
 from .models import ReportIssue
 import requests
 import json
@@ -14,9 +16,11 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+logger = logging.getLogger(__name__)
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
+
 
 @csrf_exempt
 @require_http_methods(["GET", "POST"])
@@ -31,7 +35,6 @@ def test_endpoint(request):
 
 logger = logging.getLogger(__name__)
 
-# FIXED: Add csrf_exempt and better error handling
 @method_decorator(csrf_exempt, name='dispatch')
 class CreateUserViews(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -41,9 +44,19 @@ class CreateUserViews(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         print(f"=== REGISTRATION DEBUG ===")
         print(f"Request method: {request.method}")
+        print(f"Content-Type: {request.content_type}")
+        print(f"Request body (raw): {request.body}")
         print(f"Request data: {request.data}")
         print(f"Request headers: {dict(request.headers)}")
-        print(f"Content type: {request.content_type}")
+        
+        # Check if data exists
+        if not request.data:
+            print("❌ No data received!")
+            return Response({
+                'error': 'No data received',
+                'content_type': request.content_type,
+                'body': request.body.decode('utf-8') if request.body else 'Empty body'
+            }, status=status.HTTP_400_BAD_REQUEST)
         
         try:
             serializer = self.get_serializer(data=request.data)
@@ -58,17 +71,19 @@ class CreateUserViews(generics.CreateAPIView):
                     'user': {
                         'id': user.id,
                         'username': user.username,
-                        'email': user.email,
-                        'first_name': user.first_name,
-                        'last_name': user.last_name,
                     }
                 }, status=status.HTTP_201_CREATED)
             else:
                 print(f"❌ Serializer errors: {serializer.errors}")
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                return Response({
+                    'error': 'Validation failed',
+                    'details': serializer.errors
+                }, status=status.HTTP_400_BAD_REQUEST)
                 
         except Exception as e:
             print(f"❌ Exception in create: {str(e)}")
+            import traceback
+            traceback.print_exc()
             return Response({
                 'error': 'Internal server error',
                 'details': str(e)
