@@ -1,42 +1,64 @@
-import json
-import logging
-import requests
-import traceback
-
-from django.conf import settings
 from django.contrib.auth.models import User
-from django.core.mail import EmailMultiAlternatives, BadHeaderError, send_mail
-from django.template.loader import render_to_string
-
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
-from django.http import JsonResponse
-
-
-@api_view(['GET', 'POST'])
-@permission_classes([AllowAny])
-def test_endpoint(request):
-    return JsonResponse({
-        'status': 'success', 
-        'method': request.method,
-        'data': request.data if hasattr(request, 'data') else None,
-        'content_type': request.content_type if hasattr(request, 'content_type') else None,
-    })
-
-from .models import ReportIssue
+from django.conf import settings
+from django.core.mail import send_mail, BadHeaderError
 from .serializers import UserSerializer, ReportIssueSerializer
+from .models import ReportIssue
+import requests
+import json
+import logging
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
 logger = logging.getLogger(__name__)
 
+# FIXED: Add csrf_exempt and better error handling
+@method_decorator(csrf_exempt, name='dispatch')
 class CreateUserViews(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+    
+    def create(self, request, *args, **kwargs):
+        print(f"=== REGISTRATION DEBUG ===")
+        print(f"Request method: {request.method}")
+        print(f"Request data: {request.data}")
+        print(f"Request headers: {dict(request.headers)}")
+        print(f"Content type: {request.content_type}")
+        
+        try:
+            serializer = self.get_serializer(data=request.data)
+            
+            if serializer.is_valid():
+                print("✅ Serializer is valid")
+                user = serializer.save()
+                print(f"✅ User created: {user.username}")
+                
+                return Response({
+                    'message': 'User created successfully',
+                    'user': {
+                        'id': user.id,
+                        'username': user.username,
+                        'email': user.email,
+                        'first_name': user.first_name,
+                        'last_name': user.last_name,
+                    }
+                }, status=status.HTTP_201_CREATED)
+            else:
+                print(f"❌ Serializer errors: {serializer.errors}")
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                
+        except Exception as e:
+            print(f"❌ Exception in create: {str(e)}")
+            return Response({
+                'error': 'Internal server error',
+                'details': str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class AIAPIView(APIView):
     permission_classes = [AllowAny]
@@ -138,7 +160,7 @@ class AIAPIView(APIView):
                 - Quizzes are for self-testing, not cheating.  
 
                 5. Reporting Problems  
-                - Use the “Report a Problem” feature for bugs, errors, or inappropriate content.  
+                - Use the "Report a Problem" feature for bugs, errors, or inappropriate content.  
                 - Abusive or fake reports may result in suspension.  
 
                 6. Community & Respect  
@@ -191,6 +213,7 @@ class AIAPIView(APIView):
             print(f"Request exception: {e}")
             return Response({'error': str(e)}, status=500)
 
+@method_decorator(csrf_exempt, name='dispatch')
 class ReportIssueView(generics.CreateAPIView):
     queryset = ReportIssue.objects.all()
     serializer_class = ReportIssueSerializer
@@ -256,4 +279,3 @@ class ReportIssueView(generics.CreateAPIView):
                 }, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
