@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { ACCESS_TOKEN } from './constants';
 
+
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const api = axios.create({
@@ -119,5 +120,28 @@ export const testAPIConnection = async () => {
     };
   }
 };
+
+export const verifyEmail = async (token) => {
+  try {
+    const response = await api.post('/user/verify-email/', {
+      token: token
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const resendVerification = async (email) => {
+  try {
+    const response = await api.post('/user/resend-verification/', {
+      email: email
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 
 export default api;
