@@ -76,14 +76,37 @@ REST_FRAMEWORK = {
     ),
 }
 
-# CORS settings - Update for production
 if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
 else:
     CORS_ALLOWED_ORIGINS = [
-        "https://bonengmalakas.netlify.app",  # Replace with your Netlify URL
-        "https://localhost:3000",  # For local development
+        "https://bonengmalakas.netlify.app",
+        "http://localhost:3000",    # Fixed: http instead of https
+        "https://localhost:3000",   # Keep both just in case
     ]
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = False  # Set to True temporarily for debugging
+CORS_ALLOWED_HEADERS = [
+    'accept',
+    'accept-encoding', 
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+CORS_ALLOWED_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS', 
+    'PATCH',
+    'POST',
+    'PUT',
+]
 
 CORS_ALLOW_CREDENTIALS = True
 
