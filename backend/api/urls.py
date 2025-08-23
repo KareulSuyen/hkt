@@ -3,7 +3,9 @@ from .views import (
     CreateUserViews, 
     AIAPIView, 
     ReportIssueView,
-)
+
+from .views import CreateUserViews, AIAPIView, ReportIssueView
+
 
 urlpatterns = [
     path('user/register/', CreateUserViews.as_view(), name='user-register'),

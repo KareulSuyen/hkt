@@ -13,33 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True},
         }
-
-    def validate_email(self, value):
-        if User.objects.filter(email=value).exists():
-            raise serializers.ValidationError("A user with this email already exists.")
-        return value
-
-    def validate(self, data):
-        if data.get('password') != data.get('confirm_password'):
-            raise serializers.ValidationError("Passwords do not match.")
-        return data
-
-    def create(self, validated_data):
-        # Remove confirm_password from validated_data
-        validated_data.pop('confirm_password', None)
         
-        # Create user
-        user = User.objects.create_user(**validated_data)
-        
-        # Create user profile with verification token
-        UserProfile.objects.create(
-            user=user,
-            email_verified=False,
-            email_verification_token=uuid.uuid4()
-        )
-        
-        return user
-
 class ReportIssueSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReportIssue
