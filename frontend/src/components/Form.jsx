@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
 
+
 const Form = ({ method, route }) => {
     const setIsActive = ({isActive}) => isActive ? `${formstyle.link} ${formstyle.active}` : formstyle.link
     const [username, setUsername] = useState('');
