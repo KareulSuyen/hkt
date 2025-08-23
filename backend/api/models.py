@@ -3,7 +3,7 @@ from django.db import models
 
 class ReportIssue(models.Model):
     ERROR_CHOICES = [
-        ('bugs', 'Bug/Technical Issue'),
+        ('bug', 'Bug/Technical Issue'),
         ('ui', 'UI/Design Issue'),
         ('feature', 'Feature Request'),
         ('content', 'Content Issue'),
