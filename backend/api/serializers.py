@@ -3,15 +3,16 @@ from rest_framework import serializers
 from .models import ReportIssue
 
 class UserSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(required=True)
+    confirm_password = serializers.CharField(write_only=True)
+    
     class Meta:
         model = User
-        fields = ['id', 'username', 'password']
-        extra_kwargs = {'password': {'write_only': True}}
-
-    def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
-        return user
-
+        fields = ['id', 'username', 'email', 'password', 'confirm_password']
+        extra_kwargs = {
+            'password': {'write_only': True},
+        }
+        
 class ReportIssueSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReportIssue
@@ -26,3 +27,5 @@ class ReportIssueSerializer(serializers.ModelSerializer):
         if len(value.strip()) < 10:
             raise serializers.ValidationError("Message must be at least 10 characters long")
         return value
+    
+    
