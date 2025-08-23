@@ -1,4 +1,3 @@
-# backend/urls.py
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import (
@@ -6,6 +5,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from api.views import ReportIssueView 
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
