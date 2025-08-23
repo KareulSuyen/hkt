@@ -2,11 +2,10 @@ import api from '../api';
 import formstyle from '../styles/form.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
-
 
 const Form = ({ method, route }) => {
     const setIsActive = ({isActive}) => isActive ? `${formstyle.link} ${formstyle.active}` : formstyle.link
@@ -16,28 +15,21 @@ const Form = ({ method, route }) => {
     const [loading, setLoading] = useState(false);
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    const [passwordStrength, setPasswordStrength] = useState('');
     const [showTooltip, setShowTooltip] = useState(false);
 
     const navigate = useNavigate();
     const isLogin = method === 'login';
     const actionType = isLogin ? 'Login' : 'Register';
 
-    useEffect(() => {
-        if (!password || isLogin) return;
+    // Memoize password strength calculation to prevent unnecessary recalculations
+    const passwordStrength = useMemo(() => {
+        if (!password || isLogin || password.length === 0) return null;
         
-        const strength = checkPasswordStrength(password);
-        setPasswordStrength(strength);
-    }, [password, isLogin]);
-
-    const checkPasswordStrength = (pass) => {
-        if (pass.length === 0) return '';
-        
-        const hasUpperCase = /[A-Z]/.test(pass);
-        const hasLowerCase = /[a-z]/.test(pass);
-        const hasNumbers = /\d/.test(pass);
-        const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(pass);
-        const isLongEnough = pass.length >= 8;
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumbers = /\d/.test(password);
+        const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        const isLongEnough = password.length >= 8;
         
         const strengthPoints = [hasUpperCase, hasLowerCase, hasNumbers, hasSpecialChars, isLongEnough]
             .filter(Boolean).length;
@@ -45,7 +37,28 @@ const Form = ({ method, route }) => {
         if (strengthPoints < 3) return 'Weak';
         if (strengthPoints < 5) return 'Medium';
         return 'Strong';
-    };
+    }, [password, isLogin]);
+
+    // Memoize color calculation
+    const passwordStrengthColor = useMemo(() => {
+        if (!passwordStrength) return 'transparent';
+        
+        switch(passwordStrength) {
+            case 'Weak': return '#ff4444';
+            case 'Medium': return '#ffbb33';
+            case 'Strong': return '#00C851';
+            default: return 'transparent';
+        }
+    }, [passwordStrength]);
+
+    // Optimize tooltip handlers with useCallback
+    const handleTooltipEnter = useCallback(() => {
+        setShowTooltip(true);
+    }, []);
+
+    const handleTooltipLeave = useCallback(() => {
+        setShowTooltip(false);
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -118,18 +131,9 @@ const Form = ({ method, route }) => {
         }
     };
 
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-    };
-
-    const getPasswordStrengthColor = () => {
-        switch(passwordStrength) {
-            case 'Weak': return '#ff4444';
-            case 'Medium': return '#ffbb33';
-            case 'Strong': return '#00C851';
-            default: return 'transparent';
-        }
-    };
+    const togglePasswordVisibility = useCallback(() => {
+        setShowPassword(prev => !prev);
+    }, []);
 
     return (
         <>
@@ -178,13 +182,18 @@ const Form = ({ method, route }) => {
                             </button>
                         </div>
                         
-                        {!isLogin && password && (
+                        {/* Fixed password strength indicator */}
+                        {!isLogin && password.length > 0 && (
                             <div className={formstyle['password-strength']}>
                                 <span>Strength: </span>
                                 <span 
-                                    style={{ color: getPasswordStrengthColor() }}
-                                    onMouseEnter={() => setShowTooltip(true)}
-                                    onMouseLeave={() => setShowTooltip(false)}
+                                    style={{ 
+                                        color: passwordStrengthColor,
+                                        transition: 'color 0.3s ease',
+                                        fontWeight: '600'
+                                    }}
+                                    onMouseEnter={handleTooltipEnter}
+                                    onMouseLeave={handleTooltipLeave}
                                 >
                                     {passwordStrength}
                                 </span>
@@ -200,7 +209,8 @@ const Form = ({ method, route }) => {
                                                 #ffbb33 70%, 
                                                 #00C851 70%, 
                                                 #00C851 100%)`,
-                                            marginBottom: '8px'
+                                            marginBottom: '8px',
+                                            borderRadius: '2px'
                                         }}/>
                                         Password strength factors:
                                         <ul>
