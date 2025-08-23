@@ -1,16 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-import uuid
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    email_verified = models.BooleanField(default=False)
-    email_verification_token = models.UUIDField(default=uuid.uuid4, unique=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    def __str__(self):
-        return f"{self.user.username} - Verified: {self.email_verified}"
 
 class ReportIssue(models.Model):
     ERROR_CHOICES = [

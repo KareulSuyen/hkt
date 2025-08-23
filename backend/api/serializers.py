@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True},
         }
-
+        
 class ReportIssueSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReportIssue
@@ -28,3 +28,5 @@ class ReportIssueSerializer(serializers.ModelSerializer):
         if len(value.strip()) < 10:
             raise serializers.ValidationError("Message must be at least 10 characters long")
         return value
+    
+    
