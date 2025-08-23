@@ -13,6 +13,22 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from django.http import JsonResponse
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([AllowAny])
+def test_endpoint(request):
+    return JsonResponse({
+        'status': 'success', 
+        'method': request.method,
+        'data': request.data if hasattr(request, 'data') else None,
+        'content_type': request.content_type if hasattr(request, 'content_type') else None,
+    })
+
 from .models import ReportIssue
 from .serializers import UserSerializer, ReportIssueSerializer
 logger = logging.getLogger(__name__)
