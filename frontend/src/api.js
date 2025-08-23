@@ -224,3 +224,5 @@ export const loginUser = async (credentials) => {
     }
   }
 };
+
+export default api;
