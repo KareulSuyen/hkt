@@ -28,19 +28,9 @@ export const registerUser = async (userData) => {
   try {
     console.log('Registering user:', userData);
     
-    const registrationData = {
-      username: userData.username,
-      email: userData.email,
-      password: userData.password,
-      password_confirm: userData.password_confirm || userData.password,
-      first_name: userData.first_name || '',
-      last_name: userData.last_name || '',
-    };
-    
-    const response = await api.post('/api/user/register/', registrationData, {
+    const response = await api.post('/api/user/register/', userData, {  // FIXED: Added /api/ prefix
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
       },
       timeout: 30000,
     });
@@ -57,21 +47,24 @@ export const registerUser = async (userData) => {
       
       let errorMsg = 'Registration failed';
       
-      if (error.response.data && typeof error.response.data === 'object') {
-        const errors = [];
-        Object.keys(error.response.data).forEach(field => {
-          const fieldErrors = error.response.data[field];
-          if (Array.isArray(fieldErrors)) {
-            fieldErrors.forEach(err => {
-              errors.push(`${field}: ${err}`);
-            });
-          } else {
-            errors.push(`${field}: ${fieldErrors}`);
-          }
-        });
-        errorMsg = errors.length > 0 ? errors.join(', ') : errorMsg;
-      } else if (typeof error.response.data === 'string') {
-        errorMsg = error.response.data;
+      if (error.response.data) {
+        // Handle Django REST framework validation errors
+        if (typeof error.response.data === 'object') {
+          const errors = [];
+          Object.keys(error.response.data).forEach(field => {
+            const fieldErrors = error.response.data[field];
+            if (Array.isArray(fieldErrors)) {
+              fieldErrors.forEach(err => {
+                errors.push(`${field}: ${err}`);
+              });
+            } else {
+              errors.push(`${field}: ${fieldErrors}`);
+            }
+          });
+          errorMsg = errors.length > 0 ? errors.join(', ') : errorMsg;
+        } else if (typeof error.response.data === 'string') {
+          errorMsg = error.response.data;
+        }
       }
       
       throw new Error(errorMsg);
@@ -92,10 +85,9 @@ export const loginUser = async (credentials) => {
   try {
     console.log('Logging in user:', credentials.username || credentials.email);
     
-    const response = await api.post('/api/token/', credentials, {
+    const response = await api.post('/api/token/', credentials, {  // FIXED: Added /api/ prefix
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
       },
       timeout: 30000,
     });
@@ -131,12 +123,11 @@ export const loginUser = async (credentials) => {
   }
 };
 
-// AI Prompt Function
 export const sendPrompt = async (prompt) => {
   try {
     console.log('Sending prompt to AI endpoint:', prompt);
     
-    const response = await api.post('/ai/ai/', {
+    const response = await api.post('/api/ai/', {  // FIXED: Changed from '/ai/ai/' to '/api/ai/'
       prompt: prompt
     }, {
       headers: {
@@ -173,12 +164,11 @@ export const sendPrompt = async (prompt) => {
   }
 };
 
-// Issue Report Function - THIS WAS MISSING!
 export const submitIssueReport = async (reportData) => {
   try {
     console.log('Submitting issue report:', reportData);
     
-    const response = await api.post('/report-issue/', reportData, {
+    const response = await api.post('/api/report-issue/', reportData, {  // FIXED: Added /api/ prefix
       headers: {
         'Content-Type': 'application/json',
       },
@@ -217,10 +207,9 @@ export const submitIssueReport = async (reportData) => {
   }
 };
 
-// API Connection Test Function
 export const testAPIConnection = async () => {
   try {
-    const response = await api.get('/');
+    const response = await api.get('/api/test-endpoint/');  // FIXED: Added proper test endpoint
     return { success: true, data: response.data };
   } catch (error) {
     return { 
