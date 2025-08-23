@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import ReportIssue, UserProfile
-import uuid
+from .models import ReportIssue
 
 class UserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
