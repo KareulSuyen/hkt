@@ -14,6 +14,20 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+
+@csrf_exempt
+@require_http_methods(["GET", "POST"])
+def test_endpoint(request):
+    """Simple test endpoint to verify API is working"""
+    return JsonResponse({
+        'message': 'Test endpoint is working!',
+        'method': request.method,
+        'status': 'success'
+    })
+
 
 logger = logging.getLogger(__name__)
 
