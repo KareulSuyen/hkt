@@ -20,9 +20,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = ['*'] if DEBUG else [
     'localhost', 
     '127.0.0.1',
-    'your-app-name.onrender.com', 
+    'hkktn-3.onrender.com',  
 ]
-
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7), 
@@ -77,9 +76,23 @@ if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
 else:
     CORS_ALLOWED_ORIGINS = [
-        "https://bonengmalakas.netlify.app",  
-        "https://localhost:3000",  
-    ]
+    "https://bonengmalakas.netlify.app",
+    "http://localhost:3000",   # Fixed: http instead of https
+    "https://localhost:3000",  # Keep both just in case
+]
+
+CORS_ALLOWED_HEADERS = [
+    'accept',
+    'accept-encoding', 
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
 
 CORS_ALLOW_CREDENTIALS = True
 
