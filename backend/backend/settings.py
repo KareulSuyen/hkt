@@ -16,16 +16,13 @@ AI_API_BASE_URL = config('AI_API_BASE_URL', default='https://api.groq.com/openai
 
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
-# Production vs Development
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-# Update ALLOWED_HOSTS for production
 ALLOWED_HOSTS = ['*'] if DEBUG else [
     'localhost', 
     '127.0.0.1',
-    'https://hkktn-3.onrender.com',  # Replace with your Render app name
+    'hkktn-3.onrender.com',  
 ]
-
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7), 
@@ -76,17 +73,16 @@ REST_FRAMEWORK = {
     ),
 }
 
+# CORS settings - Update for production
 if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
 else:
     CORS_ALLOWED_ORIGINS = [
-        "https://bonengmalakas.netlify.app",
-        "http://localhost:3000",    # Fixed: http instead of https
-        "https://localhost:3000",   # Keep both just in case
-    ]
+    "https://bonengmalakas.netlify.app",
+    "http://localhost:3000",   # Fixed: http instead of https
+    "https://localhost:3000",  # Keep both just in case
+]
 
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_ALL_ORIGINS = False  # Set to True temporarily for debugging
 CORS_ALLOWED_HEADERS = [
     'accept',
     'accept-encoding', 
@@ -97,15 +93,6 @@ CORS_ALLOWED_HEADERS = [
     'user-agent',
     'x-csrftoken',
     'x-requested-with',
-]
-
-CORS_ALLOWED_METHODS = [
-    'DELETE',
-    'GET',
-    'OPTIONS', 
-    'PATCH',
-    'POST',
-    'PUT',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
