@@ -40,30 +40,6 @@ class UserSerializer(serializers.ModelSerializer):
         
         return user
 
-class EmailVerificationSerializer(serializers.Serializer):
-    token = serializers.UUIDField()
-    
-    def validate_token(self, value):
-        try:
-            profile = UserProfile.objects.get(email_verification_token=value)
-            if profile.email_verified:
-                raise serializers.ValidationError("Email is already verified.")
-        except UserProfile.DoesNotExist:
-            raise serializers.ValidationError("Invalid or expired verification token.")
-        return value
-
-class ResendVerificationSerializer(serializers.Serializer):
-    email = serializers.EmailField()
-    
-    def validate_email(self, value):
-        try:
-            user = User.objects.get(email=value)
-            if user.profile.email_verified:
-                raise serializers.ValidationError("Email is already verified.")
-        except User.DoesNotExist:
-            raise serializers.ValidationError("No user found with this email.")
-        return value
-
 class ReportIssueSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReportIssue
