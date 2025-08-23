@@ -8,14 +8,13 @@ import { IoIosSend } from "react-icons/io";
 import { FaRobot } from "react-icons/fa";
 import ReportIssueForm from '../components/ReportIssueForm';
 
-
 const Layout = () => {
     const [open, setOpen] = useState(false);
     
     const [isReportIssueOpen, setIsReportIssueOpen] = useState(false);
     const handleOpenReportIssue = () => setIsReportIssueOpen(true);
     const handleCloseReportIssue = () => setIsReportIssueOpen(false);
-        
+    
     const [prompt, setPrompt] = useState('');
     const [history, setHistory] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -37,8 +36,8 @@ const Layout = () => {
         setIsLoading(true);
         
         const fullPrompt = history
-        .map(msg => (msg.sender === 'user' ? `User: ${msg.text}` : `AI: ${msg.text}`))
-        .join('\n') + `\nUser: ${messageToSend}\nAI:`;
+            .map(msg => (msg.sender === 'user' ? `User: ${msg.text}` : `AI: ${msg.text}`))
+            .join('\n') + `\nUser: ${messageToSend}\nAI:`;
         
         try {
             console.log('Sending full prompt:', fullPrompt);
@@ -105,7 +104,6 @@ const Layout = () => {
         }
     }, [history]);
     
-    
     {/* Boneng Malakas */}
     {/* Sidebar State */}
     const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -127,7 +125,6 @@ const Layout = () => {
                 isOpen={isReportIssueOpen} 
                 onClose={handleCloseReportIssue} 
             />
-
             <Sidebar 
                 isSidebarOpen={isSidebarOpen} 
                 toggleSidebar={toggleSidebar} 
@@ -196,22 +193,67 @@ const Layout = () => {
                             }
                             .message-typing-indicator span {
                                 display: inline-block;
-                                width: '8px';
-                                height: '8px';
-                                border-radius: '50%';
-                                background: '#4ade80';
-                                margin: '0 2px';
-                                animation: 'bounce 1.4s infinite ease-in-out';
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: #4ade80;
+                                margin: 0 2px;
+                                animation: bounce 1.4s infinite ease-in-out;
                             }
                             .message-typing-indicator span:nth-child(2) {
-                                animation-delay: '0.2s';
+                                animation-delay: 0.2s;
                             }
                             .message-typing-indicator span:nth-child(3) {
-                                animation-delay: '0.4s';
+                                animation-delay: 0.4s;
                             }
                             @keyframes bounce {
-                                0%, 80%, 100% { transform: 'translateY(0)'; }
-                                40% { transform: 'translateY(-8px)'; }
+                                0%, 80%, 100% { transform: translateY(0); }
+                                40% { transform: translateY(-8px); }
+                            }
+                            @keyframes fadeIn {
+                                from { opacity: 0; transform: translateY(10px); }
+                                to { opacity: 1; transform: translateY(0); }
+                            }
+                            @keyframes spin { 
+                                to { transform: rotate(360deg); } 
+                            }
+
+                            /* Mobile Media Queries */
+                            @media (max-width: 768px) {
+                                .ai-chatbox {
+                                    width: calc(100vw - 24px) !important;
+                                    height: calc(100vh - 80px) !important;
+                                    max-height: none !important;
+                                    bottom: 12px !important;
+                                    right: 12px !important;
+                                    left: 12px !important;
+                                    border-radius: 12px !important;
+                                }
+                                
+                                .floating-ai-button {
+                                    width: 50px !important;
+                                    height: 50px !important;
+                                    bottom: 15px !important;
+                                    right: 15px !important;
+                                }
+                            }
+
+                            @media (max-width: 480px) {
+                                .ai-chatbox {
+                                    width: calc(100vw - 16px) !important;
+                                    height: calc(100vh - 60px) !important;
+                                    bottom: 8px !important;
+                                    right: 8px !important;
+                                    left: 8px !important;
+                                    border-radius: 8px !important;
+                                }
+                                
+                                .floating-ai-button {
+                                    width: 45px !important;
+                                    height: 45px !important;
+                                    bottom: 12px !important;
+                                    right: 12px !important;
+                                }
                             }
                         `}
                     </style>
@@ -286,45 +328,37 @@ const Layout = () => {
                         )}
 
                         {history.map((msg, index) => (
-                           <div
-                            key={index}
-                            style={{
-                                marginBottom: '16px',
-                                textAlign: msg.sender === 'user' ? 'right' : 'left',
-                                animation: `fadeIn 0.3s ease-out ${index * 0.1}s both`,
-                                display: 'flex',
-                                justifyContent: msg.sender === 'user' ? 'flex-end' : 'flex-start'
-                            }}
-                        >
-                            <style>
-                                {`
-                                    @keyframes fadeIn {
-                                        from { opacity: 0; transform: translateY(10px); }
-                                        to { opacity: 1; transform: translateY(0); }
-                                    }
-                                `}
-                            </style>
                             <div
+                                key={index}
                                 style={{
-                                    display: 'inline-block',
-                                    padding: '12px 16px',
-                                    borderRadius: msg.sender === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
-                                    background: msg.sender === 'user' 
-                                        ? 'linear-gradient(135deg, #000000ff 0%, #000000ff 100%)' 
-                                        : '#2a2a2a',
-                                    maxWidth: '85%',
-                                    wordWrap: 'break-word',
-                                    lineHeight: '1.5',
-                                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                                    border: msg.sender === 'ai' ? '1px solid #333' : 'none',
-                                    textAlign: 'left' 
+                                    marginBottom: '16px',
+                                    textAlign: msg.sender === 'user' ? 'right' : 'left',
+                                    animation: `fadeIn 0.3s ease-out ${index * 0.1}s both`,
+                                    display: 'flex',
+                                    justifyContent: msg.sender === 'user' ? 'flex-end' : 'flex-start'
                                 }}
                             >
-                                {msg.text}
+                                <div
+                                    style={{
+                                        display: 'inline-block',
+                                        padding: '12px 16px',
+                                        borderRadius: msg.sender === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
+                                        background: msg.sender === 'user' 
+                                            ? 'linear-gradient(135deg, #000000ff 0%, #000000ff 100%)' 
+                                            : '#2a2a2a',
+                                        maxWidth: window.innerWidth <= 480 ? '90%' : '85%',
+                                        wordWrap: 'break-word',
+                                        lineHeight: '1.5',
+                                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                                        border: msg.sender === 'ai' ? '1px solid #333' : 'none',
+                                        textAlign: 'left',
+                                        fontSize: window.innerWidth <= 480 ? '13px' : '14px'
+                                    }}
+                                >
+                                    {msg.text}
+                                </div>
                             </div>
-                        </div>
                         ))}
-
                         {isLoading && history[history.length - 1]?.sender === 'user' && (
                             <div
                                 style={{
@@ -339,7 +373,7 @@ const Layout = () => {
                                         padding: '12px 16px',
                                         borderRadius: '18px 18px 18px 4px',
                                         background: '#2a2a2a',
-                                        maxWidth: '85%',
+                                        maxWidth: window.innerWidth <= 480 ? '90%' : '85%',
                                         wordWrap: 'break-word',
                                         lineHeight: '1.5',
                                         border: '1px solid #333'
@@ -384,7 +418,7 @@ const Layout = () => {
                                     border: 'none',
                                     background: 'transparent',
                                     color: 'white',
-                                    fontSize: '14px',
+                                    fontSize: window.innerWidth <= 480 ? '16px' : '14px',
                                     outline: 'none',
                                     minHeight: '40px'
                                 }}
@@ -427,11 +461,7 @@ const Layout = () => {
                                         borderTopColor: 'white',
                                         borderRadius: '50%',
                                         animation: 'spin 1s linear infinite'
-                                    }}>
-                                        <style>
-                                            {`@keyframes spin { to { transform: rotate(360deg); } }`}
-                                        </style>
-                                    </div>
+                                    }}></div>
                                 ) : (
                                     <IoIosSend size={20}/>
                                 )}
@@ -439,7 +469,7 @@ const Layout = () => {
                         </div>
                         <div style={{
                             color: '#666',
-                            fontSize: '11px',
+                            fontSize: window.innerWidth <= 480 ? '10px' : '11px',
                             textAlign: 'center',
                             marginTop: '8px'
                         }}>

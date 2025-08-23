@@ -3,7 +3,8 @@ import navstyle from '../styles/navbar.module.scss';
 import { FaHandsHelping, FaHome } from 'react-icons/fa';
 import { CgProfile } from "react-icons/cg";
 import { RxHamburgerMenu } from "react-icons/rx";
-import spccbg from '/images/logo.png';
+import spccbg from '../../public/images/spcc-bg.png';
+
 
 const Navbar = ({ toggleSidebar, toggleProfile }) => {
     const setActive = ({ isActive }) =>

@@ -250,7 +250,7 @@ $dark-border: #333;
 
 
 #world {
-    background-image: url('/images/map.jpg');
+    background-image: url('../../public/images/map.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -260,7 +260,7 @@ $dark-border: #333;
   border: 1px solid #535353;
 }
 #stats {
-    background-image: url('/images/Pilipinas.jpg');
+    background-image: url('../../public/images/Pilipinas.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -317,5 +317,58 @@ $dark-border: #333;
   
   .heroStats {
     order: 3;
+  }
+}
+
+@media(max-width: 500px) {
+  .navLinks {
+    display: flex;
+    gap: .3rem;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    color: $dark-text;
+    display: flex;
+    align-items: center;
+    
+    span {
+      color: $dark-primary;
+    }
+    
+    img {
+      display: none;
+    }
+    .navLink {
+      color: $dark-text-secondary;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.7rem 0;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+  }
+}
+@media(max-width: 350px) {
+  .navLinks {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    color: $dark-text;
+    display: flex;
+    align-items: center;
+    
+    span {
+      color: $dark-primary;
+    }
   }
 }

@@ -1,9 +1,11 @@
-Django>=4.2,<5.0
-djangorestframework>=3.14
-djangorestframework-simplejwt
-python-dotenv
-psycopg2-binary
+Django>=4.2.0
+djangorestframework
 django-cors-headers
-Pillow
-
-#Makakalimutin Aq!
+djangorestframework-simplejwt
+python-decouple
+python-dotenv
+requests
+dj-database-url
+psycopg2-binary
+whitenoise
+gunicorn

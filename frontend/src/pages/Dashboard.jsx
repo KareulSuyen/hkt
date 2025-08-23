@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
 import styles from '../styles/dashboard.module.scss';
 import { SiUnitednations } from "react-icons/si";
-import overpopulationVid from '/videos/overpopulation.mp4'
+import overpopulationVid from '../../public/videos/overpopulation.mp4'
 import { LuHandHelping } from "react-icons/lu";
 import { FaEarthAsia, FaBook } from "react-icons/fa6";
 import { FaGlobeAmericas, FaChartLine } from "react-icons/fa";
@@ -29,7 +29,7 @@ const Dashboard = () => {
       setCurrentTime(new Date());
     }, 60000);
     
-    setTimeout(() => setIsLoading(false), 1000);
+    setTimeout(() => setIsLoading(false), 0);
     
     return () => clearInterval(timer);
   }, []);
