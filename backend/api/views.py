@@ -2,25 +2,166 @@ import json
 import logging
 import requests
 import traceback
+import uuid
 
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives, BadHeaderError, send_mail
 from django.template.loader import render_to_string
+from django.urls import reverse
 
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import ReportIssue
-from .serializers import UserSerializer, ReportIssueSerializer
+from .models import ReportIssue, UserProfile
+from .serializers import (
+    UserSerializer, 
+    ReportIssueSerializer, 
+    EmailVerificationSerializer, 
+    ResendVerificationSerializer
+)
+
 logger = logging.getLogger(__name__)
 
 class CreateUserViews(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        
+        if serializer.is_valid():
+            user = serializer.save()
+            
+            # Send verification email
+            self.send_verification_email(user)
+            
+            return Response({
+                'message': 'Registration successful! Please check your email to verify your account.',
+                'user_id': user.id,
+                'username': user.username,
+                'email': user.email
+            }, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def send_verification_email(self, user):
+        try:
+            # Get the verification token from user profile
+            profile = user.profile
+            verification_url = f"{settings.FRONTEND_URL}/verify-email/{profile.email_verification_token}"
+            
+            subject = "Verify Your BonengGPT Account"
+            html_content = render_to_string('emails/verify_email.html', {
+                'user': user,
+                'verification_url': verification_url
+            })
+            
+            if hasattr(settings, 'EMAIL_HOST_USER') and settings.EMAIL_HOST_USER:
+                msg = EmailMultiAlternatives(
+                    subject=subject,
+                    body='',  
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    to=[user.email],
+                )
+                msg.attach_alternative(html_content, "text/html")
+                msg.send(fail_silently=False)
+                
+                logger.info(f"Verification email sent to {user.email}")
+            else:
+                logger.warning("Email not configured - verification email not sent")
+                
+        except Exception as e:
+            logger.error(f"Failed to send verification email: {str(e)}")
+
+class VerifyEmailView(APIView):
+    permission_classes = [AllowAny]
+    
+    def post(self, request):
+        serializer = EmailVerificationSerializer(data=request.data)
+        
+        if serializer.is_valid():
+            token = serializer.validated_data['token']
+            
+            try:
+                profile = UserProfile.objects.get(email_verification_token=token)
+                profile.email_verified = True
+                profile.save()
+                
+                return Response({
+                    'message': 'Email verified successfully! You can now login.',
+                    'verified': True
+                }, status=status.HTTP_200_OK)
+                
+            except UserProfile.DoesNotExist:
+                return Response({
+                    'error': 'Invalid or expired verification token.'
+                }, status=status.HTTP_400_BAD_REQUEST)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ResendVerificationView(APIView):
+    permission_classes = [AllowAny]
+    
+    def post(self, request):
+        serializer = ResendVerificationSerializer(data=request.data)
+        
+        if serializer.is_valid():
+            email = serializer.validated_data['email']
+            
+            try:
+                user = User.objects.get(email=email)
+                profile = user.profile
+                
+                # Generate new token
+                profile.email_verification_token = uuid.uuid4()
+                profile.save()
+                
+                # Send new verification email
+                self.send_verification_email(user)
+                
+                return Response({
+                    'message': 'Verification email sent! Please check your inbox.',
+                }, status=status.HTTP_200_OK)
+                
+            except User.DoesNotExist:
+                return Response({
+                    'error': 'No user found with this email.'
+                }, status=status.HTTP_400_BAD_REQUEST)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def send_verification_email(self, user):
+        try:
+            profile = user.profile
+            verification_url = f"{settings.FRONTEND_URL}/verify-email/{profile.email_verification_token}"
+            
+            subject = "Verify Your BonengGPT Account"
+            html_content = render_to_string('emails/verify_email.html', {
+                'user': user,
+                'verification_url': verification_url
+            })
+            
+            if hasattr(settings, 'EMAIL_HOST_USER') and settings.EMAIL_HOST_USER:
+                msg = EmailMultiAlternatives(
+                    subject=subject,
+                    body='',  
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    to=[user.email],
+                )
+                msg.attach_alternative(html_content, "text/html")
+                msg.send(fail_silently=False)
+                
+                logger.info(f"Verification email resent to {user.email}")
+            else:
+                logger.warning("Email not configured - verification email not sent")
+                
+        except Exception as e:
+            logger.error(f"Failed to resend verification email: {str(e)}")
+
 
 class AIAPIView(APIView):
     permission_classes = [AllowAny]
