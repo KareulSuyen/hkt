@@ -23,7 +23,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = ['*'] if DEBUG else [
     'localhost', 
     '127.0.0.1',
-    'your-app-name.onrender.com',  # Replace with your Render app name
+    'https://hkktn-3.onrender.com',  # Replace with your Render app name
 ]
 
 SIMPLE_JWT = {
