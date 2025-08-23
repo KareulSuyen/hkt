@@ -7,12 +7,13 @@ import { NavLink } from 'react-router-dom';
 import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
 
-
 const Form = ({ method, route }) => {
     const setIsActive = ({isActive}) => isActive ? `${formstyle.link} ${formstyle.active}` : formstyle.link
     const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errormsg, setErrorMsg] = useState('');
+    const [successMsg, setSuccessMsg] = useState('');
     const [loading, setLoading] = useState(false);
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -50,6 +51,7 @@ const Form = ({ method, route }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMsg('');
+        setSuccessMsg('');
         setLoading(true);
 
         if (!isLogin && password !== confirmPassword) {
@@ -87,7 +89,7 @@ const Form = ({ method, route }) => {
         try {
             const payload = isLogin
                 ? { username, password }
-                : { username, password, confirm_password: confirmPassword };
+                : { username, email, password, confirm_password: confirmPassword };
 
             const res = await api.post(route, payload);
 
@@ -96,7 +98,19 @@ const Form = ({ method, route }) => {
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
                 navigate('/'); 
             } else {
-                navigate('/login'); 
+                // Registration successful - show success message
+                setSuccessMsg('Registration successful! Please check your email to verify your account before logging in.');
+                
+                // Clear form
+                setUsername('');
+                setEmail('');
+                setPassword('');
+                setConfirmPassword('');
+                
+                // Optionally redirect to login after a delay
+                setTimeout(() => {
+                    navigate('/login');
+                }, 3000);
             }
         } catch (err) {
             const status = err.response?.status;
@@ -106,10 +120,14 @@ const Form = ({ method, route }) => {
                 setErrorMsg('Invalid username or password');
             } else if (status === 400 && !isLogin && data?.username?.[0] === 'A user with that username already exists.') {
                 setErrorMsg('Username already exists.');
+            } else if (status === 400 && !isLogin && data?.email?.[0] === 'A user with this email already exists.') {
+                setErrorMsg('Email already exists.');
             } else if (data?.password) {
                 setErrorMsg(data.password[0]);
             } else if (data?.confirm_password) {
                 setErrorMsg(data.confirm_password[0]);
+            } else if (data?.email) {
+                setErrorMsg(data.email[0]);
             } else {
                 setErrorMsg(data?.detail || 'Something went wrong. Please try again.');
             }
@@ -156,6 +174,18 @@ const Form = ({ method, route }) => {
                             required
                             maxLength="30"
                         />
+                        
+                        {!isLogin && (
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                autoComplete="email"
+                                className={formstyle['auth-input']}
+                                placeholder="Email"
+                                required
+                            />
+                        )}
                         
                         <div className={formstyle['password-wrapper']}>
                             <input
@@ -247,6 +277,7 @@ const Form = ({ method, route }) => {
                         </button>
 
                         {errormsg && <p className={formstyle['error-msg']}>{errormsg}</p>}
+                        {successMsg && <p className={formstyle['success-msg']}>{successMsg}</p>}
 
                         <div className={formstyle['switch-auth']}>
                             {isLogin ? (
