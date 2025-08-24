@@ -23,7 +23,6 @@ const ReportIssueForm = ({ isOpen, onClose }) => {
         { value: 'feature', label: 'Feature Request', icon: MdLightbulb },
         { value: 'other', label: 'Other', icon: MdMoreHoriz }
     ];
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({

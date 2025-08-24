@@ -8,6 +8,7 @@ class ReportIssue(models.Model):
         ('feature', 'Feature Request'),
         ('content', 'Content Issue'),
         ('other', 'Other'),
+        ('ai', 'AI Issue'),
     ]
     
     name = models.CharField(max_length=100)
