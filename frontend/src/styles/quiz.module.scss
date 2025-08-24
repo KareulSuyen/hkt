@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-$bg-primary: #0f0f0f;
-$bg-secondary: #1a1a1a;
+$bg-primary: #0a0f1c;
+$bg-secondary: #2c2f34;
 $bg-tertiary: #2d2d2d;
 $text-primary: #ffffff;
 $text-secondary: #b0b0b0;
 $text-muted: #6b7280;
-$border: #3a3a3a;
+$border: #181818;
 $border-hover: #4a4a4a;
 
 $easy: #10b981;
@@ -26,14 +26,14 @@ $extreme: #8b5cf6;
 }
 
 @mixin glass-effect {
-  background: rgba(26, 26, 26, 0.8);
+  background: #1f2c34;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 
 .quizContainer {
   min-height: 100vh;
-  background: linear-gradient(135deg, $bg-primary 0%, #1a1a1a 100%);
+  background: $bg-primary;
   color: $text-primary;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   padding: 2rem;

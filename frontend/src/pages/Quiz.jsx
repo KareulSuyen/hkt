@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/quiz.module.scss';
+import { FaRegClock } from "react-icons/fa";
+
 
 const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -383,7 +385,7 @@ const Quiz = () => {
           </div>
           <div className={styles.scoreDisplay}>Score: {score}</div>
           <div className={`${styles.timer} ${timeLeft <= 10 ? styles.urgent : ''}`}>
-            ⏱️ {timeLeft}s
+            <FaRegClock size={14}/> {timeLeft}s
           </div>
         </div>
       </div>
