@@ -53,7 +53,7 @@ $extreme: #8b5cf6;
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, $text-primary 0%, $text-secondary 100%);
+  background: linear-gradient(135deg, rgb(42, 100, 100) 0%, $text-secondary 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
