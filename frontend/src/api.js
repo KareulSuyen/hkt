@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { ACCESS_TOKEN } from './constants';
 
-const API_BASE_URL = 'https://hkktn-3.onrender.com';
+
 
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 api.interceptors.request.use((config) => {
@@ -23,12 +23,11 @@ api.interceptors.response.use(
   }
 );
 
-// User Registration Function
 export const registerUser = async (userData) => {
   try {
     console.log('Registering user:', userData);
     
-    const response = await api.post('/api/user/register/', userData, {  // FIXED: Added /api/ prefix
+    const response = await api.post('/api/user/register/', userData, { 
       headers: {
         'Content-Type': 'application/json',
       },
@@ -48,7 +47,6 @@ export const registerUser = async (userData) => {
       let errorMsg = 'Registration failed';
       
       if (error.response.data) {
-        // Handle Django REST framework validation errors
         if (typeof error.response.data === 'object') {
           const errors = [];
           Object.keys(error.response.data).forEach(field => {
@@ -85,7 +83,7 @@ export const loginUser = async (credentials) => {
   try {
     console.log('Logging in user:', credentials.username || credentials.email);
     
-    const response = await api.post('/api/token/', credentials, {  // FIXED: Added /api/ prefix
+    const response = await api.post('/api/token/', credentials, { 
       headers: {
         'Content-Type': 'application/json',
       },
@@ -127,7 +125,7 @@ export const sendPrompt = async (prompt) => {
   try {
     console.log('Sending prompt to AI endpoint:', prompt);
     
-    const response = await api.post('/api/ai/', {  // FIXED: Changed from '/ai/ai/' to '/api/ai/'
+    const response = await api.post('/api/ai/', {  
       prompt: prompt
     }, {
       headers: {
@@ -168,7 +166,7 @@ export const submitIssueReport = async (reportData) => {
   try {
     console.log('Submitting issue report:', reportData);
     
-    const response = await api.post('/api/report-issue/', reportData, {  // FIXED: Added /api/ prefix
+    const response = await api.post('/api/report-issue/', reportData, {  
       headers: {
         'Content-Type': 'application/json',
       },
@@ -209,7 +207,7 @@ export const submitIssueReport = async (reportData) => {
 
 export const testAPIConnection = async () => {
   try {
-    const response = await api.get('/api/test-endpoint/');  // FIXED: Added proper test endpoint
+    const response = await api.get('/api/test-endpoint/'); 
     return { success: true, data: response.data };
   } catch (error) {
     return { 
