@@ -21,7 +21,6 @@ const Form = ({ method, route }) => {
     const isLogin = method === 'login';
     const actionType = isLogin ? 'Login' : 'Register';
 
-    // Memoize password strength calculation to prevent unnecessary recalculations
     const passwordStrength = useMemo(() => {
         if (!password || isLogin || password.length === 0) return null;
         
@@ -182,7 +181,6 @@ const Form = ({ method, route }) => {
                             </button>
                         </div>
                         
-                        {/* Fixed password strength indicator */}
                         {!isLogin && password.length > 0 && (
                             <div className={formstyle['password-strength']}>
                                 <span>Strength: </span>
