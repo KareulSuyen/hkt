@@ -3,7 +3,7 @@ import navstyle from '../styles/navbar.module.scss';
 import { FaHandsHelping, FaHome } from 'react-icons/fa';
 import { CgProfile } from "react-icons/cg";
 import { RxHamburgerMenu } from "react-icons/rx";
-import spccbg from '../../public/images/spcc-bg.png';
+import logo from '../../public/images/logo.png'
 
 
 const Navbar = ({ toggleSidebar, toggleProfile }) => {
@@ -18,7 +18,7 @@ const Navbar = ({ toggleSidebar, toggleProfile }) => {
                     </button>
                 </div>
                 <div className={navstyle['nav-title']}>
-                    <img src={spccbg} />
+                    <img src={logo} />
                     <h2>Over<span>Population</span></h2>
                 </div>
                 <div className={navstyle['nav-center']}>
