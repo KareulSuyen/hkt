@@ -77,7 +77,7 @@ if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
 else:
     CORS_ALLOWED_ORIGINS = [
-    "https://bonengmalakas.netlify.app",
+    'https://bonengmalakas.netlify.app',
     'http://localhost:5173',
 ]
 
