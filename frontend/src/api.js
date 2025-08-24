@@ -3,7 +3,7 @@ import { ACCESS_TOKEN } from './constants';
 
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: 'https://hkktn-3.onrender.com',
 });
 
 api.interceptors.request.use((config) => {
