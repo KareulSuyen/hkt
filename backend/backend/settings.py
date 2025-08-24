@@ -19,6 +19,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['*'] if DEBUG else [
     'localhost', 
+    'http://127.0.0.1:8000',
     '127.0.0.1',
     'hkktn-3.onrender.com',  
 ]
@@ -77,8 +78,6 @@ if DEBUG:
 else:
     CORS_ALLOWED_ORIGINS = [
     "https://bonengmalakas.netlify.app",
-    "http://localhost:3000",  
-    "https://localhost:3000",
     'http://localhost:5173',
 ]
 

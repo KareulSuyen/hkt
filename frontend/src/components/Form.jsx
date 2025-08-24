@@ -7,14 +7,12 @@ import { NavLink } from 'react-router-dom';
 import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
 
-// Loading Spinner Component
 const LoadingSpinner = () => (
     <div className={formstyle['spinner']}>
         <div className={formstyle['spinner-ring']}></div>
     </div>
 );
 
-// Loading Dots Component
 const LoadingDots = () => (
     <div className={formstyle['loading-dots']}>
         <span></span>
@@ -54,7 +52,6 @@ const Form = ({ method, route }) => {
         return 'Strong';
     }, [password, isLogin]);
 
-    // Memoize color calculation
     const passwordStrengthColor = useMemo(() => {
         if (!passwordStrength) return 'transparent';
         
@@ -66,7 +63,6 @@ const Form = ({ method, route }) => {
         }
     }, [passwordStrength]);
 
-    // Optimize tooltip handlers with useCallback
     const handleTooltipEnter = useCallback(() => {
         setShowTooltip(true);
     }, []);
@@ -152,7 +148,6 @@ const Form = ({ method, route }) => {
 
     return (
         <>
-            {/* Full page loading overlay */}
             {loading && (
                 <div className={formstyle['loading-overlay']}>
                     <div className={formstyle['loading-content']}>
