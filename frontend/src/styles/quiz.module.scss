@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-$bg-primary: #0f0f0f;
-$bg-secondary: #1a1a1a;
+$bg-primary: #0a0f1c;
+$bg-secondary: #2c2f34;
 $bg-tertiary: #2d2d2d;
 $text-primary: #ffffff;
 $text-secondary: #b0b0b0;
 $text-muted: #6b7280;
-$border: #3a3a3a;
+$border: #515151;
 $border-hover: #4a4a4a;
 
 $easy: #10b981;
@@ -26,14 +26,14 @@ $extreme: #8b5cf6;
 }
 
 @mixin glass-effect {
-  background: rgba(26, 26, 26, 0.8);
+  background: #23272a;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 
 .quizContainer {
   min-height: 100vh;
-  background: linear-gradient(135deg, $bg-primary 0%, #1a1a1a 100%);
+  background: $bg-primary;
   color: $text-primary;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   padding: 2rem;
@@ -53,7 +53,7 @@ $extreme: #8b5cf6;
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, $text-primary 0%, $text-secondary 100%);
+  background: linear-gradient(135deg, rgb(42, 100, 100) 0%, $text-secondary 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -590,5 +590,123 @@ $extreme: #8b5cf6;
 @media (prefers-color-scheme: dark) {
   .quizContainer {
     color-scheme: dark;
+  }
+}
+
+// Exit button styles - add this after .timer styles
+.exitButton {
+  background: rgba(239, 68, 68, 0.1);
+  border: 2px solid rgba(239, 68, 68, 0.3);
+  color: $hard;
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  @include smooth-transition;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: $hard;
+    transform: scale(1.05);
+  }
+}
+
+// Completion time display - add this after .scoreMessage
+.completionTime {
+  font-size: 1rem;
+  color: #10b981;
+  font-weight: 600;
+  margin: 0.5rem 0;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+// Modal styles - add these at the end of your file
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.exitModal {
+  @include glass-effect;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: modalSlideIn 0.3s ease-out;
+  
+  h3 {
+    color: $text-primary;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  p {
+    color: $text-secondary;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+}
+
+.modalButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.cancelButton {
+  background: $bg-tertiary;
+  color: $text-primary;
+  border: 2px solid $border;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  @include smooth-transition;
+  
+  &:hover {
+    border-color: $border-hover;
+    background: lighten($bg-tertiary, 5%);
+  }
+}
+
+.confirmExitButton {
+  background: $hard;
+  color: white;
+  border: 2px solid $hard;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  @include smooth-transition;
+  
+  &:hover {
+    background: darken($hard, 10%);
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
