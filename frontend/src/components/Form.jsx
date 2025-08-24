@@ -7,6 +7,22 @@ import { NavLink } from 'react-router-dom';
 import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
 
+// Loading Spinner Component
+const LoadingSpinner = () => (
+    <div className={formstyle['spinner']}>
+        <div className={formstyle['spinner-ring']}></div>
+    </div>
+);
+
+// Loading Dots Component
+const LoadingDots = () => (
+    <div className={formstyle['loading-dots']}>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+);
+
 const Form = ({ method, route }) => {
     const setIsActive = ({isActive}) => isActive ? `${formstyle.link} ${formstyle.active}` : formstyle.link
     const [username, setUsername] = useState('');
@@ -21,7 +37,6 @@ const Form = ({ method, route }) => {
     const isLogin = method === 'login';
     const actionType = isLogin ? 'Login' : 'Register';
 
-    // Memoize password strength calculation to prevent unnecessary recalculations
     const passwordStrength = useMemo(() => {
         if (!password || isLogin || password.length === 0) return null;
         
@@ -137,7 +152,17 @@ const Form = ({ method, route }) => {
 
     return (
         <>
-            <div className={formstyle['auth-page']}>
+            {/* Full page loading overlay */}
+            {loading && (
+                <div className={formstyle['loading-overlay']}>
+                    <div className={formstyle['loading-content']}>
+                        <LoadingSpinner />
+                        <p>{isLogin ? 'Signing you in...' : 'Creating your account...'}</p>
+                    </div>
+                </div>
+            )}
+            
+            <div className={`${formstyle['auth-page']} ${loading ? formstyle['loading'] : ''}`}>
                 <div className={formstyle['auth-title']}>
                     <h2>Ready to learn?</h2>
                     <p>
@@ -159,6 +184,7 @@ const Form = ({ method, route }) => {
                             placeholder="Username"
                             required
                             maxLength="30"
+                            disabled={loading}
                         />
                         
                         <div className={formstyle['password-wrapper']}>
@@ -171,18 +197,19 @@ const Form = ({ method, route }) => {
                                 className={formstyle['auth-input']}
                                 required
                                 minLength={isLogin ? undefined : "8"}
+                                disabled={loading}
                             />
                             <button 
                                 type="button" 
                                 className={formstyle['toggle-password']}
                                 onClick={togglePasswordVisibility}
                                 aria-label={showPassword ? "Hide password" : "Show password"}
+                                disabled={loading}
                             >
                                 {showPassword ? <IoIosEye size={20} /> : <IoIosEyeOff size={20} />}
                             </button>
                         </div>
                         
-                        {/* Fixed password strength indicator */}
                         {!isLogin && password.length > 0 && (
                             <div className={formstyle['password-strength']}>
                                 <span>Strength: </span>
@@ -236,12 +263,14 @@ const Form = ({ method, route }) => {
                                     autoComplete="new-password"
                                     placeholder="Confirm Password"
                                     required
+                                    disabled={loading}
                                 />
                                 <button 
                                     type="button" 
                                     className={formstyle['toggle-password']}
                                     onClick={togglePasswordVisibility}
                                     aria-label={showPassword ? "Hide password" : "Show password"}
+                                    disabled={loading}
                                 >
                                     {showPassword ? <IoIosEye size={20} /> : <IoIosEyeOff size={20} />}
                                 </button>
@@ -249,11 +278,18 @@ const Form = ({ method, route }) => {
                         )}
                         
                         <button 
-                            className={formstyle['submit-btn']} 
+                            className={`${formstyle['submit-btn']} ${loading ? formstyle['loading'] : ''}`}
                             disabled={loading}
                             type="submit"
                         >
-                            {loading ? 'Please wait...' : actionType}
+                            {loading ? (
+                                <div className={formstyle['button-loading']}>
+                                    <LoadingDots />
+                                    <span>Please wait...</span>
+                                </div>
+                            ) : (
+                                actionType
+                            )}
                         </button>
 
                         {errormsg && <p className={formstyle['error-msg']}>{errormsg}</p>}
