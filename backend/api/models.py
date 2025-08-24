@@ -6,7 +6,7 @@ class ReportIssue(models.Model):
         ('bug', 'Bug/Technical Issue'),
         ('ui', 'UI/Design Issue'),
         ('feature', 'Feature Request'),
-        ('content', 'Content Issue'),
+        ('performance', 'Performance Issue'),
         ('other', 'Other'),
         ('ai', 'AI Issue'),
     ]
