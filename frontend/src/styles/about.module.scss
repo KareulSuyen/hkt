@@ -24,13 +24,22 @@ hr {
 
 .imageContainer {
   img {
-    width: 40vw;
+    background: none;
+    width: 40vh;
     display: flex;
     margin:auto;
     height: 40vh;
-    object-fit: contain;
     border-radius: 50%;
+    object-fit: contain;
     display: flex;
+  }
+
+  @media (max-width: 780px) {
+    img {
+      width: 22vh;
+      height: 30vh;
+      margin-bottom: 50px;
+    }
   }
 
 }
@@ -205,6 +214,10 @@ hr {
   font-weight: 700;
   margin-bottom: 1rem;
   color: white;
+
+  span {
+    color: #b0ceff;
+  }
 }
 
 .projectDescription {
@@ -299,6 +312,6 @@ hr {
   
   .imageContainer {
     height: 200px;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
   }
 }
