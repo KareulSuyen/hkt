@@ -577,12 +577,13 @@ const Help = () => {
                                     description="Ang sobrang populasyon ay humahantong sa mabilis na pagkaubos ng likas na yaman tulad ng tubig, lupa, at enerhiya."
                                 />
                             </a>
-                            
-                            <VisualCard
-                                image="/images/deforestation.png"
-                                title="Epekto sa Kapaligiran"
-                                description="Ang deforestation, polusyon, at pagkawala ng biodiversity ay direktang epekto ng sobrang populasyon."
-                            />
+                            <a href='https://greenerideal.com/news/environment/overpopulation-environmental-impact/' target='_blank'>
+                                <VisualCard
+                                    image="/images/deforestation.png"
+                                    title="Epekto sa Kapaligiran"
+                                    description="Ang deforestation, polusyon, at pagkawala ng biodiversity ay direktang epekto ng sobrang populasyon."
+                                />
+                            </a>
                             
                             <VisualCard
                                 image="/images/urbanization.png"
