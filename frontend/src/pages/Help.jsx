@@ -563,11 +563,13 @@ const Help = () => {
                         <p className={helpstyle.sectionSubtitle}>Mga pangunahing konsepto sa pamamagitan ng mga larawan at paliwanag</p>
                         
                         <div className={helpstyle.visualGrid}>
-                            <VisualCard
-                                image="/images/population-density.png"
-                                title="Densidad ng Populasyon"
-                                description="Ang pagdami ng tao sa urban areas ay nagdudulot ng matinding pagsisikip at pressure sa mga resources at imprastraktura."
-                            />
+                            <a href="https://data.worldbank.org/indicator/EN.POP.DNST" target='_blank'>
+                                <VisualCard
+                                    image="/images/population-density.png"
+                                    title="Densidad ng Populasyon"
+                                    description="Ang pagdami ng tao sa urban areas ay nagdudulot ng matinding pagsisikip at pressure sa mga resources at imprastraktura."
+                                />
+                            </a>
                             
                             <VisualCard
                                 image="/images/resources-depletion.png"
