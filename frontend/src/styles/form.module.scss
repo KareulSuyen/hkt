@@ -174,7 +174,6 @@ $shadow-color: rgba(0, 0, 0, 0.6);
     box-sizing: border-box;
 }
 
-// Media Queries
 @media (max-width: 900px) {
   .auth-page {
     .auth-title {
@@ -293,7 +292,6 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   }
 }
 
-/* Loading Overlay */
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -321,7 +319,6 @@ $shadow-color: rgba(0, 0, 0, 0.6);
     }
 }
 
-/* Spinning Ring Loader */
 .spinner {
     display: inline-block;
     position: relative;
@@ -352,7 +349,6 @@ $shadow-color: rgba(0, 0, 0, 0.6);
     }
 }
 
-/* Loading Dots for Button */
 .loading-dots {
     display: inline-flex;
     align-items: center;
@@ -382,7 +378,6 @@ $shadow-color: rgba(0, 0, 0, 0.6);
     }
 }
 
-/* Button Loading State */
 .button-loading {
     display: flex;
     align-items: center;
@@ -394,7 +389,6 @@ $shadow-color: rgba(0, 0, 0, 0.6);
     }
 }
 
-/* Submit Button Loading State */
 .submit-btn {
     transition: all 0.3s ease;
     position: relative;
@@ -411,7 +405,6 @@ $shadow-color: rgba(0, 0, 0, 0.6);
     }
 }
 
-/* Disable form during loading */
 .auth-page.loading {
     .auth-input, .toggle-password {
         opacity: 0.6;
@@ -419,7 +412,6 @@ $shadow-color: rgba(0, 0, 0, 0.6);
     }
 }
 
-/* Fade in animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -429,7 +421,6 @@ $shadow-color: rgba(0, 0, 0, 0.6);
     }
 }
 
-/* Alternative: Pulse animation for button */
 .submit-btn.pulse {
     animation: pulse 2s infinite;
 }
@@ -446,7 +437,6 @@ $shadow-color: rgba(0, 0, 0, 0.6);
     }
 }
 
-/* Progress bar alternative */
 .loading-progress {
     position: absolute;
     bottom: 0;
