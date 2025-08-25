@@ -18,6 +18,7 @@ const AboutUs = () => {
       <div className={styles.container}>
         <div className={styles.imageContainer}>
           <img src={heheh} />
+          <br />
         </div>
         <div className={styles.aboutContent}>
           <h2 className={styles.sectionTitle}>About Us</h2>
