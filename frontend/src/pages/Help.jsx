@@ -584,12 +584,15 @@ const Help = () => {
                                     description="Ang deforestation, polusyon, at pagkawala ng biodiversity ay direktang epekto ng sobrang populasyon."
                                 />
                             </a>
+
+                            <a href="https://www.prb.org/resources/rapid-population-growth-crowded-cities-present-challenges-in-the-philippines/" target='_blank'>
+                                <VisualCard
+                                    image="/images/urbanization.png"
+                                    title="Urbanisasyon at Kahirapan"
+                                    description="Ang mabilis na urbanisasyon ay nagreresulta sa paglaki ng mga informal settlements at slum areas."
+                                />
+                            </a>
                             
-                            <VisualCard
-                                image="/images/urbanization.png"
-                                title="Urbanisasyon at Kahirapan"
-                                description="Ang mabilis na urbanisasyon ay nagreresulta sa paglaki ng mga informal settlements at slum areas."
-                            />
                             
                             <VisualCard
                                 image="/images/education.jpg"
