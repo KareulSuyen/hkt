@@ -1,5 +1,3 @@
-# Update the imports at the top of your api/views.py
-
 from django.contrib.auth.models import User
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -7,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.conf import settings
 from django.core.mail import send_mail, BadHeaderError
-from .serializers import UserSerializer, ReportIssueSerializer  # Add UserSerializer here
+from .serializers import UserSerializer, ReportIssueSerializer 
 from .models import ReportIssue
 import requests
 import json
@@ -32,7 +30,6 @@ def test_endpoint(request):
         'status': 'success'
     })
 
-
 logger = logging.getLogger(__name__)
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -49,9 +46,8 @@ class CreateUserViews(generics.CreateAPIView):
         print(f"Request data: {request.data}")
         print(f"Request headers: {dict(request.headers)}")
         
-        # Check if data exists
         if not request.data:
-            print("❌ No data received!")
+            print("No data received!")
             return Response({
                 'error': 'No data received',
                 'content_type': request.content_type,
@@ -62,9 +58,9 @@ class CreateUserViews(generics.CreateAPIView):
             serializer = self.get_serializer(data=request.data)
             
             if serializer.is_valid():
-                print("✅ Serializer is valid")
+                print("Serializer is valid")
                 user = serializer.save()
-                print(f"✅ User created: {user.username}")
+                print(f"User created: {user.username}")
                 
                 return Response({
                     'message': 'User created successfully',
@@ -74,14 +70,14 @@ class CreateUserViews(generics.CreateAPIView):
                     }
                 }, status=status.HTTP_201_CREATED)
             else:
-                print(f"❌ Serializer errors: {serializer.errors}")
+                print(f"Serializer errors: {serializer.errors}")
                 return Response({
                     'error': 'Validation failed',
                     'details': serializer.errors
                 }, status=status.HTTP_400_BAD_REQUEST)
                 
         except Exception as e:
-            print(f"❌ Exception in create: {str(e)}")
+            print(f"Exception in create: {str(e)}")
             import traceback
             traceback.print_exc()
             return Response({

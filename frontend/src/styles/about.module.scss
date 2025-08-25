@@ -15,23 +15,33 @@
   z-index: 1;
 }
 
-.imageContainer {
+hr {
   width: 100%;
-  height: 300px;
-  background: #16213e;
-  border-radius: 12px;
-  margin-bottom: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px dashed #4a5568;
-  position: relative;
-  
-  &::after {
-    color: #a0aec0;
-    font-size: 1.2rem;
-    font-weight: 500;
+  border: none;
+  background-color: #667eea;
+  height: 1px;
+}
+
+.imageContainer {
+  img {
+    background: none;
+    width: 40vh;
+    display: flex;
+    margin:auto;
+    height: 40vh;
+    border-radius: 50%;
+    object-fit: contain;
+    display: flex;
   }
+
+  @media (max-width: 780px) {
+    img {
+      width: 22vh;
+      height: 30vh;
+      margin-bottom: 50px;
+    }
+  }
+
 }
 
 .aboutContent {
@@ -204,6 +214,10 @@
   font-weight: 700;
   margin-bottom: 1rem;
   color: white;
+
+  span {
+    color: #b0ceff;
+  }
 }
 
 .projectDescription {
@@ -247,7 +261,7 @@
 .hackathonBadge {
   background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
   color: #2c3e50;
-  padding: 0.6rem 1.2rem;
+  padding: 0.8rem 1.5rem;
   border-radius: 20px;
   font-weight: 600;
   font-size: 0.9rem;
@@ -298,6 +312,6 @@
   
   .imageContainer {
     height: 200px;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
   }
 }

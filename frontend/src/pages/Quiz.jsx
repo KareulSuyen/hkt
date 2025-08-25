@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/quiz.module.scss';
+import { FaRegClock, FaTimes } from "react-icons/fa";
+import { IoExitOutline } from "react-icons/io5";
 
 const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -10,6 +12,9 @@ const Quiz = () => {
   const [answers, setAnswers] = useState([]);
   const [timeLeft, setTimeLeft] = useState(30);
   const [showExplanation, setShowExplanation] = useState(false);
+  const [showExitConfirm, setShowExitConfirm] = useState(false);
+  const [quizStartTime, setQuizStartTime] = useState(null);
+  const [completionTime, setCompletionTime] = useState(null);
 
   const quizQuestions = {
     easy: [
@@ -172,6 +177,8 @@ const Quiz = () => {
     setAnswers([]);
     setQuizCompleted(false);
     setTimeLeft(getDifficultyTime(selectedDifficulty));
+    setQuizStartTime(new Date());
+    setCompletionTime(null);
   };
 
   const getDifficultyTime = (diff) => {
@@ -200,11 +207,28 @@ const Quiz = () => {
         setShowExplanation(false);
         setTimeLeft(getDifficultyTime(difficulty));
       } else {
+        // Calculate completion time
+        const endTime = new Date();
+        const totalTime = Math.round((endTime - quizStartTime) / 1000); // in seconds
+        setCompletionTime(totalTime);
         setQuizCompleted(true);
       }
     } else {
       setShowExplanation(true);
     }
+  };
+
+  const handleExit = () => {
+    setShowExitConfirm(true);
+  };
+
+  const confirmExit = () => {
+    restartQuiz();
+    setShowExitConfirm(false);
+  };
+
+  const cancelExit = () => {
+    setShowExitConfirm(false);
   };
 
   const restartQuiz = () => {
@@ -215,6 +239,14 @@ const Quiz = () => {
     setAnswers([]);
     setQuizCompleted(false);
     setShowExplanation(false);
+    setQuizStartTime(null);
+    setCompletionTime(null);
+  };
+
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
   const getScoreMessage = () => {
@@ -234,6 +266,26 @@ const Quiz = () => {
     };
     return colors[difficulty] || '#6b7280';
   };
+
+  // Exit confirmation modal
+  if (showExitConfirm) {
+    return (
+      <div className={styles.modalOverlay}>
+        <div className={styles.exitModal}>
+          <h3>Exit Quiz?</h3>
+          <p>Sigurado ka bang gusto mong umalis? Mawawala ang inyong progress.</p>
+          <div className={styles.modalButtons}>
+            <button className={styles.cancelButton} onClick={cancelExit}>
+              Cancel
+            </button>
+            <button className={styles.confirmExitButton} onClick={confirmExit}>
+              Exit Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!difficulty) {
     return (
@@ -316,6 +368,11 @@ const Quiz = () => {
             <p className={styles.scorePercentage}>
               {Math.round((score / currentQuestions.length) * 100)}%
             </p>
+            {completionTime && (
+              <p className={styles.completionTime}>
+                Completion Time: {formatTime(completionTime)}
+              </p>
+            )}
             <p className={styles.scoreMessage}>{getScoreMessage()}</p>
           </div>
 
@@ -361,29 +418,38 @@ const Quiz = () => {
 
   return (
     <div className={styles.quizContainer}>
+      {/* NEW ALIGNED HEADER STRUCTURE */}
       <div className={styles.quizHeader}>
-        <div className={styles.progressSection}>
-          <div className={styles.progressBar}>
-            <div 
-              className={styles.progressFill}
-              style={{ 
-                width: `${((currentQuestion + 1) / currentQuestions.length) * 100}%`,
-                backgroundColor: getDifficultyColor()
-              }}
-            ></div>
+        {/* Top Row: Progress and Exit */}
+        <div className={styles.headerTopRow}>
+          <div className={styles.progressSection}>
+            <div className={styles.progressBar}>
+              <div 
+                className={styles.progressFill}
+                style={{ 
+                  width: `${((currentQuestion + 1) / currentQuestions.length) * 100}%`,
+                  backgroundColor: getDifficultyColor()
+                }}
+              ></div>
+            </div>
+            <div className={styles.progressText}>
+              Tanong {currentQuestion + 1} sa {currentQuestions.length}
+            </div>
           </div>
-          <div className={styles.progressText}>
-            Tanong {currentQuestion + 1} sa {currentQuestions.length}
-          </div>
+          
+          <button className={styles.exitButton} onClick={handleExit}>
+            <IoExitOutline size={20} />
+          </button>
         </div>
 
-        <div className={styles.statsSection}>
+        {/* Bottom Row: Stats */}
+        <div className={styles.headerBottomRow}>
           <div className={styles.difficultyBadge} style={{ backgroundColor: getDifficultyColor() }}>
             {difficulty.toUpperCase()}
           </div>
           <div className={styles.scoreDisplay}>Score: {score}</div>
           <div className={`${styles.timer} ${timeLeft <= 10 ? styles.urgent : ''}`}>
-            ⏱️ {timeLeft}s
+            <FaRegClock size={14}/> {timeLeft}s
           </div>
         </div>
       </div>

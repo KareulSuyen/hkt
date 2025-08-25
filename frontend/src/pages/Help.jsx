@@ -53,7 +53,7 @@ const Help = () => {
 
     const faqData = [
         {
-            question: "Ano ang tinutukoy na sobrang daming populasyon?",
+            question: "Pano nangyayari ang overpopulation?",
             answer: "Ang sobrang daming populasyon ay nangyayari kapag ang bilang ng mga tao sa isang lugar ay lumampas sa carrying capacity nito - ang maximum na bilang ng mga taong maaaring manatili gamit ang available na resources at kapaligiran nang hindi nakakasama sa kakayahan ng susunod na henerasyon na matugunan ang kanilang mga pangangailangan."
         },
         {
@@ -61,11 +61,11 @@ const Help = () => {
             answer: "Bagamat bumabagal na ang paglaki ng pandaigdigang populasyon, nananatiling problema sa mga partikular na lugar ang sobrang populasyon. May mga lugar na nahaharap sa siksikan at kakulangan ng resources, habang iba naman ay bumababa ang populasyon. Ang hamon ay madalas tungkol sa pamamahagi at pamamahala ng resources kaysa sa absolute na bilang."
         },
         {
-            question: "Ano ang mga pangunahing epekto sa kapaligiran?",
+            question: "Ano ang mga pangunahing epekto ng overpopulation sa kapaligiran?",
             answer: "Kasama sa mga pangunahing epekto ang deforestation, pagkasira ng tahanan ng mga hayop, pagtaas ng polusyon, kakulangan ng tubig, pagkasira ng lupa, at mas mabilis na climate change dahil sa mas mataas na paggamit ng resources at produksyon ng basura."
         },
         {
-            question: "Paano makakatulong ang edukasyon sa pagtugunan ng sobrang populasyon?",
+            question: "Paano makakatulong ang edukasyon sa pag ayos ng sobrang populasyon?",
             answer: "Ang edukasyon, lalo na para sa mga babae, ay may malakas na koneksyon sa mas mababang birth rates. Nagbibigay ito ng mas magandang oportunidad sa ekonomiya, nagpapataas ng kamalayan sa family planning options, at nagbibigay-kapangyarihan sa mga informed na reproductive choices."
         },
         {
@@ -563,41 +563,49 @@ const Help = () => {
                         <p className={helpstyle.sectionSubtitle}>Mga pangunahing konsepto sa pamamagitan ng mga larawan at paliwanag</p>
                         
                         <div className={helpstyle.visualGrid}>
-                            <VisualCard
-                                image="/images/population-density.png"
-                                title="Densidad ng Populasyon"
-                                description="Ang pagdami ng tao sa urban areas ay nagdudulot ng matinding pagsisikip at pressure sa mga resources at imprastraktura."
-                            />
-                            
-                            <VisualCard
-                                image="/images/resources-depletion.png"
-                                title="Pagkaubos ng Resources"
-                                description="Ang sobrang populasyon ay humahantong sa mabilis na pagkaubos ng likas na yaman tulad ng tubig, lupa, at enerhiya."
-                            />
-                            
-                            <VisualCard
-                                image="/images/deforestation.png"
-                                title="Epekto sa Kapaligiran"
-                                description="Ang deforestation, polusyon, at pagkawala ng biodiversity ay direktang epekto ng sobrang populasyon."
-                            />
-                            
-                            <VisualCard
-                                image="/images/urbanization.png"
-                                title="Urbanisasyon at Kahirapan"
-                                description="Ang mabilis na urbanisasyon ay nagreresulta sa paglaki ng mga informal settlements at slum areas."
-                            />
-                            
-                            <VisualCard
-                                image="/images/education.jpg"
-                                title="Edukasyon Bilang Solusyon"
-                                description="Ang pagpapabuti ng access sa edukasyon, lalo na para sa kababaihan, ay isa sa pinakaepektibong paraan upang mapabagal ang paglaki ng populasyon."
-                            />
+                            <a href="https://data.worldbank.org/indicator/EN.POP.DNST" target='_blank'>
+                                <VisualCard
+                                    image="/images/population-density.png"
+                                    title="Densidad ng Populasyon"
+                                    description="Ang pagdami ng tao sa urban areas ay nagdudulot ng matinding pagsisikip at pressure sa mga resources at imprastraktura."
+                                />
+                            </a>
+                            <a href="https://populationmatters.org/news/2024/03/global-resources-dwindling-as-demand-rises/" target='_blank'>
+                                <VisualCard
+                                    image="/images/resources-depletion.png"
+                                    title="Pagkaubos ng Resources"
+                                    description="Ang sobrang populasyon ay humahantong sa mabilis na pagkaubos ng likas na yaman tulad ng tubig, lupa, at enerhiya."
+                                />
+                            </a>
+                            <a href='https://greenerideal.com/news/environment/overpopulation-environmental-impact/' target='_blank'>
+                                <VisualCard
+                                    image="/images/deforestation.png"
+                                    title="Epekto sa Kapaligiran"
+                                    description="Ang deforestation, polusyon, at pagkawala ng biodiversity ay direktang epekto ng sobrang populasyon."
+                                />
+                            </a>
+                            <a href="https://www.prb.org/resources/rapid-population-growth-crowded-cities-present-challenges-in-the-philippines/" target='_blank'>
+                                <VisualCard
+                                    image="/images/urbanization.png"
+                                    title="Urbanisasyon at Kahirapan"
+                                    description="Ang mabilis na urbanisasyon ay nagreresulta sa paglaki ng mga informal settlements at slum areas."
+                                />
+                            </a>
+                            <a href="https://www.weforum.org/stories/2015/07/how-education-can-moderate-population-growth/" target='_blank'>    
+                                <VisualCard
+                                    image="/images/education.jpg"
+                                    title="Edukasyon Bilang Solusyon"
+                                    description="Ang pagpapabuti ng access sa edukasyon, lalo na para sa kababaihan, ay isa sa pinakaepektibong paraan upang mapabagal ang paglaki ng populasyon."
+                                />
+                            </a>
+                            <a href="https://sustainablereview.com/family-planning-overpopulation/" target='_blank'>
+                                <VisualCard
+                                    image="/images/family-planning.jpg"
+                                    title="Family Planning"
+                                    description="Ang access sa modernong family planning methods ay nakakatulong sa mga pamilya na planuhin ang kanilang kinabukasan at makontrol ang populasyon."
+                                />
+                            </a>
 
-                            <VisualCard
-                                image="/images/family-planning.jpg"
-                                title="Family Planning"
-                                description="Ang access sa modernong family planning methods ay nakakatulong sa mga pamilya na planuhin ang kanilang kinabukasan at makontrol ang populasyon."
-                            />
                         </div>
                     </div>
                 );
