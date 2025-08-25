@@ -30,7 +30,6 @@ $extreme: #8b5cf6;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-
 .quizContainer {
   min-height: 100vh;
   background: $bg-primary;
@@ -155,16 +154,43 @@ $extreme: #8b5cf6;
   }
 }
 
+// IMPROVED QUIZ HEADER - Better aligned and organized
 .quizHeader {
   max-width: 900px;
   margin: 0 auto 2rem auto;
+  @include glass-effect;
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+// Top row: Progress and Exit button
+.headerTopRow {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
   
   @media (max-width: 768px) {
     flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+}
+
+// Bottom row: Stats - centered and spaced nicely
+.headerBottomRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     gap: 1rem;
   }
 }
@@ -172,12 +198,16 @@ $extreme: #8b5cf6;
 .progressSection {
   flex: 1;
   min-width: 200px;
+  
+  @media (max-width: 768px) {
+    min-width: auto;
+  }
 }
 
 .progressBar {
   background: $bg-tertiary;
-  height: 8px;
-  border-radius: 4px;
+  height: 6px;
+  border-radius: 3px;
   overflow: hidden;
   margin-bottom: 0.5rem;
 }
@@ -185,38 +215,55 @@ $extreme: #8b5cf6;
 .progressFill {
   height: 100%;
   @include smooth-transition(width, 0.5s);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 .progressText {
   font-size: 0.9rem;
   color: $text-secondary;
+  font-weight: 500;
 }
 
-.statsSection {
+.exitButton {
+  background: rgba(239, 68, 68, 0.1);
+  border: 2px solid rgba(239, 68, 68, 0.3);
+  color: $hard;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  @include smooth-transition;
   display: flex;
-  gap: 1rem;
   align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 48px;
   
-  @media (max-width: 768px) {
-    justify-content: center;
-    width: 100%;
+  &:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: $hard;
+    transform: scale(1.05);
   }
 }
 
 .difficultyBadge {
   padding: 0.5rem 1rem;
-  border-radius: 20px;
+  border-radius: 16px;
   font-size: 0.8rem;
   font-weight: 600;
   color: white;
   text-transform: uppercase;
   letter-spacing: 1px;
+  white-space: nowrap;
 }
 
 .scoreDisplay {
   font-weight: 600;
   color: $text-primary;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  white-space: nowrap;
 }
 
 .timer {
@@ -225,6 +272,10 @@ $extreme: #8b5cf6;
   border-radius: 8px;
   font-weight: 600;
   @include smooth-transition;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
   
   &.urgent {
     background: $hard;
@@ -392,11 +443,12 @@ $extreme: #8b5cf6;
 }
 
 .scoreDisplay {
+  margin-top: 12px;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   background: $bg-secondary;
-  padding: 2rem 3rem;
+  padding: .5em 1rem;
   border-radius: 16px;
   border: 3px solid;
   margin-bottom: 1rem;
@@ -547,73 +599,6 @@ $extreme: #8b5cf6;
   border: 2px solid transparent;
 }
 
-@media (max-width: 768px) {
-  .difficultyGrid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .difficultyCard {
-    padding: 1.5rem;
-  }
-  
-  .questionContainer {
-    margin: 0 -0.5rem;
-  }
-  
-  .question {
-    font-size: 1.2rem;
-  }
-  
-  .optionButton {
-    padding: 1rem;
-    font-size: 0.9rem;
-  }
-  
-  .resultsHeader {
-    padding: 2rem 1rem;
-  }
-  
-  .scoreDisplay {
-    padding: 1.5rem 2rem;
-    
-    .scoreNumber {
-      font-size: 2rem;
-    }
-    
-    .scoreTotal {
-      font-size: 1.2rem;
-    }
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .quizContainer {
-    color-scheme: dark;
-  }
-}
-
-// Exit button styles - add this after .timer styles
-.exitButton {
-  background: rgba(239, 68, 68, 0.1);
-  border: 2px solid rgba(239, 68, 68, 0.3);
-  color: $hard;
-  padding: 0.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-  @include smooth-transition;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  &:hover {
-    background: rgba(239, 68, 68, 0.2);
-    border-color: $hard;
-    transform: scale(1.05);
-  }
-}
-
-// Completion time display - add this after .scoreMessage
 .completionTime {
   font-size: 1rem;
   color: #10b981;
@@ -625,7 +610,6 @@ $extreme: #8b5cf6;
   display: inline-block;
 }
 
-// Modal styles - add these at the end of your file
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -708,5 +692,52 @@ $extreme: #8b5cf6;
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .difficultyGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .difficultyCard {
+    padding: 1.5rem;
+  }
+  
+  .questionContainer {
+    margin: 0;
+  }
+  
+  .question {
+    font-size: 1.2rem;
+  }
+  
+  .optionButton {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .resultsHeader {
+    padding: 2rem 1rem;
+  }
+  
+  .quizHeader {
+    padding: 1rem;
+  }
+  
+  .headerBottomRow {
+    .difficultyBadge,
+    .scoreDisplay,
+    .timer {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .quizContainer {
+    color-scheme: dark;
   }
 }

@@ -3,7 +3,6 @@ import styles from '../styles/quiz.module.scss';
 import { FaRegClock, FaTimes } from "react-icons/fa";
 import { IoExitOutline } from "react-icons/io5";
 
-
 const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -213,37 +212,9 @@ const Quiz = () => {
         const totalTime = Math.round((endTime - quizStartTime) / 1000); // in seconds
         setCompletionTime(totalTime);
         setQuizCompleted(true);
-        
-        // TODO: Submit score to leaderboard
-        submitScoreToLeaderboard(score, totalTime, difficulty);
       }
     } else {
       setShowExplanation(true);
-    }
-  };
-
-  const submitScoreToLeaderboard = async (finalScore, timeTaken, difficultyLevel) => {
-    // TODO: Implement API call to Django backend
-    try {
-      const response = await fetch('/api/leaderboard/submit/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // Add CSRF token if needed
-        },
-        body: JSON.stringify({
-          score: finalScore,
-          total_questions: currentQuestions.length,
-          time_taken: timeTaken,
-          difficulty: difficultyLevel,
-        })
-      });
-      
-      if (response.ok) {
-        console.log('Score submitted to leaderboard');
-      }
-    } catch (error) {
-      console.error('Error submitting score:', error);
     }
   };
 
@@ -447,23 +418,32 @@ const Quiz = () => {
 
   return (
     <div className={styles.quizContainer}>
+      {/* NEW ALIGNED HEADER STRUCTURE */}
       <div className={styles.quizHeader}>
-        <div className={styles.progressSection}>
-          <div className={styles.progressBar}>
-            <div 
-              className={styles.progressFill}
-              style={{ 
-                width: `${((currentQuestion + 1) / currentQuestions.length) * 100}%`,
-                backgroundColor: getDifficultyColor()
-              }}
-            ></div>
+        {/* Top Row: Progress and Exit */}
+        <div className={styles.headerTopRow}>
+          <div className={styles.progressSection}>
+            <div className={styles.progressBar}>
+              <div 
+                className={styles.progressFill}
+                style={{ 
+                  width: `${((currentQuestion + 1) / currentQuestions.length) * 100}%`,
+                  backgroundColor: getDifficultyColor()
+                }}
+              ></div>
+            </div>
+            <div className={styles.progressText}>
+              Tanong {currentQuestion + 1} sa {currentQuestions.length}
+            </div>
           </div>
-          <div className={styles.progressText}>
-            Tanong {currentQuestion + 1} sa {currentQuestions.length}
-          </div>
+          
+          <button className={styles.exitButton} onClick={handleExit}>
+            <IoExitOutline size={20} />
+          </button>
         </div>
 
-        <div className={styles.statsSection}>
+        {/* Bottom Row: Stats */}
+        <div className={styles.headerBottomRow}>
           <div className={styles.difficultyBadge} style={{ backgroundColor: getDifficultyColor() }}>
             {difficulty.toUpperCase()}
           </div>
@@ -471,9 +451,6 @@ const Quiz = () => {
           <div className={`${styles.timer} ${timeLeft <= 10 ? styles.urgent : ''}`}>
             <FaRegClock size={14}/> {timeLeft}s
           </div>
-          <button className={styles.exitButton} onClick={handleExit}>
-            <IoExitOutline size={23} />
-          </button>
         </div>
       </div>
 
