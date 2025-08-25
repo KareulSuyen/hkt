@@ -36,7 +36,7 @@ const AboutUs = () => {
           <h3 className={styles.projectTitle}>Boneng Malakas</h3>
           <div className={styles.projectCard}>
             <div className={styles.projectInfo}>
-              <h4 className={styles.projectName}>OverPopulation</h4>
+              <h4 className={styles.projectName}>Over<span>Population</span></h4>
               <p className={styles.projectDescription}>
                 This project was developed as part of BonengMalakas. We're leveraging technology 
                 and data analysis to provide innovative solutions for understanding and addressing 
