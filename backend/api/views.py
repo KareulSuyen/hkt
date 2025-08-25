@@ -176,21 +176,21 @@ class AIAPIView(APIView):
                 - Do not use it for spam, trolling, or unrelated discussions.  
 
                 2. Account & Login  
-                - Each user must create an account with a valid email.  
+                - Every one can join without a valid email
                 - Keep your login credentials safe.  
                 - JWT Authentication protects your sessions.  
 
                 3. Chatbot Usage  
-                - The AI chatbot is your learning assistant about overpopulation.  
+                - The AI chatbot is your learning assistant about overpopulation.
                 - Avoid offensive, harmful, or unrelated questions.  
                 - The bot may not always be 100% accurate, use it as guidance.  
 
                 4. Quizzes & Leaderboards  
-                - Quizzes are for self-testing, not cheating.  
+                - Quizzes are for self-testing, Quiz scores/logs are not saved in the database.  
 
                 5. Reporting Problems  
                 - Use the "Report a Problem" feature for bugs, errors, or inappropriate content.  
-                - Abusive or fake reports may result in suspension.  
+                - Abusive or fake reports may result in suspension.
 
                 6. Community & Respect  
                 - Be respectful in discussions.  
@@ -198,7 +198,7 @@ class AIAPIView(APIView):
 
                 7. Data & Privacy  
                 - Your data is private and only used for your learning experience.  
-                - Emails will never be shared with third parties.  
+                - Your email is not required when using the system.  
 
                 By using this platform, you agree to follow these guidelines. 
                 use a number while giving them guidelines.
