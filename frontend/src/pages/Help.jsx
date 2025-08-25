@@ -593,12 +593,13 @@ const Help = () => {
                                 />
                             </a>
                             
-                            
-                            <VisualCard
-                                image="/images/education.jpg"
-                                title="Edukasyon Bilang Solusyon"
-                                description="Ang pagpapabuti ng access sa edukasyon, lalo na para sa kababaihan, ay isa sa pinakaepektibong paraan upang mapabagal ang paglaki ng populasyon."
-                            />
+                            <a href="https://www.weforum.org/stories/2015/07/how-education-can-moderate-population-growth/" target='_blank'>    
+                                <VisualCard
+                                    image="/images/education.jpg"
+                                    title="Edukasyon Bilang Solusyon"
+                                    description="Ang pagpapabuti ng access sa edukasyon, lalo na para sa kababaihan, ay isa sa pinakaepektibong paraan upang mapabagal ang paglaki ng populasyon."
+                                />
+                            </a>
 
                             <VisualCard
                                 image="/images/family-planning.jpg"
