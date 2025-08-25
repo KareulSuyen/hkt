@@ -53,7 +53,7 @@ const Help = () => {
 
     const faqData = [
         {
-            question: "Ano ang tinutukoy na sobrang daming populasyon?",
+            question: "Pano nangyayari ang overpopulation?",
             answer: "Ang sobrang daming populasyon ay nangyayari kapag ang bilang ng mga tao sa isang lugar ay lumampas sa carrying capacity nito - ang maximum na bilang ng mga taong maaaring manatili gamit ang available na resources at kapaligiran nang hindi nakakasama sa kakayahan ng susunod na henerasyon na matugunan ang kanilang mga pangangailangan."
         },
         {
@@ -61,11 +61,11 @@ const Help = () => {
             answer: "Bagamat bumabagal na ang paglaki ng pandaigdigang populasyon, nananatiling problema sa mga partikular na lugar ang sobrang populasyon. May mga lugar na nahaharap sa siksikan at kakulangan ng resources, habang iba naman ay bumababa ang populasyon. Ang hamon ay madalas tungkol sa pamamahagi at pamamahala ng resources kaysa sa absolute na bilang."
         },
         {
-            question: "Ano ang mga pangunahing epekto sa kapaligiran?",
+            question: "Ano ang mga pangunahing epekto ng overpopulation sa kapaligiran?",
             answer: "Kasama sa mga pangunahing epekto ang deforestation, pagkasira ng tahanan ng mga hayop, pagtaas ng polusyon, kakulangan ng tubig, pagkasira ng lupa, at mas mabilis na climate change dahil sa mas mataas na paggamit ng resources at produksyon ng basura."
         },
         {
-            question: "Paano makakatulong ang edukasyon sa pagtugunan ng sobrang populasyon?",
+            question: "Paano makakatulong ang edukasyon sa pag ayos ng sobrang populasyon?",
             answer: "Ang edukasyon, lalo na para sa mga babae, ay may malakas na koneksyon sa mas mababang birth rates. Nagbibigay ito ng mas magandang oportunidad sa ekonomiya, nagpapataas ng kamalayan sa family planning options, at nagbibigay-kapangyarihan sa mga informed na reproductive choices."
         },
         {
