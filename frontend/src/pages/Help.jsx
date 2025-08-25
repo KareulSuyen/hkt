@@ -584,7 +584,6 @@ const Help = () => {
                                     description="Ang deforestation, polusyon, at pagkawala ng biodiversity ay direktang epekto ng sobrang populasyon."
                                 />
                             </a>
-
                             <a href="https://www.prb.org/resources/rapid-population-growth-crowded-cities-present-challenges-in-the-philippines/" target='_blank'>
                                 <VisualCard
                                     image="/images/urbanization.png"
@@ -599,12 +598,14 @@ const Help = () => {
                                     description="Ang pagpapabuti ng access sa edukasyon, lalo na para sa kababaihan, ay isa sa pinakaepektibong paraan upang mapabagal ang paglaki ng populasyon."
                                 />
                             </a>
+                            <a href="https://sustainablereview.com/family-planning-overpopulation/" target='_blank'>
+                                <VisualCard
+                                    image="/images/family-planning.jpg"
+                                    title="Family Planning"
+                                    description="Ang access sa modernong family planning methods ay nakakatulong sa mga pamilya na planuhin ang kanilang kinabukasan at makontrol ang populasyon."
+                                />
+                            </a>
 
-                            <VisualCard
-                                image="/images/family-planning.jpg"
-                                title="Family Planning"
-                                description="Ang access sa modernong family planning methods ay nakakatulong sa mga pamilya na planuhin ang kanilang kinabukasan at makontrol ang populasyon."
-                            />
                         </div>
                     </div>
                 );
