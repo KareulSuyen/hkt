@@ -212,10 +212,9 @@ const Form = ({ method, route }) => {
                                     style={{ 
                                         color: passwordStrengthColor,
                                         transition: 'color 0.3s ease',
-                                        fontWeight: '600'
+                                        fontWeight: '600',
+                                        padding: '10px',
                                     }}
-                                    onMouseEnter={handleTooltipEnter}
-                                    onMouseLeave={handleTooltipLeave}
                                 >
                                     {passwordStrength}
                                 </span>
