@@ -570,12 +570,12 @@ const Help = () => {
                                     description="Ang pagdami ng tao sa urban areas ay nagdudulot ng matinding pagsisikip at pressure sa mga resources at imprastraktura."
                                 />
                             </a>
-                            
-                            <VisualCard
-                                image="/images/resources-depletion.png"
-                                title="Pagkaubos ng Resources"
-                                description="Ang sobrang populasyon ay humahantong sa mabilis na pagkaubos ng likas na yaman tulad ng tubig, lupa, at enerhiya."
-                            />
+                                <VisualCard
+                                    image="/images/resources-depletion.png"
+                                    title="Pagkaubos ng Resources"
+                                    description="Ang sobrang populasyon ay humahantong sa mabilis na pagkaubos ng likas na yaman tulad ng tubig, lupa, at enerhiya."
+                                />
+                            <a href="https://populationmatters.org/news/2024/03/global-resources-dwindling-as-demand-rises/"></a>
                             
                             <VisualCard
                                 image="/images/deforestation.png"
