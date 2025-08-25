@@ -592,7 +592,6 @@ const Help = () => {
                                     description="Ang mabilis na urbanisasyon ay nagreresulta sa paglaki ng mga informal settlements at slum areas."
                                 />
                             </a>
-                            
                             <a href="https://www.weforum.org/stories/2015/07/how-education-can-moderate-population-growth/" target='_blank'>    
                                 <VisualCard
                                     image="/images/education.jpg"
