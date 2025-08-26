@@ -17,6 +17,8 @@ import { RiQuestionAnswerLine, RiPlantLine } from "react-icons/ri";
 import { FcCancel } from "react-icons/fc";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { GoNorthStar } from "react-icons/go";
+import { BsBank } from "react-icons/bs";
+
 
 
 const VisualCard = ({ image, title, description }) => {
@@ -501,13 +503,13 @@ const Help = () => {
                                     title: 'United Nations Population Division', 
                                     desc: 'Opisyal na statistics at projections', 
                                     link: 'https://www.un.org/development/desa/pd/', 
-                                    icon: <SiUnitednations size={30}/>,
+                                    icon: <SiUnitednations size={30} />,
                                 },
                                 { 
                                     title: 'World Bank Population Data', 
                                     desc: 'Demographic at economic indicators', 
                                     link: 'https://data.worldbank.org/indicator/SP.POP.TOTL', 
-                                    icon: '📊' 
+                                    icon: <BsBank size={27} />
                                 },
                                 { 
                                     title: 'Population Reference Bureau', 
