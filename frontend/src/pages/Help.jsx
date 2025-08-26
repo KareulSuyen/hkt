@@ -11,13 +11,12 @@ import { TbGeometry, TbBulb } from "react-icons/tb";
 import { MdOutlineQueryStats } from "react-icons/md";
 import { GiPlantRoots, GiJourney, GiPineTree, GiThreeLeaves } from "react-icons/gi";
 import { BiSolidError } from "react-icons/bi";
-import { SiGoogleearthengine, SiCodemagic, SiAwssecretsmanager } from "react-icons/si";
+import { SiGoogleearthengine, SiCodemagic, SiAwssecretsmanager, SiUnitednations } from "react-icons/si";
 import { LuWeight } from "react-icons/lu";
 import { RiQuestionAnswerLine, RiPlantLine } from "react-icons/ri";
 import { FcCancel } from "react-icons/fc";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { GoNorthStar } from "react-icons/go";
-
 
 
 const VisualCard = ({ image, title, description }) => {
@@ -502,7 +501,7 @@ const Help = () => {
                                     title: 'United Nations Population Division', 
                                     desc: 'Opisyal na statistics at projections', 
                                     link: 'https://www.un.org/development/desa/pd/', 
-                                    icon: '🌐',
+                                    icon: <SiUnitednations size={30}/>,
                                 },
                                 { 
                                     title: 'World Bank Population Data', 
