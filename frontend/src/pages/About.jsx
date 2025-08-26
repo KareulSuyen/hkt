@@ -21,7 +21,7 @@ const AboutUs = () => {
           <br />
         </div>
         <div className={styles.aboutContent}>
-          <h2 className={styles.sectionTitle}>About Us</h2>
+          <h2 className={styles.sectionTitle}>Boneng Malakas</h2>
           <p className={styles.description}>
             We are a dedicated team of four researchers passionate about addressing one of the most 
             pressing global challenges of our time: overpopulation. Through extensive research and 
@@ -34,7 +34,6 @@ const AboutUs = () => {
         <hr />
         {/* Boneng's Employers */}
         <div className={styles.projectSection}>
-          <h3 className={styles.projectTitle}>Boneng Malakas</h3>
           <div className={styles.projectCard}>
             <div className={styles.projectInfo}>
               <h4 className={styles.projectName}>Over<span>Population</span></h4>
