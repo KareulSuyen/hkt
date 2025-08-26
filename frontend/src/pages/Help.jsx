@@ -18,6 +18,7 @@ import { FcCancel } from "react-icons/fc";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { GoNorthStar } from "react-icons/go";
 import { BsBank } from "react-icons/bs";
+import { IoIosSearch } from "react-icons/io";
 
 
 
@@ -515,14 +516,14 @@ const Help = () => {
                                     title: 'Population Reference Bureau', 
                                     desc: 'Research at data analysis', 
                                     link: 'https://www.prb.org/what-we-do/', 
-                                    icon: '🔍' 
+                                    icon: <IoIosSearch size={27} />
                                 },
                                 { 
                                     title: 'Our World in Data', 
                                     desc: 'Interactive charts at visualizations', 
                                     link: 'https://ourworldindata.org/world-population-growth', 
                                     icon: '📈' 
-                                }
+                                },
                             ].map((resource, index) => (
                                 <a 
                                     key={index}
