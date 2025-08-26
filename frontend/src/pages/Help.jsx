@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import helpstyle from '../styles/help.module.scss';
 import { FaEarthAsia } from "react-icons/fa6";
-import { FaPeopleCarry, FaRecycle, FaGlobeAsia, FaHospital, FaHandHoldingWater, FaPrayingHands } from "react-icons/fa";
+import { FaPeopleCarry, FaRecycle, FaGlobeAsia, FaHospital, FaHandHoldingWater, FaPrayingHands, FaBookOpen } from "react-icons/fa";
 import { FcStatistics } from "react-icons/fc";
 import { FaScaleUnbalanced } from "react-icons/fa6";
 import { ImEarth } from "react-icons/im";
@@ -11,14 +11,14 @@ import { TbGeometry, TbBulb } from "react-icons/tb";
 import { MdOutlineQueryStats } from "react-icons/md";
 import { GiPlantRoots, GiJourney, GiPineTree, GiThreeLeaves } from "react-icons/gi";
 import { BiSolidError } from "react-icons/bi";
-import { SiGoogleearthengine, SiCodemagic } from "react-icons/si";
+import { SiGoogleearthengine, SiCodemagic, SiAwssecretsmanager } from "react-icons/si";
 import { LuWeight } from "react-icons/lu";
-import { RiQuestionAnswerLine } from "react-icons/ri";
+import { RiQuestionAnswerLine, RiPlantLine } from "react-icons/ri";
 import { FcCancel } from "react-icons/fc";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { GoNorthStar } from "react-icons/go";
-import { href } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
+
+
 
 const VisualCard = ({ image, title, description }) => {
     return (
@@ -452,10 +452,10 @@ const Help = () => {
                         
                         <div className={helpstyle.solutionsGrid}>
                             {[
-                                { icon: '📚', title: 'Edukasyon', color: 'blue', items: ['Komprehensibong sex education', 'Mga programa sa edukasyon ng mga babae', 'Mga kampanya para sa kamalayan'] },
-                                { icon: '🏥', title: 'Healthcare', color: 'red', items: ['Mga serbisyo sa family planning', 'Accessible na contraceptives', 'Mga programa sa maternal health'] },
-                                { icon: '🌱', title: 'Sustainability', color: 'green', items: ['Paggamit ng renewable energy', 'Sustainable na agriculture', 'Green urban planning'] },
-                                { icon: '🏛️', title: 'Patakaran', color: 'purple', items: ['Mga population policies', 'Resource management', 'Mga plano sa urban development'] }
+                                { icon: <FaBookOpen  size={35} />, title: 'Edukasyon', color: 'blue', items: ['Komprehensibong sex education', 'Mga programa sa edukasyon ng mga babae', 'Mga kampanya para sa kamalayan'] },
+                                { icon: <FaHospital  size={35} />, title: 'Healthcare', color: 'red', items: ['Mga serbisyo sa family planning', 'Accessible na contraceptives', 'Mga programa sa maternal health'] },
+                                { icon: <RiPlantLine size={35}/>, title: 'Sustainability', color: 'green', items: ['Paggamit ng renewable energy', 'Sustainable na agriculture', 'Green urban planning'] },
+                                { icon: <SiAwssecretsmanager size={35}/>, title: 'Patakaran', color: 'purple', items: ['Mga population policies', 'Resource management', 'Mga plano sa urban development'] }
                             ].map((solution, index) => (
                                 <div 
                                     key={index} 
