@@ -1,8 +1,8 @@
+import overpopulationVid from '../../public/videos/overpopulation.mp4'
+import styles from '../styles/dashboard.module.scss';
 import { useState, useEffect, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
-import styles from '../styles/dashboard.module.scss';
 import { SiUnitednations } from "react-icons/si";
-import overpopulationVid from '../../public/videos/overpopulation.mp4'
 import { LuHandHelping } from "react-icons/lu";
 import { FaEarthAsia, FaBook } from "react-icons/fa6";
 import { FaGlobeAmericas, FaChartLine } from "react-icons/fa";
