@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaGithub, FaFacebook, FaInstagram } from "react-icons/fa";
+import { SiDjango, SiReact, SiSass, SiCss3, SiJavascript, SiHtml5 } from "react-icons/si";
 import styles from '../styles/about.module.scss';
 import heheh from '../../public/images/heheh.jpg'
 
@@ -12,6 +13,15 @@ const AboutUs = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const techStack = [
+    { name: 'Django', icon: SiDjango, color: '#092e20' },
+    { name: 'React', icon: SiReact, color: '#61dafb' },
+    { name: 'SCSS', icon: SiSass, color: '#cc6699' },
+    { name: 'CSS', icon: SiCss3, color: '#1572b6' },
+    { name: 'JavaScript', icon: SiJavascript, color: '#f7df1e' },
+    { name: 'HTML', icon: SiHtml5, color: '#e34f26' }
+  ];
 
   return (
     <section className={styles.aboutSection}>
@@ -42,6 +52,23 @@ const AboutUs = () => {
                 and data analysis to provide innovative solutions for understanding and addressing 
                 overpopulation challenges through interactive visualizations and research tools.
               </p>
+              
+              {/* Tech Stack Section */}
+              <div className={styles.techStack}>
+                <h5 className={styles.techStackTitle}>Built with</h5>
+                <div className={styles.techGrid}>
+                  {techStack.map((tech, index) => {
+                    const IconComponent = tech.icon;
+                    return (
+                      <div key={index} className={styles.techItem}>
+                        <IconComponent className={styles.techIcon} style={{ color: tech.color }} />
+                        <span className={styles.techName}>{tech.name}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
               <div className={styles.projectLinks}>
                 <a 
                   href="https://github.com/greysuyen/hkktn" 
