@@ -17,7 +17,8 @@ import { RiQuestionAnswerLine } from "react-icons/ri";
 import { FcCancel } from "react-icons/fc";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { GoNorthStar } from "react-icons/go";
-
+import { href } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 const VisualCard = ({ image, title, description }) => {
     return (
@@ -497,14 +498,38 @@ const Help = () => {
                         
                         <div className={helpstyle.resourcesGrid}>
                             {[
-                                { title: 'United Nations Population Division', desc: 'Opisyal na statistics at projections', link: '#', icon: '🌐' },
-                                { title: 'World Bank Population Data', desc: 'Demographic at economic indicators', link: '#', icon: '📊' },
-                                { title: 'Population Reference Bureau', desc: 'Research at data analysis', link: '#', icon: '🔍' },
-                                { title: 'Our World in Data', desc: 'Interactive charts at visualizations', link: '#', icon: '📈' }
+                                { 
+                                    title: 'United Nations Population Division', 
+                                    desc: 'Opisyal na statistics at projections', 
+                                    link: 'https://www.un.org/development/desa/pd/', 
+                                    icon: '🌐',
+                                },
+                                { 
+                                    title: 'World Bank Population Data', 
+                                    desc: 'Demographic at economic indicators', 
+                                    link: 'https://data.worldbank.org/indicator/SP.POP.TOTL', 
+                                    icon: '📊' 
+                                },
+                                { 
+                                    title: 'Population Reference Bureau', 
+                                    desc: 'Research at data analysis', 
+                                    link: 'https://www.prb.org/what-we-do/', 
+                                    icon: '🔍' 
+                                },
+                                { 
+                                    title: 'Our World in Data', 
+                                    desc: 'Interactive charts at visualizations', 
+                                    link: 'https://ourworldindata.org/world-population-growth', 
+                                    icon: '📈' 
+                                }
                             ].map((resource, index) => (
-                                <div 
-                                    key={index} 
+                                <a 
+                                    key={index}
+                                    href={resource.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className={helpstyle.resourceCard}
+                                    style={{ textDecoration: 'none', color: 'inherit' }}
                                     onMouseEnter={(e) => {
                                         e.currentTarget.style.transform = 'translateY(-2px)';
                                         e.currentTarget.style.boxShadow = '0 8px 32px rgba(167,139,250,0.3)';
@@ -519,7 +544,7 @@ const Help = () => {
                                     <div className={helpstyle.resourceIcon}>{resource.icon}</div>
                                     <h4 className={helpstyle.resourceTitle}>{resource.title}</h4>
                                     <p className={helpstyle.resourceDescription}>{resource.desc}</p>
-                                </div>
+                                </a>
                             ))}
                         </div>
                     </div>
