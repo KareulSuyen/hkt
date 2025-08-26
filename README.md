@@ -1,3 +1,3 @@
-# hkktn 2025 boneng malakas :>
+# hackathon 2025 boneng malakas :>
 
 ## Live site: https://bonengmalakas.site
