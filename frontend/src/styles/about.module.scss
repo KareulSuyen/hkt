@@ -1,7 +1,7 @@
 
 .aboutSection {
   padding: 4rem 0;
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+  background-color: #0f172a;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
@@ -32,7 +32,7 @@ hr {
     border-radius: 50%;
     object-fit: contain;
     display: flex;
-  }
+  }   
 
   @media (max-width: 780px) {
     img {
