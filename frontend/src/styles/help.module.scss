@@ -413,7 +413,7 @@ a {
 }
 
 .blueBorder {
-  border: 2px solid rgba(96, 165, 250, 0.25);
+  border: 2px solid  #06455c;
   
   &:hover {
     border-color: rgba(96, 165, 250, 0.5);
@@ -421,26 +421,26 @@ a {
 }
 
 .redBorder {
-  border: 2px solid rgba(248, 113, 113, 0.25);
+  border: 2px solid #06455c;
   
   &:hover {
-    border-color: rgba(248, 113, 113, 0.5);
+    border-color: rgba(96, 165, 250, 0.5);
   }
 }
 
 .greenBorder {
-  border: 2px solid rgba(52, 211, 153, 0.25);
+  border: 2px solid #06455c;
   
   &:hover {
-    border-color: rgba(52, 211, 153, 0.5);
+    border-color: rgba(96, 165, 250, 0.5);
   }
 }
 
 .purpleBorder {
-  border: 2px solid rgba(167, 139, 250, 0.25);
+  border: 2px solid  #06455c;
   
   &:hover {
-    border-color: rgba(167, 139, 250, 0.5);
+    border-color: rgba(96, 165, 250, 0.5);
   }
 }
 
@@ -500,7 +500,7 @@ a {
   padding: 24px;
   border-radius: 16px;
   text-align: center;
-  border: 1px solid #34d399;
+  border: 1px solid #09607f;
   box-shadow: 0 8px 32px rgba(52, 211, 153, 0.1);
   transition: transform 0.3s ease;
   
@@ -511,7 +511,7 @@ a {
 
   h4 {
     margin: 0 0 8px 0;
-    color: #34d399;
+    color: #0090c5;
     font-size: 20px;
     font-weight: 600;
   }
