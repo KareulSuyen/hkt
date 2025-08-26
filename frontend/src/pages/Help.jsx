@@ -19,6 +19,7 @@ import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { GoNorthStar } from "react-icons/go";
 import { BsBank } from "react-icons/bs";
 import { IoIosSearch } from "react-icons/io";
+import { TfiStatsUp } from "react-icons/tfi";
 
 
 
@@ -507,22 +508,22 @@ const Help = () => {
                                     icon: <SiUnitednations size={30} />,
                                 },
                                 { 
-                                    title: 'World Bank Population Data', 
-                                    desc: 'Demographic at economic indicators', 
-                                    link: 'https://data.worldbank.org/indicator/SP.POP.TOTL', 
-                                    icon: <BsBank size={27} />
-                                },
-                                { 
                                     title: 'Population Reference Bureau', 
                                     desc: 'Research at data analysis', 
                                     link: 'https://www.prb.org/what-we-do/', 
-                                    icon: <IoIosSearch size={27} />
+                                    icon: <IoIosSearch size={30} />
                                 },
                                 { 
                                     title: 'Our World in Data', 
                                     desc: 'Interactive charts at visualizations', 
                                     link: 'https://ourworldindata.org/world-population-growth', 
-                                    icon: '📈' 
+                                    icon: <TfiStatsUp size={27} />
+                                },
+                                { 
+                                    title: 'World Bank Population Data', 
+                                    desc: 'Demographic at economic indicators', 
+                                    link: 'https://data.worldbank.org/indicator/SP.POP.TOTL', 
+                                    icon: <BsBank size={27} />
                                 },
                             ].map((resource, index) => (
                                 <a 
