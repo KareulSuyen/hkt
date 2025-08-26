@@ -15,12 +15,12 @@ const AboutUs = () => {
   }, []);
 
   const techStack = [
-    { name: 'Django', icon: SiDjango, color: '#092e20' },
-    { name: 'React', icon: SiReact, color: '#61dafb' },
-    { name: 'SCSS', icon: SiSass, color: '#cc6699' },
-    { name: 'CSS', icon: SiCss3, color: '#1572b6' },
-    { name: 'JavaScript', icon: SiJavascript, color: '#f7df1e' },
-    { name: 'HTML', icon: SiHtml5, color: '#e34f26' }
+    { name: 'Django', icon: SiDjango, },
+    { name: 'React', icon: SiReact,},
+    { name: 'SCSS', icon: SiSass,},
+    { name: 'CSS', icon: SiCss3,},
+    { name: 'JavaScript', icon: SiJavascript,},
+    { name: 'HTML', icon: SiHtml5,}
   ];
 
   return (
@@ -53,7 +53,6 @@ const AboutUs = () => {
                 overpopulation challenges through interactive visualizations and research tools.
               </p>
               
-              {/* Tech Stack Section */}
               <div className={styles.techStack}>
                 <h5 className={styles.techStackTitle}>Built with</h5>
                 <div className={styles.techGrid}>
