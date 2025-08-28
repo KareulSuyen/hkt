@@ -19,7 +19,7 @@ Includes **AI-powered Q&A**, **Email system**, and **JWT authentication** for se
 - **Backend:** Django + Django REST Framework  
 - **Auth:** JWT (JSON Web Token)  
 - **Email:** SMTP / Django Email Backend  
-- **Database:** (e.g., MySQL / PostgreSQL / SQLite – whichever you used)  
+- **Database:** SQLite
 
 ---
 
