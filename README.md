@@ -1,4 +1,32 @@
-# hackathon 2025 boneng malakas :>
+# Overpopulation Awareness System 
 
-### Live site: https://bonengmalakas.site
-#### Sub-domain: https://bonengmalakas.netlify.app/
+A full-stack web app built with **Django (backend)** and **React (frontend)** to raise awareness about overpopulation.  
+Includes **AI-powered Q&A**, **Email system**, and **JWT authentication** for secure access.  
+
+---
+
+## 🚀 Features
+- 🤖 **AI Assistant** – answers questions related to overpopulation  
+- 📧 **Email Notifications** – integrated email system for alerts & updates  
+- 🔐 **JWT Authentication** – secure login/register system  
+- 🎨 **SCSS Styling** – modern UI with clean styles  
+- ⚡ **Full-stack Setup** – React frontend + Django backend  
+
+---
+
+## 🛠️ Tech Stack
+- **Frontend:** React, JavaScript, HTML, SCSS  
+- **Backend:** Django + Django REST Framework  
+- **Auth:** JWT (JSON Web Token)  
+- **Email:** SMTP / Django Email Backend  
+- **Database:** (e.g., MySQL / PostgreSQL / SQLite – whichever you used)  
+
+---
+
+## ⚡ Installation & Setup
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/greysuyen/hkktn.git
+cd hkktn
+
