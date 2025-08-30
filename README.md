@@ -1,7 +1,7 @@
 # Overpopulation Awareness System 
 
 A full-stack web app built with **Django (backend)** and **React (frontend)** to raise awareness about overpopulation.  
-Includes **AI-powered Q&A**, **Email system**, and **JWT authentication** for secure access.  
+Includes **AI-powered Quizzes**, **Email system**, and **JWT authentication** for secure access.  
 
 ---
 
