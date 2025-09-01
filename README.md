@@ -6,11 +6,11 @@ Includes **AI-powered Quizzes**, **Email system**, and **JWT authentication** fo
 ---
 
 ## 🚀 Features
-- 🤖 **AI Assistant** – answers questions related to overpopulation  
-- 📧 **Email Notifications** – integrated email system for alerts & updates  
-- 🔐 **JWT Authentication** – secure login/register system  
-- 🎨 **SCSS Styling** – modern UI with clean styles  
-- ⚡ **Full-stack Setup** – React frontend + Django backend  
+-  **AI Assistant** – answers questions related to overpopulation  
+-  **Email Notifications** – integrated email system for alerts & updates  
+-  **JWT Authentication** – secure login/register system  
+-  **SCSS Styling** – modern UI with clean styles  
+-  **Full-stack Setup** – React frontend + Django backend  
 
 ---
 
@@ -26,7 +26,7 @@ Includes **AI-powered Quizzes**, **Email system**, and **JWT authentication** fo
 ## Live site : https://bonengmalakas.site
 
 
-## ⚡ Installation & Setup
+## Installation & Setup
 
 ### 1. Clone the repository
 ```bash
