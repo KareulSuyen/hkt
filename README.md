@@ -30,6 +30,6 @@ Includes **AI-powered Quizzes**, **Email system**, and **JWT authentication** fo
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/greysuyen/hkktn.git
+git clone https://github.com/kareulsuyen/hkktn.git
 cd hkktn
 
